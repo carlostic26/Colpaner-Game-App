@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "329297151236",
+    "project_id": "gami-colpaner",
+    "storage_bucket": "gami-colpaner.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329297151236:android:643396dd4ac45b765ebc51",
+        "android_client_info": {
+          "package_name": "com.gamicolpaner.blogspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329297151236-t182jfbbfhdg0s6na2ff6h36ouvb0ld0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV4uM41YRoVzBNYC7n4gX4RdBWW6esQD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329297151236-t182jfbbfhdg0s6na2ff6h36ouvb0ld0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329297151236:android:6a33ebb451f1f8e85ebc51",
+        "android_client_info": {
+          "package_name": "com.gamicolpaneruda.blogspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329297151236-ilkudmrr07lerdd82skhkhdhe7oq03vc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gamicolpaneruda.blogspot",
+            "certificate_hash": "dfcaa69461340fbdd9b9e9663703b4c04b7e0ca6"
+          }
+        },
+        {
+          "client_id": "329297151236-t182jfbbfhdg0s6na2ff6h36ouvb0ld0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV4uM41YRoVzBNYC7n4gX4RdBWW6esQD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329297151236-t182jfbbfhdg0s6na2ff6h36ouvb0ld0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
