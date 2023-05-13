@@ -145,7 +145,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   alignment: Alignment.bottomRight,
                   child: Text(
                     //TEXTO QUE CONTIENE EL PONDERADO  DE PREGUNTAS
-                    'Pregunta $_questionNumber/5',
+                    'Pregunta $_questionNumber/${_questions?.length}',
                     style: const TextStyle(
                         color: colors_colpaner.oscuro,
                         fontFamily: 'BubblegumSans',
@@ -170,7 +170,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   })
               : const SizedBox.shrink(),
         ),
-        _isLocked ? buildElevatedButton() : const SizedBox.shrink(),
+        _isLocked
+            ? buildElevatedButton(_questions?.length)
+            : const SizedBox.shrink(),
         const SizedBox(height: 20),
         const Divider(
           thickness: 1,
@@ -181,23 +183,137 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   }
 
   Padding buildQuestion(question_model questionBuild) {
+    Future<Size>? _imageSize;
+    int? imgHeigh;
+
+    Future<Size> _getImageSize() async {
+      final Completer<Size> completer = Completer();
+      final Image image = Image.network(questionBuild.imagen);
+      image.image.resolve(const ImageConfiguration()).addListener(
+        ImageStreamListener((ImageInfo info, bool _) {
+          completer.complete(Size(
+            info.image.width.toDouble(),
+            info.image.height.toDouble(),
+          ));
+        }),
+      );
+      return completer.future;
+    }
+
+    @override
+    didChangeDependencies() {
+      _imageSize = _getImageSize();
+      imgHeigh = _imageSize.toString() as int?;
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //altura del cuerpo que contiene pregunta y respuestas
-          const SizedBox(height: 30),
-
-          Text(
-            //TEXTO QUE CONTIENE LA PREGUNTA COMPLETA
-            questionBuild.pregunta,
-            style: const TextStyle(
-                color: colors_colpaner.claro,
-                fontFamily: 'BubblegumSans',
-                fontSize: 20.0),
-          ),
           const SizedBox(height: 15),
+          SizedBox(
+            //MediaQuery.of(context).size.height * 0.50,
+            height: (questionBuild.pregunta.length > 1 &&
+                    questionBuild.pregunta.length <= 101 &&
+                    questionBuild.imagen == '') //2 lineas
+                ? 90
+                : (questionBuild.pregunta.length > 1 &&
+                        questionBuild.pregunta.length <= 101 &&
+                        questionBuild.imagen != '') //2 lineas
+                    ? 430
+                    :
+                    //
+                    questionBuild.pregunta.length >= 102 &&
+                            questionBuild.pregunta.length <= 150 &&
+                            questionBuild.imagen == '' //4 lineas
+                        ? 140
+                        : questionBuild.pregunta.length >= 102 &&
+                                questionBuild.pregunta.length <= 150 &&
+                                questionBuild.imagen != '' //4 lineas
+                            ? 450
+                            :
+                            //
+                            questionBuild.pregunta.length >= 141 &&
+                                    questionBuild.pregunta.length <=
+                                        158 && //6 lineas o mas
+                                    questionBuild.imagen == ''
+                                ? 140
+                                : questionBuild.pregunta.length >= 141 &&
+                                        questionBuild.pregunta.length <=
+                                            200 && //6 lineas o mas
+                                        questionBuild.imagen != '' //4 lineas
+                                    ? 450
+                                    : questionBuild.pregunta.length >= 159 &&
+                                            questionBuild.pregunta.length <=
+                                                200 && //6 lineas o mas
+                                            questionBuild.imagen != ''
+                                        ? 450
+                                        : questionBuild.pregunta.length >=
+                                                    159 &&
+                                                questionBuild.pregunta.length <=
+                                                    200 && //6 lineas o mas
+                                                questionBuild.imagen ==
+                                                    '' //4 lineas
+                                            ? 155
+                                            :
+                                            //
+                                            questionBuild.pregunta.length >=
+                                                        1000 && // texto largo
+                                                    questionBuild.imagen == ''
+                                                ? MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.45
+                                                : questionBuild.pregunta
+                                                                .length >=
+                                                            1000 && // texto largo
+                                                        questionBuild.imagen !=
+                                                            '' //4 lineas
+                                                    ? MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.40
+                                                    : MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.45,
+            child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Text(
+                      questionBuild.pregunta.length.toString() +
+                          questionBuild.pregunta,
+                      style: const TextStyle(
+                        color: colors_colpaner.claro,
+                        fontFamily: 'BubblegumSans',
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    if (questionBuild.imagen != '')
+                      InteractiveViewer(
+                        minScale: 0.5,
+                        maxScale: 5.0,
+                        boundaryMargin: const EdgeInsets.all(100),
+                        panEnabled: true,
+                        scaleEnabled: true,
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          height: imgHeigh?.toDouble(),
+                          child: Image.network(
+                            questionBuild.imagen,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      )
+                  ],
+                )),
+          ),
+
+          const SizedBox(height: 5),
           Expanded(
               child: OptionsWidget(
             question: questionBuild,
@@ -221,10 +337,10 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     );
   }
 
-  ElevatedButton buildElevatedButton() {
+  ElevatedButton buildElevatedButton(int? questionsLength) {
     return ElevatedButton(
       onPressed: () async {
-        if (_questionNumber < 5) {
+        if (_questionNumber < questionsLength) {
           _controller.nextPage(
             duration: const Duration(milliseconds: 250),
             curve: Curves.easeInExpo,
@@ -255,7 +371,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         minimumSize: const Size(100, 40),
       ),
       child: Text(
-        _questionNumber < 5 ? 'Siguiente' : 'Revisar resultado',
+        _questionNumber < questionsLength! ? 'Siguiente' : 'Revisar resultado',
         style: const TextStyle(
             color: colors_colpaner.oscuro,
             fontFamily: 'BubblegumSans',
@@ -273,7 +389,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       builder: (BuildContext context) {
         String pin = '';
         return AlertDialog(
-          title: Center(child: const Text('Código de acceso')),
+          title: const Center(child: Text('Código de acceso')),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -298,7 +414,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Center(child: const Text('Ingresar')),
+              child: const Center(child: Text('Ingresar')),
               onPressed: () {
                 if (pin == '00000') {
                   Navigator.pushReplacement(

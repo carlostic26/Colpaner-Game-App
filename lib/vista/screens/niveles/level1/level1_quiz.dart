@@ -778,24 +778,23 @@ final questionsLec = [
 
   //Pregunta 4
   Question(
+      //
       text:
-          '4. ¿Cuál es el propósito principal de las preguntas de lectura crítica en el ICFES Saber 11?',
+          '4. ¿Cuáles son las competencias y habilidades del estudiante para la comprensión, interpretación y evaluación de textos cotidianos y de ámbitos académicos no especializados que evalua el ICFES Saber 11?',
       options: [
         const Option(
-            text: 'A. Evaluar la comprensión lectora de los estudiantes.',
-            isCorrect: true),
-        const Option(
             text:
-                'B. Medir la capacidad de los estudiantes para recordar información.',
+                'A. Evaluar la habilidad de los estudiantes para identificar y entender los contenidos locales que conforman un texto, que evalúa la comprensión de palabras, frases o expresiones',
             isCorrect: false),
         const Option(
             text:
-                'C. Evaluar la habilidad de los estudiantes para escribir textos persuasivos.',
+                'B. Reflexionar a partir de un texto y evaluar su contenido, en la cual se evalúa la capacidad de enfrentarse a un texto de manera crítica. ',
             isCorrect: false),
         const Option(
             text:
-                'D. Evaluar la capacidad de los estudiantes para realizar operaciones matemáticas complejas.',
-            isCorrect: false)
+                'C. Comprender cómo se articulan las partes de un texto para darle un sentido global, relacionada con la comprensión de las partes del texto para la articulación del sentido global. ',
+            isCorrect: false),
+        const Option(text: 'D. Todas las anteriores.', isCorrect: true)
       ]),
 
   //Pregunta 5
@@ -804,8 +803,8 @@ final questionsLec = [
           "5. ¿Cuánto tiempo debo tomar en resolver todo el módulo de lectura crítica?",
       options: [
         const Option(text: 'A. Entre 10 a 15 minutos', isCorrect: false),
-        const Option(text: 'B. Entre 15 a 30 minutos', isCorrect: true),
-        const Option(text: 'C. Entre 30 a 45 minutos', isCorrect: false),
+        const Option(text: 'B. Entre 15 a 30 minutos', isCorrect: false),
+        const Option(text: 'C. Entre 30 a 45 minutos', isCorrect: true),
         const Option(text: 'D. No importa cuánto tiempo', isCorrect: false)
       ]),
 ];
