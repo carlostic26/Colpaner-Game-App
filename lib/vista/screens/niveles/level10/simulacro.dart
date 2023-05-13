@@ -1,7 +1,9 @@
 library simulacro;
 
 import 'dart:async';
+import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -170,9 +172,16 @@ class _simulacroState extends State<simulacro> {
     print('initializeHandler completed with MODULO: ' + _modulo);
   }
 
+  int itemsIng = 0;
+
   //Methods that receive the list select from dbhelper
   Future<List<question_model>> getListING() async {
     List<question_model> dbQuestions = await handler.queryING();
+
+/*     // Obteniendo cantidad de items de la lista
+    setState(() async {
+      itemsIng = (await _questions)!.length;
+    }); */
 
     return dbQuestions
         .map((dbQuestion) => question_model.fromMap(dbQuestion.toMap()))
@@ -190,7 +199,9 @@ class _simulacroState extends State<simulacro> {
 
   //Methods that receive the list select from dbhelper
   Future<List<question_model>> getListLEC() async {
-    List<question_model> dbQuestions = await handler.queryLEC();
+    //abre metodo random 2 numeros, si elige 1 sale LEC1, si elige 2 sale LEC2
+    List<question_model> dbQuestions = await handler.queryLEC2();
+    //List<question_model> dbQuestions = await handler.queryLEC1();
 
     return dbQuestions
         .map((dbQuestion) => question_model.fromMap(dbQuestion.toMap()))
@@ -263,10 +274,11 @@ class _simulacroState extends State<simulacro> {
               ),
             ],
           ),
+
           // Contenedor para el contador
           Positioned(
-            top: 30,
-            right: 16,
+            top: 40,
+            right: 20,
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.5),
