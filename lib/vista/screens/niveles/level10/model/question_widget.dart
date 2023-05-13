@@ -350,8 +350,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             _isLocked = false;
           });
         } else {
-          //abre dialogo gameover
-
           gameOver10(_score);
 /*           Navigator.pushReplacement(
             context,
@@ -363,8 +361,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           await _guardarPuntaje(
               _score); // Llamar a la función para guardar el puntaje
         }
-
-        // Se carga la información de puntaje a la base de datos logrando actualizar todo el campo del registro de puntaje correspondiente al nivel
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: colors_colpaner.claro, // Background color
