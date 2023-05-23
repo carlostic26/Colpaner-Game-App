@@ -230,7 +230,7 @@ class _avatarsFemaleState extends State<avatarsFemale> {
                                   fontSize: 13),
                             ),
                             FutureBuilder<int>(
-                              future: _modulo == 'Matemáticas'
+                              future: _modulo == 'Razonamiento Cuantitativo'
                                   ? getPuntajesTotal_MAT()
                                   : _modulo == 'Inglés'
                                       ? getPuntajesTotal_ING()

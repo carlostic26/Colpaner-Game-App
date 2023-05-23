@@ -145,7 +145,7 @@ class _level2State extends State<level2> {
                           padding: const EdgeInsets.all(16.0),
                           itemBuilder: (context, index) {
                             List<String> cards_List;
-                            if (_modulo == 'Matemáticas') {
+                            if (_modulo == 'Razonamiento Cuantitativo') {
                               cards_List = _gameCards.cards_list_mat;
                             } else if (_modulo == 'Inglés') {
                               cards_List = _gameCards.cards_list_ing;
@@ -315,7 +315,7 @@ class _level2State extends State<level2> {
     //obtiene el modulo del shp
     String _modulo = await getModulo();
 
-    if (_modulo == 'Matemáticas') {
+    if (_modulo == 'Razonamiento Cuantitativo') {
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')

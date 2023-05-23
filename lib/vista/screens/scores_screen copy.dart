@@ -112,7 +112,7 @@ class _MyScore2State extends State<MyScore2> {
               Column(
                 children: const [
                   Text(
-                    "Matemáticas",
+                    "Razonamiento Cuantitativo",
                     style: TextStyle(
                       fontFamily: 'BubblegumSans',
                       fontSize: 18,

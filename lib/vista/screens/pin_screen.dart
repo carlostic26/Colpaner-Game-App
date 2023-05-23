@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
+import 'package:gamicolpaner/vista/screens/genderChoorser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -82,12 +84,21 @@ class _pinScreenState extends State<pinScreen> {
                               if (pin == '00000') {
                                 //shared preferences pin=true
                                 savePin(true);
+                                //abre dialogo genero chooser
+
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const entrenamientoModulos()),
+                                          const genderChooser()),
                                 );
+
+/*                                 Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const entrenamientoModulos()),
+                                ); */
                               } else {
                                 Fluttertoast.showToast(
                                   msg: "Pin incorrecto", // message

@@ -128,7 +128,7 @@ class _simulacroState extends State<simulacro> {
     });
 
     switch (_modulo) {
-      case "Matemáticas":
+      case "Razonamiento Cuantitativo":
         {
           handler = SimulacroHandler();
           await handler.initializeDB();
@@ -229,7 +229,7 @@ class _simulacroState extends State<simulacro> {
   Future<void> _onRefresh() async {
     setState(() {
       switch (_modulo) {
-        case "Matemáticas":
+        case "Razonamiento Cuantitativo":
           {
             _questions = getListMAT();
           }

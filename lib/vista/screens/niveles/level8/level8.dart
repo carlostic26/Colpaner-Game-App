@@ -66,7 +66,7 @@ class _level8State extends State<level8> {
       _modulo = prefs.getString('modulo') ?? '';
     });
 
-    if (_modulo == 'Matemáticas') {
+    if (_modulo == 'Razonamiento Cuantitativo') {
       setState(() {
         temaPregunta = temaPreguntaMat;
       });
@@ -392,7 +392,7 @@ class _level8State extends State<level8> {
     // TODO: implement initState
     super.initState();
 
-    if (_modulo.contains('Matemáticas')) {
+    if (_modulo.contains('Razonamiento Cuantitativo')) {
       temaPregunta = ['mate Hot Dogs', 'mate Spaguetti', 'mate Sandwich'];
     }
 

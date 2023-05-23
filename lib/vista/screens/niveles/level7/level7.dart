@@ -409,7 +409,7 @@ class _level7State extends State<level7> {
     //obtiene el modulo del shp
     String modulo = await getModulo();
 
-    if (modulo == 'Matemáticas') {
+    if (modulo == 'Razonamiento Cuantitativo') {
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')

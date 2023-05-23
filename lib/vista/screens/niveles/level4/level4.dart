@@ -41,7 +41,7 @@ class _level4State extends State<level4> {
       print('MODULO EN LEVEL 4 ES: $modul');
     });
 
-    if (modul == 'Matemáticas') {
+    if (modul == 'Razonamiento Cuantitativo') {
       final List<MapEntry<String, String>> choicesList = choicesMAT.entries
           .map(
               (entry) => MapEntry(entry.key.toString(), entry.value.toString()))
@@ -376,7 +376,7 @@ Future<void> _guardarPuntajeNivel4(int score) async {
   //obtiene el modulo del shp
   String _modulo = await getModulo();
 
-  if (_modulo == 'Matemáticas') {
+  if (_modulo == 'Razonamiento Cuantitativo') {
     //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
     /*  //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();

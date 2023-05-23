@@ -284,8 +284,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                 child: Column(
                   children: [
                     Text(
-                      questionBuild.pregunta.length.toString() +
-                          questionBuild.pregunta,
+                      questionBuild
+                          .pregunta, //questionBuild.pregunta.length.toString() +questionBuild.pregunta,
                       style: const TextStyle(
                         color: colors_colpaner.claro,
                         fontFamily: 'BubblegumSans',
@@ -441,7 +441,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 //obtiene el modulo del shp
     String _modulo = await getModulo();
 
-    if (_modulo == 'Matemáticas') {
+    if (_modulo == 'Razonamiento Cuantitativo') {
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('matematicas')

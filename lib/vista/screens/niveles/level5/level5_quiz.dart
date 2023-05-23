@@ -232,7 +232,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                 itemCount: 5,
                 controller: _controller,
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: _modulo == 'Matemáticas'
+                itemBuilder: _modulo == 'Razonamiento Cuantitativo'
                     ? (context, index) {
                         final _question = questionsMat[index];
                         return buildQuestion(_question);
@@ -898,7 +898,7 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   //obtiene el modulo del shp
   String _modulo = await getModulo();
 
-  if (_modulo == 'Matemáticas') {
+  if (_modulo == 'Razonamiento Cuantitativo') {
     //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
     /*  //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();

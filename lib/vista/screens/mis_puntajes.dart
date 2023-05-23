@@ -6,6 +6,7 @@ import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_female.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_male.dart';
+import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,8 +69,8 @@ class _misPuntajesState extends State<misPuntajes> {
   }
 
   final List<Color?> colors = [
-    Color.fromARGB(180, 2, 59, 64),
-    Color.fromARGB(180, 209, 252, 207)
+    const Color.fromARGB(180, 2, 59, 64),
+    const Color.fromARGB(180, 209, 252, 207)
   ].toList();
 
 /*   final List<Color?> colors = [
@@ -979,15 +980,20 @@ class _misPuntajesState extends State<misPuntajes> {
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
                           children: [
-                            const Text(
-                              'Matemáticas',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'BubblegumSans',
-                                fontWeight: FontWeight.bold,
-                                color: colors_colpaner.claro,
+                            const Center(
+                              child: Text(
+                                'Razonamiento\nCuantitativo',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.claro,
+                                ),
+                                textAlign: TextAlign
+                                    .center, // Alineación horizontal del texto
                               ),
                             ),
+
                             //SE MUESTRA UN CIRCULO PROGRESS BAR
                             const SizedBox(height: 10),
                             Center(
@@ -1245,7 +1251,7 @@ class _misPuntajesState extends State<misPuntajes> {
                         child: Column(
                           children: [
                             const Text(
-                              'Matemáticas',
+                              'Razonamiento Cuantitativo',
                               style: TextStyle(
                                 fontSize: 20.0,
                                 fontFamily: 'BubblegumSans',
@@ -1308,7 +1314,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Text(
-                      "Matemáticas",
+                      "Razonamiento Cuantitativo",
                       style: TextStyle(
                           fontSize: 20.0,
                           fontFamily: 'BubblegumSans',
@@ -3871,11 +3877,14 @@ class _misPuntajesState extends State<misPuntajes> {
           ),
         ],
       ),
-      drawer: _getDrawer(context),
+      drawer: DrawerColpaner(
+        context: context,
+        screen: 'puntajes',
+      ),
     );
   }
 
-  //NAVIGATION DRAWER
+/*   //NAVIGATION DRAWER
   Widget _getDrawer(BuildContext context) {
     _getAvatarFromSharedPrefs();
 
@@ -4065,7 +4074,7 @@ class _misPuntajesState extends State<misPuntajes> {
       ),
     );
   }
-
+ */
   // función para eliminar todos los registros de Shared Preferences
   Future<void> clearSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

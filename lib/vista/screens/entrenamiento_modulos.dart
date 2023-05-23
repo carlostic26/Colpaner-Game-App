@@ -6,6 +6,7 @@ import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_female.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_male.dart';
+import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +113,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.10,
+            height: MediaQuery.of(context).size.height * 0.05,
           ),
           //Modulo Matem - Inglés
           Expanded(
@@ -124,7 +125,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     child: InkWell(
                       onTap: () {
                         //establece en memoria el módulo controlado por el usuario
-                        setModulo('Matemáticas');
+                        setModulo('Lectura Crítica');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -147,16 +148,16 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(25.0),
+                                  padding: const EdgeInsets.all(20.0),
                                   child: CachedNetworkImage(
-                                    imageUrl: imageUrlMat,
+                                    imageUrl: imageUrlLect,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                             ),
                             const Text(
-                              "Matemáticas",
+                              "Lectura Crítica",
                               style: TextStyle(
                                   fontFamily: 'BubblegumSans',
                                   fontSize: 20,
@@ -236,7 +237,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     child: InkWell(
                       onTap: () {
                         //establece en memoria el módulo controlado por el usuario
-                        setModulo('Lectura Crítica');
+                        setModulo('Razonamiento Cuantitativo');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -259,19 +260,19 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
+                                  padding: const EdgeInsets.all(25.0),
                                   child: CachedNetworkImage(
-                                    imageUrl: imageUrlLect,
+                                    imageUrl: imageUrlMat,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
                             ),
                             const Text(
-                              "Lectura Crítica",
+                              "Razonamiento Cuantitativo",
                               style: TextStyle(
                                   fontFamily: 'BubblegumSans',
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: Colors.white),
                             ),
                             const SizedBox(
@@ -288,8 +289,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        setModulo('Ciencias Naturales');
-
+                        setModulo('Comunicación Escrita');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -320,7 +320,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                               ),
                             ),
                             const Text(
-                              "Ciencias Naturales",
+                              "Comunicación Escrita",
                               style: TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'BubblegumSans',
@@ -344,7 +344,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
               padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: Row(
                 children: <Widget>[
-                  Expanded(
+                  /*  Expanded(
                     child: InkWell(
                       onTap: () {
                         //establece en memoria el módulo controlado por el usuario
@@ -393,7 +393,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                         ),
                       ),
                     ),
-                  ),
+                  ), */
                   const SizedBox(
                     width: 20,
                   ),
@@ -445,6 +445,9 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                       ),
                     ),
                   ),
+                  const SizedBox(
+                    width: 20,
+                  ),
                 ],
               ),
             ),
@@ -454,11 +457,14 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
           )
         ],
       ),
-      drawer: _getDrawer(context),
+      drawer: DrawerColpaner(
+        context: context,
+        screen: 'entrenamiento',
+      ),
     );
   }
 
-  //NAVIGATION DRAWER
+/*   //NAVIGATION DRAWER
   Widget _getDrawer(BuildContext context) {
     _getAvatarFromSharedPrefs();
 
@@ -669,7 +675,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
       ),
     );
   }
-
+ */
   // función para eliminar todos los registros de Shared Preferences
   Future<void> clearSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

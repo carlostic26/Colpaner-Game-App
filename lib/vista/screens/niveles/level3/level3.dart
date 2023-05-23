@@ -146,7 +146,7 @@ class _level3State extends State<level3> {
     setState(() {
       _modulo = prefs.getString('modulo') ?? '';
 
-      if (_modulo == 'Matemáticas') {
+      if (_modulo == 'Razonamiento Cuantitativo') {
         words = ['MAT', 'DART', 'IA'];
       } else if (_modulo == 'Inglés') {
         words = ['ING', 'DART', 'IA'];
@@ -1059,7 +1059,7 @@ class _level3State extends State<level3> {
     //obtiene el modulo del shp
     String modulo = await getModulo();
 
-    if (modulo == 'Matemáticas') {
+    if (modulo == 'Razonamiento Cuantitativo') {
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')

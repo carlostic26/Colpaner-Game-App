@@ -16,6 +16,7 @@ import 'package:gamicolpaner/vista/screens/niveles/level6/level6.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level7/level7.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level8/level8.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level9/level9.dart';
+import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:giff_dialog/giff_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -744,10 +745,13 @@ class _world_gameState extends State<world_game> {
                                 ),
                                 Text(
                                   _modulo,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'BubblegumSans',
-                                    fontSize: 13,
+                                    fontSize: _modulo.contains(
+                                            'Razonamiento Cuantitativo')
+                                        ? 12
+                                        : 13,
                                   ),
                                 ),
                               ],
@@ -794,11 +798,12 @@ class _world_gameState extends State<world_game> {
                                         fontSize: 13),
                                   ),
                                   FutureBuilder<int>(
-                                    future: _modulo == 'Matemáticas'
-                                        ? getPuntajesTotal_MAT()
-                                        : _modulo == 'Inglés'
-                                            ? getPuntajesTotal_ING()
-                                            : getPuntajesTotal_MAT(),
+                                    future:
+                                        _modulo == 'Razonamiento Cuantitativo'
+                                            ? getPuntajesTotal_MAT()
+                                            : _modulo == 'Inglés'
+                                                ? getPuntajesTotal_ING()
+                                                : getPuntajesTotal_MAT(),
                                     builder: (BuildContext context,
                                         AsyncSnapshot<int> snapshot) {
                                       if (snapshot.hasData) {
@@ -830,56 +835,95 @@ class _world_gameState extends State<world_game> {
                 ),
               ),
 
-              //btn 10
               Positioned(
                 right: MediaQuery.of(context).size.width * 0.325,
                 top: MediaQuery.of(context).size.height * 0.135,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: GestureDetector(
-                      child: button10,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button10 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button10 = buttonUnpressed;
-                        });
-                        showDialogLevel(10, _modulo);
-                      },
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: GestureDetector(
+                        child: button10,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 25,
+                      left: 40,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button10 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button10 = buttonUnpressed;
+                          });
+                          showDialogLevel(10, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Text(
+                            '10',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
+
               //btn 9
               Positioned(
                 right: MediaQuery.of(context).size.width * 0.66,
                 top: MediaQuery.of(context).size.height * 0.258,
                 child: Align(
                   alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 62,
-                    width: 62,
-                    child: GestureDetector(
-                      child: button9,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button9 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button9 = buttonUnpressed;
-                        });
-                        showDialogLevel(9, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 62,
+                      width: 62,
+                      child: GestureDetector(
+                        child: button9,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 12,
+                      left: 25,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button9 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button9 = buttonUnpressed;
+                          });
+                          showDialogLevel(9, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Text(
+                            '9',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
 
@@ -889,24 +933,44 @@ class _world_gameState extends State<world_game> {
                 top: MediaQuery.of(context).size.height * 0.355,
                 child: Align(
                   alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 70,
-                    width: 70,
-                    child: GestureDetector(
-                      child: button8,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button8 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button8 = buttonUnpressed;
-                        });
-                        showDialogLevel(8, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 70,
+                      width: 70,
+                      child: GestureDetector(
+                        child: button8,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 15,
+                      left: 28,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button8 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button8 = buttonUnpressed;
+                          });
+                          showDialogLevel(8, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Text(
+                            '8',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
 
@@ -916,24 +980,40 @@ class _world_gameState extends State<world_game> {
                 top: MediaQuery.of(context).size.height * 0.358,
                 child: Align(
                   alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 70,
-                    width: 70,
-                    child: GestureDetector(
-                      child: button7,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button7 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button7 = buttonUnpressed;
-                        });
-                        showDialogLevel(7, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 70,
+                      width: 70,
+                      child: GestureDetector(
+                        child: button7,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 16,
+                      left: 30,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button7 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button7 = buttonUnpressed;
+                          });
+                          showDialogLevel(7, _modulo);
+                        },
+                        child: const Text(
+                          '7',
+                          style: TextStyle(
+                            color: colors_colpaner.claro,
+                            fontFamily: 'BubblegumSans',
+                            fontSize: 21,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
 
@@ -943,24 +1023,44 @@ class _world_gameState extends State<world_game> {
                 bottom: MediaQuery.of(context).size.height * 0.48,
                 child: Align(
                   alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 75,
-                    width: 75,
-                    child: GestureDetector(
-                      child: button6,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button6 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button6 = buttonUnpressed;
-                        });
-                        showDialogLevel(6, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 75,
+                      width: 75,
+                      child: GestureDetector(
+                        child: button6,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 17,
+                      left: 32,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button6 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button6 = buttonUnpressed;
+                          });
+                          showDialogLevel(6, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Text(
+                            '6',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 21,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
               //btn 5
@@ -969,24 +1069,44 @@ class _world_gameState extends State<world_game> {
                 bottom: MediaQuery.of(context).size.height * 0.427,
                 child: Align(
                   alignment: Alignment.center,
-                  child: SizedBox(
-                    height: 75,
-                    width: 75,
-                    child: GestureDetector(
-                      child: button5,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button5 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button5 = buttonUnpressed;
-                        });
-                        showDialogLevel(5, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 75,
+                      width: 75,
+                      child: GestureDetector(
+                        child: button5,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 16,
+                      left: 32,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button5 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button5 = buttonUnpressed;
+                          });
+                          showDialogLevel(5, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Text(
+                            '5',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 22,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
 
@@ -996,24 +1116,44 @@ class _world_gameState extends State<world_game> {
                 bottom: MediaQuery.of(context).size.height * 0.41,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    height: 75,
-                    width: 75,
-                    child: GestureDetector(
-                      child: button4,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button4 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button4 = buttonUnpressed;
-                        });
-                        showDialogLevel(4, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 75,
+                      width: 75,
+                      child: GestureDetector(
+                        child: button4,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 16,
+                      left: 30,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button4 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button4 = buttonUnpressed;
+                          });
+                          showDialogLevel(4, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Text(
+                            '4',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 22,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
 
@@ -1023,24 +1163,44 @@ class _world_gameState extends State<world_game> {
                 bottom: MediaQuery.of(context).size.height * 0.289,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    height: 80,
-                    width: 100,
-                    child: GestureDetector(
-                      child: button3,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button3 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button3 = buttonUnpressed;
-                        });
-                        showDialogLevel(3, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 80,
+                      width: 100,
+                      child: GestureDetector(
+                        child: button3,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 17,
+                      left: 43,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button3 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button3 = buttonUnpressed;
+                          });
+                          showDialogLevel(3, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: Text(
+                            '3',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
 
@@ -1050,24 +1210,44 @@ class _world_gameState extends State<world_game> {
                 bottom: MediaQuery.of(context).size.height * 0.195,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    height: 90,
-                    width: 90,
-                    child: GestureDetector(
-                      child: button2,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button2 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button2 = buttonUnpressed;
-                        });
-                        showDialogLevel(2, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 90,
+                      width: 90,
+                      child: GestureDetector(
+                        child: button2,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                      top: 19,
+                      left: 38,
+                      child: GestureDetector(
+                        onTapDown: (tap) {
+                          setState(() {
+                            button2 = buttonPressed;
+                          });
+                        },
+                        onTapUp: (tap) {
+                          setState(() {
+                            button2 = buttonUnpressed;
+                          });
+                          showDialogLevel(2, _modulo);
+                        },
+                        child: const SizedBox(
+                          height: 80,
+                          width: 100,
+                          child: Text(
+                            '2',
+                            style: TextStyle(
+                              color: colors_colpaner.claro,
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 28,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
                 ),
               ),
 
@@ -1077,24 +1257,47 @@ class _world_gameState extends State<world_game> {
                 bottom: MediaQuery.of(context).size.height * 0.028,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    height: 125,
-                    width: 125,
-                    child: GestureDetector(
-                      child: button1,
-                      onTapDown: (tap) {
-                        setState(() {
-                          button1 = buttonPressed;
-                        });
-                      },
-                      onTapUp: (tap) {
-                        setState(() {
-                          button1 = buttonUnpressed;
-                        });
-                        showDialogLevel(1, _modulo);
-                      },
+                  child: Stack(children: [
+                    SizedBox(
+                      height: 125,
+                      width: 125,
+                      child: GestureDetector(
+                        child: button1,
+                      ),
                     ),
-                  ),
+                    Positioned(
+                        top: 25,
+                        left: 55,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              button1 = buttonPressed;
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              button1 = buttonUnpressed;
+                            });
+                            showDialogLevel(1, _modulo);
+                          },
+                          child: const SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Positioned(
+                              top: 25,
+                              left: 55,
+                              child: Text(
+                                '1',
+                                style: TextStyle(
+                                  color: colors_colpaner.claro,
+                                  fontFamily: 'BubblegumSans',
+                                  fontSize: 40,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )),
+                  ]),
                 ),
               ),
 

@@ -102,7 +102,7 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                           ),
 
                           FutureBuilder<int>(
-                            future: _modulo == 'Matemáticas'
+                            future: _modulo == 'Razonamiento Cuantitativo'
                                 ? getPuntajesTotal_MAT()
                                 : _modulo == 'Inglés'
                                     ? getPuntajesTotal_ING()
@@ -296,7 +296,7 @@ Stack(alignment: Alignment.center, children: <Widget>[
                 ),
 
                 FutureBuilder<int>(
-                  future: _modulo == 'Matemáticas'
+                  future: _modulo == 'Razonamiento Cuantitativo'
                       ? getPuntajesTotal_MAT()
                       : _modulo == 'Inglés'
                           ? getPuntajesTotal_ING()

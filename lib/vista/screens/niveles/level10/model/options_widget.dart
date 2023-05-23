@@ -68,7 +68,8 @@ class OptionsWidget extends StatelessWidget {
               Flexible(
                 fit: FlexFit.loose,
                 child: Text(
-                  "${option.text.length}${option.text}", //option.text, //"${option.text.length}${option.text}",
+                  option
+                      .text, //option.text, //"${option.text.length}${option.text}",
                   style: const TextStyle(
                       color: Colors.white, fontFamily: 'ZCOOL', fontSize: 15.0),
                 ),

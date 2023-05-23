@@ -233,7 +233,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                 itemCount: 5,
                 controller: _controller,
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: _modulo == 'Matemáticas'
+                itemBuilder: _modulo == 'Razonamiento Cuantitativo'
                     ? (context, index) {
                         final _question = questionsMat[index];
                         return buildQuestion(_question);
@@ -474,7 +474,8 @@ final questionsMat = [
 
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el módulo de matemáticas del ICFES Saber 11?",
+    text:
+        "1. ¿Qué es el módulo de Razonamiento Cuantitativo del ICFES Saber 11?",
     options: [
       const Option(
           text:
@@ -482,22 +483,23 @@ final questionsMat = [
           isCorrect: false),
       const Option(
           text:
-              'B. Una sección del examen Saber 11 que evalúa el conocimiento en matemáticas de los estudiantes.',
+              'B. Una sección del examen Saber 11 que evalúa el conocimiento en Razonamiento Cuantitativo de los estudiantes.',
           isCorrect: true),
       const Option(
           text:
-              'C. Un examen aparte que los estudiantes pueden tomar para evaluar su habilidad en matemáticas.',
+              'C. Un examen aparte que los estudiantes pueden tomar para evaluar su habilidad en Razonamiento Cuantitativo.',
           isCorrect: false),
       const Option(
           text:
-              'D. Un conjunto de ejercicios que los estudiantes pueden hacer para practicar matemáticas antes del examen.',
+              'D. Un conjunto de ejercicios que los estudiantes pueden hacer para practicar Razonamiento Cuantitativo antes del examen.',
           isCorrect: false)
     ],
   ),
 
   //Pregunta 2
   Question(
-      text: "2. ¿Qué temas se evalúan en el módulo de matemáticas del ICFES?",
+      text:
+          "2. ¿Qué temas se evalúan en el módulo de Razonamiento Cuantitativo del ICFES?",
       options: [
         const Option(
             text: 'A. Álgebra, geometría, trigonometría y estadística.',
@@ -516,7 +518,7 @@ final questionsMat = [
   //Pregunta 3
   Question(
       text:
-          "3. ¿Cuántas preguntas aproximadamente se evalúan en el módulo de matemáticas del ICFES?",
+          "3. ¿Cuántas preguntas aproximadamente se evalúan en el módulo de Razonamiento Cuantitativo del ICFES?",
       options: [
         const Option(text: 'A. 20 preguntas', isCorrect: false),
         const Option(text: 'B. 30 preguntas', isCorrect: false),
@@ -527,7 +529,7 @@ final questionsMat = [
   //Pregunta 4
   Question(
       text:
-          '4. ¿Cuánto tiempo tienen los estudiantes para completar el módulo de matemáticas del ICFES?',
+          '4. ¿Cuánto tiempo tienen los estudiantes para completar el módulo de Razonamiento Cuantitativo del ICFES?',
       options: [
         const Option(text: 'A. 90 minutos', isCorrect: false),
         const Option(text: 'B. 100 minutos', isCorrect: false),
@@ -538,7 +540,7 @@ final questionsMat = [
   //Pregunta 5
   Question(
       text:
-          "5. ¿Pueden los estudiantes utilizar calculadoras en el módulo de matemáticas del ICFES?",
+          "5. ¿Pueden los estudiantes utilizar calculadoras en el módulo de Razonamiento Cuantitativo del ICFES?",
       options: [
         const Option(
             text: 'A. Sí, pero solo se permite el uso de calculadoras básicas.',
@@ -609,10 +611,10 @@ final questionsIng = [
       text:
           "3. ¿Cuántas preguntas aproximadamente evalúa el ICFES en el módulo de inglés?",
       options: [
-        const Option(text: 'A. 20', isCorrect: true),
-        const Option(text: 'B. 30', isCorrect: false),
-        const Option(text: 'C. 40', isCorrect: false),
-        const Option(text: 'D. 50', isCorrect: false)
+        const Option(text: 'A. 20', isCorrect: false),
+        const Option(text: 'B. 35', isCorrect: false),
+        const Option(text: 'C. 45', isCorrect: false),
+        const Option(text: 'D. 55', isCorrect: true)
       ]),
 
   //Pregunta 4
@@ -989,7 +991,7 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   //obtiene el modulo del shp
   String _modulo = await getModulo();
 
-  if (_modulo == 'Matemáticas') {
+  if (_modulo == 'Razonamiento Cuantitativo') {
     //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
     /*  //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();

@@ -195,7 +195,7 @@ class _level6State extends State<level6> {
     setState(() {
       _modulo = prefs.getString('modulo') ?? '';
 
-      if (_modulo == 'Matemáticas') {
+      if (_modulo == 'Razonamiento Cuantitativo') {
         diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesMAT);
       } else if (_modulo == 'Inglés') {
         diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesING);
@@ -210,7 +210,7 @@ class _level6State extends State<level6> {
     _startCountdown();
     _getModuloFromSharedPrefs();
 
-/*     if (_modulo == 'Matemáticas') {
+/*     if (_modulo == 'Razonamiento Cuantitativo') {
       diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesMAT);
     } else if (_modulo == 'Inglés') {
       diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesING);
@@ -597,7 +597,7 @@ class _level6State extends State<level6> {
     //obtiene el modulo del shp
     String modulo = await getModulo();
 
-    if (modulo == 'Matemáticas') {
+    if (modulo == 'Razonamiento Cuantitativo') {
       //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
       /*  //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
