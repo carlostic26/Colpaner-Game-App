@@ -108,13 +108,13 @@ class _level2State extends State<level2> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: screen_heigth * 0.05,
+                      height: screen_heigth * 0.1,
                     ),
                     const Center(
                       child: Text(
                         "Memory Cards",
                         style: TextStyle(
-                          fontSize: 48.0,
+                          fontSize: 45.0,
                           fontFamily: 'BubblegumSans',
                           fontWeight: FontWeight.bold,
                           color: colors_colpaner.claro,
@@ -122,7 +122,7 @@ class _level2State extends State<level2> {
                       ),
                     ),
                     SizedBox(
-                      height: screen_heigth * 0.05,
+                      height: screen_heigth * 0.015,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -142,13 +142,19 @@ class _level2State extends State<level2> {
                             crossAxisSpacing: 15.0,
                             mainAxisSpacing: 15.0,
                           ),
-                          padding: const EdgeInsets.all(16.0),
+                          padding: const EdgeInsets.all(10.0),
                           itemBuilder: (context, index) {
                             List<String> cards_List;
                             if (_modulo == 'Razonamiento Cuantitativo') {
                               cards_List = _gameCards.cards_list_mat;
+                            } else if (_modulo == 'Lectura Crítica') {
+                              cards_List = _gameCards.cards_list_lec;
                             } else if (_modulo == 'Inglés') {
                               cards_List = _gameCards.cards_list_ing;
+                            } else if (_modulo == 'Comunicación Escrita') {
+                              cards_List = _gameCards.cards_list_com;
+                            } else if (_modulo == 'Competencias Ciudadanas') {
+                              cards_List = _gameCards.cards_list_comp;
                             } else {
                               //si no existe la lista de mat sera la predeterminada
                               cards_List = _gameCards.cards_list_mat;
@@ -207,7 +213,7 @@ class _level2State extends State<level2> {
                                   }
                                 },
                                 child: Container(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   decoration: BoxDecoration(
                                     color: colors_colpaner.oscuro,
                                     borderRadius: BorderRadius.circular(8.0),
@@ -229,7 +235,7 @@ class _level2State extends State<level2> {
                                           Text(
                                         _gameCards.gameImg![index],
                                         style: const TextStyle(
-                                          fontSize: 10.0,
+                                          fontSize: 9.0,
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),
@@ -315,6 +321,28 @@ class _level2State extends State<level2> {
     //obtiene el modulo del shp
     String _modulo = await getModulo();
 
+    if (_modulo == 'Competencias Ciudadanas') {
+      //guarda puntaje en firestore
+      final puntajesRefMat = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('competencias')
+          .collection('nivel2')
+          .doc(user!.uid);
+
+      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Comunicación Escrita') {
+      //guarda puntaje en firestore
+      final puntajesRefMat = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('comunicacion')
+          .collection('nivel2')
+          .doc(user!.uid);
+
+      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
     if (_modulo == 'Razonamiento Cuantitativo') {
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
@@ -331,6 +359,17 @@ class _level2State extends State<level2> {
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
+          .collection('nivel2')
+          .doc(user!.uid);
+
+      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Lectura Crítica') {
+      //guarda puntaje en firestore
+      final puntajesRefIng = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('lectura')
           .collection('nivel2')
           .doc(user!.uid);
 

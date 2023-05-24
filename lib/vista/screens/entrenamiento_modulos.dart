@@ -115,10 +115,10 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
           ),
-          //Modulo Matem - Inglés
+          //Lectura critica - Inglés
           Expanded(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -160,11 +160,11 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                               "Lectura Crítica",
                               style: TextStyle(
                                   fontFamily: 'BubblegumSans',
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   color: Colors.white),
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
                           ],
                         ),
@@ -172,7 +172,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     ),
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 15,
                   ),
                   Expanded(
                     child: InkWell(
@@ -211,12 +211,12 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                             const Text(
                               "Inglés",
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 15,
                                   fontFamily: 'BubblegumSans',
                                   color: Colors.white),
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
                           ],
                         ),
@@ -227,10 +227,10 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
               ),
             ),
           ),
-          //Modulo Lectura - Naturales
+          //Razonamiento - Comunicación
           Expanded(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: Row(
                 children: <Widget>[
                   Expanded(
@@ -268,15 +268,23 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                                 ),
                               ),
                             ),
-                            const Text(
-                              "Razonamiento Cuantitativo",
-                              style: TextStyle(
-                                  fontFamily: 'BubblegumSans',
-                                  fontSize: 15,
-                                  color: Colors.white),
+                            Row(
+                              children: const [
+                                Expanded(
+                                  child: Text(
+                                    "Razonamiento Cuantitativo",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
                             ),
                           ],
                         ),
@@ -284,7 +292,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     ),
                   ),
                   const SizedBox(
-                    width: 20,
+                    width: 15,
                   ),
                   Expanded(
                     child: InkWell(
@@ -319,12 +327,20 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                                 ),
                               ),
                             ),
-                            const Text(
-                              "Comunicación Escrita",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'BubblegumSans',
-                                  color: Colors.white),
+                            Row(
+                              children: const [
+                                Expanded(
+                                  child: Text(
+                                    "Comunicación Escrita",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 14,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(
                               height: 5,
@@ -338,10 +354,10 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
               ),
             ),
           ),
-          //Módulo Sociales - Competencias
+          //competencias ciudadanas
           Expanded(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: Row(
                 children: <Widget>[
                   /*  Expanded(

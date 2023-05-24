@@ -147,6 +147,7 @@ class _world_gameState extends State<world_game> {
 
     //----- LECTURA
     getPuntajeLectura1_firestore();
+    getPuntajeLectura2_firestore();
 
     //----- SOCIALES
     getPuntajeSociales1_firestore();
@@ -177,7 +178,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel1;
   }
 
-  //funcion que busca el nivel 2, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat2_firestore() async {
     int puntajeMatNivel2 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -202,7 +202,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel2;
   }
 
-  //funcion que busca el nivel 3, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat3_firestore() async {
     int puntajeMatNivel3 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -227,7 +226,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel3;
   }
 
-  //funcion que busca el nivel 4, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat4_firestore() async {
     int puntajeMatNivel4 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -252,7 +250,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel4;
   }
 
-  //funcion que busca el nivel 5, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat5_firestore() async {
     int puntajeMatNivel5 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -277,7 +274,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel5;
   }
 
-  //funcion que busca el nivel 6, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat6_firestore() async {
     int puntajeMatNivel6 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -302,7 +298,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel6;
   }
 
-  //funcion que busca el nivel 7, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat7_firestore() async {
     int puntajeMatNivel7 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -327,7 +322,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel7;
   }
 
-  //funcion que busca el nivel 8, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat8_firestore() async {
     int puntajeMatNivel8 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -376,8 +370,6 @@ class _world_gameState extends State<world_game> {
 
     return puntajeMatNivel9;
   } */
-
-  //funcion que busca el nivel 10, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat10_firestore() async {
     int puntajeMatNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -428,7 +420,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel1;
   }
 
-  //funcion que busca el nivel 2, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles2_firestore() async {
     int puntajeIngNivel2 = 0;
 
@@ -451,7 +442,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel2;
   }
 
-  //funcion que busca el nivel 3, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles3_firestore() async {
     int puntajeIngNivel3 = 0;
 
@@ -474,7 +464,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel3;
   }
 
-  //funcion que busca el nivel 4, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles4_firestore() async {
     int puntajeIngNivel4 = 0;
 
@@ -497,7 +486,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel4;
   }
 
-  //funcion que busca el nivel 5, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles5_firestore() async {
     int puntajeIngNivel5 = 0;
 
@@ -520,7 +508,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel5;
   }
 
-  //funcion que busca el nivel 6, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles6_firestore() async {
     int puntajeIngNivel6 = 0;
 
@@ -543,7 +530,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel6;
   }
 
-  //funcion que busca el nivel 7, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles7_firestore() async {
     int puntajeIngNivel7 = 0;
 
@@ -566,7 +552,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel7;
   }
 
-  //funcion que busca el nivel 8, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles8_firestore() async {
     int puntajeIngNivel8 = 0;
 
@@ -612,7 +597,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel9;
   } */
 
-  //funcion que busca el nivel 10, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles10_firestore() async {
     int puntajeIngNivel10 = 0;
 
@@ -660,6 +644,198 @@ class _world_gameState extends State<world_game> {
     await prefs.setString('puntaje_lectura_1', puntajeLecNivel1.toString());
 
     return puntajeLecNivel1;
+  }
+
+  Future<int> getPuntajeLectura2_firestore() async {
+    int puntajeLecNivel2 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel2')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel2 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_2', puntajeLecNivel2.toString());
+
+    return puntajeLecNivel2;
+  }
+
+  Future<int> getPuntajeLectura3_firestore() async {
+    int puntajeLecNivel3 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel3')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel3 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_3', puntajeLecNivel3.toString());
+
+    return puntajeLecNivel3;
+  }
+
+  Future<int> getPuntajeLectura4_firestore() async {
+    int puntajeLecNivel4 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel4')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel4 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_4', puntajeLecNivel4.toString());
+
+    return puntajeLecNivel4;
+  }
+
+  Future<int> getPuntajeLectura5_firestore() async {
+    int puntajeLecNivel5 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel5')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel5 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_5', puntajeLecNivel5.toString());
+
+    return puntajeLecNivel5;
+  }
+
+  Future<int> getPuntajeLectura6_firestore() async {
+    int puntajeLecNivel6 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel6')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel6 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_6', puntajeLecNivel6.toString());
+
+    return puntajeLecNivel6;
+  }
+
+  Future<int> getPuntajeLectura7_firestore() async {
+    int puntajeLecNivel7 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel7')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel7 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_7', puntajeLecNivel7.toString());
+
+    return puntajeLecNivel7;
+  }
+
+  Future<int> getPuntajeLectura8_firestore() async {
+    int puntajeLecNivel8 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel8')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel8 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_8', puntajeLecNivel8.toString());
+
+    return puntajeLecNivel8;
+  }
+
+  Future<int> getPuntajeLectura10_firestore() async {
+    int puntajeLecNivel10 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel10')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel10 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_10', puntajeLecNivel10.toString());
+
+    return puntajeLecNivel10;
   }
 
   //----------------------------- SOCIALES ----------------------------------
@@ -748,9 +924,11 @@ class _world_gameState extends State<world_game> {
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'BubblegumSans',
-                                    fontSize: _modulo.contains(
-                                            'Razonamiento Cuantitativo')
-                                        ? 12
+                                    fontSize: (_modulo.contains(
+                                                'Razonamiento Cuantitativo') ||
+                                            _modulo.contains(
+                                                'Competencias Ciudadanas'))
+                                        ? 9
                                         : 13,
                                   ),
                                 ),
@@ -803,7 +981,9 @@ class _world_gameState extends State<world_game> {
                                             ? getPuntajesTotal_MAT()
                                             : _modulo == 'Inglés'
                                                 ? getPuntajesTotal_ING()
-                                                : getPuntajesTotal_MAT(),
+                                                : _modulo == 'Lectura Crítica'
+                                                    ? getPuntajesTotal_LEC()
+                                                    : getPuntajesTotal_MAT(),
                                     builder: (BuildContext context,
                                         AsyncSnapshot<int> snapshot) {
                                       if (snapshot.hasData) {

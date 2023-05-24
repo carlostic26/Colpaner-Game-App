@@ -3,37 +3,84 @@ class GameCards {
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIZ0BeUdFWmKEPuHG8oqYPvKvLKbqVNHuiatUdPUCTvlDPUqsGPOjlf-O0VLFKGn1ThkIRpjtJ1xlKFp0q9SMG0pMtdsERgeKUGmOZCxkdgxr_zbyPhJQofnGHIy3jsYoNjp66DeodhoFnRC66yvzxsI9QsE_9lj2SqinF8T9TEMG7N8SYZ08Sb5w/s320/icon.png';
   List<String>? gameImg;
 
-  final List<String> cards_list_mat = [
-    //A continuación se presenta el acceso directo a la dirección de los diferentes tipos de imagenes relacionadas a las tarjetas
-    //son valores duplicados ya que estos se guardan en parejas al momento de establecer la lista
-    "https://ichef.bbci.co.uk/news/640/cpsprodpb/164EE/production/_109347319_gettyimages-611195980.jpg",
-    "https://www.mheducation.es/media/wysiwyg/Spain/Newsletter/Post/las-matematicas-lo-explican-todo-600.jpg",
-    "https://img2.rtve.es/i/?w=1600&i=1386350163529.jpg",
-    "https://concepto.de/wp-content/uploads/2013/08/matematicas-e1551990322160-800x399.jpg",
-    "https://fotos.perfil.com/2022/03/11/trim/950/534/dia-internacional-de-las-matematicas-20220311-1325116.jpg",
-    "https://s2.ppllstatics.com/laverdad/www/multimedia/202005/08/media/cortadas/984X608-matematicas-kaQG-U11087194903WZF-984x608@RC.jpg",
+  final List<String> cards_list_lec = [
+    "Los estudiantes aplican estrategias: identificación de argumentos, evaluación de evidencia y detección de sesgos.",
+    "Lectura Crítica evalúa capacidad de análisis y razonamiento crítico con textos de diversa temática.",
+    "Estudiantes infieren e interpretan información precisa en Lectura Crítica del ICFES Saber 11.",
+    "Identificar idea principal y detalles es fundamental en Lectura Crítica para el éxito.",
+    "Lectura Crítica desarrolla habilidades avanzadas y pensamiento crítico para educación superior.",
+    "Estudiantes relacionan información y evalúan argumentos en Lectura Crítica del ICFES Saber 11.",
+    //
+    "Los estudiantes aplican estrategias: identificación de argumentos, evaluación de evidencia y detección de sesgos.",
+    "Lectura Crítica evalúa capacidad de análisis y razonamiento crítico con textos de diversa temática.",
+    "Estudiantes infieren e interpretan información precisa en Lectura Crítica del ICFES Saber 11.",
+    "Identificar idea principal y detalles es fundamental en Lectura Crítica para el éxito.",
+    "Lectura Crítica desarrolla habilidades avanzadas y pensamiento crítico para educación superior.",
+    "Estudiantes relacionan información y evalúan argumentos en Lectura Crítica del ICFES Saber 11."
+  ];
 
-    "https://ichef.bbci.co.uk/news/640/cpsprodpb/164EE/production/_109347319_gettyimages-611195980.jpg",
-    "https://www.mheducation.es/media/wysiwyg/Spain/Newsletter/Post/las-matematicas-lo-explican-todo-600.jpg",
-    "https://img2.rtve.es/i/?w=1600&i=1386350163529.jpg",
-    "https://concepto.de/wp-content/uploads/2013/08/matematicas-e1551990322160-800x399.jpg",
-    "https://fotos.perfil.com/2022/03/11/trim/950/534/dia-internacional-de-las-matematicas-20220311-1325116.jpg",
-    "https://s2.ppllstatics.com/laverdad/www/multimedia/202005/08/media/cortadas/984X608-matematicas-kaQG-U11087194903WZF-984x608@RC.jpg",
+  final List<String> cards_list_mat = [
+    "Razonamiento Cuantitativo: resolución de problemas matemáticos.",
+    "Habilidades numéricas y algebraicas en el módulo de Matemáticas.",
+    "Interpretación de datos y gráficos en Razonamiento Cuantitativo.",
+    "Aplicación de fórmulas y conceptos matemáticos en el examen.",
+    "Resolución de ecuaciones y sistemas de ecuaciones en Matemáticas.",
+    "Uso de estrategias y razonamiento lógico en el módulo de Razonamiento Cuantitativo.",
+    //
+    "Razonamiento Cuantitativo: resolución de problemas matemáticos.",
+    "Habilidades numéricas y algebraicas en el módulo de Matemáticas.",
+    "Interpretación de datos y gráficos en Razonamiento Cuantitativo.",
+    "Aplicación de fórmulas y conceptos matemáticos en el examen.",
+    "Resolución de ecuaciones y sistemas de ecuaciones en Matemáticas.",
+    "Uso de estrategias y razonamiento lógico en el módulo de Razonamiento Cuantitativo."
   ];
 
   final List<String> cards_list_ing = [
-    "https://www.conmishijos.com/assets/posts/14000/14660-textos-en-ingles-para-ninos-de-primaria.jpg",
-    "https://www.britishcouncil.org.mx/sites/default/files/banderas_ingles_britanico_y_americano_.png",
-    "https://nosoloidiomas.com/wp-content/uploads/2014/05/UKUSA-e1400771755875.jpg",
-    "https://thumbs.dreamstime.com/b/concepto-ingl%C3%A9s-de-la-ense%C3%B1anza-de-idiomas-de-brit%C3%A1nicos-inglaterra-58368527.jpg",
-    "https://www.conmishijos.com/assets/posts/14000/14820-40-adivinanzas-para-ninos-en-ingles-con-traduccio.jpg",
-    "https://colombianabroad.com/wp-content/uploads/aprender-ingles-online.jpg",
-    "https://www.conmishijos.com/assets/posts/14000/14660-textos-en-ingles-para-ninos-de-primaria.jpg",
-    "https://www.britishcouncil.org.mx/sites/default/files/banderas_ingles_britanico_y_americano_.png",
-    "https://nosoloidiomas.com/wp-content/uploads/2014/05/UKUSA-e1400771755875.jpg",
-    "https://thumbs.dreamstime.com/b/concepto-ingl%C3%A9s-de-la-ense%C3%B1anza-de-idiomas-de-brit%C3%A1nicos-inglaterra-58368527.jpg",
-    "https://www.conmishijos.com/assets/posts/14000/14820-40-adivinanzas-para-ninos-en-ingles-con-traduccio.jpg",
-    "https://colombianabroad.com/wp-content/uploads/aprender-ingles-online.jpg",
+    "Módulo Inglés: identificar errores y elegir opción correcta",
+    "Habilidades lingüísticas en el examen de Inglés del ICFES.",
+    "Interpretación de textos y diálogos en el módulo de Inglés.",
+    "Vocabulario y gramática en el módulo de Inglés del ICFES Saber 11.",
+    "Conocimiento de vocabulario en el examen de Inglés del ICFES.",
+    "Uso de estrategias de comprensión y análisis en el módulo de Inglés.",
+//
+    "Módulo Inglés: identificar errores y elegir opción correcta",
+    "Habilidades lingüísticas en el examen de Inglés del ICFES.",
+    "Interpretación de textos y diálogos en el módulo de Inglés.",
+    "Vocabulario y gramática en el módulo de Inglés del ICFES Saber 11.",
+    "Conocimiento de vocabulario en el examen de Inglés del ICFES.",
+    "Uso de estrategias de comprensión y análisis en el módulo de Inglés."
+  ];
+
+  final List<String> cards_list_comp = [
+    "Competencias Ciudadanas: conocimiento de derechos y deberes ciudadanos.",
+    "Desarrollo de habilidades de resolución de conflictos en el examen.",
+    "Comprensión de la participación ciudadana y la democracia.",
+    "Ética y valores en el módulo de Competencias Ciudadanas.",
+    "Conocimiento sobre diversidad cultural y respeto a los demás.",
+    "Habilidades de pensamiento crítico y análisis de problemas sociales.",
+//
+    "Competencias Ciudadanas: conocimiento de derechos y deberes ciudadanos.",
+    "Desarrollo de habilidades de resolución de conflictos en el examen.",
+    "Comprensión de la participación ciudadana y la democracia.",
+    "Ética y valores en el módulo de Competencias Ciudadanas.",
+    "Conocimiento sobre diversidad cultural y respeto a los demás.",
+    "Habilidades de pensamiento crítico y análisis de problemas sociales."
+  ];
+
+  final List<String> cards_list_com = [
+    "Comunicación Escrita: redacción clara y coherente de textos.",
+    "Desarrollo de habilidades de comprensión y análisis de textos escritos.",
+    "Uso adecuado de la gramática y la puntuación en el examen.",
+    "Estructuración y organización de ideas en la escritura.",
+    "Expresión efectiva de argumentos y opiniones por escrito.",
+    "Edición y revisión de textos para mejorar su calidad.",
+//
+    "Comunicación Escrita: redacción clara y coherente de textos.",
+    "Desarrollo de habilidades de comprensión y análisis de textos escritos.",
+    "Uso adecuado de la gramática y la puntuación en el examen.",
+    "Estructuración y organización de ideas en la escritura.",
+    "Expresión efectiva de argumentos y opiniones por escrito.",
+    "Edición y revisión de textos para mejorar su calidad."
   ];
 
   // en esta lista guardaremos las dos primeras cartas tocadas y validar si son compatibles o no
@@ -42,9 +89,11 @@ class GameCards {
   final int cardCount = 12;
 
   void initGame() {
-    cards_list_mat.shuffle(); // reorganiza la lista de imágenes aleatoriamente
-    cards_list_ing.shuffle(); // reorganiza la lista de imágenes aleatoriamente
-
+    cards_list_mat.shuffle(); // reorganiza las premisas aleatoriamente
+    cards_list_ing.shuffle(); // reorganiza las premisas aleatoriamente
+    cards_list_lec.shuffle(); // reorganiza las premisas aleatoriamente
+    cards_list_com.shuffle(); // reorganiza las premisas aleatoriamente
+    cards_list_comp.shuffle(); // reorganiza las premisas aleatoriamente
     gameImg = List.generate(cardCount, (index) => hiddenCardpath);
   }
 }

@@ -164,7 +164,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
               ),
               //Entrenamiento
               ListTile(
-                  title: Text("Drawer importado Entrenamiento",
+                  title: Text("Entrenamiento",
                       style: TextStyle(
                           fontFamily: 'BubblegumSans',
                           color: widget.screen.contains('entrenamiento')

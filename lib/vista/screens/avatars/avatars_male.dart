@@ -173,7 +173,7 @@ class _avatarsMaleState extends State<avatarsMale> {
 
                     Positioned(
                       left: totalWidth * 0.12,
-                      top: 50,
+                      top: 45,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -198,7 +198,7 @@ class _avatarsMaleState extends State<avatarsMale> {
                     ),
                     //image avatar
                     Positioned(
-                      top: 45,
+                      top: 40,
                       left: MediaQuery.of(context).size.width * 0.40,
                       child: Container(
                           padding: const EdgeInsets.all(1.0),
@@ -223,7 +223,7 @@ class _avatarsMaleState extends State<avatarsMale> {
                     ),
                     Positioned(
                       right: totalWidth * 0.15,
-                      top: 45,
+                      top: 40,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 8, 1, 1),
                         child: Column(
@@ -268,10 +268,10 @@ class _avatarsMaleState extends State<avatarsMale> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Container(
@@ -653,7 +653,7 @@ class _avatarsMaleState extends State<avatarsMale> {
                 child: Align(
                   alignment: Alignment.center,
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                     child: Positioned(
                       child: GestureDetector(
                         onTap: () {

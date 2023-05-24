@@ -24,7 +24,7 @@ class level1Quiz extends StatefulWidget {
 
 TextStyle customTextStyle = const TextStyle(
   fontFamily: 'BubblegumSans',
-  fontSize: 24,
+  fontSize: 22,
   color: Colors.white,
 );
 
@@ -401,7 +401,7 @@ class OptionsWidget extends StatelessWidget {
                   style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'BubblegumSans',
-                      fontSize: 16.0),
+                      fontSize: 14.0),
                 ),
               ),
               getIconForOption(option, question)
