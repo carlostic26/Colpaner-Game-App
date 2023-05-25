@@ -1735,7 +1735,7 @@ class _world_gameState extends State<world_game> {
                                 'En este nivel verás conceptos del modulo de $_modulo que debes tener en cuenta para la prueba, encontrándolos en una sopa de letras.\n\nTienes 1 minuto para encontrar la máxima cantidad de palabras.',
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    fontSize: 15, fontFamily: 'BubblegumSans'),
+                                    fontSize: 12, fontFamily: 'BubblegumSans'),
                               )
                             : level == 4
                                 ? const Text(

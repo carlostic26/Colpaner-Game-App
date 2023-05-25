@@ -81,9 +81,9 @@ class _misPuntajesState extends State<misPuntajes> {
   int puntos_mat = 0;
   int puntos_ing = 0;
   int puntos_lec = 0;
-  int puntos_soc = 0;
+  int puntos_ciu = 0;
   //int puntos_ciu = 0;
-  int puntos_nat = 0;
+  int puntos_com = 0;
   int puntos_test = 5;
   final int puntosMaximos_test = 100;
 
@@ -120,27 +120,27 @@ class _misPuntajesState extends State<misPuntajes> {
       lec9 = 0,
       lec10 = 0;
 
-  int soc1 = 0,
-      soc2 = 0,
-      soc3 = 0,
-      soc4 = 0,
-      soc5 = 0,
-      soc6 = 0,
-      soc7 = 0,
-      soc8 = 0,
-      soc9 = 0,
-      soc10 = 0;
+  int ciu1 = 0,
+      ciu2 = 0,
+      ciu3 = 0,
+      ciu4 = 0,
+      ciu5 = 0,
+      ciu6 = 0,
+      ciu7 = 0,
+      ciu8 = 0,
+      ciu9 = 0,
+      ciu10 = 0;
 
-  int nat1 = 0,
-      nat2 = 0,
-      nat3 = 0,
-      nat4 = 0,
-      nat5 = 0,
-      nat6 = 0,
-      nat7 = 0,
-      nat8 = 0,
-      nat9 = 0,
-      nat10 = 0;
+  int com1 = 0,
+      com2 = 0,
+      com3 = 0,
+      com4 = 0,
+      com5 = 0,
+      com6 = 0,
+      com7 = 0,
+      com8 = 0,
+      com9 = 0,
+      com10 = 0;
 
 //recibe puntajes de shp de world_game enviados a guardar localmente
   Future<void> getPuntaje_MAT() async {
@@ -245,38 +245,72 @@ class _misPuntajesState extends State<misPuntajes> {
     lec10 = int.parse(score10);
   }
 
-  Future<void> getPuntaje_SOC() async {
+  Future<void> getPuntaje_CIU() async {
     final prefs = await SharedPreferences.getInstance();
 
-    String score1 = prefs.getString('puntaje_sociales_1') ?? '0';
-    soc1 = int.parse(score1);
+    String score1 = prefs.getString('puntaje_ciudadanas_1') ?? '0';
+    ciu1 = int.parse(score1);
 
-    String score2 = prefs.getString('puntaje_sociales_2') ?? '0';
-    soc2 = int.parse(score2);
+    String score2 = prefs.getString('puntaje_ciudadanas_2') ?? '0';
+    ciu2 = int.parse(score2);
 
-    String score3 = prefs.getString('puntaje_sociales_3') ?? '0';
-    soc3 = int.parse(score3);
+    String score3 = prefs.getString('puntaje_ciudadanas_3') ?? '0';
+    ciu3 = int.parse(score3);
 
-    String score4 = prefs.getString('puntaje_sociales_4') ?? '0';
-    soc4 = int.parse(score4);
+    String score4 = prefs.getString('puntaje_ciudadanas_4') ?? '0';
+    ciu4 = int.parse(score4);
 
-    String score5 = prefs.getString('puntaje_sociales_5') ?? '0';
-    soc5 = int.parse(score5);
+    String score5 = prefs.getString('puntaje_ciudadanas_5') ?? '0';
+    ciu5 = int.parse(score5);
 
-    String score6 = prefs.getString('puntaje_sociales_6') ?? '0';
-    soc6 = int.parse(score6);
+    String score6 = prefs.getString('puntaje_ciudadanas_6') ?? '0';
+    ciu6 = int.parse(score6);
 
-    String score7 = prefs.getString('puntaje_sociales_7') ?? '0';
-    soc7 = int.parse(score7);
+    String score7 = prefs.getString('puntaje_ciudadanas_7') ?? '0';
+    ciu7 = int.parse(score7);
 
-    String score8 = prefs.getString('puntaje_sociales_8') ?? '0';
-    soc8 = int.parse(score8);
+    String score8 = prefs.getString('puntaje_ciudadanas_8') ?? '0';
+    ciu8 = int.parse(score8);
 
-    String score9 = prefs.getString('puntaje_sociales_9') ?? '0';
-    soc9 = int.parse(score9);
+    String score9 = prefs.getString('puntaje_ciudadanas_9') ?? '0';
+    ciu9 = int.parse(score9);
 
-    String score10 = prefs.getString('puntaje_sociales_10') ?? '0';
-    soc10 = int.parse(score10);
+    String score10 = prefs.getString('puntaje_ciudadanas_10') ?? '0';
+    ciu10 = int.parse(score10);
+  }
+
+  Future<void> getPuntaje_COM() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    String score1 = prefs.getString('puntaje_comunicacion_1') ?? '0';
+    ciu1 = int.parse(score1);
+
+    String score2 = prefs.getString('puntaje_comunicacion_2') ?? '0';
+    ciu2 = int.parse(score2);
+
+    String score3 = prefs.getString('puntaje_comunicacion_3') ?? '0';
+    ciu3 = int.parse(score3);
+
+    String score4 = prefs.getString('puntaje_comunicacion_4') ?? '0';
+    ciu4 = int.parse(score4);
+
+    String score5 = prefs.getString('puntaje_comunicacion_5') ?? '0';
+    ciu5 = int.parse(score5);
+
+    String score6 = prefs.getString('puntaje_comunicacion_6') ?? '0';
+    ciu6 = int.parse(score6);
+
+    String score7 = prefs.getString('puntaje_comunicacion_7') ?? '0';
+    ciu7 = int.parse(score7);
+
+    String score8 = prefs.getString('puntaje_comunicacion_8') ?? '0';
+    ciu8 = int.parse(score8);
+
+    String score9 = prefs.getString('puntaje_comunicacion_9') ?? '0';
+    ciu9 = int.parse(score9);
+
+    String score10 = prefs.getString('puntaje_comunicacion_10') ?? '0';
+    ciu10 = int.parse(score10);
   }
 
   @override
@@ -330,7 +364,8 @@ class _misPuntajesState extends State<misPuntajes> {
     getPuntaje_MAT();
     getPuntaje_ING();
     getPuntaje_LEC();
-    getPuntaje_SOC();
+    getPuntaje_CIU();
+    getPuntaje_COM();
 
     //----- INGLES
     getPuntajeIngles1_firestore();
@@ -358,8 +393,8 @@ class _misPuntajesState extends State<misPuntajes> {
     //-----LECTURA
     getPuntajeLectura1_firestore();
 
-    //----SOCIALES
-    getPuntajeSociales1_firestore();
+    //----CIUDADANAS
+    getPuntajeCiudadanas1_firestore();
   }
 
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
@@ -872,15 +907,15 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeLecNivel1;
   }
 
-  //----------------------------- SOCIALES ----------------------------------
+  //----------------------------- CIUDADANAS ----------------------------------
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
-  Future<int> getPuntajeSociales1_firestore() async {
-    int puntajeSocNivel1 =
+  Future<int> getPuntajeCiudadanas1_firestore() async {
+    int puntajeCiuNivel1 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
 
     final docSnapshot = await FirebaseFirestore.instance
         .collection('puntajes')
-        .doc('sociales')
+        .doc('ciudadanas')
         .collection('nivel1')
         .doc(user!.uid)
         .get();
@@ -888,14 +923,14 @@ class _misPuntajesState extends State<misPuntajes> {
     if (docSnapshot.exists) {
       final data = docSnapshot.data() as Map<String, dynamic>;
       if (data.containsKey('puntaje')) {
-        puntajeSocNivel1 = data['puntaje'] as int;
+        puntajeCiuNivel1 = data['puntaje'] as int;
       }
     }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('puntaje_sociales_1', puntajeSocNivel1.toString());
+    await prefs.setString('puntaje_ciudadanas_1', puntajeCiuNivel1.toString());
 
-    return puntajeSocNivel1;
+    return puntajeCiuNivel1;
   }
 
   @override
@@ -909,11 +944,11 @@ class _misPuntajesState extends State<misPuntajes> {
     final double porcentaje_lec =
         puntos_lec / puntosMaximos_test; // Calcular el porcentaje de progreso
 
-    final double porcentaje_soc =
-        puntos_soc / puntosMaximos_test; // Calcular el porcentaje de progreso
+    final double porcentaje_ciu =
+        puntos_ciu / puntosMaximos_test; // Calcular el porcentaje de progreso
 
-    final double porcentaje_nat =
-        puntos_nat / puntosMaximos_test; // Calcular el porcentaje de progreso
+    final double porcentaje_com =
+        puntos_com / puntosMaximos_test; // Calcular el porcentaje de progreso
 
     final double porcentaje_test =
         puntos_test / puntosMaximos_test; // Calcular el porcentaje de progreso
@@ -1145,7 +1180,7 @@ class _misPuntajesState extends State<misPuntajes> {
                         child: Column(
                           children: [
                             const Text(
-                              'Sociales',
+                              'Ciudadanas',
                               style: TextStyle(
                                 fontSize: 20.0,
                                 fontFamily: 'BubblegumSans',
@@ -1165,7 +1200,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                       strokeWidth:
                                           8, // Ancho del borde del círculo
                                       value:
-                                          porcentaje_soc, // Valor de progreso
+                                          porcentaje_ciu, // Valor de progreso
                                       backgroundColor: Colors.grey[
                                           300], // Color del fondo del círculo
                                       valueColor:
@@ -1177,7 +1212,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                   Positioned.fill(
                                     child: Center(
                                       child: Text(
-                                        '${(porcentaje_soc * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
+                                        '${(porcentaje_ciu * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
                                         style: const TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold,
@@ -1197,13 +1232,17 @@ class _misPuntajesState extends State<misPuntajes> {
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
                           children: [
-                            const Text(
-                              'Naturales',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'BubblegumSans',
-                                fontWeight: FontWeight.bold,
-                                color: colors_colpaner.claro,
+                            const Center(
+                              child: Text(
+                                'Comunicación\nEscrita',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.claro,
+                                ),
+                                textAlign: TextAlign
+                                    .center, // Alineación horizontal del texto
                               ),
                             ),
                             //SE MUESTRA UN CIRCULO PROGRESS BAR
@@ -1218,7 +1257,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                       strokeWidth:
                                           8, // Ancho del borde del círculo
                                       value:
-                                          porcentaje_nat, // Valor de progreso
+                                          porcentaje_com, // Valor de progreso
                                       backgroundColor: Colors.grey[
                                           300], // Color del fondo del círculo
                                       valueColor:
@@ -1230,7 +1269,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                   Positioned.fill(
                                     child: Center(
                                       child: Text(
-                                        '${(porcentaje_nat * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
+                                        '${(porcentaje_com * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
                                         style: const TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold,
@@ -2854,7 +2893,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc1.toString(),
+                                    ciu1.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2901,7 +2940,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc2.toString(),
+                                    ciu2.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2948,7 +2987,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc3.toString(),
+                                    ciu3.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2995,7 +3034,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc4.toString(),
+                                    ciu4.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3042,7 +3081,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc5.toString(),
+                                    ciu5.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3089,7 +3128,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc6.toString(),
+                                    ciu6.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3136,7 +3175,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc7.toString(),
+                                    ciu7.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3183,7 +3222,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc8.toString(),
+                                    ciu8.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3230,7 +3269,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc9.toString(),
+                                    ciu9.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3278,7 +3317,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    soc10.toString(),
+                                    ciu10.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3311,14 +3350,14 @@ class _misPuntajesState extends State<misPuntajes> {
                   color: colors_colpaner.oscuro,
                 ),
 
-                //NATURALES NIVELES
+                //COMUNICACION ESCRITA
                 const SizedBox(height: 10),
                 const Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Text(
-                      "Naturales",
+                      "Comunicación Escrita",
                       style: TextStyle(
                           fontSize: 20.0,
                           fontFamily: 'BubblegumSans',
@@ -3355,7 +3394,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat1.toString(),
+                                    com1.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3402,7 +3441,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat2.toString(),
+                                    com2.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3449,7 +3488,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat3.toString(),
+                                    com3.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3496,7 +3535,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat4.toString(),
+                                    com4.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3543,7 +3582,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat5.toString(),
+                                    com5.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3590,7 +3629,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat6.toString(),
+                                    com6.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3637,7 +3676,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat7.toString(),
+                                    com7.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3684,7 +3723,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat8.toString(),
+                                    com8.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3731,7 +3770,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat9.toString(),
+                                    com9.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3779,7 +3818,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    nat10.toString(),
+                                    com10.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
