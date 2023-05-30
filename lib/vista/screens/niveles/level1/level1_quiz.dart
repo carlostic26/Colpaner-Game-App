@@ -474,16 +474,15 @@ final questionsMat = [
 
   //Pregunta 1
   Question(
-    text:
-        "1. ¿Qué es el módulo de Razonamiento Cuantitativo del ICFES Saber 11?",
+    text: "1. ¿Qué es el Razonamiento Cuantitativo del ICFES Saber 11?",
     options: [
       const Option(
           text:
-              'A. Un conjunto de preguntas sobre temas diversos sin un orden específico.',
+              'A. Un conjunto de preguntas sobre temas diversos sin un orden específico, pero que tratan sobre las matematicas básicas.',
           isCorrect: false),
       const Option(
           text:
-              'B. Una sección del examen Saber 11 que evalúa el conocimiento en Razonamiento Cuantitativo de los estudiantes.',
+              'B. conjunto de elementos de las matemáticas, siendo conocimientos o competencias, que permiten al ciudadano tomar parte activa e informada en los contextos social, cultural, político, administrativo, económico, educativo y laboral. ',
           isCorrect: true),
       const Option(
           text:
@@ -491,7 +490,7 @@ final questionsMat = [
           isCorrect: false),
       const Option(
           text:
-              'D. Un conjunto de ejercicios que los estudiantes pueden hacer para practicar Razonamiento Cuantitativo antes del examen.',
+              'D. Un conjunto de ejercicios que los estudiantes pueden hacer para practicar Razonamiento Cuantitativo antes del examen, y aumentar la probabilidad de exito.',
           isCorrect: false)
     ],
   ),
@@ -522,8 +521,8 @@ final questionsMat = [
       options: [
         const Option(text: 'A. 20 preguntas', isCorrect: false),
         const Option(text: 'B. 30 preguntas', isCorrect: false),
-        const Option(text: 'C. 40 preguntas', isCorrect: true),
-        const Option(text: 'D. 50 preguntas', isCorrect: false)
+        const Option(text: 'C. 35 preguntas', isCorrect: true),
+        const Option(text: 'D. 45 preguntas', isCorrect: false)
       ]),
 
   //Pregunta 4

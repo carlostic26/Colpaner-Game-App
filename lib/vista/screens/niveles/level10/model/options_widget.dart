@@ -27,22 +27,22 @@ class OptionsWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => onClickedOption(option),
       child: Container(
-        height: (option.text.length >= 1 && option.text.length <= 49) //1 linea
+        height: (option.text.length >= 0 && option.text.length <= 39) //1 linea
             ? 40
-            : (option.text.length >= 50 && option.text.length <= 97) //2 lineas
+            : (option.text.length >= 40 && option.text.length <= 80) //2 lineas
                 ? 60
-                : option.text.length >= 98 &&
+                : option.text.length >= 81 &&
                         option.text.length <= 150 //3 lineas
-                    ? 80
+                    ? 95
                     : option.text.length >= 151 &&
                             option.text.length <= 180 //4 lineas
-                        ? 100
+                        ? 125
                         : option.text.length >= 181 &&
                                 option.text.length <= 202 //4 lineas
-                            ? 110
+                            ? 135
                             : option.text.length >= 203 &&
                                     option.text.length <= 230 //4 lineas
-                                ? 130
+                                ? 150
                                 : 200,
         padding: const EdgeInsets.fromLTRB(3, 1, 1, 1),
         margin: const EdgeInsets.symmetric(vertical: 4),
@@ -68,8 +68,7 @@ class OptionsWidget extends StatelessWidget {
               Flexible(
                 fit: FlexFit.loose,
                 child: Text(
-                  option
-                      .text, //option.text, //"${option.text.length}${option.text}",
+                  "${option.text.length}${option.text}", //option.text,
                   style: const TextStyle(
                       color: Colors.white, fontFamily: 'ZCOOL', fontSize: 15.0),
                 ),

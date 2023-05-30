@@ -924,12 +924,7 @@ class _world_gameState extends State<world_game> {
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'BubblegumSans',
-                                    fontSize: (_modulo.contains(
-                                                'Razonamiento Cuantitativo') ||
-                                            _modulo.contains(
-                                                'Competencias Ciudadanas'))
-                                        ? 9
-                                        : 13,
+                                    fontSize: _modulo.length >= 19 ? 8.3 : 13,
                                   ),
                                 ),
                               ],
@@ -1791,11 +1786,11 @@ class _world_gameState extends State<world_game> {
                                                       )
                                                     : level == 10
                                                         ? Text(
-                                                            'Este es el último nivel de Colpaner App.\n\n Realizarás el simulacro del modulo de $modulo pero esta vez no podrás ver las respuestas correctas o incorrectas de forma inmediata. \n\nTienes x minutos para terminar.',
+                                                            'Este es el último nivel de Colpaner App.\nRealizarás el simulacro del modulo de $modulo pero esta vez no podrás ver las respuestas correctas o incorrectas de forma inmediata. \n\nTienes x minutos para terminar.',
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: const TextStyle(
-                                                                fontSize: 13,
+                                                                fontSize: 10,
                                                                 fontFamily:
                                                                     'BubblegumSans'),
                                                           )

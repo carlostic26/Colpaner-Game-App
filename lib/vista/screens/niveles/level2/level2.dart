@@ -321,6 +321,17 @@ class _level2State extends State<level2> {
     //obtiene el modulo del shp
     String _modulo = await getModulo();
 
+    if (_modulo == 'Lectura Crítica') {
+      //guarda puntaje en firestore
+      final puntajesRefIng = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('lectura')
+          .collection('nivel2')
+          .doc(user!.uid);
+
+      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
     if (_modulo == 'Competencias Ciudadanas') {
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
@@ -359,17 +370,6 @@ class _level2State extends State<level2> {
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
-          .collection('nivel2')
-          .doc(user!.uid);
-
-      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (_modulo == 'Lectura Crítica') {
-      //guarda puntaje en firestore
-      final puntajesRefIng = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('lectura')
           .collection('nivel2')
           .doc(user!.uid);
 
