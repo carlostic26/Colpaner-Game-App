@@ -82,8 +82,7 @@ class _misPuntajesState extends State<misPuntajes> {
   int puntos_ing = 0;
   int puntos_lec = 0;
   int puntos_ciu = 0;
-  //int puntos_ciu = 0;
-  int puntos_com = 0;
+  int puntos_nat = 0;
   int puntos_test = 5;
   final int puntosMaximos_test = 100;
 
@@ -131,16 +130,16 @@ class _misPuntajesState extends State<misPuntajes> {
       ciu9 = 0,
       ciu10 = 0;
 
-  int com1 = 0,
-      com2 = 0,
-      com3 = 0,
-      com4 = 0,
-      com5 = 0,
-      com6 = 0,
-      com7 = 0,
-      com8 = 0,
-      com9 = 0,
-      com10 = 0;
+  int nat1 = 0,
+      nat2 = 0,
+      nat3 = 0,
+      nat4 = 0,
+      nat5 = 0,
+      nat6 = 0,
+      nat7 = 0,
+      nat8 = 0,
+      nat9 = 0,
+      nat10 = 0;
 
 //recibe puntajes de shp de world_game enviados a guardar localmente
   Future<void> getPuntaje_MAT() async {
@@ -947,9 +946,6 @@ class _misPuntajesState extends State<misPuntajes> {
     final double porcentaje_ciu =
         puntos_ciu / puntosMaximos_test; // Calcular el porcentaje de progreso
 
-    final double porcentaje_com =
-        puntos_com / puntosMaximos_test; // Calcular el porcentaje de progreso
-
     final double porcentaje_test =
         puntos_test / puntosMaximos_test; // Calcular el porcentaje de progreso
 
@@ -1073,13 +1069,17 @@ class _misPuntajesState extends State<misPuntajes> {
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
                           children: [
-                            const Text(
-                              'Inglés',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'BubblegumSans',
-                                fontWeight: FontWeight.bold,
-                                color: colors_colpaner.claro,
+                            const Center(
+                              child: Text(
+                                '\nInglés',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.claro,
+                                ),
+                                textAlign: TextAlign
+                                    .center, // Alineación horizontal del texto
                               ),
                             ),
                             //SE MUESTRA UN CIRCULO PROGRESS BAR
@@ -1126,13 +1126,17 @@ class _misPuntajesState extends State<misPuntajes> {
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
                           children: [
-                            const Text(
-                              'Lectura Crítica',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'BubblegumSans',
-                                fontWeight: FontWeight.bold,
-                                color: colors_colpaner.claro,
+                            const Center(
+                              child: Text(
+                                'Lectura\nCrítica',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.claro,
+                                ),
+                                textAlign: TextAlign
+                                    .center, // Alineación horizontal del texto
                               ),
                             ),
                             //SE MUESTRA UN CIRCULO PROGRESS BAR
@@ -1179,13 +1183,17 @@ class _misPuntajesState extends State<misPuntajes> {
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
                           children: [
-                            const Text(
-                              'Ciudadanas',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'BubblegumSans',
-                                fontWeight: FontWeight.bold,
-                                color: colors_colpaner.claro,
+                            const Center(
+                              child: Text(
+                                'Competencias\nCiudadanas',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.claro,
+                                ),
+                                textAlign: TextAlign
+                                    .center, // Alineación horizontal del texto
                               ),
                             ),
                             //SE MUESTRA UN CIRCULO PROGRESS BAR
@@ -1213,63 +1221,6 @@ class _misPuntajesState extends State<misPuntajes> {
                                     child: Center(
                                       child: Text(
                                         '${(porcentaje_ciu * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
-                                        style: const TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.bold,
-                                            color: colors_colpaner.claro,
-                                            fontFamily: 'BubblegumSans'),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
-                        child: Column(
-                          children: [
-                            const Center(
-                              child: Text(
-                                'Comunicación\nEscrita',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.claro,
-                                ),
-                                textAlign: TextAlign
-                                    .center, // Alineación horizontal del texto
-                              ),
-                            ),
-                            //SE MUESTRA UN CIRCULO PROGRESS BAR
-                            const SizedBox(height: 10),
-                            Center(
-                              child: Stack(
-                                children: [
-                                  SizedBox(
-                                    width: 70,
-                                    height: 70,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth:
-                                          8, // Ancho del borde del círculo
-                                      value:
-                                          porcentaje_com, // Valor de progreso
-                                      backgroundColor: Colors.grey[
-                                          300], // Color del fondo del círculo
-                                      valueColor:
-                                          const AlwaysStoppedAnimation<Color>(
-                                              Colors
-                                                  .blue), // Color del progreso
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    child: Center(
-                                      child: Text(
-                                        '${(porcentaje_com * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
                                         style: const TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold,
@@ -2856,7 +2807,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Text(
-                      "Sociales",
+                      "Competencias Ciudadanas",
                       style: TextStyle(
                           fontSize: 20.0,
                           fontFamily: 'BubblegumSans',
@@ -3357,7 +3308,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: Text(
-                      "Comunicación Escrita",
+                      "Ciencias Naturales",
                       style: TextStyle(
                           fontSize: 20.0,
                           fontFamily: 'BubblegumSans',
@@ -3394,7 +3345,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com1.toString(),
+                                    nat1.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3441,7 +3392,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com2.toString(),
+                                    nat2.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3488,7 +3439,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com3.toString(),
+                                    nat3.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3535,7 +3486,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com4.toString(),
+                                    nat4.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3582,7 +3533,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com5.toString(),
+                                    nat5.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3629,7 +3580,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com6.toString(),
+                                    nat6.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3676,7 +3627,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com7.toString(),
+                                    nat7.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3723,7 +3674,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com8.toString(),
+                                    nat8.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3770,7 +3721,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com9.toString(),
+                                    nat9.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -3818,7 +3769,7 @@ class _misPuntajesState extends State<misPuntajes> {
                               Row(
                                 children: [
                                   Text(
-                                    com10.toString(),
+                                    nat10.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',

@@ -243,14 +243,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             final _question = questionsIng[index];
                             return buildQuestion(_question);
                           }
-                        : _modulo == 'Naturales'
+                        : _modulo == 'Ciencias Naturales'
                             ? (context, index) {
                                 final _question = questionsNat[index];
                                 return buildQuestion(_question);
                               }
-                            : _modulo == 'Sociales'
+                            : _modulo == 'Competencias Ciudadanas'
                                 ? (context, index) {
-                                    final _question = questionsSoc[index];
+                                    final _question = questionsCiu[index];
                                     return buildQuestion(_question);
                                   }
                                 : _modulo == 'Lectura Crítica'
@@ -813,174 +813,103 @@ final questionsLec = [
 final questionsCiu = [
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el Diseño de Software? ",
+    text: "1. ¿Qué es son las Competencias Ciudadanas? ",
     options: [
       const Option(
-          text: 'A. Es el diseño que se le dan a los programas informáticos',
+          text: 'A. Es una sección que evalúa el ICFES.', isCorrect: false),
+      const Option(
+          text:
+              'B. Son el conjunto de actividades normativas dedicadas al proceso de creación y publicación de leyes.',
           isCorrect: false),
       const Option(
           text:
-              'B. Es el conjunto de actividades TIC dedicadas al proceso de creación, despliegue y compatibilidad de software.',
+              'C. Son el conjunto de planificaciones sociales lideradas por la ciudadania',
           isCorrect: false),
       const Option(
           text:
-              'C. Es la planificación de una solución de software, necesario para para disminuir el riesgo de desarrollos erróneos.',
-          isCorrect: true),
-      const Option(
-          text:
-              'D. Son el conjunto de actividades de software dedicadas al proceso de creación, diseño, despliegue y compatibilidad electrónica',
-          isCorrect: false)
+              'D. Son el conjunto de conocimientos, habilidades, actitudes y valores que permiten a las personas participar de manera activa y responsable en la sociedad',
+          isCorrect: true)
     ],
   ),
 
   //Pregunta 2
   Question(
       text:
-          "2. Cuantas preguntas contiene la prueba de Desarrollo de Software del ICFES Saber PRO? ",
+          "2. ¿Qué es el módulo de Competencias Ciudadanas del examen ICFES Saber 11? ",
       options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 30', isCorrect: true),
-        const Option(text: 'C. 35', isCorrect: false),
-        const Option(text: 'D. 40', isCorrect: false)
-      ]),
-
-  //Pregunta 3
-  Question(
-      text:
-          "3. Cuál es la estructura de evaluación del modulo(Tomado de la guia de orientacion de modulo de razonamiento cuantitativo saber pro 2016)",
-      options: [
-        const Option(
-            text: 'A. Competencia, afirmación , evidencia ', isCorrect: true),
         const Option(
             text:
-                'B. Análisis y comprensión, formulación y representación, interpretación y argumentación',
+                'A. Es una sección del examen que evalúa el análisis de la información relacionada con política, economía y cultura',
+            isCorrect: true),
+        const Option(
+            text:
+                'B. Es una sección del examen que evalúa el análisis de la información relacionada con la ciudad, ecología y cultura',
             isCorrect: false),
         const Option(
             text:
-                'C. Investigación y ejecución, interpretación y formulación, argumentación',
+                'C. Es una sección del examen que evalúa el análisis de datos sobre política, economía y cultura',
             isCorrect: false),
         const Option(text: 'D. Todas las anteriores', isCorrect: false)
       ]),
 
-  //Pregunta 4
+  //Pregunta 3
   Question(
-      text:
-          '4. Los módulos específicos, como Diseño de Software, están dirigidos a ',
+      text: '3. ¿Qué se evalúa en la prueba de Competencias Ciudadanas?',
       options: [
         const Option(
             text:
-                'A. Estudiantes que hayan aprobado por lo menos el 75 % de los créditos académicos del programa profesional universitario que cursan',
+                'A. pensamientos reflexivos y sistemicos sobre como funciona una nación.',
             isCorrect: false),
         const Option(
             text:
-                'B. Quienes presentan el examen por primera vez y que sean inscritos directamente por su IES.',
+                'B. pensamiento logico, interpretación de análisis y pensamiento filosofico.',
             isCorrect: false),
         const Option(
-            text: 'C. Cualquier persona que desee obtenerlos',
+            text:
+                'C.  pensamiento social, interpretación y análisis de perspectivas y pensamiento reflexivo y sistémico.',
+            isCorrect: true),
+        const Option(text: 'D. Ninguna de las anteriores', isCorrect: false)
+      ]),
+
+  //Pregunta 4
+  Question(
+      text: "4. ¿Qué NO se evalua el modulo de competencias ciudadanas?)",
+      options: [
+        const Option(
+            text: 'A. Pensamiento social del estudiante', isCorrect: false),
+        const Option(
+            text:
+                'B. Opinión o postura del estudiante sobre determinados asuntos ciudadanos.',
+            isCorrect: true),
+        const Option(
+            text: 'C. Interpretación y análisis de perspectivas del estudiante',
             isCorrect: false),
-        const Option(text: 'D. A y B son ciertas', isCorrect: true)
+        const Option(
+            text: 'D. Pensamiento reflexivo y sistémico del estudiante.',
+            isCorrect: false)
       ]),
 
   //Pregunta 5
-  Question(
-      text: "5. El módulo Diseño de Software se oferta a los programas de ",
-      options: [
-        const Option(
-            text: 'A. Ingeniería de sistemas, telemática y afines.',
-            isCorrect: true),
-        const Option(text: 'B. Ingeniería mecánica y afines', isCorrect: false),
-        const Option(text: 'C. Ingeniería de alimentos', isCorrect: false),
-        const Option(text: 'D. Derecho y arquitectura', isCorrect: false)
-      ]),
-];
 
-final questionsSoc = [
-  //Pregunta 1
   Question(
-    text: "1. ¿Qué es el módulo de sociales del ICFES?",
+    text:
+        "5. ¿Por qué es importante desarrollar competencias ciudadanas y sociales en los estudiantes?",
     options: [
       const Option(
-          text:
-              'A. Un conjunto de preguntas sobre temas diversos sin un orden específico.',
+          text: 'A. Para mejorar sus habilidades deportivas y atléticas',
+          isCorrect: false),
+      const Option(
+          text: 'B. Para fortalecer su conocimiento en matemáticas y ciencias',
           isCorrect: false),
       const Option(
           text:
-              'B. Una sección del examen Saber 11 que evalúa el conocimiento en ciencias sociales de los estudiantes.',
+              'C. Para fomentar su participación activa y responsable en la sociedad',
           isCorrect: true),
       const Option(
-          text:
-              'C. Un examen aparte que los estudiantes pueden tomar para evaluar su habilidad en ciencias sociales.',
-          isCorrect: false),
-      const Option(
-          text:
-              'D. Un conjunto de ejercicios que los estudiantes pueden hacer para practicar ciencias sociales antes del examen.',
+          text: 'D. Para desarrollar su creatividad y habilidades artísticas',
           isCorrect: false)
     ],
   ),
-
-  //Pregunta 2
-  Question(
-      text:
-          "2. ¿Cuántas preguntas aproximadamente evalúa el ICFES en el módulo de sociales?",
-      options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 35', isCorrect: false),
-        const Option(text: 'C. 45', isCorrect: true),
-        const Option(text: 'D. 50', isCorrect: false)
-      ]),
-
-  //Pregunta 3
-  Question(
-      text:
-          "3. ¿Cuánto tiempo tienen los estudiantes para completar el módulo de sociales del ICFES?",
-      options: [
-        const Option(text: 'A. 60 minutos', isCorrect: true),
-        const Option(text: 'B. 90 minutos', isCorrect: false),
-        const Option(text: 'C. 120 minutos', isCorrect: false),
-        const Option(text: 'D. 150 minutos', isCorrect: false)
-      ]),
-
-  //Pregunta 4
-  Question(
-      text:
-          '4. ¿En qué consiste la prueba Saber Pro en el área de ciencias sociales?',
-      options: [
-        const Option(
-            text:
-                'A. Evalúa el conocimiento en temas de geografía física y humana.',
-            isCorrect: false),
-        const Option(
-            text: 'B. Evalúa el conocimiento en temas de historia y política.',
-            isCorrect: true),
-        const Option(
-            text: 'C. Evalúa el conocimiento en temas de economía y finanzas.',
-            isCorrect: false),
-        const Option(
-            text: 'D. Evalúa el conocimiento en temas de derecho y justicia.',
-            isCorrect: false)
-      ]),
-
-  //Pregunta 5
-  Question(
-      text:
-          "5. ¿Qué habilidades se evalúan en el módulo de sociales del ICFES?",
-      options: [
-        const Option(
-            text:
-                'A. La capacidad de memorizar hechos históricos y geográficos.',
-            isCorrect: false),
-        const Option(
-            text:
-                'B. La capacidad de analizar y comprender textos de ciencias sociales.',
-            isCorrect: true),
-        const Option(
-            text: 'C. La capacidad de dibujar mapas y gráficos.',
-            isCorrect: false),
-        const Option(
-            text:
-                'D. La capacidad de escribir ensayos sobre temas de ciencias sociales.',
-            isCorrect: false)
-      ]),
 ];
 
 Future<void> _guardarPuntajeNivel1(int score) async {
@@ -1033,21 +962,21 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
   }
 
-  if (_modulo == 'Sociales') {
+  if (_modulo == 'Ciencias Naturales') {
 /*     //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
 
     final puntajesRefSoc = FirebaseFirestore.instance
         .collection('puntajes')
-        .doc('sociales')
+        .doc('naturales')
         .collection('nivel1')
         .doc(user!.uid);
 
     await puntajesRefSoc.set({'userId': user.uid, 'puntaje': puntaje});
   }
 
-  if (_modulo == 'Ciudadanas') {
+  if (_modulo == 'Competencias Ciudadanas') {
 /*     //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */

@@ -227,7 +227,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
               ),
             ),
           ),
-          //Razonamiento - Comunicación
+          //Razonamiento - Naturales
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
@@ -297,7 +297,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        setModulo('Comunicación Escrita');
+                        setModulo('Ciencias Naturales');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -331,7 +331,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                               children: const [
                                 Expanded(
                                   child: Text(
-                                    "Comunicación Escrita",
+                                    "Ciencias Naturales",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontFamily: 'BubblegumSans',

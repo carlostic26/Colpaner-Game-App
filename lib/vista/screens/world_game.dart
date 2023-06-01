@@ -900,8 +900,8 @@ class _world_gameState extends State<world_game> {
                             height: 125,
                             decoration: const BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage("assets/banner_user.png"),
-                              ),
+                                  image: AssetImage("assets/banner_user.png"),
+                                  fit: BoxFit.fill),
                             ),
                           ),
 
@@ -924,7 +924,7 @@ class _world_gameState extends State<world_game> {
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'BubblegumSans',
-                                    fontSize: _modulo.length >= 19 ? 8.3 : 13,
+                                    fontSize: _modulo.length >= 19 ? 9 : 13,
                                   ),
                                 ),
                               ],
