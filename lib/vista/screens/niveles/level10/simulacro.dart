@@ -2,6 +2,7 @@ library simulacro;
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -152,7 +153,7 @@ class _simulacroState extends State<simulacro> {
         }
         break;
 
-      case "Naturales":
+      case "Ciencias Naturales":
         {
           handler = SimulacroHandler();
           await handler.initializeDB();
@@ -160,11 +161,11 @@ class _simulacroState extends State<simulacro> {
         }
         break;
 
-      case "Sociales":
+      case "Competencias Ciudadanas":
         {
           handler = SimulacroHandler();
           await handler.initializeDB();
-          _questions = Future.value(await getListSOC());
+          _questions = Future.value(await getListCIU());
         }
         break;
     }
@@ -174,14 +175,18 @@ class _simulacroState extends State<simulacro> {
 
   int itemsIng = 0;
 
-  //Methods that receive the list select from dbhelper
   Future<List<question_model>> getListING() async {
-    List<question_model> dbQuestions = await handler.queryING();
+    Random random = Random();
+    int randomIndex =
+        random.nextInt(2); // Genera un número aleatorio entre 0 y 1
 
-/*     // Obteniendo cantidad de items de la lista
-    setState(() async {
-      itemsIng = (await _questions)!.length;
-    }); */
+    List<question_model> dbQuestions;
+
+    if (randomIndex == 0) {
+      dbQuestions = await handler.queryING1();
+    } else {
+      dbQuestions = await handler.queryING2();
+    }
 
     return dbQuestions
         .map((dbQuestion) => question_model.fromMap(dbQuestion.toMap()))
@@ -190,8 +195,17 @@ class _simulacroState extends State<simulacro> {
 
   //Methods that receive the list select from dbhelper
   Future<List<question_model>> getListMAT() async {
-    List<question_model> dbQuestions = await handler.queryMAT();
+    Random random = Random();
+    int randomIndex =
+        random.nextInt(2); // Genera un número aleatorio entre 0 y 1
 
+    List<question_model> dbQuestions;
+
+    if (randomIndex == 0) {
+      dbQuestions = await handler.queryMAT1();
+    } else {
+      dbQuestions = await handler.queryMAT2();
+    }
     return dbQuestions
         .map((dbQuestion) => question_model.fromMap(dbQuestion.toMap()))
         .toList();
@@ -199,9 +213,17 @@ class _simulacroState extends State<simulacro> {
 
   //Methods that receive the list select from dbhelper
   Future<List<question_model>> getListLEC() async {
-    //abre metodo random 2 numeros, si elige 1 sale LEC1, si elige 2 sale LEC2
-    List<question_model> dbQuestions = await handler.queryLEC2();
-    //List<question_model> dbQuestions = await handler.queryLEC1();
+    Random random = Random();
+    int randomIndex =
+        random.nextInt(2); // Genera un número aleatorio entre 0 y 1
+
+    List<question_model> dbQuestions;
+
+    if (randomIndex == 0) {
+      dbQuestions = await handler.queryLEC1();
+    } else {
+      dbQuestions = await handler.queryLEC2();
+    }
 
     return dbQuestions
         .map((dbQuestion) => question_model.fromMap(dbQuestion.toMap()))
@@ -210,7 +232,17 @@ class _simulacroState extends State<simulacro> {
 
   //Methods that receive the list select from dbhelper
   Future<List<question_model>> getListNAT() async {
-    List<question_model> dbQuestions = await handler.queryNAT();
+    Random random = Random();
+    int randomIndex =
+        random.nextInt(2); // Genera un número aleatorio entre 0 y 1
+
+    List<question_model> dbQuestions;
+
+    if (randomIndex == 0) {
+      dbQuestions = await handler.queryNAT1();
+    } else {
+      dbQuestions = await handler.queryNAT2();
+    }
 
     return dbQuestions
         .map((dbQuestion) => question_model.fromMap(dbQuestion.toMap()))
@@ -218,8 +250,18 @@ class _simulacroState extends State<simulacro> {
   }
 
   //Methods that receive the list select from dbhelper
-  Future<List<question_model>> getListSOC() async {
-    List<question_model> dbQuestions = await handler.querySOC();
+  Future<List<question_model>> getListCIU() async {
+    Random random = Random();
+    int randomIndex =
+        random.nextInt(2); // Genera un número aleatorio entre 0 y 1
+
+    List<question_model> dbQuestions;
+
+    if (randomIndex == 0) {
+      dbQuestions = await handler.queryCIU1();
+    } else {
+      dbQuestions = await handler.queryCIU2();
+    }
 
     return dbQuestions
         .map((dbQuestion) => question_model.fromMap(dbQuestion.toMap()))
@@ -245,14 +287,14 @@ class _simulacroState extends State<simulacro> {
             _questions = getListLEC();
           }
           break;
-        case "Naturales":
+        case "Ciencias Naturales":
           {
             _questions = getListNAT();
           }
           break;
-        case "Sociales":
+        case "Competencias Ciudadanas":
           {
-            _questions = getListSOC();
+            _questions = getListCIU();
           }
           break;
       }

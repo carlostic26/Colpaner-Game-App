@@ -1,6 +1,5 @@
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/dbexam.dart';
-
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
 import 'package:gamicolpaner/vista/screens/pin_screen.dart';
@@ -29,6 +28,14 @@ Future<void> main() async {
     debugShowCheckedModeBanner: false,
     home: email == null ? MyApp() : const entrenamientoModulos(),
   ));
+
+/*   runApp(MaterialApp(
+    routes: {
+      '/pinScreen': (context) => const pinScreen(),
+    },
+    debugShowCheckedModeBanner: false,
+    home: email == null ? MyApp() : const entrenamientoModulos(),
+  )); */
 }
 
 class MyApp extends StatelessWidget {
