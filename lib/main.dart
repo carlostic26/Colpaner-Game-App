@@ -15,7 +15,7 @@ Future<void> main() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   var email = preferences.getString('email');
 
-//sharedPreferences init
+  //sharedPreferences init
   await LocalStorage.configurePrefs();
 
   //init db sqlite
@@ -28,6 +28,21 @@ Future<void> main() async {
     debugShowCheckedModeBanner: false,
     home: email == null ? MyApp() : const entrenamientoModulos(),
   ));
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Iniciar Sesión',
+      debugShowCheckedModeBanner: false,
+      home: LoginScreen(),
+    );
+  }
+}
+
+
 
 /*   runApp(MaterialApp(
     routes: {
@@ -36,17 +51,3 @@ Future<void> main() async {
     debugShowCheckedModeBanner: false,
     home: email == null ? MyApp() : const entrenamientoModulos(),
   )); */
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Iniciar Sesión',
-      theme: ThemeData(primarySwatch: Colors.red),
-      debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
-    );
-  }
-}

@@ -106,208 +106,239 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
       child: Container(
         height: drawer_height,
         color: Color.fromRGBO(31, 126, 135, 1),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: ListView(
-            children: <Widget>[
-              Container(
-                //height: 150.0,
-                alignment: Alignment.center,
-
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(height: 5.0),
-                    CachedNetworkImage(
-                      color: colors_colpaner.oscuro,
-                      width: 90.0,
-                      height: 90.0,
-                      fadeInDuration: Duration.zero,
-                      imageUrl: _imageAvatarUrl,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const SizedBox(height: 5.0),
+                        CachedNetworkImage(
+                          color: colors_colpaner.oscuro,
+                          width: 90.0,
+                          height: 90.0,
+                          fadeInDuration: Duration.zero,
+                          imageUrl: _imageAvatarUrl,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
                         ),
-                      ),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    ),
-                    const SizedBox(height: 10.0),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(loggedInUser.fullName.toString(),
-                          style: const TextStyle(
+                        const SizedBox(height: 10.0),
+                        Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            loggedInUser.fullName.toString(),
+                            style: const TextStyle(
                               fontFamily: 'BubblegumSans',
                               color: colors_colpaner.claro,
                               fontSize: 25,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Técnica de ${loggedInUser.tecnica}',
+                          style: const TextStyle(
+                            fontFamily: 'BubblegumSans',
+                            color: colors_colpaner.claro,
+                          ),
+                        ),
+                        Text(
+                          loggedInUser.email.toString(),
+                          style: const TextStyle(
+                            fontFamily: 'BubblegumSans',
+                            fontSize: 10,
+                            color: colors_colpaner.claro,
+                          ),
+                        ),
+                        const SizedBox(height: 50.0),
+                      ],
                     ),
-                    Text('Técnica de ${loggedInUser.tecnica}',
-                        style: const TextStyle(
-                          fontFamily: 'BubblegumSans',
-                          color: colors_colpaner.claro,
-                        )),
-                    Text(loggedInUser.email.toString(),
-                        style: const TextStyle(
-                          fontFamily: 'BubblegumSans',
-                          fontSize: 10,
-                          color: colors_colpaner.claro,
-                        )),
-                    const SizedBox(height: 50.0),
-                  ],
-                ),
-              ),
-              //Entrenamiento
-              ListTile(
-                  title: Text("Entrenamiento",
-                      style: TextStyle(
-                          fontFamily: 'BubblegumSans',
-                          color: widget.screen.contains('entrenamiento')
-                              ? colors_colpaner.claro
-                              : colors_colpaner.oscuro,
-                          fontWeight: FontWeight.bold)),
-                  leading: Icon(
-                    Icons.psychology,
-                    color: widget.screen.contains('entrenamiento')
-                        ? colors_colpaner.claro
-                        : colors_colpaner.oscuro,
                   ),
-                  onTap: () => {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) =>
-                                const entrenamientoModulos())),
-                      }),
-              //Mis Puntajes
-              ListTile(
-                  title: Text("Mis Puntajes",
+                  ListTile(
+                    title: Text(
+                      "Entrenamiento",
+                      style: TextStyle(
+                        fontFamily: 'BubblegumSans',
+                        color: widget.screen.contains('entrenamiento')
+                            ? colors_colpaner.claro
+                            : colors_colpaner.oscuro,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.psychology,
+                      color: widget.screen.contains('entrenamiento')
+                          ? colors_colpaner.claro
+                          : colors_colpaner.oscuro,
+                    ),
+                    onTap: () => {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const entrenamientoModulos(),
+                        ),
+                      ),
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Mis Puntajes",
                       style: TextStyle(
                         fontFamily: 'BubblegumSans',
                         color: widget.screen.contains('puntajes')
                             ? colors_colpaner.claro
                             : colors_colpaner.oscuro,
-                      )),
-                  leading: Icon(
-                    Icons.sports_score,
-                    color: widget.screen.contains('puntajes')
-                        ? colors_colpaner.claro
-                        : colors_colpaner.oscuro,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.sports_score,
+                      color: widget.screen.contains('puntajes')
+                          ? colors_colpaner.claro
+                          : colors_colpaner.oscuro,
+                    ),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const misPuntajes(),
+                        ),
+                      );
+                    },
                   ),
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const misPuntajes()));
-                  }),
-              //Avatar
-              ListTile(
-                title: Text("Ávatar",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
+                  ListTile(
+                    title: Text(
+                      "Mis Resultados",
+                      style: TextStyle(
+                        fontFamily: 'BubblegumSans',
+                        color: widget.screen.contains('resultados')
+                            ? colors_colpaner.claro
+                            : colors_colpaner.oscuro,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.fact_check,
+                      color: widget.screen.contains('resultados')
+                          ? colors_colpaner.claro
+                          : colors_colpaner.oscuro,
+                    ),
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const misPuntajes(),
+                        ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Ávatar",
+                      style: TextStyle(
+                        fontFamily: 'BubblegumSans',
+                        color: widget.screen.contains('avatar')
+                            ? colors_colpaner.claro
+                            : colors_colpaner.oscuro,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.face,
                       color: widget.screen.contains('avatar')
                           ? colors_colpaner.claro
                           : colors_colpaner.oscuro,
-                    )),
-                leading: Icon(
-                  Icons.face,
-                  color: widget.screen.contains('avatar')
-                      ? colors_colpaner.claro
-                      : colors_colpaner.oscuro,
-                ),
-                //at press, run the method
-                onTap: () async {
-                  //si es primera vez que se ingresa, mstrar al usuario dialogo de genero a leegor
-
-                  if (isAvatar == true) {
-                    if (gender == 'male') {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const avatarsMale()));
-                    }
-
-                    if (gender == 'female') {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const avatarsFemale()));
-                    }
-                  } else {
-                    DialogHelper.gender_dialog(context);
-                  }
-                },
-              ),
-              //Patrones ICFES
-              ListTile(
-                title: Text("Patrones ICFES",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
+                    ),
+                    onTap: () async {
+                      if (isAvatar == true) {
+                        if (gender == 'male') {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const avatarsMale(),
+                            ),
+                          );
+                        } else if (gender == 'female') {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                              builder: (context) => const avatarsFemale(),
+                            ),
+                          );
+                        }
+                      } else {
+                        DialogHelper.gender_dialog(context);
+                      }
+                    },
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Patrones ICFES",
+                      style: TextStyle(
+                        fontFamily: 'BubblegumSans',
+                        color: widget.screen.contains('patrones')
+                            ? colors_colpaner.claro
+                            : colors_colpaner.oscuro,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.insights,
                       color: widget.screen.contains('patrones')
                           ? colors_colpaner.claro
                           : colors_colpaner.oscuro,
-                    )),
-                leading: Icon(
-                  Icons.insights,
-                  color: widget.screen.contains('patrones')
-                      ? colors_colpaner.claro
-                      : colors_colpaner.oscuro,
-                ),
-                //at press, run the method
-                onTap: () {},
-              ),
-              //Usabilidad
-              ListTile(
-                title: Text("Usabilidad",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
+                    ),
+                    onTap: () {},
+                  ),
+                  ListTile(
+                    title: Text(
+                      "Usabilidad",
+                      style: TextStyle(
+                        fontFamily: 'BubblegumSans',
+                        color: widget.screen.contains('usabilidad')
+                            ? colors_colpaner.claro
+                            : colors_colpaner.oscuro,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.extension,
                       color: widget.screen.contains('usabilidad')
                           ? colors_colpaner.claro
                           : colors_colpaner.oscuro,
-                    )),
-                leading: Icon(
-                  Icons.extension,
-                  color: widget.screen.contains('usabilidad')
-                      ? colors_colpaner.claro
-                      : colors_colpaner.oscuro,
-                ),
-                //at press, run the method
-                onTap: () {},
+                    ),
+                    onTap: () {},
+                  ),
+                ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.35,
-              ),
-
-/*               ListTile(
-                title: const Text("",
-                    style: TextStyle(
-                      color: colors_colpaner.oscuro,
-                    )),
-                leading: const Icon(
-                  Icons.settings,
+            ),
+            const Divider(
+              color: colors_colpaner.claro,
+            ),
+            ListTile(
+              title: const Text(
+                "Cerrar sesión",
+                style: TextStyle(
+                  fontFamily: 'BubblegumSans',
                   color: colors_colpaner.oscuro,
                 ),
-                //at press, run the method
-                onTap: () {},
-              ), */
-              const Divider(
-                color: colors_colpaner.claro,
               ),
-              ListTile(
-                title: const Text("Cerrar sesión",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
-                      color: colors_colpaner.oscuro,
-                    )),
-                leading: const Icon(
-                  Icons.logout,
-                  color: colors_colpaner.oscuro,
-                ),
-                //at press, run the method
-                onTap: () {
-                  clearSharedPreferences();
-                  logout(context);
-                },
+              leading: const Icon(
+                Icons.logout,
+                color: colors_colpaner.oscuro,
               ),
-            ],
-          ),
+              onTap: () {
+                clearSharedPreferences();
+                logout(context);
+              },
+            ),
+          ],
         ),
       ),
     );
