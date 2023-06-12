@@ -482,7 +482,7 @@ final questionsMat = [
           isCorrect: false),
       const Option(
           text:
-              'B. conjunto de elementos de las matemáticas, siendo conocimientos o competencias, que permiten al ciudadano tomar parte activa e informada en los contextos social, cultural, político, administrativo, económico, educativo y laboral. ',
+              'B. conjunto de elementos de las matemáticas, que permiten al ciudadano tomar parte activa e informada en los contextos social, cultural, político, administrativo, económico, educativo y laboral. ',
           isCorrect: true),
       const Option(
           text:
@@ -505,10 +505,10 @@ final questionsMat = [
             isCorrect: false),
         const Option(
             text: 'B. Álgebra, cálculo, geometría y estadística.',
-            isCorrect: false),
+            isCorrect: true),
         const Option(
             text: 'C. Álgebra, cálculo, trigonometría y geometría analítica.',
-            isCorrect: true),
+            isCorrect: false),
         const Option(
             text: 'D. Álgebra, cálculo, estadística y geometría analítica.',
             isCorrect: false)
@@ -528,7 +528,7 @@ final questionsMat = [
   //Pregunta 4
   Question(
       text:
-          '4. ¿Cuánto tiempo tienen los estudiantes para completar el módulo de Razonamiento Cuantitativo del ICFES?',
+          '4. ¿Cuál es el tiempo ideal para completar el módulo de Razonamiento de la prueba?',
       options: [
         const Option(text: 'A. 90 minutos', isCorrect: false),
         const Option(text: 'B. 100 minutos', isCorrect: false),
@@ -630,7 +630,7 @@ final questionsIng = [
   //Pregunta 5
   Question(
       text:
-          "5. ¿Cuál es el tiempo límite para completar el módulo de inglés del ICFES?",
+          "5. 4. ¿Cuál es el tiempo ideal para completar el módulo de Inglés de la prueba?",
       options: [
         const Option(text: 'A. 60 minutos', isCorrect: false),
         const Option(text: 'B. 75 minutos', isCorrect: true),
@@ -642,51 +642,54 @@ final questionsIng = [
 final questionsNat = [
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el Diseño de Software? ",
+    text: "1. ¿Qué es el modulo de Ciencias Naturales del ICFES Saber 11? ",
     options: [
       const Option(
-          text: 'A. Es el diseño que se le dan a los programas informáticos',
+          text:
+              'A. Es una sección de la prueba que evalúa el conocimiento y comprensión de los estudiantes en quimica y fisica.',
           isCorrect: false),
       const Option(
           text:
-              'B. Es el conjunto de actividades TIC dedicadas al proceso de creación, despliegue y compatibilidad de software.',
+              'B. Es una sección de la prueba que evalúa el conocimiento y comprensión de los estudiantes sobre la tabla periódica y otros temas.',
           isCorrect: false),
       const Option(
           text:
-              'C. Es la planificación de una solución de software, necesario para para disminuir el riesgo de desarrollos erróneos.',
+              'C. Es una sección de la prueba que evalúa el conocimiento y comprensión de los estudiantes en biología, física, química y la relación entre ciencia, tecnología y sociedad. ',
           isCorrect: true),
-      const Option(
-          text:
-              'D. Son el conjunto de actividades de software dedicadas al proceso de creación, diseño, despliegue y compatibilidad electrónica',
-          isCorrect: false)
+      const Option(text: 'D. Ninguna de las anteriores.', isCorrect: false)
     ],
   ),
 
   //Pregunta 2
   Question(
       text:
-          "2. Cuantas preguntas contiene la prueba de Desarrollo de Software del ICFES Saber PRO? ",
+          "2. ¿Cuantas preguntas contiene la prueba de Ciencias Naturales del ICFES Saber PRO? ",
       options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 30', isCorrect: true),
-        const Option(text: 'C. 35', isCorrect: false),
-        const Option(text: 'D. 40', isCorrect: false)
+        const Option(
+            text: 'A. 29 en la sesión 1 y 32 en la sesión 2', isCorrect: false),
+        const Option(
+            text: 'B. 29 en la sesión 1 y 29 en la sesión 2', isCorrect: true),
+        const Option(
+            text: 'C. 32 en la sesión 1 y 32 en la sesón 2', isCorrect: false),
+        const Option(text: 'D. 29 en un sola sesión', isCorrect: false)
       ]),
 
   //Pregunta 3
   Question(
       text:
-          "3. Cuál es la estructura de evaluación del modulo(Tomado de la guia de orientacion de modulo de razonamiento cuantitativo saber pro 2016)",
+          "3. ¿Qué evalua el modulo de Ciencias Naturales del examen ICFES Saber 11?)",
       options: [
         const Option(
-            text: 'A. Competencia, afirmación , evidencia ', isCorrect: true),
+            text:
+                'A. la capacidad del estudiante para comprender y usar nociones, conceptos y teorías de las ciencias naturales en la solución de problemas',
+            isCorrect: true),
         const Option(
             text:
-                'B. Análisis y comprensión, formulación y representación, interpretación y argumentación',
+                'B. la capacidad del estudiante para el análisis y comprensión, formulación y representación, interpretación y argumentación sobre química',
             isCorrect: false),
         const Option(
             text:
-                'C. Investigación y ejecución, interpretación y formulación, argumentación',
+                'C. la capacidad del estudiante sobre la investigación, ejecución, interpretación, formulación y argumentación de las Ciencias Naturales',
             isCorrect: false),
         const Option(text: 'D. Todas las anteriores', isCorrect: false)
       ]),
@@ -694,32 +697,35 @@ final questionsNat = [
   //Pregunta 4
   Question(
       text:
-          '4. Los módulos específicos, como Diseño de Software, están dirigidos a ',
+          '4. ¿Cuál es el tiempo ideal para completar el módulo de Ciencias Naturales de la prueba?',
       options: [
-        const Option(
-            text:
-                'A. Estudiantes que hayan aprobado por lo menos el 75 % de los créditos académicos del programa profesional universitario que cursan',
-            isCorrect: false),
-        const Option(
-            text:
-                'B. Quienes presentan el examen por primera vez y que sean inscritos directamente por su IES.',
-            isCorrect: false),
-        const Option(
-            text: 'C. Cualquier persona que desee obtenerlos',
-            isCorrect: false),
-        const Option(text: 'D. A y B son ciertas', isCorrect: true)
+        const Option(text: 'A. Entre 25 a 30 minutos.', isCorrect: false),
+        const Option(text: 'B. Entre 30 a 40 minutos.', isCorrect: false),
+        const Option(text: 'C. Entre 40 a 45 minutos..', isCorrect: true),
+        const Option(text: 'D. Entre 45 a 50 minutos.', isCorrect: false)
       ]),
 
   //Pregunta 5
   Question(
-      text: "5. El módulo Diseño de Software se oferta a los programas de ",
+      text:
+          "5. ¿Cuales componentes del módulo de Ciencias Naturales se envalúan en la prueba?",
       options: [
         const Option(
-            text: 'A. Ingeniería de sistemas, telemática y afines.',
-            isCorrect: true),
-        const Option(text: 'B. Ingeniería mecánica y afines', isCorrect: false),
-        const Option(text: 'C. Ingeniería de alimentos', isCorrect: false),
-        const Option(text: 'D. Derecho y arquitectura', isCorrect: false)
+            text:
+                'A. Componente químico, componente biológico, componente físico.',
+            isCorrect: false),
+        const Option(
+            text:
+                'B. Componente naturales, componente biológico, componente físico, componente tecnológico.',
+            isCorrect: false),
+        const Option(
+            text:
+                'C. Componente químico, componente biológico, componente físico, componente de ciencia.',
+            isCorrect: false),
+        const Option(
+            text:
+                'D. Componente químico, componente biológico, componente físico, componente de ciencia, tecnologia y sociedad (CTS).',
+            isCorrect: true)
       ]),
 ];
 
@@ -803,10 +809,10 @@ final questionsLec = [
       text:
           "5. ¿Cuánto tiempo debo tomar en resolver todo el módulo de lectura crítica?",
       options: [
-        const Option(text: 'A. Entre 10 a 15 minutos', isCorrect: false),
-        const Option(text: 'B. Entre 15 a 30 minutos', isCorrect: false),
-        const Option(text: 'C. Entre 30 a 45 minutos', isCorrect: true),
-        const Option(text: 'D. No importa cuánto tiempo', isCorrect: false)
+        const Option(text: 'A. Entre 15 a 25 minutos', isCorrect: false),
+        const Option(text: 'B. Entre 25 a 35 minutos', isCorrect: false),
+        const Option(text: 'C. Entre 35 a 50 minutos', isCorrect: false),
+        const Option(text: 'D. Entre 50 y 65 minutos', isCorrect: true)
       ]),
 ];
 
@@ -873,7 +879,7 @@ final questionsCiu = [
 
   //Pregunta 4
   Question(
-      text: "4. ¿Qué NO se evalua el modulo de competencias ciudadanas?)",
+      text: "4. ¿Qué NO se evalua el modulo de Competencias Ciudadanas?",
       options: [
         const Option(
             text: 'A. Pensamiento social del estudiante', isCorrect: false),
@@ -893,21 +899,12 @@ final questionsCiu = [
 
   Question(
     text:
-        "5. ¿Por qué es importante desarrollar competencias ciudadanas y sociales en los estudiantes?",
+        "5. ¿Cuál es el tiempo ideal para completar el módulo de Competencias Ciudadanas del ICFES?",
     options: [
-      const Option(
-          text: 'A. Para mejorar sus habilidades deportivas y atléticas',
-          isCorrect: false),
-      const Option(
-          text: 'B. Para fortalecer su conocimiento en matemáticas y ciencias',
-          isCorrect: false),
-      const Option(
-          text:
-              'C. Para fomentar su participación activa y responsable en la sociedad',
-          isCorrect: true),
-      const Option(
-          text: 'D. Para desarrollar su creatividad y habilidades artísticas',
-          isCorrect: false)
+      const Option(text: 'A. Entre 5 y 10 minutos', isCorrect: false),
+      const Option(text: 'B. Entre 15 y 20 minutos', isCorrect: false),
+      const Option(text: 'C. Entre 25 y 30 minutos', isCorrect: true),
+      const Option(text: 'D. Entre 35 y 40 minutos', isCorrect: false)
     ],
   ),
 ];

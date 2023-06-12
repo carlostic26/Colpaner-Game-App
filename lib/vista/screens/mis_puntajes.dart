@@ -274,38 +274,38 @@ class _misPuntajesState extends State<misPuntajes> {
     ciu10 = int.parse(score10);
   }
 
-  Future<void> getPuntaje_COM() async {
+  Future<void> getPuntaje_NAT() async {
     final prefs = await SharedPreferences.getInstance();
 
-    String score1 = prefs.getString('puntaje_comunicacion_1') ?? '0';
-    ciu1 = int.parse(score1);
+    String score1 = prefs.getString('puntaje_naturales_1') ?? '0';
+    nat1 = int.parse(score1);
 
-    String score2 = prefs.getString('puntaje_comunicacion_2') ?? '0';
-    ciu2 = int.parse(score2);
+    String score2 = prefs.getString('puntaje_naturales_2') ?? '0';
+    nat2 = int.parse(score2);
 
-    String score3 = prefs.getString('puntaje_comunicacion_3') ?? '0';
-    ciu3 = int.parse(score3);
+    String score3 = prefs.getString('puntaje_naturales_3') ?? '0';
+    nat3 = int.parse(score3);
 
-    String score4 = prefs.getString('puntaje_comunicacion_4') ?? '0';
-    ciu4 = int.parse(score4);
+    String score4 = prefs.getString('puntaje_naturales_4') ?? '0';
+    nat4 = int.parse(score4);
 
-    String score5 = prefs.getString('puntaje_comunicacion_5') ?? '0';
-    ciu5 = int.parse(score5);
+    String score5 = prefs.getString('puntaje_naturales_5') ?? '0';
+    nat5 = int.parse(score5);
 
-    String score6 = prefs.getString('puntaje_comunicacion_6') ?? '0';
-    ciu6 = int.parse(score6);
+    String score6 = prefs.getString('puntaje_naturales_6') ?? '0';
+    nat6 = int.parse(score6);
 
-    String score7 = prefs.getString('puntaje_comunicacion_7') ?? '0';
-    ciu7 = int.parse(score7);
+    String score7 = prefs.getString('puntaje_naturales_7') ?? '0';
+    nat7 = int.parse(score7);
 
-    String score8 = prefs.getString('puntaje_comunicacion_8') ?? '0';
-    ciu8 = int.parse(score8);
+    String score8 = prefs.getString('puntaje_naturales_8') ?? '0';
+    nat8 = int.parse(score8);
 
-    String score9 = prefs.getString('puntaje_comunicacion_9') ?? '0';
-    ciu9 = int.parse(score9);
+    String score9 = prefs.getString('puntaje_naturales_9') ?? '0';
+    nat9 = int.parse(score9);
 
-    String score10 = prefs.getString('puntaje_comunicacion_10') ?? '0';
-    ciu10 = int.parse(score10);
+    String score10 = prefs.getString('puntaje_naturales_10') ?? '0';
+    nat10 = int.parse(score10);
   }
 
   @override
@@ -341,17 +341,27 @@ class _misPuntajesState extends State<misPuntajes> {
       });
     });
 
-    //recibe el puntaje total del modulo ing y lo establece en variable para estitmar procentaje de progreso
     getPuntajesTotal_ING().then((value) {
       setState(() {
         puntos_ing = value ?? 0;
       });
     });
 
-    //recibe el puntaje total del modulo ing y lo establece en variable para estitmar procentaje de progreso
     getPuntajesTotal_LEC().then((value) {
       setState(() {
         puntos_lec = value ?? 0;
+      });
+    });
+
+    getPuntajesTotal_CIU().then((value) {
+      setState(() {
+        puntos_ciu = value ?? 0;
+      });
+    });
+
+    getPuntajesTotal_NAT().then((value) {
+      setState(() {
+        puntos_nat = value ?? 0;
       });
     });
 
@@ -360,19 +370,8 @@ class _misPuntajesState extends State<misPuntajes> {
     getPuntaje_ING();
     getPuntaje_LEC();
     getPuntaje_CIU();
-    getPuntaje_COM();
+    getPuntaje_NAT();
 
-    //----- INGLES
-    getPuntajeIngles1_firestore();
-    getPuntajeIngles2_firestore();
-    getPuntajeIngles3_firestore();
-    getPuntajeIngles4_firestore();
-    getPuntajeIngles5_firestore();
-    getPuntajeIngles6_firestore();
-    getPuntajeIngles7_firestore();
-    getPuntajeIngles8_firestore();
-    //getPuntajeIngles9_firestore();
-    getPuntajeIngles10_firestore();
     //----- MATEM
     getPuntajeMat1_firestore();
     getPuntajeMat2_firestore();
@@ -385,11 +384,53 @@ class _misPuntajesState extends State<misPuntajes> {
     //getPuntajeMat9_firestore();
     getPuntajeMat10_firestore();
 
+    //----- INGLES
+    getPuntajeIngles1_firestore();
+    getPuntajeIngles2_firestore();
+    getPuntajeIngles3_firestore();
+    getPuntajeIngles4_firestore();
+    getPuntajeIngles5_firestore();
+    getPuntajeIngles6_firestore();
+    getPuntajeIngles7_firestore();
+    getPuntajeIngles8_firestore();
+    //getPuntajeIngles9_firestore();
+    getPuntajeIngles10_firestore();
+
     //-----LECTURA
     getPuntajeLectura1_firestore();
+    getPuntajeLectura2_firestore();
+    getPuntajeLectura3_firestore();
+    getPuntajeLectura4_firestore();
+    getPuntajeLectura5_firestore();
+    getPuntajeLectura6_firestore();
+    getPuntajeLectura7_firestore();
+    getPuntajeLectura8_firestore();
+    //getPuntajeLectura9_firestore();
+    getPuntajeLectura10_firestore();
 
     //----CIUDADANAS
     getPuntajeCiudadanas1_firestore();
+    getPuntajeCiudadanas2_firestore();
+    getPuntajeCiudadanas3_firestore();
+    getPuntajeCiudadanas4_firestore();
+    getPuntajeCiudadanas5_firestore();
+    getPuntajeCiudadanas6_firestore();
+    getPuntajeCiudadanas7_firestore();
+    getPuntajeCiudadanas8_firestore();
+    //getPuntajeCiudadanas9_firestore();
+    getPuntajeCiudadanas10_firestore();
+
+    //----NATURALES
+    getPuntajeNaturales1_firestore();
+    getPuntajeNaturales2_firestore();
+    getPuntajeNaturales3_firestore();
+    getPuntajeNaturales4_firestore();
+    getPuntajeNaturales5_firestore();
+    getPuntajeNaturales6_firestore();
+    getPuntajeNaturales7_firestore();
+    getPuntajeNaturales8_firestore();
+    //getPuntajeNaturales9_firestore();
+    getPuntajeNaturales10_firestore();
   }
 
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
@@ -417,7 +458,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel1;
   }
 
-  //funcion que busca el nivel 2, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat2_firestore() async {
     int puntajeMatNivel2 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -442,7 +482,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel2;
   }
 
-  //funcion que busca el nivel 3, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat3_firestore() async {
     int puntajeMatNivel3 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -467,7 +506,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel3;
   }
 
-  //funcion que busca el nivel 4, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat4_firestore() async {
     int puntajeMatNivel4 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -492,7 +530,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel4;
   }
 
-  //funcion que busca el nivel 5, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat5_firestore() async {
     int puntajeMatNivel5 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -517,7 +554,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel5;
   }
 
-  //funcion que busca el nivel 6, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat6_firestore() async {
     int puntajeMatNivel6 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -542,7 +578,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel6;
   }
 
-  //funcion que busca el nivel 7, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat7_firestore() async {
     int puntajeMatNivel7 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -567,7 +602,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel7;
   }
 
-  //funcion que busca el nivel 6, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat8_firestore() async {
     int puntajeMatNivel8 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -617,7 +651,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel9;
   }
  */
-  //funcion que busca el nivel 10, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat10_firestore() async {
     int puntajeMatNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -668,7 +701,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel1;
   }
 
-  //funcion que busca el nivel 2, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles2_firestore() async {
     int puntajeIngNivel2 = 0;
 
@@ -691,7 +723,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel2;
   }
 
-  //funcion que busca el nivel 3, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles3_firestore() async {
     int puntajeIngNivel3 = 0;
 
@@ -714,7 +745,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel3;
   }
 
-  //funcion que busca el nivel 4, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles4_firestore() async {
     int puntajeIngNivel4 = 0;
 
@@ -737,7 +767,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel4;
   }
 
-  //funcion que busca el nivel 5, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles5_firestore() async {
     int puntajeIngNivel5 = 0;
 
@@ -760,7 +789,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel5;
   }
 
-  //funcion que busca el nivel 6, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles6_firestore() async {
     int puntajeIngNivel6 = 0;
 
@@ -783,7 +811,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel6;
   }
 
-  //funcion que busca el nivel 7, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles7_firestore() async {
     int puntajeIngNivel7 = 0;
 
@@ -806,7 +833,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel7;
   }
 
-  //funcion que busca el nivel 8, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles8_firestore() async {
     int puntajeIngNivel8 = 0;
 
@@ -829,8 +855,7 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel8;
   }
 
-  //funcion que busca el nivel 9, si existe, lo envia a shp para ser sumado a puntaje total
-  Future<int> getPuntajeIngles9_firestore() async {
+/*   Future<int> getPuntajeIngles9_firestore() async {
     int puntajeIngNivel9 = 0;
 
     final docSnapshot = await FirebaseFirestore.instance
@@ -851,8 +876,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
     return puntajeIngNivel9;
   }
-
-  //funcion que busca el nivel 10, si existe, lo envia a shp para ser sumado a puntaje total
+ */
   Future<int> getPuntajeIngles10_firestore() async {
     int puntajeIngNivel10 = 0;
 
@@ -902,6 +926,222 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeLecNivel1;
   }
 
+  Future<int> getPuntajeLectura2_firestore() async {
+    int puntajeLecNivel2 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel2')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel2 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_2', puntajeLecNivel2.toString());
+
+    return puntajeLecNivel2;
+  }
+
+  Future<int> getPuntajeLectura3_firestore() async {
+    int puntajeLecNivel3 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel3')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel3 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_3', puntajeLecNivel3.toString());
+
+    return puntajeLecNivel3;
+  }
+
+  Future<int> getPuntajeLectura4_firestore() async {
+    int puntajeLecNivel4 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel4')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel4 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_4', puntajeLecNivel4.toString());
+
+    return puntajeLecNivel4;
+  }
+
+  Future<int> getPuntajeLectura5_firestore() async {
+    int puntajeLecNivel5 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel5')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel5 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_5', puntajeLecNivel5.toString());
+
+    return puntajeLecNivel5;
+  }
+
+  Future<int> getPuntajeLectura6_firestore() async {
+    int puntajeLecNivel6 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel6')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel6 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_6', puntajeLecNivel6.toString());
+
+    return puntajeLecNivel6;
+  }
+
+  Future<int> getPuntajeLectura7_firestore() async {
+    int puntajeLecNivel7 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel7')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel7 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_7', puntajeLecNivel7.toString());
+
+    return puntajeLecNivel7;
+  }
+
+  Future<int> getPuntajeLectura8_firestore() async {
+    int puntajeLecNivel8 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel8')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel8 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_8', puntajeLecNivel8.toString());
+
+    return puntajeLecNivel8;
+  }
+
+/*   Future<int> getPuntajeLectura9_firestore() async {
+    int puntajeLecNivel9 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel9')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel9 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_9', puntajeLecNivel9.toString());
+
+    return puntajeLecNivel9;
+  }
+ */
+  Future<int> getPuntajeLectura10_firestore() async {
+    int puntajeLecNivel10 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel10')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel10 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_10', puntajeLecNivel10.toString());
+
+    return puntajeLecNivel10;
+  }
+
   //----------------------------- CIUDADANAS ----------------------------------
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeCiudadanas1_firestore() async {
@@ -928,6 +1168,465 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeCiuNivel1;
   }
 
+  Future<int> getPuntajeCiudadanas2_firestore() async {
+    int puntajeCiuNivel2 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel2')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel2 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_2', puntajeCiuNivel2.toString());
+
+    return puntajeCiuNivel2;
+  }
+
+  Future<int> getPuntajeCiudadanas3_firestore() async {
+    int puntajeCiuNivel3 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel3')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel3 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_3', puntajeCiuNivel3.toString());
+
+    return puntajeCiuNivel3;
+  }
+
+  Future<int> getPuntajeCiudadanas4_firestore() async {
+    int puntajeCiuNivel4 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel4')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel4 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_4', puntajeCiuNivel4.toString());
+
+    return puntajeCiuNivel4;
+  }
+
+  Future<int> getPuntajeCiudadanas5_firestore() async {
+    int puntajeCiuNivel5 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel5')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel5 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_5', puntajeCiuNivel5.toString());
+
+    return puntajeCiuNivel5;
+  }
+
+  Future<int> getPuntajeCiudadanas6_firestore() async {
+    int puntajeCiuNivel6 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel6')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel6 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_6', puntajeCiuNivel6.toString());
+
+    return puntajeCiuNivel6;
+  }
+
+  Future<int> getPuntajeCiudadanas7_firestore() async {
+    int puntajeCiuNivel7 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel7')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel7 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_7', puntajeCiuNivel7.toString());
+
+    return puntajeCiuNivel7;
+  }
+
+  Future<int> getPuntajeCiudadanas8_firestore() async {
+    int puntajeCiuNivel8 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel8')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel8 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_8', puntajeCiuNivel8.toString());
+
+    return puntajeCiuNivel8;
+  }
+
+/*   Future<int> getPuntajeCiudadanas9_firestore() async {
+    int puntajeCiuNivel9 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel9')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel9 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_ciudadanas_9', puntajeCiuNivel9.toString());
+
+    return puntajeCiuNivel9;
+  }
+ */
+  Future<int> getPuntajeCiudadanas10_firestore() async {
+    int puntajeCiuNivel10 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel10')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeCiuNivel10 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+        'puntaje_ciudadanas_10', puntajeCiuNivel10.toString());
+
+    return puntajeCiuNivel10;
+  }
+
+  //----------------------------- NATURALES ----------------------------------
+  //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
+  Future<int> getPuntajeNaturales1_firestore() async {
+    int puntajeNatNivel1 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel1')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel1 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_1', puntajeNatNivel1.toString());
+
+    return puntajeNatNivel1;
+  }
+
+  Future<int> getPuntajeNaturales2_firestore() async {
+    int puntajeNatNivel2 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel2')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel2 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_2', puntajeNatNivel2.toString());
+
+    return puntajeNatNivel2;
+  }
+
+  Future<int> getPuntajeNaturales3_firestore() async {
+    int puntajeNatNivel3 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel3')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel3 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_3', puntajeNatNivel3.toString());
+
+    return puntajeNatNivel3;
+  }
+
+  Future<int> getPuntajeNaturales4_firestore() async {
+    int puntajeNatNivel4 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel4')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel4 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_4', puntajeNatNivel4.toString());
+
+    return puntajeNatNivel4;
+  }
+
+  Future<int> getPuntajeNaturales5_firestore() async {
+    int puntajeNatNivel5 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel5')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel5 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_5', puntajeNatNivel5.toString());
+
+    return puntajeNatNivel5;
+  }
+
+  Future<int> getPuntajeNaturales6_firestore() async {
+    int puntajeNatNivel6 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel6')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel6 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_6', puntajeNatNivel6.toString());
+
+    return puntajeNatNivel6;
+  }
+
+  Future<int> getPuntajeNaturales7_firestore() async {
+    int puntajeNatNivel7 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel7')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel7 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_7', puntajeNatNivel7.toString());
+
+    return puntajeNatNivel7;
+  }
+
+  Future<int> getPuntajeNaturales8_firestore() async {
+    int puntajeNatNivel8 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel8')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel8 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_8', puntajeNatNivel8.toString());
+
+    return puntajeNatNivel8;
+  }
+
+/*   Future<int> getPuntajeNaturales9_firestore() async {
+    int puntajeNatNivel9 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel9')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel9 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_9', puntajeNatNivel9.toString());
+
+    return puntajeNatNivel9;
+  }
+ */
+  Future<int> getPuntajeNaturales10_firestore() async {
+    int puntajeNatNivel10 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel10')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel10 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_10', puntajeNatNivel10.toString());
+
+    return puntajeNatNivel10;
+  }
+
   @override
   Widget build(BuildContext context) {
     final double porcentaje_mat =
@@ -941,6 +1640,9 @@ class _misPuntajesState extends State<misPuntajes> {
 
     final double porcentaje_ciu =
         puntos_ciu / puntosMaximos_test; // Calcular el porcentaje de progreso
+
+    final double porcentaje_nat =
+        puntos_nat / puntosMaximos_test; // Calcular el porcentaje de progreso
 
     final double porcentaje_test =
         puntos_test / puntosMaximos_test; // Calcular el porcentaje de progreso
@@ -1232,17 +1934,21 @@ class _misPuntajesState extends State<misPuntajes> {
                         ),
                       ),
                       const SizedBox(width: 20),
-                      /*  Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 10, 10),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                         child: Column(
                           children: [
-                            const Text(
-                              'Razonamiento Cuantitativo',
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontFamily: 'BubblegumSans',
-                                fontWeight: FontWeight.bold,
-                                color: colors_colpaner.claro,
+                            const Center(
+                              child: Text(
+                                'Ciencias\nNaturales',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.claro,
+                                ),
+                                textAlign: TextAlign
+                                    .center, // Alineación horizontal del texto
                               ),
                             ),
                             //SE MUESTRA UN CIRCULO PROGRESS BAR
@@ -1257,7 +1963,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                       strokeWidth:
                                           8, // Ancho del borde del círculo
                                       value:
-                                          porcentaje_test, // Valor de progreso
+                                          porcentaje_nat, // Valor de progreso
                                       backgroundColor: Colors.grey[
                                           300], // Color del fondo del círculo
                                       valueColor:
@@ -1269,7 +1975,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                   Positioned.fill(
                                     child: Center(
                                       child: Text(
-                                        '${(porcentaje_test * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
+                                        '${(porcentaje_nat * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
                                         style: const TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.bold,
@@ -1283,7 +1989,7 @@ class _misPuntajesState extends State<misPuntajes> {
                             ),
                           ],
                         ),
-                      ), */
+                      ),
                     ],
                   ),
                 ),

@@ -382,38 +382,38 @@ Future<int> getPuntajesTotal_LEC() async {
   return scoreTotal_LEC;
 }
 
-Future<int> getPuntajesTotal_SOC() async {
+Future<int> getPuntajesTotal_CIU() async {
   final prefs = await SharedPreferences.getInstance();
 
-  String score_soc1 = prefs.getString('puntaje_sociales_1') ?? '';
-  niv1SOC = int.tryParse(score_soc1) ?? 0;
+  String score_ciu1 = prefs.getString('puntaje_ciudadanas_1') ?? '';
+  niv1SOC = int.tryParse(score_ciu1) ?? 0;
 
-  String score_soc2 = prefs.getString('puntaje_sociales_2') ?? '';
-  niv2SOC = int.tryParse(score_soc2) ?? 0;
+  String score_ciu2 = prefs.getString('puntaje_ciudadanas_2') ?? '';
+  niv2SOC = int.tryParse(score_ciu2) ?? 0;
 
-  String score_soc3 = prefs.getString('puntaje_sociales_3') ?? '';
-  niv3SOC = int.tryParse(score_soc3) ?? 0;
+  String score_ciu3 = prefs.getString('puntaje_ciudadanas_3') ?? '';
+  niv3SOC = int.tryParse(score_ciu3) ?? 0;
 
-  String score_soc4 = prefs.getString('puntaje_sociales_4') ?? '';
-  niv4SOC = int.tryParse(score_soc4) ?? 0;
+  String score_ciu4 = prefs.getString('puntaje_ciudadanas_4') ?? '';
+  niv4SOC = int.tryParse(score_ciu4) ?? 0;
 
-  String score_soc5 = prefs.getString('puntaje_sociales_5') ?? '';
-  niv5SOC = int.tryParse(score_soc5) ?? 0;
+  String score_ciu5 = prefs.getString('puntaje_ciudadanas_5') ?? '';
+  niv5SOC = int.tryParse(score_ciu5) ?? 0;
 
-  String score_soc6 = prefs.getString('puntaje_sociales_6') ?? '';
-  niv6SOC = int.tryParse(score_soc6) ?? 0;
+  String score_ciu6 = prefs.getString('puntaje_ciudadanas_6') ?? '';
+  niv6SOC = int.tryParse(score_ciu6) ?? 0;
 
-  String score_soc7 = prefs.getString('puntaje_sociales_7') ?? '';
-  niv7SOC = int.tryParse(score_soc7) ?? 0;
+  String score_ciu7 = prefs.getString('puntaje_ciudadanas_7') ?? '';
+  niv7SOC = int.tryParse(score_ciu7) ?? 0;
 
-  String score_soc8 = prefs.getString('puntaje_sociales_8') ?? '';
-  niv8SOC = int.tryParse(score_soc8) ?? 0;
+  String score_ciu8 = prefs.getString('puntaje_ciudadanas_8') ?? '';
+  niv8SOC = int.tryParse(score_ciu8) ?? 0;
 
-  String score_soc9 = prefs.getString('puntaje_sociales_9') ?? '';
-  niv9SOC = int.tryParse(score_soc9) ?? 0;
+  String score_ciu9 = prefs.getString('puntaje_ciudadanas_9') ?? '';
+  niv9SOC = int.tryParse(score_ciu9) ?? 0;
 
-  String score_soc10 = prefs.getString('puntaje_sociales_10') ?? '';
-  niv10SOC = int.tryParse(score_soc10) ?? 0;
+  String score_ciu10 = prefs.getString('puntaje_ciudadanas_10') ?? '';
+  niv10SOC = int.tryParse(score_ciu10) ?? 0;
 
   scoreTotal_SOC = niv1SOC +
       niv2SOC +
@@ -426,4 +426,50 @@ Future<int> getPuntajesTotal_SOC() async {
       niv9SOC +
       niv10SOC;
   return scoreTotal_SOC;
+}
+
+Future<int> getPuntajesTotal_NAT() async {
+  final prefs = await SharedPreferences.getInstance();
+
+  String score_nat1 = prefs.getString('puntaje_naturales_1') ?? '';
+  niv1NAT = int.tryParse(score_nat1) ?? 0;
+
+  String score_nat2 = prefs.getString('puntaje_naturales_2') ?? '';
+  niv2NAT = int.tryParse(score_nat2) ?? 0;
+
+  String score_nat3 = prefs.getString('puntaje_naturales_3') ?? '';
+  niv3NAT = int.tryParse(score_nat3) ?? 0;
+
+  String score_nat4 = prefs.getString('puntaje_naturales_4') ?? '';
+  niv4NAT = int.tryParse(score_nat4) ?? 0;
+
+  String score_nat5 = prefs.getString('puntaje_naturales_5') ?? '';
+  niv5NAT = int.tryParse(score_nat5) ?? 0;
+
+  String score_nat6 = prefs.getString('puntaje_naturales_6') ?? '';
+  niv6NAT = int.tryParse(score_nat6) ?? 0;
+
+  String score_nat7 = prefs.getString('puntaje_naturales_7') ?? '';
+  niv7NAT = int.tryParse(score_nat7) ?? 0;
+
+  String score_nat8 = prefs.getString('puntaje_naturales_8') ?? '';
+  niv8NAT = int.tryParse(score_nat8) ?? 0;
+
+  String score_nat9 = prefs.getString('puntaje_naturales_9') ?? '';
+  niv9NAT = int.tryParse(score_nat9) ?? 0;
+
+  String score_nat10 = prefs.getString('puntaje_naturales_10') ?? '';
+  niv10NAT = int.tryParse(score_nat10) ?? 0;
+
+  scoreTotal_NAT = niv1NAT +
+      niv2NAT +
+      niv3NAT +
+      niv4NAT +
+      niv5NAT +
+      niv6NAT +
+      niv7NAT +
+      niv8NAT +
+      niv9NAT +
+      niv10NAT;
+  return scoreTotal_NAT;
 }
