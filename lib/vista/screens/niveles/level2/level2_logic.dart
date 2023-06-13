@@ -67,20 +67,19 @@ class GameCards {
     "Habilidades de pensamiento crítico y análisis de problemas sociales."
   ];
 
-  final List<String> cards_list_com = [
-    "Comunicación Escrita: redacción clara y coherente de textos.",
-    "Desarrollo de habilidades de comprensión y análisis de textos escritos.",
-    "Uso adecuado de la gramática y la puntuación en el examen.",
-    "Estructuración y organización de ideas en la escritura.",
-    "Expresión efectiva de argumentos y opiniones por escrito.",
-    "Edición y revisión de textos para mejorar su calidad.",
-//
-    "Comunicación Escrita: redacción clara y coherente de textos.",
-    "Desarrollo de habilidades de comprensión y análisis de textos escritos.",
-    "Uso adecuado de la gramática y la puntuación en el examen.",
-    "Estructuración y organización de ideas en la escritura.",
-    "Expresión efectiva de argumentos y opiniones por escrito.",
-    "Edición y revisión de textos para mejorar su calidad."
+  final List<String> cards_list_nat = [
+    "Interpretación de fenómenos y procesos naturales en Ciencias Naturales.",
+    "Aplicación de conocimientos científicos en la resolución de problemas.",
+    "Comprensión de conceptos y principios fundamentales de Ciencias Naturales.",
+    "Análisis e interpretación de datos científicos y gráficos.",
+    "Conocimiento sobre la diversidad de los seres vivos y su interacción con el entorno.",
+    "Habilidades de pensamiento crítico y análisis en el módulo de Ciencias Naturales.",
+    "Interpretación de fenómenos y procesos naturales en Ciencias Naturales.",
+    "Aplicación de conocimientos científicos en la resolución de problemas.",
+    "Comprensión de conceptos y principios fundamentales de Ciencias Naturales.",
+    "Análisis e interpretación de datos científicos y gráficos.",
+    "Conocimiento sobre la diversidad de los seres vivos y su interacción con el entorno.",
+    "Habilidades de pensamiento crítico y análisis en el módulo de Ciencias Naturales."
   ];
 
   // en esta lista guardaremos las dos primeras cartas tocadas y validar si son compatibles o no
@@ -92,7 +91,7 @@ class GameCards {
     cards_list_mat.shuffle(); // reorganiza las premisas aleatoriamente
     cards_list_ing.shuffle(); // reorganiza las premisas aleatoriamente
     cards_list_lec.shuffle(); // reorganiza las premisas aleatoriamente
-    cards_list_com.shuffle(); // reorganiza las premisas aleatoriamente
+    cards_list_nat.shuffle(); // reorganiza las premisas aleatoriamente
     cards_list_comp.shuffle(); // reorganiza las premisas aleatoriamente
     gameImg = List.generate(cardCount, (index) => hiddenCardpath);
   }

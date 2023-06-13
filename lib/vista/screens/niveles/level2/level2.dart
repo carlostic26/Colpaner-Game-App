@@ -85,6 +85,7 @@ class _level2State extends State<level2> {
     super.initState();
 
     _gameCards.initGame();
+
     _getModuloFromSharedPrefs();
     _startCountdown();
   }
@@ -151,8 +152,8 @@ class _level2State extends State<level2> {
                               cards_List = _gameCards.cards_list_lec;
                             } else if (_modulo == 'Inglés') {
                               cards_List = _gameCards.cards_list_ing;
-                            } else if (_modulo == 'Comunicación Escrita') {
-                              cards_List = _gameCards.cards_list_com;
+                            } else if (_modulo == 'Ciencias Naturales') {
+                              cards_List = _gameCards.cards_list_nat;
                             } else if (_modulo == 'Competencias Ciudadanas') {
                               cards_List = _gameCards.cards_list_comp;
                             } else {
@@ -170,7 +171,6 @@ class _level2State extends State<level2> {
                                     if (tries >= 12) {
                                       DialogHelper.showDialogGameOver(
                                           context, score);
-                                      //guarda puntaje de nivel en firestore
                                       _guardarPuntajeNivel2(score);
                                     }
 
@@ -311,6 +311,40 @@ class _level2State extends State<level2> {
           ),
         ),
       ],
+    );
+  }
+
+  void navigateBack(BuildContext context) {
+    Navigator.pop(context);
+    Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionDuration: const Duration(seconds: 1),
+        transitionsBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secAnimation,
+          Widget child,
+        ) {
+          animation = CurvedAnimation(
+            parent: animation,
+            curve: Curves.elasticOut,
+          );
+
+          return ScaleTransition(
+            alignment: Alignment.center,
+            scale: animation,
+            child: child,
+          );
+        },
+        pageBuilder: (
+          BuildContext context,
+          Animation<double> animation,
+          Animation<double> secAnimattion,
+        ) {
+          return const world_game();
+        },
+      ),
     );
   }
 

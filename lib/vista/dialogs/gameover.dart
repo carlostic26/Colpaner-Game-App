@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:gamicolpaner/controller/puntajes_shp.dart';
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,7 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
                       image: const DecorationImage(
-                        image: NetworkImage(
+                        image: CachedNetworkImageProvider(
                             'https://i.pinimg.com/originals/91/8b/df/918bdf201dc850502d876c0481e5eb84.gif'),
                         fit: BoxFit.cover,
                       ),
