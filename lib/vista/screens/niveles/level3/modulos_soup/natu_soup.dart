@@ -1332,19 +1332,9 @@ class _natusoupState extends State<natusoup> {
             //
             //
             //
-
-            CustomTextButton(
-              text: 'O',
-              indexActual: 99,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('O');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
             CustomTextButton(
               text: 'A',
-              indexActual: 100,
+              indexActual: 108,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('A');
@@ -1353,7 +1343,7 @@ class _natusoupState extends State<natusoup> {
             ),
             CustomTextButton(
               text: 'I',
-              indexActual: 101,
+              indexActual: 109,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('I');
@@ -1362,7 +1352,7 @@ class _natusoupState extends State<natusoup> {
             ),
             CustomTextButton(
               text: 'G',
-              indexActual: 102,
+              indexActual: 110,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('G');
@@ -1371,7 +1361,7 @@ class _natusoupState extends State<natusoup> {
             ),
             CustomTextButton(
               text: 'O',
-              indexActual: 103,
+              indexActual: 111,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('O');
@@ -1380,7 +1370,7 @@ class _natusoupState extends State<natusoup> {
             ),
             CustomTextButton(
               text: 'L',
-              indexActual: 104,
+              indexActual: 112,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('L');
@@ -1389,7 +1379,7 @@ class _natusoupState extends State<natusoup> {
             ),
             CustomTextButton(
               text: 'O',
-              indexActual: 105,
+              indexActual: 113,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('O');
@@ -1398,7 +1388,7 @@ class _natusoupState extends State<natusoup> {
             ),
             CustomTextButton(
               text: 'I',
-              indexActual: 106,
+              indexActual: 114,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('I');
@@ -1407,10 +1397,19 @@ class _natusoupState extends State<natusoup> {
             ),
             CustomTextButton(
               text: 'B',
-              indexActual: 107,
+              indexActual: 115,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('B');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'T',
+              indexActual: 116,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('T');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),

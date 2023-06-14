@@ -384,6 +384,9 @@ class _ciudasoupState extends State<ciudasoup> {
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
+            //
+            //
+            //
             CustomTextButton(
               text: 'J',
               indexActual: 10,
@@ -465,6 +468,9 @@ class _ciudasoupState extends State<ciudasoup> {
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
+            //
+            //
+            //
             CustomTextButton(
               text: 'A',
               indexActual: 19,
@@ -549,47 +555,47 @@ class _ciudasoupState extends State<ciudasoup> {
             //
             //
             CustomTextButton(
-              text: 'A',
+              text: 'E',
               indexActual: 28,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('A');
+                  addLetterToCurrentWord('E');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
-              text: 'Z',
+              text: 'T',
               indexActual: 29,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('Z');
+                  addLetterToCurrentWord('T');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
-              text: 'O',
+              text: 'I',
               indexActual: 30,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('O');
+                  addLetterToCurrentWord('I');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
-              text: 'I',
+              text: 'C',
               indexActual: 31,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('I');
+                  addLetterToCurrentWord('C');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
-              text: 'I',
+              text: 'A',
               indexActual: 32,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('I');
+                  addLetterToCurrentWord('A');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -621,11 +627,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'I',
+              text: 'A',
               indexActual: 35,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('I');
+                  addLetterToCurrentWord('A');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -641,26 +647,62 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'I',
+              text: 'C',
               indexActual: 37,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('I');
+                  addLetterToCurrentWord('C');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
-              text: 'N',
+              text: 'U',
               indexActual: 38,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('N');
+                  addLetterToCurrentWord('U');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'L',
+              indexActual: 39,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('L');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'T',
+              indexActual: 40,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('T');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'U',
+              indexActual: 41,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('U');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'R',
+              indexActual: 42,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('R');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
               text: 'A',
-              indexActual: 39,
+              indexActual: 43,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('A');
@@ -668,47 +710,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'E',
-              indexActual: 40,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('E');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'B',
-              indexActual: 41,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('B');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'S',
-              indexActual: 42,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('S');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
               text: 'I',
-              indexActual: 43,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('I');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'C',
               indexActual: 44,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('C');
+                  addLetterToCurrentWord('I');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -733,11 +739,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'C',
+              text: 'D',
               indexActual: 47,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('C');
+                  addLetterToCurrentWord('D');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -787,11 +793,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'N',
+              text: 'C',
               indexActual: 53,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('N');
+                  addLetterToCurrentWord('C');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -816,44 +822,8 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'L',
-              indexActual: 56,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('L');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'E',
-              indexActual: 57,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('C');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'W',
-              indexActual: 58,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('W');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'H',
-              indexActual: 59,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('H');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
               text: 'A',
-              indexActual: 60,
+              indexActual: 56,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('A');
@@ -861,8 +831,17 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
+              text: 'U',
+              indexActual: 57,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('U');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
               text: 'L',
-              indexActual: 61,
+              indexActual: 58,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('L');
@@ -870,11 +849,38 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'E',
+              text: 'T',
+              indexActual: 59,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('T');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'U',
+              indexActual: 60,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('U');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'R',
+              indexActual: 61,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('R');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'A',
               indexActual: 62,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('E');
+                  addLetterToCurrentWord('A');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -899,11 +905,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'U',
+              text: 'D',
               indexActual: 65,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('U');
+                  addLetterToCurrentWord('D');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -982,11 +988,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'S',
+              text: 'A',
               indexActual: 74,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('S');
+                  addLetterToCurrentWord('A');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -1036,11 +1042,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'E',
+              text: 'C',
               indexActual: 80,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('E');
+                  addLetterToCurrentWord('C');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -1065,11 +1071,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'I',
+              text: 'N',
               indexActual: 83,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('I');
+                  addLetterToCurrentWord('N');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -1148,11 +1154,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'O',
+              text: 'I',
               indexActual: 92,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('O');
+                  addLetterToCurrentWord('I');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -1231,11 +1237,11 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'N',
+              text: 'A',
               indexActual: 101,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('N');
+                  addLetterToCurrentWord('A');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
@@ -1298,7 +1304,7 @@ class _ciudasoupState extends State<ciudasoup> {
             //
             CustomTextButton(
               text: 'O',
-              indexActual: 99,
+              indexActual: 108,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('O');
@@ -1306,35 +1312,17 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'A',
-              indexActual: 100,
+              text: 'S',
+              indexActual: 109,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('A');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'I',
-              indexActual: 101,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('I');
-                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
-              },
-            ),
-            CustomTextButton(
-              text: 'G',
-              indexActual: 102,
-              onPressed: () {
-                setState(() {
-                  addLetterToCurrentWord('G');
+                  addLetterToCurrentWord('S');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
               text: 'O',
-              indexActual: 103,
+              indexActual: 110,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('O');
@@ -1342,26 +1330,44 @@ class _ciudasoupState extends State<ciudasoup> {
               },
             ),
             CustomTextButton(
-              text: 'O',
-              indexActual: 104,
+              text: 'H',
+              indexActual: 111,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('O');
+                  addLetterToCurrentWord('H');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
-              text: 'M',
-              indexActual: 105,
+              text: 'C',
+              indexActual: 112,
               onPressed: () {
                 setState(() {
-                  addLetterToCurrentWord('M');
+                  addLetterToCurrentWord('C');
                 }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
               },
             ),
             CustomTextButton(
               text: 'E',
-              indexActual: 106,
+              indexActual: 113,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('E');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'R',
+              indexActual: 114,
+              onPressed: () {
+                setState(() {
+                  addLetterToCurrentWord('R');
+                }); //COPIAR Y PEGAR EN REEMPLAZAR PARA CADA LETRA
+              },
+            ),
+            CustomTextButton(
+              text: 'E',
+              indexActual: 115,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('E');
@@ -1370,7 +1376,7 @@ class _ciudasoupState extends State<ciudasoup> {
             ),
             CustomTextButton(
               text: 'D',
-              indexActual: 107,
+              indexActual: 116,
               onPressed: () {
                 setState(() {
                   addLetterToCurrentWord('D');
