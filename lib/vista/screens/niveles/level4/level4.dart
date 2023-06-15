@@ -35,68 +35,186 @@ class _level4State extends State<level4> {
 //recibe el modulo guardado anteriormente en sharedPreferences
   void _getModuloFromSharedPrefs() async {
     final prefs = await SharedPreferences.getInstance();
+    List<MapEntry<String, String>> choicesList = [];
+
     setState(() {
       modul = prefs.getString('modulo') ?? '';
 
       print('MODULO EN LEVEL 4 ES: $modul');
     });
 
-    if (modul == 'Razonamiento Cuantitativo') {
-      final List<MapEntry<String, String>> choicesList = choicesMAT.entries
-          .map(
-              (entry) => MapEntry(entry.key.toString(), entry.value.toString()))
-          .toList();
+    switch (modul) {
+      case 'Razonamiento Cuantitativo':
+        choicesList = choicesMAT.entries
+            .map((entry) =>
+                MapEntry(entry.key.toString(), entry.value.toString()))
+            .toList();
 
-      final Random random = Random();
-      sixChoices = Map.fromEntries(List.generate(
-        7,
-        (_) => choicesList[random.nextInt(choicesList.length)],
-      ));
-    }
+        final Random random = Random();
+        sixChoices = Map.fromEntries(List.generate(
+          7,
+          (_) => choicesList[random.nextInt(choicesList.length)],
+        ));
+        break;
 
-    if (modul == 'Inglés') {
-      final List<MapEntry<String, String>> choicesList = choicesING.entries
-          .map(
-              (entry) => MapEntry(entry.key.toString(), entry.value.toString()))
-          .toList();
+      case 'Inglés':
+        choicesList = choicesING.entries
+            .map((entry) =>
+                MapEntry(entry.key.toString(), entry.value.toString()))
+            .toList();
 
-      final Random random = Random();
-      sixChoices = Map.fromEntries(List.generate(
-        7,
-        (_) => choicesList[random.nextInt(choicesList.length)],
-      ));
+        final Random random = Random();
+        sixChoices = Map.fromEntries(List.generate(
+          7,
+          (_) => choicesList[random.nextInt(choicesList.length)],
+        ));
+        break;
+
+      case 'Lectura Crítica':
+        choicesList = choicesLEC.entries
+            .map((entry) =>
+                MapEntry(entry.key.toString(), entry.value.toString()))
+            .toList();
+
+        final Random random = Random();
+        sixChoices = Map.fromEntries(List.generate(
+          7,
+          (_) => choicesList[random.nextInt(choicesList.length)],
+        ));
+        break;
+
+      case 'Ciencias Naturales':
+        choicesList = choicesNAT.entries
+            .map((entry) =>
+                MapEntry(entry.key.toString(), entry.value.toString()))
+            .toList();
+
+        final Random random = Random();
+        sixChoices = Map.fromEntries(List.generate(
+          7,
+          (_) => choicesList[random.nextInt(choicesList.length)],
+        ));
+        break;
+
+      case 'Competencias Ciudadanas':
+        choicesList = choicesCIU.entries
+            .map((entry) =>
+                MapEntry(entry.key.toString(), entry.value.toString()))
+            .toList();
+
+        final Random random = Random();
+        sixChoices = Map.fromEntries(List.generate(
+          7,
+          (_) => choicesList[random.nextInt(choicesList.length)],
+        ));
+        break;
+
+      default:
+        // Código por defecto si el valor de 'modulo' no coincide con ningún caso
+        break;
     }
   }
 
   final Map<String, bool> score = {};
 
-  final Map choicesMAT = {
-    'GET': 'realiza una petición a un recurso específico',
-    'POST': 'puede enviar datos al servidor por medio del cuerpo (body)',
-    'PUT': 'puede ser ejecutado varias veces y tiene el mismo efecto',
-    'DELETE': 'permite eliminar un recurso específico',
-    'PATCH':
-        'se emplea para modificaciones parciales de un recurso en particular',
-    'HEAD': ' no retorna ningún contenido HTTP Response',
-    'GETU': 'realiza en una petición a un recurso específico',
-    'POSTE': 'puede r nenviar datos al servidor por medio del cuerpo (body)',
-    'PUTA': 'puedevxfb ser ejecutado dvvarias veces y tiene el mismo efecto',
-    'DELETEWE': ' permite vds eliminar sdvun  drecurso específico',
+  final Map<String, String> choicesMAT = {
+    'Álgebra lineal':
+        'Estudio de vectores, matrices y sistemas de ecuaciones lineales',
+    'Cálculo diferencial':
+        'Análisis de la tasa de cambio y la derivación de funciones',
+    'Cálculo integral':
+        'Análisis de áreas, volúmenes y la integración de funciones',
+    'Geometría analítica':
+        'Estudio de las propiedades geométricas mediante técnicas algebraicas',
+    'Estadística': 'Análisis de datos, distribuciones y probabilidad',
+    'Probabilidad': 'Estudio de los eventos y la posibilidad de que ocurran',
+    'Trigonometría':
+        'Relaciones entre los ángulos y las medidas de los lados de los triángulos',
+    'Funciones exponenciales': 'Estudio de funciones con exponentes variables',
+    'Funciones logarítmicas':
+        'Estudio de funciones inversas a las exponenciales',
+    'Geometría euclidiana':
+        'Estudio de las propiedades y relaciones de los objetos geométricos en el plano y el espacio'
   };
 
-  final Map choicesING = {
-    'GET': 'englisg realiza una petición a un recurso específico',
-    'POST': 'englisgpuede enviar datos al servidor por medio del cuerpo (body)',
-    'PUT': 'englisgpuede ser ejecutado varias veces y tiene el mismo efecto',
-    'DELETE': 'englisgpermite eliminar un recurso específico',
-    'PATCH': 'englisgse emplea para modificacioneticular',
-    'HEAD': 'englisg no retorna ningún contenido HTTP Response',
-    'GETU': 'englisg realiza en una petición a un recurso específico',
-    'POSTE':
-        'englisg puede r nenviar datos al servidor por medio del cuerpo (body)',
-    'PUTA':
-        'englisg puedevxfb ser ejecutado dvvarias veces y tiene el mismo efecto',
-    'DELETEWE': 'englisg permite vds eliminar sdvun  drecurso específico',
+  final Map<String, String> choicesING = {
+    'Grammar': 'Rules and principles governing the use of language',
+    'Vocabulary': 'Words and their meanings in a language',
+    'Reading Comprehension': 'Understanding and interpreting written texts',
+    'Listening Comprehension': 'Understanding and interpreting spoken language',
+    'Writing Skills': 'Producing written texts with clarity and coherence',
+    'Speaking Skills': 'Expressing ideas and communicating orally',
+    'Verb Tenses':
+        'Different forms of verbs that indicate when an action occurred',
+    'Literary Devices': 'Techniques used by writers to create specific effects',
+    'Critical Thinking': 'Analyzing and evaluating information and arguments',
+    'Translation': 'Converting text or speech from one language to another',
+  };
+
+  final Map<String, String> choicesCIU = {
+    'Derechos Humanos':
+        'Conjunto de principios que protegen y promueven la dignidad humana',
+    'Participación Ciudadana':
+        'Involucramiento activo de los ciudadanos en la toma de decisiones',
+    'Plebiscito':
+        'Consulta popular en la que los ciudadanos votan para tomar decisiones importantes',
+    'Democracia':
+        'Sistema político donde el poder reside en el pueblo y se ejerce mediante elecciones',
+    'Resolución de Conflictos':
+        'Proceso de encontrar soluciones pacíficas a situaciones problemáticas',
+    'Pluralismo':
+        'Aceptación y respeto por las diferentes opiniones y perspectivas en la sociedad',
+    'Responsabilidad Social':
+        'Compromiso de contribuir al bienestar de la comunidad y el entorno',
+    'Cultura Ciudadana':
+        'Normas, comportamientos y valores que promueven una convivencia armoniosa',
+    'Golpe de Estado':
+        'Acción violenta y antidemocrática para tomar el poder de un gobierno',
+    'Tutela':
+        'Mecanismo legal para proteger los derechos fundamentales de los ciudadanos',
+  };
+
+  final Map<String, String> choicesNAT = {
+    'Biología': 'Estudio de los seres vivos y su interacción con el entorno',
+    'Química':
+        'Ciencia que estudia la composición, estructura y propiedades de la materia',
+    'Física':
+        'Ciencia que estudia las propiedades y el comportamiento de la energía y la materia',
+    'Geología':
+        'Estudio de la Tierra, su estructura, composición y procesos geológicos',
+    'Ecología': 'Estudio de las relaciones entre los seres vivos y su entorno',
+    'Genética':
+        'Rama de la biología que estudia la herencia y las variaciones genéticas',
+    'Ecosistemas':
+        'Comunidades de seres vivos y su interacción con el medio ambiente',
+    'Energías Renovables':
+        'Fuentes de energía que se obtienen de fuentes naturales y sostenibles',
+    'Cambios Climáticos':
+        'Modificaciones en el clima a largo plazo debido a causas naturales o humanas',
+    'Sistema Solar':
+        'Conjunto de planetas y otros objetos que orbitan alrededor del Sol',
+  };
+
+  final Map<String, String> choicesLEC = {
+    'Comprensión de Textos':
+        'Habilidad para entender y extraer información de textos escritos',
+    'Análisis de Argumentos':
+        'Evaluación de la lógica y validez de los argumentos presentados',
+    'Inferencias':
+        'Deducciones o conclusiones basadas en la información proporcionada',
+    'Coherencia y Cohesión':
+        'Organización lógica y fluidez en la estructura de los textos',
+    'Vocabulario Contextual':
+        'Comprensión y uso del vocabulario en función del contexto',
+    'Preguntas de\nSelección Múltiple':
+        'Respuestas a preguntas con opciones múltiples',
+    'Sinónimos y Antónimos': 'Palabras con significados similares o opuestos',
+    'Interpretación de Gráficas':
+        'Comprensión y análisis de información visual presentada en gráficas',
+    'Propósito del Autor':
+        'Identificación de la intención o objetivo del autor del texto',
+    'Evaluación Crítica':
+        'Análisis y juicio sobre la calidad y fiabilidad de la información',
   };
 
   String _message = "";
@@ -159,20 +277,6 @@ class _level4State extends State<level4> {
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
-          //divider
-          Positioned(
-            top: -470,
-            left: 5,
-            right: 5,
-            bottom: 100,
-            child: Container(
-              child: const Divider(
-                thickness: 1,
-                color: Colors.grey,
-              ),
-            ),
-          ),
-
           //flecha atras
           Align(
             alignment: Alignment.topLeft,
@@ -215,16 +319,26 @@ class _level4State extends State<level4> {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
               child: SizedBox(
-                height: 82.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                height: MediaQuery.of(context).size.height * 0.20,
+                child: Column(
                   children: [
-                    scoreBoard1(
-                        "Intentos", "$intentos/${sixChoices.length + 3}"),
-                    scoreBoard1("Puntos", "${score.length}")
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        scoreBoard1(
+                            "Intentos", "$intentos/${sixChoices.length + 3}"),
+                        scoreBoard1("Puntos", "${score.length}")
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    //divider
+                    const Divider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
                   ],
                 ),
               ),
@@ -232,7 +346,7 @@ class _level4State extends State<level4> {
           ),
 
           Padding(
-            padding: const EdgeInsets.fromLTRB(1, 120, 1, 30),
+            padding: const EdgeInsets.fromLTRB(1, 130, 1, 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -313,7 +427,7 @@ class _level4State extends State<level4> {
                 height: 80,
                 width: 200,
                 child: const Text(
-                  'Correcto!',
+                  '¡Correcto!',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,
@@ -376,11 +490,85 @@ Future<void> _guardarPuntajeNivel4(int score) async {
   //obtiene el modulo del shp
   String _modulo = await getModulo();
 
+  switch (_modulo) {
+    case 'Lectura Crítica':
+      //establece el puntaje obtenido y lo guarda en shp
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setInt('puntaje_lec_4', score);
+
+      final puntajesRefMat = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('lectura')
+          .collection('nivel4')
+          .doc(user!.uid);
+
+      await puntajesRefMat.set({'userId': user.uid, 'puntaje': score});
+      break;
+
+    case 'Razonamiento Cuantitativo':
+      //establece el puntaje obtenido y lo guarda en shp
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setInt('puntaje_mat_4', score);
+
+      final puntajesRefMat = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('matematicas')
+          .collection('nivel4')
+          .doc(user!.uid);
+
+      await puntajesRefMat.set({'userId': user.uid, 'puntaje': score});
+      break;
+
+    case 'Inglés':
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setInt('puntaje_ing_4', score);
+
+      final puntajesRefIng = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('ingles')
+          .collection('nivel4')
+          .doc(user!.uid);
+
+      await puntajesRefIng.set({'userId': user.uid, 'puntaje': score});
+      break;
+
+    case 'Ciencias Naturales':
+      //establece el puntaje obtenido y lo guarda en shp
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setInt('puntaje_nat_4', score);
+
+      final puntajesRefMat = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('naturales')
+          .collection('nivel4')
+          .doc(user!.uid);
+
+      await puntajesRefMat.set({'userId': user.uid, 'puntaje': score});
+      break;
+
+    case 'Competencias Ciudadanas':
+      //establece el puntaje obtenido y lo guarda en shp
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setInt('puntaje_ciu_4', score);
+
+      final puntajesRefMat = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('ciudadanas')
+          .collection('nivel4')
+          .doc(user!.uid);
+
+      await puntajesRefMat.set({'userId': user.uid, 'puntaje': score});
+      break;
+
+    default:
+      // Código por defecto si el valor de 'modulo' no coincide con ningún caso
+      break;
+  }
+/* 
   if (_modulo == 'Razonamiento Cuantitativo') {
-    //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
-    /*  //establece el puntaje obtenido y lo guarda en shp
+    //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntajes_MAT', score); */
+    await preferences.setInt('puntajes_MAT', score); 
 
     final puntajesRefMat = FirebaseFirestore.instance
         .collection('puntajes')
@@ -403,7 +591,7 @@ Future<void> _guardarPuntajeNivel4(int score) async {
         .doc(user!.uid);
 
     await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
-  }
+  } */
 }
 
 class ConceptoAfirmacion extends StatelessWidget {

@@ -1611,7 +1611,7 @@ class _world_gameState extends State<world_game> {
                 ),
                 title: level == 1
                     ? const Text(
-                        'Nivel 1',
+                        'Test de conocimientos',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 20,
@@ -1620,7 +1620,7 @@ class _world_gameState extends State<world_game> {
                       )
                     : level == 2
                         ? const Text(
-                            'Nivel 2',
+                            '¡Match Cards!',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20,
@@ -1629,7 +1629,7 @@ class _world_gameState extends State<world_game> {
                           )
                         : level == 3
                             ? const Text(
-                                'Nivel 3',
+                                'Sopa de letras',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 20,
@@ -1638,7 +1638,7 @@ class _world_gameState extends State<world_game> {
                               )
                             : level == 4
                                 ? const Text(
-                                    'Nivel 4',
+                                    '¡Drag and drop!',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 20,
@@ -1720,21 +1720,21 @@ class _world_gameState extends State<world_game> {
                       )
                     : level == 2
                         ? const Text(
-                            'En este nivel tendrás que prestar mucha atencion a la afirmación de cada tarjeta. Tu tarea es entenderlas y hacer que coincidan',
+                            'En este nivel tendrás que prestar mucha atención a la afirmación de cada tarjeta. Tu tarea es entenderlas y hacer que coincidan',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 15, fontFamily: 'BubblegumSans'),
                           )
                         : level == 3
                             ? Text(
-                                'En este nivel verás conceptos del modulo de $_modulo que debes tener en cuenta para la prueba, encontrándolos en una sopa de letras.\n\nTienes 1 minuto para encontrar la máxima cantidad de palabras.',
+                                'En este nivel verás conceptos del modulo de $_modulo que debes tener en cuenta para la prueba, encontrándolos en una sopa de letras.\n\nTienes 1 minuto para terminar.',
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                    fontSize: 12, fontFamily: 'BubblegumSans'),
+                                    fontSize: 13, fontFamily: 'BubblegumSans'),
                               )
                             : level == 4
                                 ? const Text(
-                                    'En este nivel tendrás que leer conceptos y asociarlos con la respuesta correcta. Tienes un numero limite de intentos.',
+                                    'En este nivel tendrás que leer conceptos (zona izquierda) y asociarlos con la respuesta correcta (zona derecha). Tienes un numero limite de intentos.',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 15,

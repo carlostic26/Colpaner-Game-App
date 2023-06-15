@@ -1769,63 +1769,6 @@ class _misPuntajesState extends State<misPuntajes> {
                           children: [
                             const Center(
                               child: Text(
-                                '\nInglés',
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.claro,
-                                ),
-                                textAlign: TextAlign
-                                    .center, // Alineación horizontal del texto
-                              ),
-                            ),
-                            //SE MUESTRA UN CIRCULO PROGRESS BAR
-                            const SizedBox(height: 10),
-                            Center(
-                              child: Stack(
-                                children: [
-                                  SizedBox(
-                                    width: 70,
-                                    height: 70,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth:
-                                          8, // Ancho del borde del círculo
-                                      value:
-                                          porcentaje_ing, // Valor de progreso
-                                      backgroundColor: Colors.grey[
-                                          300], // Color del fondo del círculo
-                                      valueColor:
-                                          const AlwaysStoppedAnimation<Color>(
-                                              Colors
-                                                  .blue), // Color del progreso
-                                    ),
-                                  ),
-                                  Positioned.fill(
-                                    child: Center(
-                                      child: Text(
-                                        '${(porcentaje_ing * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
-                                        style: const TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.bold,
-                                            color: colors_colpaner.claro,
-                                            fontFamily: 'BubblegumSans'),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
-                        child: Column(
-                          children: [
-                            const Center(
-                              child: Text(
                                 'Lectura\nCrítica',
                                 style: TextStyle(
                                   fontSize: 18.0,
@@ -1990,6 +1933,64 @@ class _misPuntajesState extends State<misPuntajes> {
                           ],
                         ),
                       ),
+                      const SizedBox(width: 20),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
+                        child: Column(
+                          children: [
+                            const Center(
+                              child: Text(
+                                '\nInglés',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.claro,
+                                ),
+                                textAlign: TextAlign
+                                    .center, // Alineación horizontal del texto
+                              ),
+                            ),
+                            //SE MUESTRA UN CIRCULO PROGRESS BAR
+                            const SizedBox(height: 10),
+                            Center(
+                              child: Stack(
+                                children: [
+                                  SizedBox(
+                                    width: 70,
+                                    height: 70,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth:
+                                          8, // Ancho del borde del círculo
+                                      value:
+                                          porcentaje_ing, // Valor de progreso
+                                      backgroundColor: Colors.grey[
+                                          300], // Color del fondo del círculo
+                                      valueColor:
+                                          const AlwaysStoppedAnimation<Color>(
+                                              Colors
+                                                  .blue), // Color del progreso
+                                    ),
+                                  ),
+                                  Positioned.fill(
+                                    child: Center(
+                                      child: Text(
+                                        '${(porcentaje_ing * 100).toStringAsFixed(0)}%', // Texto con el porcentaje de progreso
+                                        style: const TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                            color: colors_colpaner.claro,
+                                            fontFamily: 'BubblegumSans'),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 20),
                     ],
                   ),
                 ),
@@ -2469,506 +2470,6 @@ class _misPuntajesState extends State<misPuntajes> {
                                 children: [
                                   Text(
                                     mat10.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/30',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Divider(
-                  thickness: 1,
-                  color: colors_colpaner.oscuro,
-                ),
-
-                //INGLES NIVELES
-                const SizedBox(height: 10),
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    child: Text(
-                      "Inglés",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'BubblegumSans',
-                          fontWeight: FontWeight.bold,
-                          color: colors_colpaner.claro),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      //1
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 1',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing1.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //2
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 2',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing2.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //3
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 3',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing3.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //4
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 4',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing4.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //5
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 5',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing5.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //6
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 6',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing6.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/10',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //7
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 7',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing7.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //8
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 8',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing8.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      //9
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 9',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing9.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
-                                      fontSize: 15.0,
-                                      fontFamily: 'BubblegumSans',
-                                      fontWeight: FontWeight.bold,
-                                      color: colors_colpaner.base,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-
-                      //10
-                      Card(
-                        elevation: 4.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Column(
-                            children: [
-                              const Text(
-                                'Nivel 10',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.oscuro,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    ing10.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -4472,6 +3973,507 @@ class _misPuntajesState extends State<misPuntajes> {
                                 children: [
                                   Text(
                                     nat10.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/30',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+                const Divider(
+                  thickness: 1,
+                  color: colors_colpaner.oscuro,
+                ),
+
+                //INGLES NIVELES
+                const SizedBox(height: 10),
+                const Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Text(
+                      "Inglés",
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.claro),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      //1
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 1',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing1.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //2
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 2',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing2.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //3
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 3',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing3.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //4
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 4',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing4.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //5
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 5',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing5.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //6
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 6',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing6.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/10',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //7
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 7',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing7.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //8
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 8',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing8.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      //9
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 9',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing9.toString(),
+                                    style: const TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  ),
+                                  const Text(
+                                    '/5',
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.base,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+
+                      //10
+                      Card(
+                        elevation: 4.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                'Nivel 10',
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: colors_colpaner.oscuro,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    ing10.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
