@@ -52,7 +52,7 @@ class _level4State extends State<level4> {
 
         final Random random = Random();
         sixChoices = Map.fromEntries(List.generate(
-          7,
+          5,
           (_) => choicesList[random.nextInt(choicesList.length)],
         ));
         break;
