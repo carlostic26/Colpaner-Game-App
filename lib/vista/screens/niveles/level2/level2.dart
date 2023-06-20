@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/level2_logic.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
@@ -352,6 +353,8 @@ class _level2State extends State<level2> {
     final user = FirebaseAuth.instance.currentUser;
     final puntaje = score; // Puntaje obtenido
 
+    LocalStorage localStorage = LocalStorage();
+
     //obtiene el modulo del shp
     String _modulo = await getModulo();
 
@@ -397,6 +400,9 @@ class _level2State extends State<level2> {
           .doc(user!.uid);
 
       await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
+
+      // Llama al método setMatBtn1Unlock() en LocalStorage
+      await localStorage.setMatBtn2Unlock();
     }
 
     if (_modulo == 'Inglés') {

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -179,7 +180,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             pageBuilder: (BuildContext context,
                                 Animation<double> animation,
                                 Animation<double> secAnimattion) {
-                              return world_game();
+                              return const world_game();
                             }));
                   },
                 ),
@@ -252,9 +253,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                                     final _question = questionsSoc[index];
                                     return buildQuestion(_question);
                                   }
-                                : _modulo == 'Lenguaje'
+                                : _modulo == 'Lectura Crítica'
                                     ? (context, index) {
-                                        final _question = questionsLen[index];
+                                        final _question = questionsLec[index];
                                         return buildQuestion(_question);
                                       }
                                     : (context, index) {
@@ -471,22 +472,19 @@ final questionsMat = [
 
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el Diseño de Software? ",
+    text:
+        "1. ¿Cuál de las siguientes opciones describe mejor el concepto de proporcionalidad? ",
     options: [
       const Option(
-          text: 'A. Es el diseño que se le dan a los programas informáticos',
+          text:
+              'A. La relación entre dos cantidades en la que su cociente es constante.',
           isCorrect: false),
       const Option(
-          text:
-              'B. Es el conjunto de actividades TIC dedicadas al proceso de creación, despliegue y compatibilidad de software.',
-          isCorrect: false),
+          text: 'B. La suma de dos o más cantidades.', isCorrect: false),
       const Option(
-          text:
-              'C. Es la planificación de una solución de software, necesario para para disminuir el riesgo de desarrollos erróneos.',
-          isCorrect: true),
+          text: 'C. La diferencia entre dos cantidades.', isCorrect: true),
       const Option(
-          text:
-              'D. Son el conjunto de actividades de software dedicadas al proceso de creación, diseño, despliegue y compatibilidad electrónica',
+          text: 'D. La multiplicación de dos o más cantidades.',
           isCorrect: false)
     ],
   ),
@@ -494,61 +492,80 @@ final questionsMat = [
   //Pregunta 2
   Question(
       text:
-          "2. Cuantas preguntas contiene la prueba de Desarrollo de Software del ICFES Saber PRO? ",
+          "2. ¿Cuál de las siguientes operaciones se utiliza para encontrar el área de un rectángulo? ",
       options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 30', isCorrect: true),
-        const Option(text: 'C. 35', isCorrect: false),
-        const Option(text: 'D. 40', isCorrect: false)
+        const Option(
+            text: 'A. Multiplicar la longitud por la anchura.',
+            isCorrect: false),
+        const Option(
+            text: 'B. Dividir la longitud entre la anchura.', isCorrect: true),
+        const Option(
+            text: 'C. Sumar la longitud y la anchura.', isCorrect: false),
+        const Option(
+            text: 'D. Restar la longitud y la anchura.', isCorrect: false)
       ]),
 
   //Pregunta 3
   Question(
       text:
-          "3. Cuál es la estructura de evaluación del modulo(Tomado de la guia de orientacion de modulo de razonamiento cuantitativo saber pro 2016)",
+          "3. ¿Cuál de las siguientes opciones describe mejor el concepto de promedio (media aritmética)?",
       options: [
         const Option(
-            text: 'A. Competencia, afirmación , evidencia ', isCorrect: true),
-        const Option(
             text:
-                'B. Análisis y comprensión, formulación y representación, interpretación y argumentación',
+                'A.  La diferencia entre el número más grande y el número más pequeño en un conjunto de datos. ',
             isCorrect: false),
         const Option(
             text:
-                'C. Investigación y ejecución, interpretación y formulación, argumentación',
+                'B.  La suma de todos los números en un conjunto de datos dividida por la cantidad de números.',
+            isCorrect: true),
+        const Option(
+            text:
+                'C. El número que ocurre con mayor frecuencia en un conjunto de datos.',
             isCorrect: false),
-        const Option(text: 'D. Todas las anteriores', isCorrect: false)
+        const Option(
+            text:
+                'D. La raíz cuadrada del producto de todos los números en un conjunto de datos.',
+            isCorrect: false)
       ]),
 
   //Pregunta 4
   Question(
       text:
-          '4. Los módulos específicos, como Diseño de Software, están dirigidos a ',
+          '4: ¿Cuál de las siguientes opciones describe mejor el concepto de probabilidad? ',
       options: [
         const Option(
             text:
-                'A. Estudiantes que hayan aprobado por lo menos el 75 % de los créditos académicos del programa profesional universitario que cursan',
+                'A. La medida de la tendencia central en un conjunto de datos.',
             isCorrect: false),
         const Option(
             text:
-                'B. Quienes presentan el examen por primera vez y que sean inscritos directamente por su IES.',
+                'B. La proporción de eventos favorables en relación con el número total de eventos posibles.',
+            isCorrect: true),
+        const Option(
+            text: 'C. El número más común en un conjunto de datos.',
             isCorrect: false),
         const Option(
-            text: 'C. Cualquier persona que desee obtenerlos',
-            isCorrect: false),
-        const Option(text: 'D. A y B son ciertas', isCorrect: true)
+            text: 'D. El valor medio de un conjunto de datos.',
+            isCorrect: false)
       ]),
 
   //Pregunta 5
   Question(
-      text: "5. El módulo Diseño de Software se oferta a los programas de ",
+      text:
+          "5. ¿Cuál de las siguientes opciones describe mejor el concepto de fracción?",
       options: [
         const Option(
-            text: 'A. Ingeniería de sistemas, telemática y afines.',
+            text: 'A. Un número entero mayor que 1.', isCorrect: false),
+        const Option(
+            text: 'B. Un número decimal menor que 1.', isCorrect: false),
+        const Option(
+            text:
+                'C. Una expresión numérica que muestra la relación entre una parte y el todo.',
             isCorrect: true),
-        const Option(text: 'B. Ingeniería mecánica y afines', isCorrect: false),
-        const Option(text: 'C. Ingeniería de alimentos', isCorrect: false),
-        const Option(text: 'D. Derecho y arquitectura', isCorrect: false)
+        const Option(
+            text:
+                'D. Un número irracional que no se puede expresar como una fracción.',
+            isCorrect: false)
       ]),
 ];
 
@@ -558,106 +575,90 @@ final questionsIng = [
 
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el Inglés? ",
+    text:
+        "1. ¿Cuál de las siguientes opciones describe mejor el propósito principal de un sustantivo en inglés? ",
     options: [
       const Option(
-          text: 'A. Es el diseño que se le dan a los programas informáticos',
-          isCorrect: false),
+          text: 'A. Expresar emociones o sentimientos.', isCorrect: false),
       const Option(
-          text:
-              'B. Es el conjunto de actividades TIC dedicadas al proceso de creación, despliegue y compatibilidad de software.',
-          isCorrect: false),
-      const Option(
-          text:
-              'C. Es la planificación de una solución de software, necesario para para disminuir el riesgo de desarrollos erróneos.',
-          isCorrect: true),
-      const Option(
-          text:
-              'D. Son el conjunto de actividades de software dedicadas al proceso de creación, diseño, despliegue y compatibilidad electrónica',
-          isCorrect: false)
+          text: 'B. Identificar una persona, lugar o cosa.', isCorrect: false),
+      const Option(text: 'C.  Indicar la cantidad de algo.', isCorrect: true),
+      const Option(text: 'D. Describir una acción.', isCorrect: false)
     ],
   ),
 
   //Pregunta 2
   Question(
       text:
-          "2. Cuantas preguntas contiene la prueba de Desarrollo de Software del ICFES Saber PRO? ",
+          "2. ¿Cuál de las siguientes opciones muestra la forma correcta del verbo en pasado simple del verbo 'to eat' (comer)?",
       options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 30', isCorrect: true),
-        const Option(text: 'C. 35', isCorrect: false),
-        const Option(text: 'D. 40', isCorrect: false)
+        const Option(text: 'A. eated', isCorrect: false),
+        const Option(text: 'B. ate', isCorrect: true),
+        const Option(text: 'C. eatten', isCorrect: false),
+        const Option(text: 'D. eaten', isCorrect: false)
       ]),
 
   //Pregunta 3
   Question(
       text:
-          "3. Cuál es la estructura de evaluación del modulo(Tomado de la guia de orientacion de modulo de razonamiento cuantitativo saber pro 2016)",
+          "3. ¿Cuál de las siguientes opciones describe mejor el uso del presente continuo (present continuous) en inglés?",
       options: [
         const Option(
-            text: 'A. Competencia, afirmación , evidencia ', isCorrect: true),
+            text: 'A. Expresar acciones habituales.', isCorrect: false),
         const Option(
-            text:
-                'B. Análisis y comprensión, formulación y representación, interpretación y argumentación',
+            text: 'B. Indicar una acción que ocurrió en el pasado.',
             isCorrect: false),
         const Option(
-            text:
-                'C. Investigación y ejecución, interpretación y formulación, argumentación',
-            isCorrect: false),
-        const Option(text: 'D. Todas las anteriores', isCorrect: false)
+            text: 'C. Describir una acción en progreso en el momento presente.',
+            isCorrect: true),
+        const Option(
+            text: 'D.  Expresar una acción futura planeada.', isCorrect: false)
       ]),
 
   //Pregunta 4
   Question(
       text:
-          '4. Los módulos específicos, como Diseño de Software, están dirigidos a ',
+          '4. ¿Cuál de las siguientes opciones muestra el orden correcto de las palabras en una oración afirmativa en inglés?',
       options: [
-        const Option(
-            text:
-                'A. Estudiantes que hayan aprobado por lo menos el 75 % de los créditos académicos del programa profesional universitario que cursan',
-            isCorrect: false),
-        const Option(
-            text:
-                'B. Quienes presentan el examen por primera vez y que sean inscritos directamente por su IES.',
-            isCorrect: false),
-        const Option(
-            text: 'C. Cualquier persona que desee obtenerlos',
-            isCorrect: false),
-        const Option(text: 'D. A y B son ciertas', isCorrect: true)
+        const Option(text: 'A. Verbo - Sujeto - Objeto', isCorrect: false),
+        const Option(text: 'B. Objeto - Sujeto - Verbo', isCorrect: false),
+        const Option(text: 'C. Sujeto - Verbo - Objeto', isCorrect: true),
+        const Option(text: 'D. Sujeto - Objeto - Verbo', isCorrect: false)
       ]),
 
   //Pregunta 5
   Question(
-      text: "5. El módulo Diseño de Software se oferta a los programas de ",
+      text:
+          "5. ¿Cuál de las siguientes opciones describe mejor el significado del adjetivo 'beautiful' en español?",
       options: [
-        const Option(
-            text: 'A. Ingeniería de sistemas, telemática y afines.',
-            isCorrect: true),
-        const Option(text: 'B. Ingeniería mecánica y afines', isCorrect: false),
-        const Option(text: 'C. Ingeniería de alimentos', isCorrect: false),
-        const Option(text: 'D. Derecho y arquitectura', isCorrect: false)
+        const Option(text: 'A. Feo/a', isCorrect: false),
+        const Option(text: 'B. Bonito/a', isCorrect: true),
+        const Option(text: 'C. Rápido/a', isCorrect: false),
+        const Option(text: 'D. Grande', isCorrect: false)
       ]),
 ];
 
 final questionsNat = [
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el Diseño de Software? ",
+    text:
+        "1. ¿Cuál de las siguientes opciones describe mejor el método científico? ",
     options: [
       const Option(
-          text: 'A. Es el diseño que se le dan a los programas informáticos',
+          text:
+              'A. Un conjunto de reglas y procedimientos para resolver problemas matemáticos.',
           isCorrect: false),
       const Option(
           text:
-              'B. Es el conjunto de actividades TIC dedicadas al proceso de creación, despliegue y compatibilidad de software.',
-          isCorrect: false),
-      const Option(
-          text:
-              'C. Es la planificación de una solución de software, necesario para para disminuir el riesgo de desarrollos erróneos.',
+              'B. Un proceso sistemático utilizado para obtener conocimiento y comprender el mundo natural.',
           isCorrect: true),
       const Option(
           text:
-              'D. Son el conjunto de actividades de software dedicadas al proceso de creación, diseño, despliegue y compatibilidad electrónica',
+              'C. Un conjunto de normas éticas para la conducta de los científicos.',
+          isCorrect: false),
+      const Option(
+          text:
+              'D. Un método exclusivo de investigación utilizado solo en ciencias sociales.',
           isCorrect: false)
     ],
   ),
@@ -665,167 +666,184 @@ final questionsNat = [
   //Pregunta 2
   Question(
       text:
-          "2. Cuantas preguntas contiene la prueba de Desarrollo de Software del ICFES Saber PRO? ",
+          "2. ¿Cuál de las siguientes unidades se utiliza comúnmente para medir la masa? ",
       options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 30', isCorrect: true),
-        const Option(text: 'C. 35', isCorrect: false),
-        const Option(text: 'D. 40', isCorrect: false)
+        const Option(text: 'A. Litros.', isCorrect: false),
+        const Option(text: 'B. Voltios.', isCorrect: false),
+        const Option(text: 'C. Kilogramos.', isCorrect: true),
+        const Option(text: 'D. Metros.', isCorrect: false)
       ]),
 
   //Pregunta 3
   Question(
       text:
-          "3. Cuál es la estructura de evaluación del modulo(Tomado de la guia de orientacion de modulo de razonamiento cuantitativo saber pro 2016)",
+          "3. ¿Cuál de las siguientes opciones describe mejor la diferencia entre un elemento y un compuesto químico?",
       options: [
         const Option(
-            text: 'A. Competencia, afirmación , evidencia ', isCorrect: true),
+            text:
+                'A. Un elemento está formado por átomos del mismo tipo, mientras que un compuesto está formado por átomos de diferentes tipos.',
+            isCorrect: true),
         const Option(
             text:
-                'B. Análisis y comprensión, formulación y representación, interpretación y argumentación',
+                'B. Un elemento es una sustancia pura, mientras que un compuesto es una mezcla homogénea.',
             isCorrect: false),
         const Option(
             text:
-                'C. Investigación y ejecución, interpretación y formulación, argumentación',
+                'C. Un elemento no puede descomponerse en sustancias más simples, mientras que un compuesto sí puede.',
             isCorrect: false),
-        const Option(text: 'D. Todas las anteriores', isCorrect: false)
+        const Option(
+            text:
+                'D. Un elemento solo se encuentra en estado gaseoso, mientras que un compuesto puede encontrarse en estado sólido, líquido o gaseoso.',
+            isCorrect: false)
       ]),
 
   //Pregunta 4
   Question(
       text:
-          '4. Los módulos específicos, como Diseño de Software, están dirigidos a ',
+          '4. ¿Cuál de las siguientes opciones describe mejor la función del sistema respiratorio humano?',
       options: [
         const Option(
-            text:
-                'A. Estudiantes que hayan aprobado por lo menos el 75 % de los créditos académicos del programa profesional universitario que cursan',
+            text: 'A. Eliminar desechos y toxinas del cuerpo.',
             isCorrect: false),
         const Option(
-            text:
-                'B. Quienes presentan el examen por primera vez y que sean inscritos directamente por su IES.',
-            isCorrect: false),
+            text: 'B. Regular la temperatura corporal..', isCorrect: false),
         const Option(
-            text: 'C. Cualquier persona que desee obtenerlos',
-            isCorrect: false),
-        const Option(text: 'D. A y B son ciertas', isCorrect: true)
+            text:
+                'C. Transportar oxígeno hacia las células y eliminar dióxido de carbono.',
+            isCorrect: true),
+        const Option(
+            text: 'D. Producir y liberar hormonas en el torrente sanguíneo.',
+            isCorrect: false)
       ]),
 
   //Pregunta 5
   Question(
-      text: "5. El módulo Diseño de Software se oferta a los programas de ",
+      text:
+          "5. ¿Cuál de las siguientes opciones describe mejor una característica de los seres vivos?",
       options: [
         const Option(
-            text: 'A. Ingeniería de sistemas, telemática y afines.',
+            text: 'A. Están compuestos únicamente por células procariotas.',
+            isCorrect: false),
+        const Option(
+            text: 'B. No tienen capacidad de reproducirse.', isCorrect: false),
+        const Option(
+            text:
+                'C. Responden a estímulos del entorno y se adaptan a cambios en el medio ambiente.',
             isCorrect: true),
-        const Option(text: 'B. Ingeniería mecánica y afines', isCorrect: false),
-        const Option(text: 'C. Ingeniería de alimentos', isCorrect: false),
-        const Option(text: 'D. Derecho y arquitectura', isCorrect: false)
+        const Option(
+            text:
+                'D. No necesitan energía para llevar a cabo sus funciones vitales.',
+            isCorrect: false)
       ]),
 ];
 
-final questionsLen = [
+final questionsLec = [
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el Diseño de Software? ",
+    text:
+        "1. ¿Cuál de las siguientes afirmaciones describe mejor una estrategia efectiva para mejorar la comprensión lectora? ",
     options: [
       const Option(
-          text: 'A. Es el diseño que se le dan a los programas informáticos',
+          text: 'A. Leer rápidamente sin prestar atención a los detalles.',
           isCorrect: false),
       const Option(
-          text:
-              'B. Es el conjunto de actividades TIC dedicadas al proceso de creación, despliegue y compatibilidad de software.',
-          isCorrect: false),
-      const Option(
-          text:
-              'C. Es la planificación de una solución de software, necesario para para disminuir el riesgo de desarrollos erróneos.',
+          text: 'B. Subrayar o resaltar las ideas principales del texto.',
           isCorrect: true),
       const Option(
-          text:
-              'D. Son el conjunto de actividades de software dedicadas al proceso de creación, diseño, despliegue y compatibilidad electrónica',
-          isCorrect: false)
+          text: 'C. Saltar párrafos y leer solo los títulos.',
+          isCorrect: false),
+      const Option(
+          text: 'D. Evitar la lectura de textos extensos.', isCorrect: false)
     ],
   ),
 
   //Pregunta 2
   Question(
       text:
-          "2. Cuantas preguntas contiene la prueba de Desarrollo de Software del ICFES Saber PRO? ",
+          "2. ¿Cuál de las siguientes características NO es esencial para la comprensión lectora?",
       options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 30', isCorrect: true),
-        const Option(text: 'C. 35', isCorrect: false),
-        const Option(text: 'D. 40', isCorrect: false)
+        const Option(text: 'A. Vocabulario amplio.', isCorrect: false),
+        const Option(
+            text: 'B. Conocimientos previos sobre el tema.', isCorrect: false),
+        const Option(
+            text: 'C. Habilidades matemáticas avanzadas.', isCorrect: true),
+        const Option(
+            text:
+                'D. Habilidad para identificar la idea principal de un texto.',
+            isCorrect: false)
       ]),
 
   //Pregunta 3
   Question(
       text:
-          "3. Cuál es la estructura de evaluación del modulo(Tomado de la guia de orientacion de modulo de razonamiento cuantitativo saber pro 2016)",
+          "3. ¿Cuál de las siguientes opciones describe mejor la idea principal de un texto?",
       options: [
         const Option(
-            text: 'A. Competencia, afirmación , evidencia ', isCorrect: true),
+            text: 'A. Un resumen de cada párrafo del texto.', isCorrect: false),
         const Option(
-            text:
-                'B. Análisis y comprensión, formulación y representación, interpretación y argumentación',
-            isCorrect: false),
+            text: 'B. La primera oración del texto.', isCorrect: false),
         const Option(
-            text:
-                'C. Investigación y ejecución, interpretación y formulación, argumentación',
-            isCorrect: false),
-        const Option(text: 'D. Todas las anteriores', isCorrect: false)
+            text: 'C. La información más relevante y general del texto.',
+            isCorrect: true),
+        const Option(
+            text: 'D. La opinión del autor sobre el tema.', isCorrect: false)
       ]),
 
   //Pregunta 4
   Question(
       text:
-          '4. Los módulos específicos, como Diseño de Software, están dirigidos a ',
+          '4. ¿Cuál de las siguientes estrategias NO es útil para inferir el significado de una palabra desconocida?',
       options: [
         const Option(
-            text:
-                'A. Estudiantes que hayan aprobado por lo menos el 75 % de los créditos académicos del programa profesional universitario que cursan',
+            text: 'A. Leer el contexto en el que se encuentra la palabra.',
             isCorrect: false),
         const Option(
-            text:
-                'B. Quienes presentan el examen por primera vez y que sean inscritos directamente por su IES.',
-            isCorrect: false),
+            text: 'B. Buscar la palabra en un diccionario.', isCorrect: false),
         const Option(
-            text: 'C. Cualquier persona que desee obtenerlos',
-            isCorrect: false),
-        const Option(text: 'D. A y B son ciertas', isCorrect: true)
+            text: 'C. Adivinar el significado sin tener en cuenta el contexto.',
+            isCorrect: true),
+        const Option(
+            text: 'D. Identificar prefijos o sufijos conocidos en la palabra.',
+            isCorrect: false)
       ]),
 
   //Pregunta 5
   Question(
-      text: "5. El módulo Diseño de Software se oferta a los programas de ",
+      text:
+          "5. ¿Cuál de las siguientes opciones describe mejor el propósito de un párrafo introductorio en un texto?",
       options: [
         const Option(
-            text: 'A. Ingeniería de sistemas, telemática y afines.',
+            text: 'A. Resumir todas las ideas principales del texto.',
+            isCorrect: false),
+        const Option(
+            text: 'B. Proporcionar detalles específicos sobre un tema.',
+            isCorrect: false),
+        const Option(
+            text: 'C. Introducir el tema y establecer el contexto del texto.',
             isCorrect: true),
-        const Option(text: 'B. Ingeniería mecánica y afines', isCorrect: false),
-        const Option(text: 'C. Ingeniería de alimentos', isCorrect: false),
-        const Option(text: 'D. Derecho y arquitectura', isCorrect: false)
+        const Option(
+            text: 'D. Plantear una pregunta sin responderla.', isCorrect: false)
       ]),
 ];
 
 final questionsSoc = [
   //Pregunta 1
   Question(
-    text: "1. ¿Qué es el Diseño de Software? ",
+    text:
+        "1. ¿Cuál de las siguientes acciones ejemplifica mejor la responsabilidad ciudadana?",
     options: [
       const Option(
-          text: 'A. Es el diseño que se le dan a los programas informáticos',
+          text: 'A. Participar activamente en actividades deportivas.',
           isCorrect: false),
       const Option(
           text:
-              'B. Es el conjunto de actividades TIC dedicadas al proceso de creación, despliegue y compatibilidad de software.',
+              'B. Cumplir con las leyes y normas establecidas en la sociedad.',
           isCorrect: false),
       const Option(
-          text:
-              'C. Es la planificación de una solución de software, necesario para para disminuir el riesgo de desarrollos erróneos.',
+          text: 'C. Evitar el contacto con personas de diferentes culturas.',
           isCorrect: true),
       const Option(
-          text:
-              'D. Son el conjunto de actividades de software dedicadas al proceso de creación, diseño, despliegue y compatibilidad electrónica',
+          text: 'D. Priorizar el interés personal sobre el bien común.',
           isCorrect: false)
     ],
   ),
@@ -833,61 +851,72 @@ final questionsSoc = [
   //Pregunta 2
   Question(
       text:
-          "2. Cuantas preguntas contiene la prueba de Desarrollo de Software del ICFES Saber PRO? ",
+          "2. ¿Cuál de las siguientes habilidades NO es esencial para el desarrollo de competencias ciudadanas? ",
       options: [
-        const Option(text: 'A. 25', isCorrect: false),
-        const Option(text: 'B. 30', isCorrect: true),
-        const Option(text: 'C. 35', isCorrect: false),
-        const Option(text: 'D. 40', isCorrect: false)
+        const Option(text: 'A. Empatía hacia los demás.', isCorrect: false),
+        const Option(
+            text: 'B. Capacidad de análisis y pensamiento crítico.',
+            isCorrect: true),
+        const Option(
+            text: 'C. Conocimiento profundo de matemáticas avanzadas.',
+            isCorrect: false),
+        const Option(text: 'D. Toma de decisiones éticas.', isCorrect: false)
       ]),
 
   //Pregunta 3
   Question(
       text:
-          "3. Cuál es la estructura de evaluación del modulo(Tomado de la guia de orientacion de modulo de razonamiento cuantitativo saber pro 2016)",
+          "3. ¿Cuál de las siguientes opciones describe mejor la importancia de la participación ciudadana en la democracia?",
       options: [
         const Option(
-            text: 'A. Competencia, afirmación , evidencia ', isCorrect: true),
-        const Option(
             text:
-                'B. Análisis y comprensión, formulación y representación, interpretación y argumentación',
+                'A. Permite la concentración de poder en manos de unos pocos.',
+            isCorrect: true),
+        const Option(
+            text: 'B. Fomenta la desigualdad y la discriminación.',
             isCorrect: false),
         const Option(
-            text:
-                'C. Investigación y ejecución, interpretación y formulación, argumentación',
+            text: 'C. Promueve la inclusión y la diversidad de opiniones.',
             isCorrect: false),
-        const Option(text: 'D. Todas las anteriores', isCorrect: false)
+        const Option(
+            text: 'D. Limita la libertad de expresión y de asociación.',
+            isCorrect: false)
       ]),
 
   //Pregunta 4
   Question(
       text:
-          '4. Los módulos específicos, como Diseño de Software, están dirigidos a ',
+          '4. ¿Cuál de los siguientes valores NO es fundamental en el desarrollo de competencias ciudadanas?',
       options: [
         const Option(
-            text:
-                'A. Estudiantes que hayan aprobado por lo menos el 75 % de los créditos académicos del programa profesional universitario que cursan',
+            text: 'A. Tolerancia hacia la diversidad.', isCorrect: false),
+        const Option(
+            text: 'B. Solidaridad con los menos favorecidos.',
             isCorrect: false),
         const Option(
-            text:
-                'B. Quienes presentan el examen por primera vez y que sean inscritos directamente por su IES.',
-            isCorrect: false),
+            text: 'C. Deshonestidad y falta de ética.', isCorrect: false),
         const Option(
-            text: 'C. Cualquier persona que desee obtenerlos',
-            isCorrect: false),
-        const Option(text: 'D. A y B son ciertas', isCorrect: true)
+            text: 'D. Respeto por los derechos humanos.', isCorrect: true)
       ]),
 
   //Pregunta 5
   Question(
-      text: "5. El módulo Diseño de Software se oferta a los programas de ",
+      text:
+          "5. ¿Cuál de las siguientes opciones describe mejor la importancia de la convivencia pacífica en una sociedad?",
       options: [
         const Option(
-            text: 'A. Ingeniería de sistemas, telemática y afines.',
+            text: 'A. Genera conflictos y tensiones entre los ciudadanos.',
+            isCorrect: false),
+        const Option(
+            text: 'B. Limita la libertad individual y la expresión personal.',
+            isCorrect: false),
+        const Option(
+            text:
+                'C. Promueve la armonía y el respeto mutuo entre las personas.',
             isCorrect: true),
-        const Option(text: 'B. Ingeniería mecánica y afines', isCorrect: false),
-        const Option(text: 'C. Ingeniería de alimentos', isCorrect: false),
-        const Option(text: 'D. Derecho y arquitectura', isCorrect: false)
+        const Option(
+            text: 'D. Excluye a los grupos minoritarios de la sociedad.',
+            isCorrect: false)
       ]),
 ];
 
@@ -916,7 +945,7 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   if (_modulo == 'Inglés') {
     //establece el puntaje obtenido y lo guarda en shp
     //SharedPreferences preferences = await SharedPreferences.getInstance();
-    //await preferences.setInt('puntaje_ing_5', score);
+    //await preferences.setInt('puntaje_ing_1', score);
 
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
@@ -925,6 +954,48 @@ Future<void> _guardarPuntajeNivel1(int score) async {
         .doc(user!.uid);
 
     await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+  }
+
+  if (_modulo == 'Lectura Crítica') {
+/*     //establece el puntaje obtenido y lo guarda en shp
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('puntaje_lec_1', score); */
+
+    final puntajesRefIng = FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel5')
+        .doc(user!.uid);
+
+    await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+  }
+
+  if (_modulo == 'Ciencias Naturales') {
+/*     //establece el puntaje obtenido y lo guarda en shp
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('puntaje_lec_1', score); */
+
+    final puntajesRefSoc = FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel5')
+        .doc(user!.uid);
+
+    await puntajesRefSoc.set({'userId': user.uid, 'puntaje': puntaje});
+  }
+
+  if (_modulo == 'Competencias Ciudadanas') {
+/*     //establece el puntaje obtenido y lo guarda en shp
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('puntaje_lec_1', score); */
+
+    final puntajesRefCiu = FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('ciudadanas')
+        .collection('nivel5')
+        .doc(user!.uid);
+
+    await puntajesRefCiu.set({'userId': user.uid, 'puntaje': puntaje});
   }
 }
 
@@ -956,14 +1027,71 @@ class ResultPage extends StatelessWidget {
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Stack(alignment: Alignment.center, children: <Widget>[
-            Center(
-              child: Text(
-                'Obtuviste $score/${5}\n  Puntaje: + $score',
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'BubblegumSans',
-                    fontSize: 40),
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    'Obtuviste $score/${5}\n  Puntaje: + $score',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'BubblegumSans',
+                        fontSize: 40),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: colors_colpaner
+                            .base, // utilizar el color de fondo deseado en lugar de Colors.blue
+                        foregroundColor: Colors
+                            .white, // opcional, color del texto y del icono
+                        elevation: 4, // opcional, la elevación del botón
+                        shape: RoundedRectangleBorder(
+                          // opcional, la forma del botón
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const misPuntajes()));
+                      },
+                      child: const Text(
+                        'Mis Puntajes',
+                        style: TextStyle(
+                            fontSize: 20, fontFamily: 'BubblegumSans'),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+
+                    //BUTTON NEXT
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                              builder: (context) => const world_game()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: colors_colpaner.base,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.navigate_next,
+                        size: 30,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
 
             //flecha atras
@@ -998,7 +1126,7 @@ class ResultPage extends StatelessWidget {
                               pageBuilder: (BuildContext context,
                                   Animation<double> animation,
                                   Animation<double> secAnimattion) {
-                                return world_game();
+                                return const world_game();
                               }));
                     },
                   ),

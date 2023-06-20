@@ -7,6 +7,7 @@ import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 
 /*NIVEL TIPO QUIZ 
   Este nivel consiste en desplegar diferentes tipos de preguntas
@@ -910,8 +911,11 @@ final questionsCiu = [
 ];
 
 Future<void> _guardarPuntajeNivel1(int score) async {
+  SharedPreferences preferences = await SharedPreferences.getInstance();
   final user = FirebaseAuth.instance.currentUser;
   final puntaje = score; // Puntaje obtenido
+
+  LocalStorage localStorage = LocalStorage();
 
   //obtiene el modulo del shp
   String _modulo = await getModulo();
@@ -1020,33 +1024,67 @@ class ResultPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Obtuviste $score/${5}\n  Puntaje: + $score',
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'BubblegumSans',
-                        fontSize: 40),
+                  Center(
+                    child: Text(
+                      'Obtuviste $score/${5}\n  Puntaje: + $score',
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'BubblegumSans',
+                          fontSize: 40),
+                    ),
                   ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const misPuntajes()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: colors_colpaner.oscuro,
-                    ),
-                    child: const Text(
-                      'Mis Puntajes',
-                      style: TextStyle(
-                        color: colors_colpaner.claro,
-                        fontFamily: 'BubblegumSans',
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: colors_colpaner
+                              .base, // utilizar el color de fondo deseado en lugar de Colors.blue
+                          foregroundColor: Colors
+                              .white, // opcional, color del texto y del icono
+                          elevation: 4, // opcional, la elevación del botón
+                          shape: RoundedRectangleBorder(
+                            // opcional, la forma del botón
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const misPuntajes()));
+                        },
+                        child: const Text(
+                          'Mis Puntajes',
+                          style: TextStyle(
+                              fontSize: 20, fontFamily: 'BubblegumSans'),
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 10),
+
+                      //BUTTON NEXT
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (context) => const world_game()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: colors_colpaner.base,
+                          onPrimary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.navigate_next,
+                          size: 30,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

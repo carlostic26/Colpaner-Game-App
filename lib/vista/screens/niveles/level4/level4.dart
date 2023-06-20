@@ -43,6 +43,8 @@ class _level4State extends State<level4> {
       print('MODULO EN LEVEL 4 ES: $modul');
     });
 
+    final Random random = Random();
+
     switch (modul) {
       case 'Razonamiento Cuantitativo':
         choicesList = choicesMAT.entries
@@ -50,11 +52,9 @@ class _level4State extends State<level4> {
                 MapEntry(entry.key.toString(), entry.value.toString()))
             .toList();
 
-        final Random random = Random();
-        sixChoices = Map.fromEntries(List.generate(
-          5,
-          (_) => choicesList[random.nextInt(choicesList.length)],
-        ));
+        choicesList.shuffle(random);
+
+        sixChoices = Map.fromEntries(choicesList.sublist(0, 5));
         break;
 
       case 'Inglés':
@@ -63,11 +63,9 @@ class _level4State extends State<level4> {
                 MapEntry(entry.key.toString(), entry.value.toString()))
             .toList();
 
-        final Random random = Random();
-        sixChoices = Map.fromEntries(List.generate(
-          7,
-          (_) => choicesList[random.nextInt(choicesList.length)],
-        ));
+        choicesList.shuffle(random);
+
+        sixChoices = Map.fromEntries(choicesList.sublist(0, 5));
         break;
 
       case 'Lectura Crítica':
@@ -76,11 +74,9 @@ class _level4State extends State<level4> {
                 MapEntry(entry.key.toString(), entry.value.toString()))
             .toList();
 
-        final Random random = Random();
-        sixChoices = Map.fromEntries(List.generate(
-          7,
-          (_) => choicesList[random.nextInt(choicesList.length)],
-        ));
+        choicesList.shuffle(random);
+
+        sixChoices = Map.fromEntries(choicesList.sublist(0, 5));
         break;
 
       case 'Ciencias Naturales':
@@ -89,11 +85,9 @@ class _level4State extends State<level4> {
                 MapEntry(entry.key.toString(), entry.value.toString()))
             .toList();
 
-        final Random random = Random();
-        sixChoices = Map.fromEntries(List.generate(
-          7,
-          (_) => choicesList[random.nextInt(choicesList.length)],
-        ));
+        choicesList.shuffle(random);
+
+        sixChoices = Map.fromEntries(choicesList.sublist(0, 5));
         break;
 
       case 'Competencias Ciudadanas':
@@ -102,11 +96,9 @@ class _level4State extends State<level4> {
                 MapEntry(entry.key.toString(), entry.value.toString()))
             .toList();
 
-        final Random random = Random();
-        sixChoices = Map.fromEntries(List.generate(
-          7,
-          (_) => choicesList[random.nextInt(choicesList.length)],
-        ));
+        choicesList.shuffle(random);
+
+        sixChoices = Map.fromEntries(choicesList.sublist(0, 5));
         break;
 
       default:
@@ -130,7 +122,7 @@ class _level4State extends State<level4> {
     'Probabilidad': 'Estudio de los eventos y la posibilidad de que ocurran',
     'Trigonometría':
         'Relaciones entre los ángulos y las medidas de los lados de los triángulos',
-    'Funciones exponenciales': 'Estudio de funciones con exponentes variables',
+    'Funciones\nexponenciales': 'Estudio de funciones con exponentes variables',
     'Funciones logarítmicas':
         'Estudio de funciones inversas a las exponenciales',
     'Geometría euclidiana':
@@ -329,8 +321,8 @@ class _level4State extends State<level4> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         scoreBoard1(
-                            "Intentos", "$intentos/${sixChoices.length + 3}"),
-                        scoreBoard1("Puntos", "${score.length}")
+                            "Intentos", "$intentos/${sixChoices.length + 2}"),
+                        scoreBoard1("Puntos", "${score.length}/5")
                       ],
                     ),
                     const SizedBox(height: 5),
@@ -351,42 +343,50 @@ class _level4State extends State<level4> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: sixChoices.keys.map((conceptoAfirmacion) {
-                      return Draggable<String>(
-                        data: conceptoAfirmacion,
-                        feedback: ConceptoAfirmacion(
-                          conceptoAfirmacion: conceptoAfirmacion,
-                        ),
-                        childWhenDragging:
-                            const ConceptoAfirmacion(conceptoAfirmacion: '🧐'),
-                        child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20)),
-                          child: Container(
-                            //CONCEPT INSIDE CARD LEFT
-                            alignment: Alignment.centerLeft,
-                            padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
-                            color: colors_colpaner.oscuro,
-                            child: ConceptoAfirmacion(
-                                //if concept is correct at draw, then show check emoti in left cards
-                                conceptoAfirmacion:
-                                    score[conceptoAfirmacion] == true
-                                        ? '✅'
-                                        : conceptoAfirmacion),
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                        child: Draggable<String>(
+                          data: conceptoAfirmacion,
+                          feedback: ConceptoAfirmacion(
+                            conceptoAfirmacion: conceptoAfirmacion,
+                          ),
+                          childWhenDragging: const ConceptoAfirmacion(
+                              conceptoAfirmacion: '🧐'),
+                          child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(20)),
+                            child: Container(
+                              height: 70,
+                              //CONCEPT INSIDE CARD LEFT
+                              alignment: Alignment.centerLeft,
+                              padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
+                              color: colors_colpaner.oscuro,
+                              child: ConceptoAfirmacion(
+                                  //if concept is correct at draw, then show check emoti in left cards
+                                  conceptoAfirmacion:
+                                      score[conceptoAfirmacion] == true
+                                          ? '✅'
+                                          : conceptoAfirmacion),
+                            ),
                           ),
                         ),
                       );
                     }).toList()),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: sixChoices.keys
-                      .map((conceptoAfirmacion) =>
-                          _buildDragTarget(conceptoAfirmacion))
-                      .toList()
-                    ..shuffle(Random(seed)),
+                  children: (sixChoices.keys.toList()..shuffle())
+                      .map((conceptoAfirmacion) {
+                    return Column(
+                      children: [
+                        _buildDragTarget(conceptoAfirmacion),
+                        SizedBox(height: 40), // Espacio entre los elementos
+                      ],
+                    );
+                  }).toList(),
                 ),
               ],
             ),
@@ -463,7 +463,7 @@ class _level4State extends State<level4> {
             intentos++;
             //game over, si el usuario completo las 5 palabras, se genera su score y se cierra el nivel
             if (score.length == sixChoices.length ||
-                intentos >= sixChoices.length + 3) {
+                intentos >= sixChoices.length + 2) {
               DialogHelper.showDialogGameOver(context, score.length);
               _guardarPuntajeNivel4(score.length);
             }
@@ -475,7 +475,7 @@ class _level4State extends State<level4> {
           });
 //game over, si el usuario completo las 5 palabras o si se acaban los intentos
           if (score.length >= sixChoices.length ||
-              intentos >= sixChoices.length + 3) {
+              intentos >= sixChoices.length + 2) {
             DialogHelper.showDialogGameOver(context, score.length);
             _guardarPuntajeNivel4(score.length);
           }
