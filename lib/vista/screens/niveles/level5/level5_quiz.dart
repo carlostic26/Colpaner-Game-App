@@ -243,12 +243,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             final _question = questionsIng[index];
                             return buildQuestion(_question);
                           }
-                        : _modulo == 'Naturales'
+                        : _modulo == 'Ciencias Naturales'
                             ? (context, index) {
                                 final _question = questionsNat[index];
                                 return buildQuestion(_question);
                               }
-                            : _modulo == 'Sociales'
+                            : _modulo == 'Competencias Ciudadanas'
                                 ? (context, index) {
                                     final _question = questionsSoc[index];
                                     return buildQuestion(_question);
@@ -838,10 +838,10 @@ final questionsSoc = [
       const Option(
           text:
               'B. Cumplir con las leyes y normas establecidas en la sociedad.',
-          isCorrect: false),
+          isCorrect: true),
       const Option(
           text: 'C. Evitar el contacto con personas de diferentes culturas.',
-          isCorrect: true),
+          isCorrect: false),
       const Option(
           text: 'D. Priorizar el interés personal sobre el bien común.',
           isCorrect: false)
@@ -856,10 +856,10 @@ final questionsSoc = [
         const Option(text: 'A. Empatía hacia los demás.', isCorrect: false),
         const Option(
             text: 'B. Capacidad de análisis y pensamiento crítico.',
-            isCorrect: true),
+            isCorrect: false),
         const Option(
             text: 'C. Conocimiento profundo de matemáticas avanzadas.',
-            isCorrect: false),
+            isCorrect: true),
         const Option(text: 'D. Toma de decisiones éticas.', isCorrect: false)
       ]),
 
@@ -869,17 +869,19 @@ final questionsSoc = [
           "3. ¿Cuál de las siguientes opciones describe mejor la importancia de la participación ciudadana en la democracia?",
       options: [
         const Option(
+            text: 'A. Irrelevante, decisiones tomadas por líderes políticos.',
+            isCorrect: false),
+        const Option(
             text:
-                'A. Permite la concentración de poder en manos de unos pocos.',
+                'B. Fundamental, ciudadanos ejercen derecho a opinar y contribuir en decisiones.',
             isCorrect: true),
         const Option(
-            text: 'B. Fomenta la desigualdad y la discriminación.',
+            text:
+                'C. Opcional, líderes políticos toman decisiones en beneficio de la sociedad.',
             isCorrect: false),
         const Option(
-            text: 'C. Promueve la inclusión y la diversidad de opiniones.',
-            isCorrect: false),
-        const Option(
-            text: 'D. Limita la libertad de expresión y de asociación.',
+            text:
+                'D. Perjudicial, puede llevar a conflictos y desacuerdos entre ciudadanos.',
             isCorrect: false)
       ]),
 
@@ -894,9 +896,9 @@ final questionsSoc = [
             text: 'B. Solidaridad con los menos favorecidos.',
             isCorrect: false),
         const Option(
-            text: 'C. Deshonestidad y falta de ética.', isCorrect: false),
+            text: 'C. Deshonestidad y falta de ética.', isCorrect: true),
         const Option(
-            text: 'D. Respeto por los derechos humanos.', isCorrect: true)
+            text: 'D. Respeto por los derechos humanos.', isCorrect: false)
       ]),
 
   //Pregunta 5

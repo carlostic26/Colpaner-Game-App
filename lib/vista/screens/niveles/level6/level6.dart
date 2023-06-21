@@ -108,68 +108,115 @@ class _level6State extends State<level6> {
   };
 
   Map<String, bool> afirmacionesMAT = {
-    "MAT El sol es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El teorema de Pitágoras se aplica únicamente en triángulos equiláteros.":
+        false,
+    "El número π es irracional y su aproximación decimal más común es 3.1416.":
         true,
-    "MAT agua hierve a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT  pingüinos pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT El sole es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "La función exponencial crece de forma exponencial a medida que x aumenta.":
         true,
-    "MAT El agua hiervee a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT Los pingüinose pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT Ele sol es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "Un número racional puede ser expresado como una fracción o un decimal finito o periódico.":
         true,
-    "MAT Ele agua hierve a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT Lose pingüinos pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT Elee sole es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El valor absoluto de un número siempre es un número positivo o cero.":
         true,
-    "MAT Elr agua hiervee a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT Los33 pingüinose pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT Ele3 sol es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El logaritmo de un número negativo no está definido en los números reales.":
         true,
-    "MAT Ele3 agua hierve a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "MAT Los3e pingüinos pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
+    "El conjunto de los números naturales incluye al número cero (0).": false,
+    "El método de Gauss-Jordan se utiliza para resolver sistemas de ecuaciones lineales.":
+        true,
+    "El radio de un círculo es la mitad de su diámetro.": true,
+    "La mediana es el valor que se encuentra en el centro de un conjunto de datos ordenados.":
+        true,
   };
 
   Map<String, bool> afirmacionesING = {
-    "ING El sol es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El verbo 'to be' se utiliza para expresar estados y características permanentes.":
         true,
-    "ING El agua hierve a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El presente simple se utiliza para hablar de acciones que ocurren en el momento actual.":
         false,
-    "ING Los pingüinos pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El adjetivo 'beautiful' se compara en grado superlativo añadiendo el sufijo '-er'.":
         false,
-    "ING El sole es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El tiempo verbal 'past continuous' se utiliza para expresar acciones que estaban ocurriendo en el pasado de forma continua.":
         true,
-    "ING El agua hiervee a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "ING Los pingüinose pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "ING Ele sol es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El 'gerund' es una forma verbal que termina en '-ing' y se utiliza como un sustantivo.":
         true,
-    "ING Ele agua hierve a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "ING Lose pingüinos pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
-        false,
-    "ING Elee sole es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El condicional tipo 1 se utiliza para expresar situaciones hipotéticas en el presente y sus posibles consecuencias.":
         true,
-    "ING Elr agua hiervee a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El sustantivo 'child' se pluraliza añadiendo la terminación '-s' al final.":
         false,
-    "ING Los33 pingüinose pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El adverbio 'carefully' es el comparativo de 'careful' y se utiliza para expresar mayor cuidado.":
         false,
-    "ING Ele3 sol es una estrella fdgdf gdfg zdfgczsfgzsdgdg csdfsdcg History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El pronombre 'it' se utiliza para referirse a una persona o animal.":
+        false,
+    "El tiempo verbal 'future perfect' se utiliza para hablar de acciones que se habrán completado en el futuro.":
         true,
-    "ING Ele3 agua hierve a 70 grados Celsius History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+  };
+
+  Map<String, bool> afirmacionesLEC = {
+    "El propósito principal de un texto informativo es persuadir al lector sobre un punto de vista específico.":
         false,
-    "ING Los3e pingüinos pueden volar History is temporarily unavailable. We're working to restore this feature as soon as possible.":
+    "El autor implícito es aquel que está claramente identificado en el texto y expresa su opinión personal.":
+        false,
+    "La estructura de un texto argumentativo se compone de introducción, desarrollo y conclusión.":
+        true,
+    "El análisis de las características del lenguaje utilizado en un texto ayuda a comprender su tono y propósito.":
+        true,
+    "La coherencia se refiere a la relación lógica y fluida entre las ideas y oraciones de un texto.":
+        true,
+    "La inferencia es una habilidad que consiste en deducir información no explícita a partir de pistas contextuales.":
+        true,
+    "La tesis de un texto es una afirmación que se presenta al final del mismo para sorprender al lector.":
+        false,
+    "La función del paratexto es brindar información adicional y contextualizar el contenido principal del texto.":
+        true,
+    "La comprensión literal se limita a entender únicamente la información explícita en el texto.":
+        true,
+    "La lectura crítica implica evaluar la validez de argumentos y evidencias presentados en un texto.":
+        true,
+  };
+
+  Map<String, bool> afirmacionesCIU = {
+    "El respeto hacia los demás es una competencia ciudadana que implica reconocer y valorar la dignidad de todas las personas.":
+        true,
+    "La participación ciudadana se refiere únicamente a votar en elecciones políticas.":
+        false,
+    "La empatía es una competencia ciudadana que implica ponerse en el lugar del otro y comprender sus sentimientos y perspectivas.":
+        true,
+    "La responsabilidad ciudadana implica solo cumplir con las leyes y normas establecidas en la sociedad.":
+        false,
+    "El diálogo constructivo es una competencia ciudadana que fomenta la comunicación respetuosa y el intercambio de ideas para llegar a acuerdos.":
+        true,
+    "La tolerancia consiste en aceptar y respetar las diferencias individuales, culturales y sociales.":
+        true,
+    "La corrupción es una práctica aceptable en una sociedad democrática.":
+        false,
+    "El ejercicio de los derechos y deberes ciudadanos solo es responsabilidad del gobierno.":
+        false,
+    "La solidaridad es una competencia ciudadana que se basa en la colaboración y el apoyo mutuo entre los miembros de una sociedad.":
+        true,
+    "La igualdad de género es un principio fundamental de las competencias ciudadanas que busca eliminar la discriminación y garantizar la equidad entre hombres y mujeres.":
+        true,
+  };
+
+  Map<String, bool> afirmacionesNAT = {
+    "La teoría celular establece que la célula es la unidad básica de la vida y que todos los organismos están compuestos por células.":
+        true,
+    "El ADN es una molécula que almacena la información genética y se encuentra únicamente en las células animales.":
+        false,
+    "La fotosíntesis es el proceso mediante el cual las plantas convierten la energía solar en energía química para alimentarse.":
+        true,
+    "La ley de la conservación de la energía establece que la energía no se crea ni se destruye, solo se transforma de una forma a otra.":
+        true,
+    "La clasificación de los seres vivos se basa únicamente en su apariencia física y características externas.":
+        false,
+    "El sistema nervioso es responsable de la transmisión de señales y el control de las funciones del cuerpo humano.":
+        true,
+    "Los ácidos son sustancias que tienen un pH mayor a 7 y suelen tener un sabor amargo.":
+        false,
+    "La gravedad es una fuerza que atrae a los objetos hacia el centro de la Tierra y es responsable de mantenerlos en órbita alrededor del planeta.":
+        true,
+    "El ciclo del agua incluye los procesos de evaporación, condensación, precipitación y transpiración.":
+        true,
+    "La energía nuclear es una fuente de energía renovable que se obtiene a partir de la combustión de combustibles fósiles.":
         false,
   };
 
@@ -199,6 +246,12 @@ class _level6State extends State<level6> {
         diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesMAT);
       } else if (_modulo == 'Inglés') {
         diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesING);
+      } else if (_modulo == 'Ciencias Naturales') {
+        diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesNAT);
+      } else if (_modulo == 'Competencias Ciudadanas') {
+        diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesCIU);
+      } else if (_modulo == 'Lectura Crítica') {
+        diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesLEC);
       }
     });
   }

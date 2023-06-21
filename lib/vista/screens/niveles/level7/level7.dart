@@ -12,12 +12,6 @@ import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class level7 extends StatefulWidget {
-  const level7({Key? key}) : super(key: key);
-  @override
-  State<level7> createState() => _level7State();
-}
-
 /*NIVEL TIPO AHORCADO
   Este nivel consiste en hacer leer un enunciado y escribir cada letra de forma correcta
   El jugador deberá adivinar el concepto completo.
@@ -25,6 +19,11 @@ class level7 extends StatefulWidget {
   El sistema validará la respuesta seleccionada pintando en pantalla cada parte del personaje.
 
 */
+class level7 extends StatefulWidget {
+  const level7({Key? key}) : super(key: key);
+  @override
+  State<level7> createState() => _level7State();
+}
 
 TextStyle customTextStyle = const TextStyle(
   fontFamily: 'BubblegumSans',
@@ -34,16 +33,96 @@ TextStyle customTextStyle = const TextStyle(
 
 class _level7State extends State<level7> {
   String modulo = '';
+  String _message = "";
+  int _timeLeft = 6;
+  List<String> alphabets = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "Ñ",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+  ];
+  String afirmacion = "";
+  String word = '';
 
   void _getModuloFromSharedPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       modulo = prefs.getString('modulo') ?? '';
+      setWordsModulo();
     });
   }
 
-  String _message = "";
-  int _timeLeft = 6;
+  int countWordSinRepetidos = 0;
+
+  void setWordsModulo() {
+    //El siguiente condicional contendrá la palabra clave y afirmación que será la que tendra que adivinar e ingresar el usuario en el juego
+
+    setState(() {
+      if (modulo.contains('Lectura Crítica')) {
+        afirmacion =
+            'Es una figura retórica que consiste en exagerar o amplificar una cualidad o característica de algo o alguien para enfatizar su importancia o impacto.';
+        word = "HIPERBOLA".toUpperCase();
+        numIntentosMax = word.length + 3;
+      }
+      if (modulo.contains('Inglés')) {
+        afirmacion =
+            'The use of this (plural word) in English provides flexibility and expresses various degrees of possibility, necessity, and ability.';
+        word = "MODALS";
+        numIntentosMax = word.length + 3;
+      }
+
+      if (modulo.contains('Razonamiento Cuantitativo')) {
+        afirmacion =
+            'Es un número que no puede expresarse como una fracción exacta y cuyo decimal no termina ni se repite.';
+        word = "IRRACIONAL".toUpperCase();
+        numIntentosMax = word.length + 3;
+      }
+
+      if (modulo.contains('Ciencias Naturales')) {
+        afirmacion =
+            'Son los compuestos químicos formados por carbono e hidrógeno, y pueden encontrarse en diversas formas como sólidos, líquidos o gases.';
+        word = "HIDROCARBUROS".toUpperCase();
+        numIntentosMax = word.length + 3;
+      }
+
+      if (modulo.contains('Competencias Ciudadanas')) {
+        afirmacion =
+            'Son las habilidades, conocimientos y actitudes necesarias para participar de manera responsable en la sociedad, promoviendo valores democráticos, el respeto a los derechos humanos y la convivencia pacífica.';
+        word = "PARTICIPACIÓN".toUpperCase();
+        numIntentosMax = word.length + 3;
+      }
+
+      Set wordSinRepetidos = Set.from(word.split(''));
+      countWordSinRepetidos = wordSinRepetidos.length;
+    });
+  }
+
+  int numIntentosMax = 0;
+  int numIntentos = 0;
+  bool gameover = false;
 
   void _startCountdown() {
     Future.delayed(const Duration(seconds: 1), () {
@@ -81,56 +160,14 @@ class _level7State extends State<level7> {
     });
   }
 
-  List<String> alphabets = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "Ñ",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z"
-  ];
-
-  String afirmacion = "";
-  String word = "entidad".toUpperCase();
-
-  int numIntentosMax = 0;
-  int numIntentos = 0;
-  bool gameover = false;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    afirmacion =
-        'En la arquitectura modelo-vista-controlador (MVC) los objetos del mundo del problema se representan mediante clases de tipo';
-    //El siguiente string, contendrá la palabra clave que será la que tendra que adivinar e ingresar el usuario en el juego
-
-    Set wordSinRepetidos = Set.from(word.split(''));
-    int countWordSinRepetidos = wordSinRepetidos.length;
+    _getModuloFromSharedPrefs();
 
     //numero de intentos es el numero de letras sin repetir + 3
-    numIntentosMax = countWordSinRepetidos + 3;
+//    numIntentosMax = countWordSinRepetidos + 3;
 
     _startCountdown();
     gameover = false;
@@ -269,6 +306,8 @@ class _level7State extends State<level7> {
 
                                           //si falla mas de lo debido
                                           if (numIntentos == numIntentosMax) {
+                                            print(
+                                                'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
                                             //Opcional, enviar como parametro respuesta correcta y mostrar en ese dialogo
                                             DialogHelper.showDialogGameOver(
                                                 context,
@@ -288,22 +327,28 @@ class _level7State extends State<level7> {
                                           }
 
                                           // y si se logra el llenado de las letras minimas completas entonces
-                                          // if Game7.succes >= afirmacion.length
-                                          if (Game7.succes == word.length - 1) {
+                                          if (Game7.succes == word.length ||
+                                              Game7.succes ==
+                                                  countWordSinRepetidos) {
+                                            print(
+                                                'PALABRA COMPLETADA CORRECTAMENTE');
                                             //guarda puntaje de nivel en firestore
                                             _guardarPuntajeNivel7(Game7.succes);
 
-                                            DialogHelper.showDialogGameOver(
-                                                context,
-                                                Game7.succes
-                                                    .toString()); //gana 5 puntos si alcanzó a completar || SCORE
+                                            Future.delayed(
+                                                Duration(milliseconds: 500),
+                                                () {
+                                              DialogHelper.showDialogGameOver(
+                                                  context,
+                                                  Game7.succes.toString());
 
-                                            setState(() {
-                                              numIntentos = 0;
-                                              gameover = true;
-                                              Game7.tries = 0;
-                                              Game7.succes = 0;
-                                              Game7.selectedChar.clear();
+                                              setState(() {
+                                                numIntentos = 0;
+                                                gameover = true;
+                                                Game7.tries = 0;
+                                                Game7.succes = 0;
+                                                Game7.selectedChar.clear();
+                                              });
                                             });
                                           }
                                         });
@@ -407,10 +452,14 @@ class _level7State extends State<level7> {
     final puntaje = score; // Puntaje obtenido
 
     //obtiene el modulo del shp
-    String modulo = await getModulo();
+    String _modulo = await getModulo();
 
-    if (modulo == 'Razonamiento Cuantitativo') {
-      //guarda puntaje en firestore
+    if (_modulo == 'Razonamiento Cuantitativo') {
+      //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
+      /*  //establece el puntaje obtenido y lo guarda en shp
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('puntajes_MAT', score); */
+
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('matematicas')
@@ -420,8 +469,11 @@ class _level7State extends State<level7> {
       await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
     }
 
-    if (modulo == 'Inglés') {
-      //guarda puntaje en firestore
+    if (_modulo == 'Inglés') {
+      //establece el puntaje obtenido y lo guarda en shp
+      SharedPreferences preferences = await SharedPreferences.getInstance();
+      await preferences.setInt('puntaje_ing_1', score);
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
@@ -429,6 +481,48 @@ class _level7State extends State<level7> {
           .doc(user!.uid);
 
       await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Lectura Crítica') {
+/*     //establece el puntaje obtenido y lo guarda en shp
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('puntaje_lec_1', score); */
+
+      final puntajesRefIng = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('lectura')
+          .collection('nivel7')
+          .doc(user!.uid);
+
+      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Ciencias Naturales') {
+/*     //establece el puntaje obtenido y lo guarda en shp
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('puntaje_lec_1', score); */
+
+      final puntajesRefSoc = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('naturales')
+          .collection('nivel7')
+          .doc(user!.uid);
+
+      await puntajesRefSoc.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Competencias Ciudadanas') {
+/*     //establece el puntaje obtenido y lo guarda en shp
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setInt('puntaje_lec_1', score); */
+
+      final puntajesRefCiu = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('ciudadanas')
+          .collection('nivel7')
+          .doc(user!.uid);
+
+      await puntajesRefCiu.set({'userId': user.uid, 'puntaje': puntaje});
     }
   }
 }
