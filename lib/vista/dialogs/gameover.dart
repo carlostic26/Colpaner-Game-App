@@ -153,6 +153,7 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                       ),
                       onPressed: () {
                         Navigator.pop(context);
+                        Navigator.pop(context);
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
                             builder: (context) => const misPuntajes()));
                       },
@@ -167,6 +168,8 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                     //BUTTON NEXT
                     ElevatedButton(
                       onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                               builder: (context) => const world_game()),

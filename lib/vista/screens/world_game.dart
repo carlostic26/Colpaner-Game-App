@@ -1848,7 +1848,7 @@ class _world_gameState extends State<world_game> {
                                                       : level == 8
                                                           ? const level8()
                                                           : level == 9
-                                                              ? const level9()
+                                                              ? const level9Quiz()
                                                               : level == 10
                                                                   ? const simulacro()
                                                                   : const world_game();

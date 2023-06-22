@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -111,7 +113,7 @@ class _level7State extends State<level7> {
       if (modulo.contains('Competencias Ciudadanas')) {
         afirmacion =
             'Son las habilidades, conocimientos y actitudes necesarias para participar de manera responsable en la sociedad, promoviendo valores democráticos, el respeto a los derechos humanos y la convivencia pacífica.';
-        word = "PARTICIPACIÓN".toUpperCase();
+        word = "PARTICIPACION".toUpperCase();
         numIntentosMax = word.length + 3;
       }
 
@@ -123,6 +125,42 @@ class _level7State extends State<level7> {
   int numIntentosMax = 0;
   int numIntentos = 0;
   bool gameover = false;
+  int _start = 60;
+  bool _isRunning = false;
+  late Timer _timer;
+
+  void startTimer() {
+    setState(() {
+      _isRunning = true;
+    });
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) return;
+      setState(() {
+        _start--;
+      });
+
+      if (_start == 0) {
+        //guarda puntaje de nivel en firestore
+        _guardarPuntajeNivel7(Game7.succes);
+
+        DialogHelper.showDialogGameOver(context, Game7.succes.toString());
+
+        setState(() {
+          _isRunning = false;
+          //abre dialogo game over
+        });
+        _timer.cancel();
+      }
+    });
+  }
+
+  void stopTimer() {
+    setState(() {
+      _isRunning = false;
+      _timer.cancel();
+    });
+  }
 
   void _startCountdown() {
     Future.delayed(const Duration(seconds: 1), () {
@@ -150,6 +188,7 @@ class _level7State extends State<level7> {
       } else {
         setState(() {
           _message = "¡Empecemos!";
+          startTimer();
         });
         Future.delayed(const Duration(milliseconds: 500), () {
           setState(() {
@@ -164,6 +203,7 @@ class _level7State extends State<level7> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     _getModuloFromSharedPrefs();
 
     //numero de intentos es el numero de letras sin repetir + 3
@@ -194,15 +234,46 @@ class _level7State extends State<level7> {
                       const SizedBox(
                         height: 20.0,
                       ),
-                      const Center(
-                        child: Text(
-                          "El Ahorcado",
-                          style: TextStyle(
-                            fontSize: 40.0,
-                            fontFamily: 'BubblegumSans',
-                            fontWeight: FontWeight.bold,
-                            color: colors_colpaner.claro,
-                          ),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "El Ahorcado",
+                              style: TextStyle(
+                                fontSize: 40.0,
+                                fontFamily: 'BubblegumSans',
+                                fontWeight: FontWeight.bold,
+                                color: colors_colpaner.claro,
+                              ),
+                            ),
+                            SizedBox(width: 20),
+                            Container(
+                              margin: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 5.0, horizontal: 15.0),
+                              decoration: BoxDecoration(
+                                color: colors_colpaner.oscuro,
+                                borderRadius: BorderRadius.circular(6.0),
+                              ),
+                              child: Column(
+                                children: [
+                                  const Icon(
+                                    color: colors_colpaner.claro,
+                                    Icons.timer,
+                                    size: 20,
+                                  ),
+                                  Text(
+                                    '$_start',
+                                    style: const TextStyle(
+                                        fontFamily: 'BubblegumSans',
+                                        fontSize: 15,
+                                        color: colors_colpaner.claro),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(
@@ -261,13 +332,18 @@ class _level7State extends State<level7> {
                         height: 20.0,
                       ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: word
-                            .split('')
-                            .map((e) => letter(e.toUpperCase(),
-                                !Game7.selectedChar.contains(e.toUpperCase())))
-                            .toList(),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: word
+                              .split('')
+                              .map((e) => letter(
+                                  e.toUpperCase(),
+                                  !Game7.selectedChar
+                                      .contains(e.toUpperCase())))
+                              .toList(),
+                        ),
                       ),
 
                       //building the Game keyboard
@@ -302,7 +378,7 @@ class _level7State extends State<level7> {
                                             Game7.succes++;
                                           }
 
-                                          //GAME OVER
+                                          //GAME OVER HIDROCARBUROS
 
                                           //si falla mas de lo debido
                                           if (numIntentos == numIntentosMax) {

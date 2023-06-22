@@ -259,20 +259,18 @@ class _natusoupState extends State<natusoup> {
                     ),
                     child: Column(
                       children: [
-                        Column(children: [
-                          const Icon(
-                            color: colors_colpaner.oscuro,
-                            Icons.timer,
-                            size: 30,
-                          ),
-                          Text(
-                            '$_start',
-                            style: const TextStyle(
-                                fontFamily: 'BubblegumSans',
-                                fontSize: 20,
-                                color: colors_colpaner.oscuro),
-                          ),
-                        ]),
+                        const Icon(
+                          color: colors_colpaner.oscuro,
+                          Icons.timer,
+                          size: 30,
+                        ),
+                        Text(
+                          '$_start',
+                          style: const TextStyle(
+                              fontFamily: 'BubblegumSans',
+                              fontSize: 20,
+                              color: colors_colpaner.oscuro),
+                        ),
                       ],
                     ),
                   ),
