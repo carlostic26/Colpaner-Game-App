@@ -240,27 +240,27 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                       }
                     : _modulo == 'Inglés'
                         ? (context, index) {
-                            final _question = questionsIng[index];
-                            return buildQuestion(_question);
+                            final question = questionsIng[index];
+                            return buildQuestion(question);
                           }
                         : _modulo == 'Ciencias Naturales'
                             ? (context, index) {
-                                final _question = questionsNat[index];
-                                return buildQuestion(_question);
+                                final question = questionsNat[index];
+                                return buildQuestion(question);
                               }
                             : _modulo == 'Competencias Ciudadanas'
                                 ? (context, index) {
-                                    final _question = questionsSoc[index];
-                                    return buildQuestion(_question);
+                                    final question = questionsSoc[index];
+                                    return buildQuestion(question);
                                   }
                                 : _modulo == 'Lectura Crítica'
                                     ? (context, index) {
-                                        final _question = questionsLec[index];
-                                        return buildQuestion(_question);
+                                        final question = questionsLec[index];
+                                        return buildQuestion(question);
                                       }
                                     : (context, index) {
-                                        final _question = questionsMat[index];
-                                        return buildQuestion(_question);
+                                        final question = questionsMat[index];
+                                        return buildQuestion(question);
                                       })),
         _isLocked ? buildElevatedButton() : const SizedBox.shrink(),
         const SizedBox(height: 20),
@@ -467,290 +467,294 @@ class Option {
 }
 
 final questionsMat = [
-  //para preguntas con imagen se puede usar la clase Question
   // Pregunta 1
   Question(
     text:
-        "1. En una fiesta, se reparten 45 galletas entre 9 personas. Si todas las personas reciben la misma cantidad de galletas, ¿cuántas galletas recibe cada persona?",
+        "1. Si un automóvil recorre 360 kilómetros en 6 horas, ¿cuál es su velocidad promedio en kilómetros por hora?",
     options: [
-      const Option(text: 'A. 3', isCorrect: false),
-      const Option(text: 'B. 4', isCorrect: true),
-      const Option(text: 'C. 5', isCorrect: false),
-      const Option(text: 'D. 6', isCorrect: false),
+      const Option(text: 'A. 40 km/h', isCorrect: false),
+      const Option(text: 'B. 50 km/h', isCorrect: false),
+      const Option(text: 'C. 60 km/h', isCorrect: true),
+      const Option(text: 'D. 70 km/h', isCorrect: false),
     ],
   ),
 
   // Pregunta 2
   Question(
     text:
-        "2. Si un producto se vende con un descuento del 20% sobre el precio original y su precio final es de 💲80. ¿Cuál era el precio original del producto?",
+        "2. En una tienda, el precio de una camiseta es de 💲30. Si se aplica un descuento del 25%, ¿cuál será el precio final de la camiseta?",
     options: [
-      const Option(text: 'A. 💲60', isCorrect: false),
-      const Option(text: 'B. 💲80', isCorrect: false),
-      const Option(text: 'C. 💲100', isCorrect: true),
-      const Option(text: 'D. 💲120', isCorrect: false),
+      const Option(text: '💲18', isCorrect: false),
+      const Option(text: '💲22.50', isCorrect: true),
+      const Option(text: '💲25', isCorrect: false),
+      const Option(text: '💲35', isCorrect: false),
     ],
   ),
 
   // Pregunta 3
   Question(
     text:
-        "3. Si la suma de dos números es 15 y su diferencia es 5, ¿cuáles son esos números?",
+        "3. Si un número aumenta en un 20% y luego se reduce en un 15%, ¿cuál es el cambio porcentual neto?",
     options: [
-      const Option(text: 'A. 10 y 5', isCorrect: false),
-      const Option(text: 'B. 7 y 8', isCorrect: true),
-      const Option(text: 'C. 9 y 6', isCorrect: false),
-      const Option(text: 'D. 12 y 3', isCorrect: false),
+      const Option(text: 'A. 5%', isCorrect: false),
+      const Option(text: 'B. 2%', isCorrect: false),
+      const Option(text: 'C. 3%', isCorrect: true),
+      const Option(text: 'D. 35%', isCorrect: false),
     ],
   ),
 
   // Pregunta 4
   Question(
     text:
-        "4. Un terreno rectangular tiene un largo de 8 metros y un ancho de 5 metros. Si se le construye una cerca alrededor del terreno, ¿cuántos metros de cerca se necesitan?",
+        "4. Un artículo se vende con un margen de beneficio del 40% sobre el costo de producción. Si el costo de producción es de 💲80, ¿cuál es el precio de venta del artículo?",
     options: [
-      const Option(text: 'A. 16 metros', isCorrect: false),
-      const Option(text: 'B. 18 metros', isCorrect: true),
-      const Option(text: 'C. 20 metros', isCorrect: false),
-      const Option(text: 'D. 26 metros', isCorrect: false),
+      const Option(text: '💲112', isCorrect: true),
+      const Option(text: '💲100', isCorrect: false),
+      const Option(text: '💲120', isCorrect: false),
+      const Option(text: '💲160', isCorrect: false),
     ],
   ),
 
   // Pregunta 5
   Question(
     text:
-        "5. Si el área de un cuadrado es 36 cm², ¿cuál es la longitud de un lado del cuadrado?",
+        "5. Si un triángulo tiene una base de 8 cm y una altura de 10 cm, ¿cuál es su área?",
     options: [
-      const Option(text: 'A. 6 cm', isCorrect: true),
-      const Option(text: 'B. 9 cm', isCorrect: false),
-      const Option(text: 'C. 12 cm', isCorrect: false),
-      const Option(text: 'D. 18 cm', isCorrect: false),
+      const Option(text: 'A. 24 cm²', isCorrect: false),
+      const Option(text: 'B. 40 cm²', isCorrect: true),
+      const Option(text: 'C. 48 cm²', isCorrect: false),
+      const Option(text: 'D. 80 cm²', isCorrect: false),
     ],
   ),
 ];
 
 final questionsIng = [
-  //para preguntas con imagen se puede usar la clase Question
-  // para preguntas sin imagen, se puede usar otra clase comno QuestionNoIMG
-
-  //Pregunta 1
+  // Pregunta 1
   Question(
-    text:
-        "1. ¿Cuál de las siguientes opciones describe mejor el propósito principal de un sustantivo en inglés? ",
+    text: "1. Which of the following sentences is grammatically correct?",
     options: [
-      const Option(
-          text: 'A. Expresar emociones o sentimientos.', isCorrect: false),
-      const Option(
-          text: 'B. Identificar una persona, lugar o cosa.', isCorrect: false),
-      const Option(text: 'C.  Indicar la cantidad de algo.', isCorrect: true),
-      const Option(text: 'D. Describir una acción.', isCorrect: false)
-    ],
-  ),
-
-  //Pregunta 2
-  Question(
-      text:
-          "2. ¿Cuál de las siguientes opciones muestra la forma correcta del verbo en pasado simple del verbo 'to eat' (comer)?",
-      options: [
-        const Option(text: 'A. eated', isCorrect: false),
-        const Option(text: 'B. ate', isCorrect: true),
-        const Option(text: 'C. eatten', isCorrect: false),
-        const Option(text: 'D. eaten', isCorrect: false)
-      ]),
-
-  //Pregunta 3
-  Question(
-      text:
-          "3. ¿Cuál de las siguientes opciones describe mejor el uso del presente continuo (present continuous) en inglés?",
-      options: [
-        const Option(
-            text: 'A. Expresar acciones habituales.', isCorrect: false),
-        const Option(
-            text: 'B. Indicar una acción que ocurrió en el pasado.',
-            isCorrect: false),
-        const Option(
-            text: 'C. Describir una acción en progreso en el momento presente.',
-            isCorrect: true),
-        const Option(
-            text: 'D.  Expresar una acción futura planeada.', isCorrect: false)
-      ]),
-
-  //Pregunta 4
-  Question(
-      text:
-          '4. ¿Cuál de las siguientes opciones muestra el orden correcto de las palabras en una oración afirmativa en inglés?',
-      options: [
-        const Option(text: 'A. Verbo - Sujeto - Objeto', isCorrect: false),
-        const Option(text: 'B. Objeto - Sujeto - Verbo', isCorrect: false),
-        const Option(text: 'C. Sujeto - Verbo - Objeto', isCorrect: true),
-        const Option(text: 'D. Sujeto - Objeto - Verbo', isCorrect: false)
-      ]),
-
-  //Pregunta 5
-  Question(
-      text:
-          "5. ¿Cuál de las siguientes opciones describe mejor el significado del adjetivo 'beautiful' en español?",
-      options: [
-        const Option(text: 'A. Feo/a', isCorrect: false),
-        const Option(text: 'B. Bonito/a', isCorrect: true),
-        const Option(text: 'C. Rápido/a', isCorrect: false),
-        const Option(text: 'D. Grande', isCorrect: false)
-      ]),
-];
-
-final questionsNat = [
-  //Pregunta 1
-  Question(
-    text:
-        "1. En una fiesta, se reparten 45 galletas entre 9 personas. Si todas las personas reciben la misma cantidad de galletas, ¿cuántas galletas recibe cada persona?",
-    options: [
-      const Option(text: 'A. 3', isCorrect: false),
-      const Option(text: 'B. 4', isCorrect: true),
-      const Option(text: 'C. 5', isCorrect: false),
-      const Option(text: 'D. 6', isCorrect: false),
+      const Option(text: 'A. She don\'t like coffee.', isCorrect: false),
+      const Option(text: 'B. They is going to the party.', isCorrect: false),
+      const Option(text: 'C. He has been studying all day.', isCorrect: true),
+      const Option(text: 'D. We am excited for the trip.', isCorrect: false)
     ],
   ),
 
   // Pregunta 2
   Question(
-    text:
-        "2. Si un producto se vende con un descuento del 20% sobre el precio original y su precio final es de 💲80. ¿Cuál era el precio original del producto?",
+    text: "2. What is the correct form of the verb to be in the past tense?",
     options: [
-      const Option(text: 'A. 💲60', isCorrect: false),
-      const Option(text: 'B. 💲80', isCorrect: false),
-      const Option(text: 'C. 💲100', isCorrect: true),
-      const Option(text: 'D. 💲120', isCorrect: false),
+      const Option(text: 'A. Am', isCorrect: false),
+      const Option(text: 'B. Is', isCorrect: false),
+      const Option(text: 'C. Were', isCorrect: true),
+      const Option(text: 'D. Be', isCorrect: false)
     ],
   ),
 
   // Pregunta 3
   Question(
-    text:
-        "3. Si la suma de dos números es 15 y su diferencia es 5, ¿cuáles son esos números?",
+    text: "3. Which of the following words is a synonym for 'happy'?",
     options: [
-      const Option(text: 'A. 10 y 5', isCorrect: false),
-      const Option(text: 'B. 7 y 8', isCorrect: true),
-      const Option(text: 'C. 9 y 6', isCorrect: false),
-      const Option(text: 'D. 12 y 3', isCorrect: false),
+      const Option(text: 'A. Sad', isCorrect: false),
+      const Option(text: 'B. Angry', isCorrect: false),
+      const Option(text: 'C. Joyful', isCorrect: true),
+      const Option(text: 'D. Tired', isCorrect: false)
     ],
   ),
 
   // Pregunta 4
   Question(
-    text:
-        "4. Un terreno rectangular tiene un largo de 8 metros y un ancho de 5 metros. Si se le construye una cerca alrededor del terreno, ¿cuántos metros de cerca se necesitan?",
+    text: "4. What is the correct order of words in an interrogative sentence?",
     options: [
-      const Option(text: 'A. 16 metros', isCorrect: false),
-      const Option(text: 'B. 18 metros', isCorrect: true),
-      const Option(text: 'C. 20 metros', isCorrect: false),
-      const Option(text: 'D. 26 metros', isCorrect: false),
+      const Option(text: 'A. Subject - Verb - Object', isCorrect: false),
+      const Option(text: 'B. Object - Verb - Subject', isCorrect: false),
+      const Option(text: 'C. Verb - Subject - Object', isCorrect: false),
+      const Option(text: 'D. Verb - Subject', isCorrect: true)
     ],
   ),
 
   // Pregunta 5
   Question(
     text:
-        "5. Si el área de un cuadrado es 36 cm², ¿cuál es la longitud de un lado del cuadrado?",
+        "5. Which of the following sentences uses the present perfect tense correctly?",
     options: [
-      const Option(text: 'A. 6 cm', isCorrect: true),
-      const Option(text: 'B. 9 cm', isCorrect: false),
-      const Option(text: 'C. 12 cm', isCorrect: false),
-      const Option(text: 'D. 18 cm', isCorrect: false),
+      const Option(
+          text: 'A. I have went to the store yesterday.', isCorrect: false),
+      const Option(
+          text: 'B. They has seen that movie before.', isCorrect: false),
+      const Option(
+          text: 'C. She has already finished her homework.', isCorrect: true),
+      const Option(
+          text: 'D. We have not went to the party yet.', isCorrect: false)
     ],
   ),
 ];
 
-final questionsLec = [
-  //Pregunta 1
+final questionsNat = [
+  // Pregunta 1
   Question(
     text:
-        "1. ¿Cuál de las siguientes afirmaciones describe mejor una estrategia efectiva para mejorar la comprensión lectora? ",
+        "1. ¿Cuál de los siguientes componentes no es parte de una célula eucariota?",
+    options: [
+      const Option(text: 'A. Núcleo', isCorrect: false),
+      const Option(text: 'B. Membrana plasmática', isCorrect: false),
+      const Option(text: 'C. Ribosomas', isCorrect: false),
+      const Option(text: 'D. Pared celular', isCorrect: true),
+    ],
+  ),
+
+  // Pregunta 2
+  Question(
+    text:
+        "2. ¿Cuál de los siguientes órganos es parte del sistema respiratorio humano?",
+    options: [
+      const Option(text: 'A. Páncreas', isCorrect: false),
+      const Option(text: 'B. Riñón', isCorrect: false),
+      const Option(text: 'C. Pulmón', isCorrect: true),
+      const Option(text: 'D. Hígado', isCorrect: false),
+    ],
+  ),
+
+  // Pregunta 3
+  Question(
+    text:
+        "3. ¿Cuál de los siguientes procesos es una fuente de energía renovable?",
+    options: [
+      const Option(text: 'A. Gas natural', isCorrect: false),
+      const Option(text: 'B. Carbón', isCorrect: false),
+      const Option(text: 'C. Petróleo', isCorrect: false),
+      const Option(text: 'D. Energía solar', isCorrect: true),
+    ],
+  ),
+
+  // Pregunta 4
+  Question(
+    text:
+        "4. ¿Cuál de los siguientes elementos químicos es el más abundante en la Tierra?",
+    options: [
+      const Option(text: 'A. Hierro', isCorrect: false),
+      const Option(text: 'B. Oxígeno', isCorrect: true),
+      const Option(text: 'C. Carbono', isCorrect: false),
+      const Option(text: 'D. Aluminio', isCorrect: false),
+    ],
+  ),
+
+  // Pregunta 5
+  Question(
+    text: "5. ¿Cuál de las siguientes enfermedades es causada por un virus?",
+    options: [
+      const Option(text: 'A. Diabetes', isCorrect: false),
+      const Option(text: 'B. Tuberculosis', isCorrect: false),
+      const Option(text: 'C. VIH/SIDA', isCorrect: true),
+      const Option(text: 'D. Asma', isCorrect: false),
+    ],
+  ),
+];
+final questionsLec = [
+  // Pregunta 1
+  Question(
+    text:
+        "1. ¿Cuál de los siguientes enunciados resume mejor la idea principal de un texto?",
+    options: [
+      const Option(
+          text:
+              'A. Detalla los argumentos presentados en cada párrafo del texto.',
+          isCorrect: false),
+      const Option(
+          text: 'B. Resume la opinión del autor sobre el tema.',
+          isCorrect: false),
+      const Option(
+          text: 'C. Destaca la información más relevante y general del texto.',
+          isCorrect: true),
+      const Option(
+          text: 'D. Enumera los datos estadísticos mencionados en el texto.',
+          isCorrect: false)
+    ],
+  ),
+
+  // Pregunta 2
+  Question(
+    text:
+        "2. ¿Cuál de las siguientes estrategias es más efectiva para mejorar la comprensión lectora?",
     options: [
       const Option(
           text: 'A. Leer rápidamente sin prestar atención a los detalles.',
           isCorrect: false),
       const Option(
-          text: 'B. Subrayar o resaltar las ideas principales del texto.',
-          isCorrect: true),
-      const Option(
-          text: 'C. Saltar párrafos y leer solo los títulos.',
+          text: 'B. Analizar minuciosamente cada palabra del texto.',
           isCorrect: false),
       const Option(
-          text: 'D. Evitar la lectura de textos extensos.', isCorrect: false)
+          text: 'C. Evitar la lectura de textos extensos.', isCorrect: false),
+      const Option(
+          text: 'D. Identificar las ideas principales y secundarias del texto.',
+          isCorrect: true)
     ],
   ),
 
-  //Pregunta 2
+  // Pregunta 3
   Question(
-      text:
-          "2. ¿Cuál de las siguientes características NO es esencial para la comprensión lectora?",
-      options: [
-        const Option(text: 'A. Vocabulario amplio.', isCorrect: false),
-        const Option(
-            text: 'B. Conocimientos previos sobre el tema.', isCorrect: false),
-        const Option(
-            text: 'C. Habilidades matemáticas avanzadas.', isCorrect: true),
-        const Option(
-            text:
-                'D. Habilidad para identificar la idea principal de un texto.',
-            isCorrect: false)
-      ]),
+    text:
+        "3. ¿Cuál de las siguientes opciones describe mejor el propósito de un párrafo de transición en un texto?",
+    options: [
+      const Option(
+          text: 'A. Brindar información adicional sobre un tema específico.',
+          isCorrect: false),
+      const Option(
+          text: 'B. Plantear una pregunta retórica sin responderla.',
+          isCorrect: false),
+      const Option(
+          text:
+              'C. Introducir una nueva idea o tema relacionado con el anterior.',
+          isCorrect: true),
+      const Option(
+          text: 'D. Concluir el texto y resumir las ideas principales.',
+          isCorrect: false)
+    ],
+  ),
 
-  //Pregunta 3
+  // Pregunta 4
   Question(
-      text:
-          "3. ¿Cuál de las siguientes opciones describe mejor la idea principal de un texto?",
-      options: [
-        const Option(
-            text: 'A. Un resumen de cada párrafo del texto.', isCorrect: false),
-        const Option(
-            text: 'B. La primera oración del texto.', isCorrect: false),
-        const Option(
-            text: 'C. La información más relevante y general del texto.',
-            isCorrect: true),
-        const Option(
-            text: 'D. La opinión del autor sobre el tema.', isCorrect: false)
-      ]),
+    text:
+        "4. ¿Cuál de las siguientes acciones NO es útil para mejorar la comprensión lectora?",
+    options: [
+      const Option(
+          text: 'A. Subrayar o resaltar las ideas principales del texto.',
+          isCorrect: false),
+      const Option(
+          text: 'B. Realizar preguntas sobre el contenido del texto.',
+          isCorrect: false),
+      const Option(
+          text: 'C. Leer diferentes tipos de textos y géneros literarios.',
+          isCorrect: false),
+      const Option(
+          text:
+              'D. Leer únicamente la primera y última oración de cada párrafo.',
+          isCorrect: true)
+    ],
+  ),
 
-  //Pregunta 4
+  // Pregunta 5
   Question(
-      text:
-          '4. ¿Cuál de las siguientes estrategias NO es útil para inferir el significado de una palabra desconocida?',
-      options: [
-        const Option(
-            text: 'A. Leer el contexto en el que se encuentra la palabra.',
-            isCorrect: false),
-        const Option(
-            text: 'B. Buscar la palabra en un diccionario.', isCorrect: false),
-        const Option(
-            text: 'C. Adivinar el significado sin tener en cuenta el contexto.',
-            isCorrect: true),
-        const Option(
-            text: 'D. Identificar prefijos o sufijos conocidos en la palabra.',
-            isCorrect: false)
-      ]),
-
-  //Pregunta 5
-  Question(
-      text:
-          "5. ¿Cuál de las siguientes opciones describe mejor el propósito de un párrafo introductorio en un texto?",
-      options: [
-        const Option(
-            text: 'A. Resumir todas las ideas principales del texto.',
-            isCorrect: false),
-        const Option(
-            text: 'B. Proporcionar detalles específicos sobre un tema.',
-            isCorrect: false),
-        const Option(
-            text: 'C. Introducir el tema y establecer el contexto del texto.',
-            isCorrect: true),
-        const Option(
-            text: 'D. Plantear una pregunta sin responderla.', isCorrect: false)
-      ]),
+    text:
+        "5. ¿Cuál de las siguientes opciones describe mejor el propósito de un párrafo introductorio en un texto?",
+    options: [
+      const Option(
+          text: 'A. Resumir todas las ideas principales del texto.',
+          isCorrect: false),
+      const Option(
+          text: 'B. Proporcionar detalles específicos sobre un tema.',
+          isCorrect: false),
+      const Option(
+          text: 'C. Introducir el tema y establecer el contexto del texto.',
+          isCorrect: true),
+      const Option(
+          text: 'D. Plantear una pregunta sin responderla.', isCorrect: false)
+    ],
+  ),
 ];
 
 final questionsSoc = [
-  //Pregunta 1
+  // Pregunta 1
   Question(
     text:
         "1. ¿Cuál de las siguientes acciones ejemplifica mejor la responsabilidad ciudadana?",
@@ -771,78 +775,79 @@ final questionsSoc = [
     ],
   ),
 
-  //Pregunta 2
+  // Pregunta 2
   Question(
-      text:
-          "2. ¿Cuál de las siguientes habilidades NO es esencial para el desarrollo de competencias ciudadanas? ",
-      options: [
-        const Option(text: 'A. Empatía hacia los demás.', isCorrect: false),
-        const Option(
-            text: 'B. Capacidad de análisis y pensamiento crítico.',
-            isCorrect: false),
-        const Option(
-            text: 'C. Conocimiento profundo de matemáticas avanzadas.',
-            isCorrect: true),
-        const Option(text: 'D. Toma de decisiones éticas.', isCorrect: false)
-      ]),
+    text:
+        "2. ¿Cuál de las siguientes habilidades NO es esencial para el desarrollo de competencias ciudadanas? ",
+    options: [
+      const Option(text: 'A. Empatía hacia los demás.', isCorrect: false),
+      const Option(
+          text: 'B. Capacidad de análisis y pensamiento crítico.',
+          isCorrect: false),
+      const Option(
+          text: 'C. Conocimiento profundo de matemáticas avanzadas.',
+          isCorrect: true),
+      const Option(text: 'D. Toma de decisiones éticas.', isCorrect: false)
+    ],
+  ),
 
-  //Pregunta 3
+  // Pregunta 3
   Question(
-      text:
-          "3. ¿Cuál de las siguientes opciones describe mejor la importancia de la participación ciudadana en la democracia?",
-      options: [
-        const Option(
-            text: 'A. Irrelevante, decisiones tomadas por líderes políticos.',
-            isCorrect: false),
-        const Option(
-            text:
-                'B. Fundamental, ciudadanos ejercen derecho a opinar y contribuir en decisiones.',
-            isCorrect: true),
-        const Option(
-            text:
-                'C. Opcional, líderes políticos toman decisiones en beneficio de la sociedad.',
-            isCorrect: false),
-        const Option(
-            text:
-                'D. Perjudicial, puede llevar a conflictos y desacuerdos entre ciudadanos.',
-            isCorrect: false)
-      ]),
+    text:
+        "3. ¿Cuál de las siguientes opciones describe mejor la importancia de la participación ciudadana en la democracia?",
+    options: [
+      const Option(
+          text: 'A. Irrelevante, decisiones tomadas por líderes políticos.',
+          isCorrect: false),
+      const Option(
+          text:
+              'B. Fundamental, ciudadanos ejercen derecho a opinar y contribuir en decisiones.',
+          isCorrect: true),
+      const Option(
+          text:
+              'C. Opcional, líderes políticos toman decisiones en beneficio de la sociedad.',
+          isCorrect: false),
+      const Option(
+          text:
+              'D. Perjudicial, puede llevar a conflictos y desacuerdos entre ciudadanos.',
+          isCorrect: false)
+    ],
+  ),
 
-  //Pregunta 4
+  // Pregunta 4
   Question(
-      text:
-          '4. ¿Cuál de los siguientes valores NO es fundamental en el desarrollo de competencias ciudadanas?',
-      options: [
-        const Option(
-            text: 'A. Tolerancia hacia la diversidad.', isCorrect: false),
-        const Option(
-            text: 'B. Solidaridad con los menos favorecidos.',
-            isCorrect: false),
-        const Option(
-            text: 'C. Deshonestidad y falta de ética.', isCorrect: true),
-        const Option(
-            text: 'D. Respeto por los derechos humanos.', isCorrect: false)
-      ]),
+    text:
+        '4. ¿Cuál de los siguientes valores NO es fundamental en el desarrollo de competencias ciudadanas?',
+    options: [
+      const Option(
+          text: 'A. Tolerancia hacia la diversidad.', isCorrect: false),
+      const Option(
+          text: 'B. Solidaridad con los menos favorecidos.', isCorrect: false),
+      const Option(text: 'C. Deshonestidad y falta de ética.', isCorrect: true),
+      const Option(
+          text: 'D. Respeto por los derechos humanos.', isCorrect: false)
+    ],
+  ),
 
-  //Pregunta 5
+  // Pregunta 5
   Question(
-      text:
-          "5. ¿Cuál de las siguientes opciones describe mejor la importancia de la convivencia pacífica en una sociedad?",
-      options: [
-        const Option(
-            text: 'A. Genera conflictos y tensiones entre los ciudadanos.',
-            isCorrect: false),
-        const Option(
-            text: 'B. Limita la libertad individual y la expresión personal.',
-            isCorrect: false),
-        const Option(
-            text:
-                'C. Promueve la armonía y el respeto mutuo entre las personas.',
-            isCorrect: true),
-        const Option(
-            text: 'D. Excluye a los grupos minoritarios de la sociedad.',
-            isCorrect: false)
-      ]),
+    text:
+        "5. ¿Cuál de las siguientes opciones describe mejor la importancia de la convivencia pacífica en una sociedad?",
+    options: [
+      const Option(
+          text: 'A. Genera conflictos y tensiones entre los ciudadanos.',
+          isCorrect: false),
+      const Option(
+          text: 'B. Limita la libertad individual y la expresión personal.',
+          isCorrect: false),
+      const Option(
+          text: 'C. Promueve la armonía y el respeto mutuo entre las personas.',
+          isCorrect: true),
+      const Option(
+          text: 'D. Excluye a los grupos minoritarios de la sociedad.',
+          isCorrect: false)
+    ],
+  ),
 ];
 
 Future<void> _guardarPuntajeNivel1(int score) async {
