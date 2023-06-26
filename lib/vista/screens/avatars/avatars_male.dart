@@ -7,6 +7,7 @@ import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/puntajes_shp.dart';
 import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
+import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
@@ -141,7 +142,7 @@ class _avatarsMaleState extends State<avatarsMale> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "Elige tu ávatar Masculino",
+          "Elige tu ávatar",
           style: TextStyle(
             fontSize: 16.0,
             /*fontWeight: FontWeight.bold*/
@@ -163,17 +164,18 @@ class _avatarsMaleState extends State<avatarsMale> {
                     Container(
                       padding: const EdgeInsets.all(1.0),
                       width: MediaQuery.of(context).size.width,
-                      height: 125,
+                      height: 110,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage("assets/banner_user.png"),
-                        ),
+                            image: AssetImage("assets/banner_user.png"),
+                            fit: BoxFit.fill),
                       ),
                     ),
 
+                    //nombre y tecnica
                     Positioned(
                       left: totalWidth * 0.12,
-                      top: 45,
+                      top: MediaQuery.of(context).size.height * 0.045,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -198,12 +200,12 @@ class _avatarsMaleState extends State<avatarsMale> {
                     ),
                     //image avatar
                     Positioned(
-                      top: 40,
+                      top: MediaQuery.of(context).size.height * 0.032,
                       left: MediaQuery.of(context).size.width * 0.40,
                       child: Container(
                           padding: const EdgeInsets.all(1.0),
                           width: 70,
-                          height: 60,
+                          height: 65,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: SizedBox(
@@ -221,9 +223,10 @@ class _avatarsMaleState extends State<avatarsMale> {
                             ),
                           )),
                     ),
+                    //puntaje total
                     Positioned(
                       right: totalWidth * 0.15,
-                      top: 40,
+                      top: 35,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(0, 8, 1, 1),
                         child: Column(
@@ -649,7 +652,7 @@ class _avatarsMaleState extends State<avatarsMale> {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: MediaQuery.of(context).size.height * 0.06,
                 child: Align(
                   alignment: Alignment.center,
                   child: Padding(
@@ -687,7 +690,7 @@ class _avatarsMaleState extends State<avatarsMale> {
           ),
         ),
       ),
-      drawer: _getDrawer(context),
+      drawer: DrawerColpaner(context: context, screen: 'avatar'),
     );
   }
 

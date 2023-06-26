@@ -33,7 +33,7 @@ class _ResultPageSimulacroState extends State<ResultPageSimulacro> {
       children: <Widget>[
         //CONTAINER DEL FONDO QUE CONTIENE IMAGEN DE FONDO LADRILLOS
         Container(
-          decoration: const BoxDecoration(color: colors_colpaner.oscuro),
+          decoration: const BoxDecoration(color: colors_colpaner.base),
           padding: const EdgeInsets.symmetric(
             horizontal: 8,
           ),
@@ -44,13 +44,13 @@ class _ResultPageSimulacroState extends State<ResultPageSimulacro> {
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 35, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
                 child: Text(
                   _modulo,
                   style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'BubblegumSans',
-                      fontSize: 40),
+                      fontSize: 30),
                 ),
               ),
             ),
@@ -64,7 +64,7 @@ class _ResultPageSimulacroState extends State<ResultPageSimulacro> {
                     //Celda cabecera: pregunta ABCBD
                     Container(
                         height: 40,
-                        color: colors_colpaner.base,
+                        color: colors_colpaner.oscuro,
                         child: Row(
                           children: const [
                             Padding(
@@ -123,7 +123,7 @@ class _ResultPageSimulacroState extends State<ResultPageSimulacro> {
                     //1
                     Container(
                         height: 40,
-                        color: colors_colpaner.claro,
+                        color: Colors.white,
                         child: Row(children: [
                           //pregunta
                           SizedBox(
@@ -289,37 +289,44 @@ class _ResultPageSimulacroState extends State<ResultPageSimulacro> {
                         ])),
                     //2
                     Container(
-                        height: 40, color: colors_colpaner.base, child: Row()),
+                        height: 40,
+                        color: colors_colpaner.oscuro,
+                        child: Row()),
                     //3
-                    Container(
-                        height: 40, color: colors_colpaner.claro, child: Row()),
+                    Container(height: 40, color: Colors.white, child: Row()),
                     //4
                     Container(
-                        height: 40, color: colors_colpaner.base, child: Row()),
+                        height: 40,
+                        color: colors_colpaner.oscuro,
+                        child: Row()),
                     //5
-                    Container(
-                        height: 40, color: colors_colpaner.claro, child: Row()),
+                    Container(height: 40, color: Colors.white, child: Row()),
                     //6
                     Container(
-                        height: 40, color: colors_colpaner.base, child: Row()),
+                        height: 40,
+                        color: colors_colpaner.oscuro,
+                        child: Row()),
+                    Container(height: 40, color: Colors.white, child: Row()),
                     Container(
-                        height: 40, color: colors_colpaner.claro, child: Row()),
+                        height: 40,
+                        color: colors_colpaner.oscuro,
+                        child: Row()),
+                    Container(height: 40, color: Colors.white, child: Row()),
                     Container(
-                        height: 40, color: colors_colpaner.base, child: Row()),
+                        height: 40,
+                        color: colors_colpaner.oscuro,
+                        child: Row()),
+                    Container(height: 40, color: Colors.white, child: Row()),
                     Container(
-                        height: 40, color: colors_colpaner.claro, child: Row()),
+                        height: 40,
+                        color: colors_colpaner.oscuro,
+                        child: Row()),
+                    Container(height: 40, color: Colors.white, child: Row()),
                     Container(
-                        height: 40, color: colors_colpaner.base, child: Row()),
-                    Container(
-                        height: 40, color: colors_colpaner.claro, child: Row()),
-                    Container(
-                        height: 40, color: colors_colpaner.base, child: Row()),
-                    Container(
-                        height: 40, color: colors_colpaner.claro, child: Row()),
-                    Container(
-                        height: 40, color: colors_colpaner.base, child: Row()),
-                    Container(
-                        height: 40, color: colors_colpaner.claro, child: Row()),
+                        height: 40,
+                        color: colors_colpaner.oscuro,
+                        child: Row()),
+                    Container(height: 40, color: Colors.white, child: Row()),
                   ]),
                 ),
               ),

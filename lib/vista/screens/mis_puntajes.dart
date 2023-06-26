@@ -312,6 +312,8 @@ class _misPuntajesState extends State<misPuntajes> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _getAvatarFromSharedPrefs();
+
+    obtenerPuntajes();
   }
 
   @override
@@ -333,104 +335,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
       setState(() {});
     });
-
-    //recibe el puntaje total del modulo mat y lo establece en variable para estitmar procentaje de progreso
-    getPuntajesTotal_MAT().then((value) {
-      setState(() {
-        puntos_mat = value ?? 0;
-      });
-    });
-
-    getPuntajesTotal_ING().then((value) {
-      setState(() {
-        puntos_ing = value ?? 0;
-      });
-    });
-
-    getPuntajesTotal_LEC().then((value) {
-      setState(() {
-        puntos_lec = value ?? 0;
-      });
-    });
-
-    getPuntajesTotal_CIU().then((value) {
-      setState(() {
-        puntos_ciu = value ?? 0;
-      });
-    });
-
-    getPuntajesTotal_NAT().then((value) {
-      setState(() {
-        puntos_nat = value ?? 0;
-      });
-    });
-
-    //obtiene de shp cada nivel de puntaje y los actualiza
-    getPuntaje_MAT();
-    getPuntaje_ING();
-    getPuntaje_LEC();
-    getPuntaje_CIU();
-    getPuntaje_NAT();
-
-    //----- MATEM
-    getPuntajeMat1_firestore();
-    getPuntajeMat2_firestore();
-    getPuntajeMat3_firestore();
-    getPuntajeMat4_firestore();
-    getPuntajeMat5_firestore();
-    getPuntajeMat6_firestore();
-    getPuntajeMat7_firestore();
-    getPuntajeMat8_firestore();
-    //getPuntajeMat9_firestore();
-    getPuntajeMat10_firestore();
-
-    //----- INGLES
-    getPuntajeIngles1_firestore();
-    getPuntajeIngles2_firestore();
-    getPuntajeIngles3_firestore();
-    getPuntajeIngles4_firestore();
-    getPuntajeIngles5_firestore();
-    getPuntajeIngles6_firestore();
-    getPuntajeIngles7_firestore();
-    getPuntajeIngles8_firestore();
-    //getPuntajeIngles9_firestore();
-    getPuntajeIngles10_firestore();
-
-    //-----LECTURA
-    getPuntajeLectura1_firestore();
-    getPuntajeLectura2_firestore();
-    getPuntajeLectura3_firestore();
-    getPuntajeLectura4_firestore();
-    getPuntajeLectura5_firestore();
-    getPuntajeLectura6_firestore();
-    getPuntajeLectura7_firestore();
-    getPuntajeLectura8_firestore();
-    //getPuntajeLectura9_firestore();
-    getPuntajeLectura10_firestore();
-
-    //----CIUDADANAS
-    getPuntajeCiudadanas1_firestore();
-    getPuntajeCiudadanas2_firestore();
-    getPuntajeCiudadanas3_firestore();
-    getPuntajeCiudadanas4_firestore();
-    getPuntajeCiudadanas5_firestore();
-    getPuntajeCiudadanas6_firestore();
-    getPuntajeCiudadanas7_firestore();
-    getPuntajeCiudadanas8_firestore();
-    //getPuntajeCiudadanas9_firestore();
-    getPuntajeCiudadanas10_firestore();
-
-    //----NATURALES
-    getPuntajeNaturales1_firestore();
-    getPuntajeNaturales2_firestore();
-    getPuntajeNaturales3_firestore();
-    getPuntajeNaturales4_firestore();
-    getPuntajeNaturales5_firestore();
-    getPuntajeNaturales6_firestore();
-    getPuntajeNaturales7_firestore();
-    getPuntajeNaturales8_firestore();
-    //getPuntajeNaturales9_firestore();
-    getPuntajeNaturales10_firestore();
+    obtenerPuntajes();
   }
 
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
@@ -626,7 +531,6 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeMatNivel8;
   }
 
-/*   //funcion que busca el nivel 9, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat9_firestore() async {
     int puntajeMatNivel9 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -650,7 +554,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
     return puntajeMatNivel9;
   }
- */
+
   Future<int> getPuntajeMat10_firestore() async {
     int puntajeMatNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -855,7 +759,7 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeIngNivel8;
   }
 
-/*   Future<int> getPuntajeIngles9_firestore() async {
+  Future<int> getPuntajeIngles9_firestore() async {
     int puntajeIngNivel9 = 0;
 
     final docSnapshot = await FirebaseFirestore.instance
@@ -876,7 +780,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
     return puntajeIngNivel9;
   }
- */
+
   Future<int> getPuntajeIngles10_firestore() async {
     int puntajeIngNivel10 = 0;
 
@@ -1094,7 +998,7 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeLecNivel8;
   }
 
-/*   Future<int> getPuntajeLectura9_firestore() async {
+  Future<int> getPuntajeLectura9_firestore() async {
     int puntajeLecNivel9 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
 
@@ -1117,7 +1021,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
     return puntajeLecNivel9;
   }
- */
+
   Future<int> getPuntajeLectura10_firestore() async {
     int puntajeLecNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -1336,7 +1240,7 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeCiuNivel8;
   }
 
-/*   Future<int> getPuntajeCiudadanas9_firestore() async {
+  Future<int> getPuntajeCiudadanas9_firestore() async {
     int puntajeCiuNivel9 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
 
@@ -1359,7 +1263,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
     return puntajeCiuNivel9;
   }
- */
+
   Future<int> getPuntajeCiudadanas10_firestore() async {
     int puntajeCiuNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -1579,7 +1483,7 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeNatNivel8;
   }
 
-/*   Future<int> getPuntajeNaturales9_firestore() async {
+  Future<int> getPuntajeNaturales9_firestore() async {
     int puntajeNatNivel9 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
 
@@ -1602,7 +1506,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
     return puntajeNatNivel9;
   }
- */
+
   Future<int> getPuntajeNaturales10_firestore() async {
     int puntajeNatNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -4779,5 +4683,105 @@ class _misPuntajesState extends State<misPuntajes> {
     await FirebaseAuth.instance.signOut();
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginScreen()));
+  }
+
+  void obtenerPuntajes() {
+    //recibe el puntaje total del modulo mat y lo establece en variable para estitmar procentaje de progreso
+    getPuntajesTotal_MAT().then((value) {
+      setState(() {
+        puntos_mat = value ?? 0;
+      });
+    });
+
+    getPuntajesTotal_ING().then((value) {
+      setState(() {
+        puntos_ing = value ?? 0;
+      });
+    });
+
+    getPuntajesTotal_LEC().then((value) {
+      setState(() {
+        puntos_lec = value ?? 0;
+      });
+    });
+
+    getPuntajesTotal_CIU().then((value) {
+      setState(() {
+        puntos_ciu = value ?? 0;
+      });
+    });
+
+    getPuntajesTotal_NAT().then((value) {
+      setState(() {
+        puntos_nat = value ?? 0;
+      });
+    });
+
+    //obtiene de shp cada nivel de puntaje y los actualiza
+    getPuntaje_MAT();
+    getPuntaje_ING();
+    getPuntaje_LEC();
+    getPuntaje_CIU();
+    getPuntaje_NAT();
+
+    //----- MATEM
+    getPuntajeMat1_firestore();
+    getPuntajeMat2_firestore();
+    getPuntajeMat3_firestore();
+    getPuntajeMat4_firestore();
+    getPuntajeMat5_firestore();
+    getPuntajeMat6_firestore();
+    getPuntajeMat7_firestore();
+    getPuntajeMat8_firestore();
+    getPuntajeMat9_firestore();
+    getPuntajeMat10_firestore();
+
+    //----- INGLES
+    getPuntajeIngles1_firestore();
+    getPuntajeIngles2_firestore();
+    getPuntajeIngles3_firestore();
+    getPuntajeIngles4_firestore();
+    getPuntajeIngles5_firestore();
+    getPuntajeIngles6_firestore();
+    getPuntajeIngles7_firestore();
+    getPuntajeIngles8_firestore();
+    getPuntajeIngles9_firestore();
+    getPuntajeIngles10_firestore();
+
+    //-----LECTURA
+    getPuntajeLectura1_firestore();
+    getPuntajeLectura2_firestore();
+    getPuntajeLectura3_firestore();
+    getPuntajeLectura4_firestore();
+    getPuntajeLectura5_firestore();
+    getPuntajeLectura6_firestore();
+    getPuntajeLectura7_firestore();
+    getPuntajeLectura8_firestore();
+    getPuntajeLectura9_firestore();
+    getPuntajeLectura10_firestore();
+
+    //----CIUDADANAS
+    getPuntajeCiudadanas1_firestore();
+    getPuntajeCiudadanas2_firestore();
+    getPuntajeCiudadanas3_firestore();
+    getPuntajeCiudadanas4_firestore();
+    getPuntajeCiudadanas5_firestore();
+    getPuntajeCiudadanas6_firestore();
+    getPuntajeCiudadanas7_firestore();
+    getPuntajeCiudadanas8_firestore();
+    getPuntajeCiudadanas9_firestore();
+    getPuntajeCiudadanas10_firestore();
+
+    //----NATURALES
+    getPuntajeNaturales1_firestore();
+    getPuntajeNaturales2_firestore();
+    getPuntajeNaturales3_firestore();
+    getPuntajeNaturales4_firestore();
+    getPuntajeNaturales5_firestore();
+    getPuntajeNaturales6_firestore();
+    getPuntajeNaturales7_firestore();
+    getPuntajeNaturales8_firestore();
+    getPuntajeNaturales9_firestore();
+    getPuntajeNaturales10_firestore();
   }
 }

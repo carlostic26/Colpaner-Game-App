@@ -232,7 +232,16 @@ class _level7State extends State<level7> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
-                        height: 20.0,
+                        height: 10.0,
+                      ),
+                      const Text(
+                        "Nivel 7",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.oscuro,
+                        ),
                       ),
                       Center(
                         child: Row(
@@ -247,7 +256,7 @@ class _level7State extends State<level7> {
                                 color: colors_colpaner.claro,
                               ),
                             ),
-                            SizedBox(width: 20),
+                            const SizedBox(width: 20),
                             Container(
                               margin: const EdgeInsets.all(5.0),
                               padding: const EdgeInsets.symmetric(
@@ -277,7 +286,7 @@ class _level7State extends State<level7> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20.0,
+                        height: 10.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -289,7 +298,7 @@ class _level7State extends State<level7> {
                         ],
                       ),
                       const SizedBox(
-                        height: 20.0,
+                        height: 50.0,
                       ),
                       //texto de afirmación
                       Positioned(
@@ -382,6 +391,7 @@ class _level7State extends State<level7> {
 
                                           //si falla mas de lo debido
                                           if (numIntentos == numIntentosMax) {
+                                            stopTimer();
                                             print(
                                                 'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
                                             //Opcional, enviar como parametro respuesta correcta y mostrar en ese dialogo
@@ -406,14 +416,15 @@ class _level7State extends State<level7> {
                                           if (Game7.succes == word.length ||
                                               Game7.succes ==
                                                   countWordSinRepetidos) {
+                                            stopTimer();
                                             print(
                                                 'PALABRA COMPLETADA CORRECTAMENTE');
                                             //guarda puntaje de nivel en firestore
                                             _guardarPuntajeNivel7(Game7.succes);
 
                                             Future.delayed(
-                                                Duration(milliseconds: 500),
-                                                () {
+                                                const Duration(
+                                                    milliseconds: 500), () {
                                               DialogHelper.showDialogGameOver(
                                                   context,
                                                   Game7.succes.toString());

@@ -650,6 +650,7 @@ final questionsNat = [
     ],
   ),
 ];
+
 final questionsLec = [
   // Pregunta 1
   Question(
@@ -949,7 +950,7 @@ class ResultPage extends StatelessWidget {
       children: <Widget>[
         //CONTAINER DEL FONDO QUE CONTIENE IMAGEN DE FONDO LADRILLOS
         Container(
-          decoration: const BoxDecoration(color: colors_colpaner.oscuro),
+          decoration: const BoxDecoration(color: colors_colpaner.base),
           padding: const EdgeInsets.symmetric(
             horizontal: 8,
           ),
@@ -977,7 +978,7 @@ class ResultPage extends StatelessWidget {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: colors_colpaner
-                            .base, // utilizar el color de fondo deseado en lugar de Colors.blue
+                            .oscuro, // utilizar el color de fondo deseado en lugar de Colors.blue
                         foregroundColor: Colors
                             .white, // opcional, color del texto y del icono
                         elevation: 4, // opcional, la elevación del botón
@@ -1008,7 +1009,7 @@ class ResultPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: colors_colpaner.base,
+                        primary: colors_colpaner.oscuro,
                         onPrimary: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

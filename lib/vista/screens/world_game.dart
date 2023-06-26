@@ -131,8 +131,9 @@ class _world_gameState extends State<world_game> {
     getPuntajeIngles6_firestore();
     getPuntajeIngles7_firestore();
     getPuntajeIngles8_firestore();
-    //getPuntajeIngles9_firestore();
+    getPuntajeIngles9_firestore();
     getPuntajeIngles10_firestore();
+
     //----- MATEM
     getPuntajeMat1_firestore();
     getPuntajeMat2_firestore();
@@ -142,15 +143,34 @@ class _world_gameState extends State<world_game> {
     getPuntajeMat6_firestore();
     getPuntajeMat7_firestore();
     getPuntajeMat8_firestore();
-    //getPuntajeMat7_firestore();
+    getPuntajeMat7_firestore();
     getPuntajeMat10_firestore();
 
     //----- LECTURA
     getPuntajeLectura1_firestore();
     getPuntajeLectura2_firestore();
+    getPuntajeLectura3_firestore();
+    getPuntajeLectura4_firestore();
+    getPuntajeLectura5_firestore();
+    getPuntajeLectura6_firestore();
+    getPuntajeLectura7_firestore();
+    getPuntajeLectura8_firestore();
+    getPuntajeLectura9_firestore();
+    getPuntajeLectura10_firestore();
 
     //----- SOCIALES
     getPuntajeSociales1_firestore();
+    getPuntajeSociales2_firestore();
+    getPuntajeSociales3_firestore();
+    getPuntajeSociales4_firestore();
+    getPuntajeSociales5_firestore();
+    getPuntajeSociales6_firestore();
+    getPuntajeSociales7_firestore();
+    getPuntajeSociales8_firestore();
+    getPuntajeSociales9_firestore();
+    getPuntajeSociales10_firestore();
+
+    //----- NATURALES
   }
 
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
@@ -346,7 +366,6 @@ class _world_gameState extends State<world_game> {
     return puntajeMatNivel8;
   }
 
-/*   //funcion que busca el nivel 9, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeMat9_firestore() async {
     int puntajeMatNivel9 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -366,10 +385,11 @@ class _world_gameState extends State<world_game> {
     }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('puntaje_mat_7', puntajeMatNivel9.toString());
+    await prefs.setString('puntaje_mat_9', puntajeMatNivel9.toString());
 
     return puntajeMatNivel9;
-  } */
+  }
+
   Future<int> getPuntajeMat10_firestore() async {
     int puntajeMatNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -389,7 +409,7 @@ class _world_gameState extends State<world_game> {
     }
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('puntaje_mat_7', puntajeMatNivel10.toString());
+    await prefs.setString('puntaje_mat_10', puntajeMatNivel10.toString());
 
     return puntajeMatNivel10;
   }
@@ -574,7 +594,6 @@ class _world_gameState extends State<world_game> {
     return puntajeIngNivel8;
   }
 
-/*   //funcion que busca el nivel 9, si existe, lo envia a shp para ser sumado a puntaje total
   Future<int> getPuntajeIngles9_firestore() async {
     int puntajeIngNivel9 = 0;
 
@@ -595,7 +614,7 @@ class _world_gameState extends State<world_game> {
     }
 
     return puntajeIngNivel9;
-  } */
+  }
 
   Future<int> getPuntajeIngles10_firestore() async {
     int puntajeIngNivel10 = 0;
@@ -814,6 +833,30 @@ class _world_gameState extends State<world_game> {
     return puntajeLecNivel8;
   }
 
+  Future<int> getPuntajeLectura9_firestore() async {
+    int puntajeLecNivel9 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel9')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeLecNivel9 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_lectura_9', puntajeLecNivel9.toString());
+
+    return puntajeLecNivel9;
+  }
+
   Future<int> getPuntajeLectura10_firestore() async {
     int puntajeLecNivel10 =
         0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
@@ -862,6 +905,464 @@ class _world_gameState extends State<world_game> {
     await prefs.setString('puntaje_sociales_1', puntajeSocNivel1.toString());
 
     return puntajeSocNivel1;
+  }
+
+  Future<int> getPuntajeSociales2_firestore() async {
+    int puntajeSocNivel2 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel2')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel2 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_2', puntajeSocNivel2.toString());
+
+    return puntajeSocNivel2;
+  }
+
+  Future<int> getPuntajeSociales3_firestore() async {
+    int puntajeSocNivel3 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel3')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel3 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_3', puntajeSocNivel3.toString());
+
+    return puntajeSocNivel3;
+  }
+
+  Future<int> getPuntajeSociales4_firestore() async {
+    int puntajeSocNivel4 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel4')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel4 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_4', puntajeSocNivel4.toString());
+
+    return puntajeSocNivel4;
+  }
+
+  Future<int> getPuntajeSociales5_firestore() async {
+    int puntajeSocNivel5 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel5')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel5 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_5', puntajeSocNivel5.toString());
+
+    return puntajeSocNivel5;
+  }
+
+  Future<int> getPuntajeSociales6_firestore() async {
+    int puntajeSocNivel6 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel6')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel6 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_6', puntajeSocNivel6.toString());
+
+    return puntajeSocNivel6;
+  }
+
+  Future<int> getPuntajeSociales7_firestore() async {
+    int puntajeSocNivel7 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel7')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel7 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_7', puntajeSocNivel7.toString());
+
+    return puntajeSocNivel7;
+  }
+
+  Future<int> getPuntajeSociales8_firestore() async {
+    int puntajeSocNivel8 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel8')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel8 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_8', puntajeSocNivel8.toString());
+
+    return puntajeSocNivel8;
+  }
+
+  Future<int> getPuntajeSociales9_firestore() async {
+    int puntajeSocNivel9 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel9')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel9 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_9', puntajeSocNivel9.toString());
+
+    return puntajeSocNivel9;
+  }
+
+  Future<int> getPuntajeSociales10_firestore() async {
+    int puntajeSocNivel10 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('sociales')
+        .collection('nivel10')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeSocNivel10 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_sociales_10', puntajeSocNivel10.toString());
+
+    return puntajeSocNivel10;
+  }
+
+  //----------------------------- NATURALES ----------------------------------
+  //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
+  Future<int> getPuntajeNaturales1_firestore() async {
+    int puntajeNatNivel1 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel1')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel1 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_1', puntajeNatNivel1.toString());
+
+    return puntajeNatNivel1;
+  }
+
+  Future<int> getPuntajeNaturales2_firestore() async {
+    int puntajeNatNivel2 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel2')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel2 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_2', puntajeNatNivel2.toString());
+
+    return puntajeNatNivel2;
+  }
+
+  Future<int> getPuntajeNaturales3_firestore() async {
+    int puntajeNatNivel3 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel3')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel3 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_3', puntajeNatNivel3.toString());
+
+    return puntajeNatNivel3;
+  }
+
+  Future<int> getPuntajeNaturales4_firestore() async {
+    int puntajeNatNivel4 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel4')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel4 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_4', puntajeNatNivel4.toString());
+
+    return puntajeNatNivel4;
+  }
+
+  Future<int> getPuntajeNaturales5_firestore() async {
+    int puntajeNatNivel5 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel5')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel5 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_5', puntajeNatNivel5.toString());
+
+    return puntajeNatNivel5;
+  }
+
+  Future<int> getPuntajeNaturales6_firestore() async {
+    int puntajeNatNivel6 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel6')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel6 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_6', puntajeNatNivel6.toString());
+
+    return puntajeNatNivel6;
+  }
+
+  Future<int> getPuntajeNaturales7_firestore() async {
+    int puntajeNatNivel7 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel7')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel7 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_7', puntajeNatNivel7.toString());
+
+    return puntajeNatNivel7;
+  }
+
+  Future<int> getPuntajeNaturales8_firestore() async {
+    int puntajeNatNivel8 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel8')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel8 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_8', puntajeNatNivel8.toString());
+
+    return puntajeNatNivel8;
+  }
+
+  Future<int> getPuntajeNaturales9_firestore() async {
+    int puntajeNatNivel9 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel9')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel9 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_9', puntajeNatNivel9.toString());
+
+    return puntajeNatNivel9;
+  }
+
+  Future<int> getPuntajeNaturales10_firestore() async {
+    int puntajeNatNivel10 =
+        0; // Inicializar la variable con un valor predeterminado en caso de que no haya datos
+
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('naturales')
+        .collection('nivel10')
+        .doc(user!.uid)
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('puntaje')) {
+        puntajeNatNivel10 = data['puntaje'] as int;
+      }
+    }
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('puntaje_naturales_10', puntajeNatNivel10.toString());
+
+    return puntajeNatNivel10;
   }
 
   @override

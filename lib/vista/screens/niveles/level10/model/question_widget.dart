@@ -173,7 +173,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         _isLocked
             ? buildElevatedButton(_questions?.length)
             : const SizedBox.shrink(),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         const Divider(
           thickness: 1,
           color: Colors.grey,
@@ -364,7 +364,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: colors_colpaner.claro, // Background color
-        minimumSize: const Size(100, 40),
+        minimumSize: const Size(100, 35),
       ),
       child: Text(
         _questionNumber < questionsLength! ? 'Siguiente' : 'Revisar resultado',

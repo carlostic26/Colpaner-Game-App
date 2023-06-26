@@ -25,11 +25,11 @@ class _genderChooserState extends State<genderChooser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colors_colpaner.oscuro,
+      backgroundColor: colors_colpaner.base,
       body: Dialog(
-        //shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         //elevation: 1,
-        //backgroundColor: Colors.transparent,
+        backgroundColor: colors_colpaner.claro,
         child: _buildChild(context),
       ),
     );

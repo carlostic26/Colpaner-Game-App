@@ -483,7 +483,7 @@ final questionsMat = [
           isCorrect: false),
       const Option(
           text:
-              'B. conjunto de elementos de las matemáticas, que permiten al ciudadano tomar parte activa e informada en los contextos social, cultural, político, administrativo, económico, educativo y laboral. ',
+              'B. Conjunto de elementos que permiten al ciudadano tomar parte activa e informada en los contextos social, cultural, político, administrativo, económico, educativo y laboral. ',
           isCorrect: true),
       const Option(
           text:
@@ -1041,7 +1041,7 @@ class ResultPage extends StatelessWidget {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: colors_colpaner
-                              .base, // utilizar el color de fondo deseado en lugar de Colors.blue
+                              .oscuro, // utilizar el color de fondo deseado en lugar de Colors.blue
                           foregroundColor: Colors
                               .white, // opcional, color del texto y del icono
                           elevation: 4, // opcional, la elevación del botón
@@ -1073,7 +1073,7 @@ class ResultPage extends StatelessWidget {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: colors_colpaner.base,
+                          primary: colors_colpaner.oscuro,
                           onPrimary: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),

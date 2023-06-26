@@ -121,6 +121,67 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     child: InkWell(
                       onTap: () {
                         //establece en memoria el módulo controlado por el usuario
+                        setModulo('Razonamiento Cuantitativo');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const world_game()),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: colors_colpaner.oscuro,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Expanded(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: colors_colpaner.oscuro,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(25.0),
+                                  child: CachedNetworkImage(
+                                    imageUrl: imageUrlMat,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: const [
+                                Expanded(
+                                  child: Text(
+                                    "Razonamiento Cuantitativo",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 15,
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        //establece en memoria el módulo controlado por el usuario
                         setModulo('Lectura Crítica');
                         Navigator.push(
                           context,
@@ -167,9 +228,16 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 15,
-                  ),
+                ],
+              ),
+            ),
+          ),
+          //Inglés - Naturales
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: Row(
+                children: <Widget>[
                   Expanded(
                     child: InkWell(
                       onTap: () {
@@ -210,74 +278,6 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                                   fontSize: 15,
                                   fontFamily: 'BubblegumSans',
                                   color: Colors.white),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          //Razonamiento - Naturales
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        //establece en memoria el módulo controlado por el usuario
-                        setModulo('Razonamiento Cuantitativo');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const world_game()),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.oscuro,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colors_colpaner.oscuro,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(25.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrlMat,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: const [
-                                Expanded(
-                                  child: Text(
-                                    "Razonamiento Cuantitativo",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'BubblegumSans',
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ],
                             ),
                             const SizedBox(
                               height: 10,
