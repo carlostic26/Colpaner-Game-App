@@ -4,11 +4,11 @@ import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 Widget letter(String character, bool hidden) {
   return Container(
     height: 50,
-    width: 35,
+    width: 40,
     padding: EdgeInsets.all(1.0),
     decoration: BoxDecoration(
       color: colors_colpaner.oscuro, //color red dark
-      borderRadius: BorderRadius.circular(12.0),
+      borderRadius: BorderRadius.circular(15.0),
     ),
     child: Visibility(
       visible: !hidden,

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
@@ -18,12 +19,6 @@ class level6 extends StatefulWidget {
   @override
   State<level6> createState() => _level6State();
 }
-
-TextStyle customTextStyle = const TextStyle(
-  fontFamily: 'BubblegumSans',
-  fontSize: 24,
-  color: Colors.white,
-);
 
 class _level6State extends State<level6> {
   String _message = "";
@@ -262,20 +257,6 @@ class _level6State extends State<level6> {
     super.initState();
     _startCountdown();
     _getModuloFromSharedPrefs();
-
-/*     if (_modulo == 'Razonamiento Cuantitativo') {
-      diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesMAT);
-    } else if (_modulo == 'Inglés') {
-      diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesING);
-    } else {
-      diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmaciones);
-    } */
-
-/*     if (_modulo == 'Inglés') {
-      setState(() {
-        diezAfirmaciones = obtenerAfirmacionesAleatorias(afirmacionesING);
-      });
-    } */
   }
 
   void _showResult(bool isCorrect) {
@@ -314,7 +295,7 @@ class _level6State extends State<level6> {
         Column(
           children: [
             const SizedBox(
-              height: 80.0,
+              height: 50.0,
             ),
             const Text(
               "¿Verdadero o Falso?",
@@ -325,9 +306,19 @@ class _level6State extends State<level6> {
                 color: colors_colpaner.claro,
               ),
             ),
-/*             const Divider(
+            Text(
+              "$_modulo",
+              style: const TextStyle(
+                fontSize: 15.0,
+                fontFamily: 'BubblegumSans',
+                fontWeight: FontWeight.bold,
+                color: colors_colpaner.oscuro,
+              ),
+            ),
+            const Divider(
               color: colors_colpaner.oscuro,
             ),
+/*             
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
@@ -527,10 +518,13 @@ class _level6State extends State<level6> {
                                 .toList()[_currentAfirmacionIndex]
                     ? Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: EdgeInsets.all(20.0),
                           child: Align(
                             alignment: Alignment.bottomRight,
                             child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: colors_colpaner.oscuro,
+                              ),
                               onPressed: () {
                                 if (seleccion != null) {
                                   bool respuesta = diezAfirmaciones.values
@@ -650,7 +644,7 @@ class _level6State extends State<level6> {
     //obtiene el modulo del shp
     String modulo = await getModulo();
 
-    if (modulo == 'Razonamiento Cuantitativo') {
+    if (_modulo == 'Razonamiento Cuantitativo') {
       //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
       /*  //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -665,11 +659,7 @@ class _level6State extends State<level6> {
       await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
     }
 
-    if (modulo == 'Inglés') {
-      //establece el puntaje obtenido y lo guarda en shp
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_ing_6', score);
-
+    if (_modulo == 'Inglés') {
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
@@ -677,6 +667,36 @@ class _level6State extends State<level6> {
           .doc(user!.uid);
 
       await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Lectura Crítica') {
+      final puntajesRefIng = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('lectura')
+          .collection('nivel6')
+          .doc(user!.uid);
+
+      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Ciencias Naturales') {
+      final puntajesRefSoc = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('naturales')
+          .collection('nivel6')
+          .doc(user!.uid);
+
+      await puntajesRefSoc.set({'userId': user.uid, 'puntaje': puntaje});
+    }
+
+    if (_modulo == 'Competencias Ciudadanas') {
+      final puntajesRefCiu = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('ciudadanas')
+          .collection('nivel6')
+          .doc(user!.uid);
+
+      await puntajesRefCiu.set({'userId': user.uid, 'puntaje': puntaje});
     }
   }
 }

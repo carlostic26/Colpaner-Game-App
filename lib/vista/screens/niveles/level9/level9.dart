@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
@@ -21,12 +22,6 @@ class level9Quiz extends StatefulWidget {
   @override
   State<level9Quiz> createState() => _level9QuizState();
 }
-
-TextStyle customTextStyle = const TextStyle(
-  fontFamily: 'BubblegumSans',
-  fontSize: 24,
-  color: Colors.white,
-);
 
 class _level9QuizState extends State<level9Quiz> {
   String _message = "";

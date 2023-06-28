@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level7/utils/level7_game.dart';
@@ -26,12 +27,6 @@ class level7 extends StatefulWidget {
   @override
   State<level7> createState() => _level7State();
 }
-
-TextStyle customTextStyle = const TextStyle(
-  fontFamily: 'BubblegumSans',
-  fontSize: 24,
-  color: Colors.white,
-);
 
 class _level7State extends State<level7> {
   String modulo = '';
@@ -87,42 +82,39 @@ class _level7State extends State<level7> {
         afirmacion =
             'Es una figura retórica que consiste en exagerar o amplificar una cualidad o característica de algo o alguien para enfatizar su importancia o impacto.';
         word = "HIPERBOLA".toUpperCase();
-        numIntentosMax = word.length + 3;
       }
       if (modulo.contains('Inglés')) {
         afirmacion =
             'The use of this (plural word) in English provides flexibility and expresses various degrees of possibility, necessity, and ability.';
         word = "MODALS";
-        numIntentosMax = word.length + 3;
       }
 
       if (modulo.contains('Razonamiento Cuantitativo')) {
         afirmacion =
             'Es un número que no puede expresarse como una fracción exacta y cuyo decimal no termina ni se repite.';
         word = "IRRACIONAL".toUpperCase();
-        numIntentosMax = word.length + 3;
       }
 
       if (modulo.contains('Ciencias Naturales')) {
         afirmacion =
             'Son los compuestos químicos formados por carbono e hidrógeno, y pueden encontrarse en diversas formas como sólidos, líquidos o gases.';
         word = "HIDROCARBUROS".toUpperCase();
-        numIntentosMax = word.length + 3;
       }
 
       if (modulo.contains('Competencias Ciudadanas')) {
         afirmacion =
             'Son las habilidades, conocimientos y actitudes necesarias para participar de manera responsable en la sociedad, promoviendo valores democráticos, el respeto a los derechos humanos y la convivencia pacífica.';
         word = "PARTICIPACION".toUpperCase();
-        numIntentosMax = word.length + 3;
       }
 
-      Set wordSinRepetidos = Set.from(word.split(''));
-      countWordSinRepetidos = wordSinRepetidos.length;
+      Set<String> uniqueLetters = word.split('').toSet();
+      int countWordSinRepetidos = uniqueLetters.length;
+
+      numIntentosMax = countWordSinRepetidos + 6;
     });
   }
 
-  int numIntentosMax = 0;
+  int numIntentosMax = 6;
   int numIntentos = 0;
   bool gameover = false;
   int _start = 60;
@@ -232,16 +224,7 @@ class _level7State extends State<level7> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(
-                        height: 10.0,
-                      ),
-                      const Text(
-                        "Nivel 7",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontFamily: 'BubblegumSans',
-                          fontWeight: FontWeight.bold,
-                          color: colors_colpaner.oscuro,
-                        ),
+                        height: 20.0,
                       ),
                       Center(
                         child: Row(
@@ -285,6 +268,19 @@ class _level7State extends State<level7> {
                           ],
                         ),
                       ),
+
+                      Text(
+                        modulo,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.oscuro,
+                        ),
+                      ),
+                      const Divider(
+                        color: colors_colpaner.oscuro,
+                      ),
                       const SizedBox(
                         height: 10.0,
                       ),
@@ -298,11 +294,11 @@ class _level7State extends State<level7> {
                         ],
                       ),
                       const SizedBox(
-                        height: 50.0,
+                        height: 30.0,
                       ),
                       //texto de afirmación
                       Positioned(
-                        top: 20,
+                        top: 10,
                         left: -10,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
@@ -310,7 +306,7 @@ class _level7State extends State<level7> {
                             afirmacion,
                             style: const TextStyle(
                                 color: colors_colpaner.claro,
-                                fontSize: 15,
+                                fontSize: 18,
                                 fontFamily: 'BubblegumSans'),
                           ),
                         ),
@@ -354,6 +350,8 @@ class _level7State extends State<level7> {
                               .toList(),
                         ),
                       ),
+
+                      const SizedBox(height: 10),
 
                       //building the Game keyboard
                       SizedBox(
@@ -571,10 +569,6 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Lectura Crítica') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
-
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('lectura')
@@ -585,10 +579,6 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
-
       final puntajesRefSoc = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('naturales')
@@ -599,10 +589,6 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
-
       final puntajesRefCiu = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ciudadanas')

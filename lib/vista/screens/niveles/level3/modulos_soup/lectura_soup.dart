@@ -7,6 +7,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
@@ -22,12 +23,6 @@ class lectusoup extends StatefulWidget {
 
 String currentWord = '';
 List<String> words = [];
-
-TextStyle customTextStyle = const TextStyle(
-  fontFamily: 'BubblegumSans',
-  fontSize: 24,
-  color: Colors.white,
-);
 
 class _lectusoupState extends State<lectusoup> {
   String _message = "";
@@ -102,7 +97,7 @@ class _lectusoupState extends State<lectusoup> {
     }
   }
 
-  int _start = 900;
+  int _start = 120;
   bool _isRunning = false;
   late Timer _timer;
 

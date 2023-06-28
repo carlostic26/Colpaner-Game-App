@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/model/dbexam.dart';
 import 'package:gamicolpaner/model/question_list_model.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -46,12 +47,6 @@ class _simulacroState extends State<simulacro> {
 
   String _message = "";
   int _timeLeft = 6;
-
-  TextStyle customTextStyle = const TextStyle(
-    fontFamily: 'BubblegumSans',
-    fontSize: 24,
-    color: Colors.white,
-  );
 
   //llamando la clase question para conectar sqflite
   SimulacroHandler handler = SimulacroHandler();

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/modulo.dart';
+import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
@@ -22,12 +23,6 @@ class level4 extends StatefulWidget {
   @override
   State<level4> createState() => _level4State();
 }
-
-TextStyle customTextStyle = const TextStyle(
-  fontFamily: 'BubblegumSans',
-  fontSize: 24,
-  color: Colors.white,
-);
 
 class _level4State extends State<level4> {
   String modul = '';

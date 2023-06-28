@@ -20,14 +20,14 @@ class GameCards {
   ];
 
   final List<String> cards_list_mat = [
-    "Razonamiento Cuantitativo: resolución de problemas matemáticos.",
+    "El Razonamiento Cuantitativo es la resolución de problemas matemáticos.",
     "Habilidades numéricas y algebraicas en el módulo de Matemáticas.",
     "Interpretación de datos y gráficos en Razonamiento Cuantitativo.",
     "Aplicación de fórmulas y conceptos matemáticos en el examen.",
     "Resolución de ecuaciones y sistemas de ecuaciones en Matemáticas.",
     "Uso de estrategias y razonamiento lógico en el módulo de Razonamiento Cuantitativo.",
     //
-    "Razonamiento Cuantitativo: resolución de problemas matemáticos.",
+    "El Razonamiento Cuantitativo es la resolución de problemas matemáticos.",
     "Habilidades numéricas y algebraicas en el módulo de Matemáticas.",
     "Interpretación de datos y gráficos en Razonamiento Cuantitativo.",
     "Aplicación de fórmulas y conceptos matemáticos en el examen.",

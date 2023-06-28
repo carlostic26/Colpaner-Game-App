@@ -9,6 +9,8 @@ import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 
+import '../../../../controller/services/customStyle.dart';
+
 /*NIVEL TIPO QUIZ 
   Este nivel consiste en desplegar diferentes tipos de preguntas
   El jugador deberá seleccionar una de las opciones.
@@ -22,12 +24,6 @@ class level1Quiz extends StatefulWidget {
   @override
   State<level1Quiz> createState() => _level1QuizState();
 }
-
-TextStyle customTextStyle = const TextStyle(
-  fontFamily: 'BubblegumSans',
-  fontSize: 22,
-  color: Colors.white,
-);
 
 class _level1QuizState extends State<level1Quiz> {
   String _message = "";
