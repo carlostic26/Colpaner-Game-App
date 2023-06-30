@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-import 'package:gamicolpaner/controller/modulo.dart';
+
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
@@ -914,13 +914,20 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   LocalStorage localStorage = LocalStorage();
 
   //obtiene el modulo del shp
-  String _modulo = await getModulo();
+  String _modulo = await localStorage.getModulo();
 
   if (_modulo == 'Razonamiento Cuantitativo') {
     //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
     /*  //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntajes_MAT', score); */
+
+    //unlock next level
+    localStorage.setMatBtn2Unlock();
+    bool? btn2 = await localStorage.getMatBtn2Enabled();
+
+    print(
+        'IMPRIMIENDO BOOL BTN 2 DESPUES DE ESTABLECERLO DESDE GAMEOVER: $btn2');
 
     final puntajesRefMat = FirebaseFirestore.instance
         .collection('puntajes')
@@ -936,6 +943,10 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_ing_1', score);
 
+    //unlock next level
+    localStorage.setIngBtn2Unlock();
+    bool? btn2 = await localStorage.getMatBtn2Enabled();
+
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('ingles')
@@ -949,6 +960,10 @@ Future<void> _guardarPuntajeNivel1(int score) async {
 /*     //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
+
+    //unlock next level
+    localStorage.setIngBtn2Unlock();
+    bool? btn2 = await localStorage.getMatBtn2Enabled();
 
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
@@ -964,6 +979,10 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
 
+    //unlock next level
+    localStorage.setIngBtn2Unlock();
+    bool? btn2 = await localStorage.getMatBtn2Enabled();
+
     final puntajesRefSoc = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('naturales')
@@ -977,6 +996,10 @@ Future<void> _guardarPuntajeNivel1(int score) async {
 /*     //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
+
+    //unlock next level
+    localStorage.setCiuBtn2Unlock();
+    bool? btn2 = await localStorage.getMatBtn2Enabled();
 
     final puntajesRefCiu = FirebaseFirestore.instance
         .collection('puntajes')

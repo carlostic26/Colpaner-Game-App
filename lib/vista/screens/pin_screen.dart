@@ -64,7 +64,7 @@ class _pinScreenState extends State<pinScreen> {
                           const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: Text(
-                              "* Se requiere un pin de 5 dígitos para ingresar a la app. Si eres estudiante pregúntale al maestro encargado.",
+                              "* Esta aplicación es de uso exclusivo para estudiantes y docentes del Colegio Pablo Neruda. \n\n* Se requiere un pin de 5 dígitos para ingresar. Si eres estudiante pregúntale al docente encargado.",
                               style: TextStyle(fontSize: 10),
                             ),
                           ),

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-import 'package:gamicolpaner/controller/modulo.dart';
+
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';

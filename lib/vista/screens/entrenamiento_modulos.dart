@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
-import 'package:gamicolpaner/controller/modulo.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class entrenamientoModulos extends StatefulWidget {
@@ -88,6 +89,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
 
   @override
   Widget build(BuildContext context) {
+    LocalStorage localStorage = LocalStorage();
     return Scaffold(
       backgroundColor: colors_colpaner.base,
       appBar: AppBar(
@@ -111,7 +113,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.05,
           ),
-          //Lectura critica - Inglés
+          //Lectura crítica - Inglés
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
@@ -121,7 +123,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     child: InkWell(
                       onTap: () {
                         //establece en memoria el módulo controlado por el usuario
-                        setModulo('Razonamiento Cuantitativo');
+                        localStorage.setModulo('Razonamiento Cuantitativo');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -182,7 +184,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     child: InkWell(
                       onTap: () {
                         //establece en memoria el módulo controlado por el usuario
-                        setModulo('Lectura Crítica');
+                        localStorage.setModulo('Lectura Crítica');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -241,7 +243,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        setModulo('Inglés');
+                        localStorage.setModulo('Inglés');
 
                         Navigator.push(
                           context,
@@ -293,7 +295,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        setModulo('Ciencias Naturales');
+                        localStorage.setModulo('Ciencias Naturales');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -356,63 +358,13 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: Row(
                 children: <Widget>[
-                  /*  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        //establece en memoria el módulo controlado por el usuario
-                        setModulo('Sociales');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const world_game()),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.oscuro,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colors_colpaner.oscuro,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(25.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrlSoc,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Text(
-                              "Sociales",
-                              style: TextStyle(
-                                  fontFamily: 'BubblegumSans',
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ), */
                   const SizedBox(
                     width: 20,
                   ),
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        setModulo('Competencias Ciudadanas');
+                        localStorage.setModulo('Competencias Ciudadanas');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -476,219 +428,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     );
   }
 
-/*   //NAVIGATION DRAWER
-  Widget _getDrawer(BuildContext context) {
-    _getAvatarFromSharedPrefs();
-
-    double drawer_height = MediaQuery.of(context).size.height;
-    double drawer_width = MediaQuery.of(context).size.width;
-
-    //firebase
-    final user = FirebaseAuth.instance.currentUser;
-
-    String tecnicaElegida;
-
-    return Drawer(
-      width: drawer_width * 0.60,
-      elevation: 0,
-      child: Container(
-        height: drawer_height,
-        color: Color.fromRGBO(31, 126, 135, 1),
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: ListView(
-            children: <Widget>[
-              Container(
-                //height: 150.0,
-                alignment: Alignment.center,
-
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const SizedBox(height: 5.0),
-                    CachedNetworkImage(
-                      color: colors_colpaner.oscuro,
-                      width: 90.0,
-                      height: 90.0,
-                      fadeInDuration: Duration.zero,
-                      imageUrl: _imageAvatarUrl,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      placeholder: (context, url) =>
-                          CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => Icon(Icons.error),
-                    ),
-                    const SizedBox(height: 10.0),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(loggedInUser.fullName.toString(),
-                          style: const TextStyle(
-                              fontFamily: 'BubblegumSans',
-                              color: colors_colpaner.claro,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                    Text('Técnica de ${loggedInUser.tecnica}',
-                        style: const TextStyle(
-                          fontFamily: 'BubblegumSans',
-                          color: colors_colpaner.claro,
-                        )),
-                    Text(loggedInUser.email.toString(),
-                        style: const TextStyle(
-                          fontFamily: 'BubblegumSans',
-                          fontSize: 10,
-                          color: colors_colpaner.claro,
-                        )),
-                    const SizedBox(height: 50.0),
-                  ],
-                ),
-              ),
-              //Entrenamiento
-              ListTile(
-                  title: const Text("Entrenamiento",
-                      style: TextStyle(
-                          fontFamily: 'BubblegumSans',
-                          color: colors_colpaner.claro,
-                          fontWeight: FontWeight.bold)),
-                  leading: const Icon(
-                    Icons.psychology,
-                    color: colors_colpaner.claro,
-                  ),
-                  onTap: () => {
-                        Navigator.pop(context),
-                      }),
-              //Mis Puntajes
-              ListTile(
-                  title: const Text("Mis Puntajes",
-                      style: TextStyle(
-                        fontFamily: 'BubblegumSans',
-                        color: colors_colpaner.oscuro,
-                      )),
-                  leading: const Icon(
-                    Icons.sports_score,
-                    color: colors_colpaner.oscuro,
-                  ),
-                  onTap: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const misPuntajes()));
-                  }),
-              //Avatar
-              ListTile(
-                title: const Text("Ávatar",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
-                      color: colors_colpaner.oscuro,
-                    )),
-                leading: const Icon(
-                  Icons.face,
-                  color: colors_colpaner.oscuro,
-                ),
-                //at press, run the method
-                onTap: () async {
-                  //si es primera vez que se ingresa, mstrar al usuario dialogo de genero a leegor
-
-                  if (isAvatar == true) {
-                    if (gender == 'male') {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const avatarsMale()));
-                    }
-
-                    if (gender == 'female') {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const avatarsFemale()));
-                    }
-                  } else {
-                    DialogHelper.gender_dialog(context);
-                  }
-                },
-              ),
-              //Patrones ICFES
-              ListTile(
-                title: const Text("Patrones ICFES",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
-                      color: colors_colpaner.oscuro,
-                    )),
-                leading: const Icon(
-                  Icons.insights,
-                  color: colors_colpaner.oscuro,
-                ),
-                //at press, run the method
-                onTap: () {},
-              ),
-              //Usabilidad
-              ListTile(
-                title: const Text("Usabilidad",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
-                      color: colors_colpaner.oscuro,
-                    )),
-                leading: const Icon(
-                  Icons.extension,
-                  color: colors_colpaner.oscuro,
-                ),
-                //at press, run the method
-                onTap: () {},
-              ),
-              SizedBox(
-                height: drawer_height * 0.20,
-              ),
-              Expanded(
-                flex: 1,
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        title: const Text("",
-                            style: TextStyle(
-                              color: colors_colpaner.oscuro,
-                            )),
-                        leading: const Icon(
-                          Icons.settings,
-                          color: colors_colpaner.oscuro,
-                        ),
-                        //at press, run the method
-                        onTap: () {},
-                      ),
-                      const Divider(
-                        color: colors_colpaner.claro,
-                      ),
-                      ListTile(
-                        title: const Text("Cerrar sesión",
-                            style: TextStyle(
-                              fontFamily: 'BubblegumSans',
-                              color: colors_colpaner.oscuro,
-                            )),
-                        leading: const Icon(
-                          Icons.logout,
-                          color: colors_colpaner.oscuro,
-                        ),
-                        //at press, run the method
-                        onTap: () {
-                          clearSharedPreferences();
-                          logout(context);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
- */
-  // función para eliminar todos los registros de Shared Preferences
+// función para eliminar todos los registros de Shared Preferences
   Future<void> clearSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();

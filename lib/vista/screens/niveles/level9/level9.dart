@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-import 'package:gamicolpaner/controller/modulo.dart';
+
 import 'package:gamicolpaner/controller/services/customStyle.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
@@ -849,9 +850,10 @@ final questionsSoc = [
 Future<void> _guardarPuntajeNivel1(int score) async {
   final user = FirebaseAuth.instance.currentUser;
   final puntaje = score; // Puntaje obtenido
+  LocalStorage localStorage = LocalStorage();
 
   //obtiene el modulo del shp
-  String _modulo = await getModulo();
+  String _modulo = await localStorage.getModulo();
 
   if (_modulo == 'Razonamiento Cuantitativo') {
     //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
@@ -864,6 +866,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
         .doc('matematicas')
         .collection('nivel9')
         .doc(user!.uid);
+
+    //unlock next level
+    localStorage.setMatBtn10Unlock();
 
     await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
   }

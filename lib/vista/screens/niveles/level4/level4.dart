@@ -3,8 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-import 'package:gamicolpaner/controller/modulo.dart';
+
 import 'package:gamicolpaner/controller/services/customStyle.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
@@ -481,9 +482,10 @@ class _level4State extends State<level4> {
 Future<void> _guardarPuntajeNivel4(int score) async {
   final user = FirebaseAuth.instance.currentUser;
   final puntaje = score; // Puntaje obtenido
+  LocalStorage localStorage = LocalStorage();
 
   //obtiene el modulo del shp
-  String _modulo = await getModulo();
+  String _modulo = await localStorage.getModulo();
 
   switch (_modulo) {
     case 'Lectura Crítica':
@@ -510,6 +512,9 @@ Future<void> _guardarPuntajeNivel4(int score) async {
           .doc('matematicas')
           .collection('nivel4')
           .doc(user!.uid);
+
+      //unlock next level
+      localStorage.setMatBtn5Unlock();
 
       await puntajesRefMat.set({'userId': user.uid, 'puntaje': score});
       break;

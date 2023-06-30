@@ -2406,7 +2406,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   color: colors_colpaner.oscuro,
                 ),
 
-                //LECTURA CRITICA NIVELES
+                //LECTURA CRÍTICA NIVELES
                 const SizedBox(height: 10),
                 const Align(
                   alignment: Alignment.topLeft,

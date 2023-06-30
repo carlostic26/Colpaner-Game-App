@@ -108,7 +108,7 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                                 ? getPuntajesTotal_MAT()
                                 : _modulo == 'Inglés'
                                     ? getPuntajesTotal_ING()
-                                    : _modulo == 'Lectura Critica'
+                                    : _modulo == 'Lectura Crítica'
                                         ? getPuntajesTotal_LEC()
                                         : _modulo == 'Competencias Ciudadanas'
                                             ? getPuntajesTotal_CIU()

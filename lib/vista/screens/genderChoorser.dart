@@ -26,11 +26,46 @@ class _genderChooserState extends State<genderChooser> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colors_colpaner.base,
-      body: Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        //elevation: 1,
-        backgroundColor: colors_colpaner.claro,
-        child: _buildChild(context),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/gif_fondo.gif'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.8), // Ajusta la opacidad aquí
+            ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                "¡Bienvenido!",
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontFamily: 'BubblegumSans',
+                  fontWeight: FontWeight.bold,
+                  color: colors_colpaner.claro,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.08,
+              ),
+              Dialog(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                //elevation: 1,
+                backgroundColor: colors_colpaner.claro,
+                child: _buildChild(context),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

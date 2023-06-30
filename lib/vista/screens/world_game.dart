@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/puntajes_shp.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level1/level1_quiz.dart';
@@ -34,6 +35,7 @@ class _world_gameState extends State<world_game> {
   UserModel loggedInUser = UserModel();
 
   late Image button1,
+      btnDisable,
       button2,
       button3,
       button4,
@@ -72,6 +74,8 @@ class _world_gameState extends State<world_game> {
     'assets/button/button_unpushed.png',
   );
 
+  Image buttonDisable = Image.asset('assets/button/button_blocked.png');
+
   //recibe el modulo guardado anteriormente en sharedPreferences
   void _getModuloFromSharedPrefs() async {
     final prefs = await SharedPreferences.getInstance();
@@ -96,6 +100,89 @@ class _world_gameState extends State<world_game> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _getAvatarFromSharedPrefs();
+
+    getButtonEnabled();
+  }
+
+  bool niv2enabled = false;
+  bool niv3enabled = false;
+  bool niv4enabled = false;
+  bool niv5enabled = false;
+  bool niv6enabled = false;
+  bool niv7enabled = false;
+  bool niv8enabled = false;
+  bool niv9enabled = false;
+  bool niv10enabled = false;
+
+  void getButtonEnabled() async {
+    LocalStorage storage = LocalStorage();
+
+    switch (_modulo) {
+      case 'Razonamiento Cuantitativo':
+        setState(() async {
+          niv2enabled = (await storage.getMatBtn2Enabled())!;
+          niv3enabled = (await storage.getMatBtn3Enabled())!;
+          niv4enabled = (await storage.getMatBtn4Enabled())!;
+          niv5enabled = (await storage.getMatBtn5Enabled())!;
+          niv6enabled = (await storage.getMatBtn6Enabled())!;
+          niv7enabled = (await storage.getMatBtn7Enabled())!;
+          niv8enabled = (await storage.getMatBtn8Enabled())!;
+          niv9enabled = (await storage.getMatBtn9Enabled())!;
+          niv10enabled = (await storage.getMatBtn10Enabled())!;
+
+          //print('IMPRIMIENDO BOOL BTN 2 DESDE METOD GETBUTTNENABLED: $niv2enabled');
+        });
+
+        break;
+
+      case 'Inglés':
+        niv2enabled = (await storage.getIngBtn2Enabled())!;
+        niv3enabled = (await storage.getIngBtn3Enabled())!;
+        niv4enabled = (await storage.getIngBtn4Enabled())!;
+        niv5enabled = (await storage.getIngBtn5Enabled())!;
+        niv6enabled = (await storage.getIngBtn6Enabled())!;
+        niv7enabled = (await storage.getIngBtn7Enabled())!;
+        niv8enabled = (await storage.getIngBtn8Enabled())!;
+        niv9enabled = (await storage.getIngBtn9Enabled())!;
+        niv10enabled = (await storage.getIngBtn10Enabled())!;
+        break;
+
+      case 'Ciencias Naturales':
+        niv2enabled = (await storage.getNatBtn2Enabled())!;
+        niv3enabled = (await storage.getNatBtn3Enabled())!;
+        niv4enabled = (await storage.getNatBtn4Enabled())!;
+        niv5enabled = (await storage.getNatBtn5Enabled())!;
+        niv6enabled = (await storage.getNatBtn6Enabled())!;
+        niv7enabled = (await storage.getNatBtn7Enabled())!;
+        niv8enabled = (await storage.getNatBtn8Enabled())!;
+        niv9enabled = (await storage.getNatBtn9Enabled())!;
+        niv10enabled = (await storage.getNatBtn10Enabled())!;
+        break;
+
+      case 'Competencias Ciudadanas':
+        niv2enabled = (await storage.getCiuBtn2Enabled())!;
+        niv3enabled = (await storage.getCiuBtn3Enabled())!;
+        niv4enabled = (await storage.getCiuBtn4Enabled())!;
+        niv5enabled = (await storage.getCiuBtn5Enabled())!;
+        niv6enabled = (await storage.getCiuBtn6Enabled())!;
+        niv7enabled = (await storage.getCiuBtn7Enabled())!;
+        niv8enabled = (await storage.getCiuBtn8Enabled())!;
+        niv9enabled = (await storage.getCiuBtn9Enabled())!;
+        niv10enabled = (await storage.getCiuBtn10Enabled())!;
+        break;
+
+      case 'Lectura Crítica':
+        niv2enabled = (await storage.getLecBtn2Enabled())!;
+        niv3enabled = (await storage.getLecBtn3Enabled())!;
+        niv4enabled = (await storage.getLecBtn4Enabled())!;
+        niv5enabled = (await storage.getLecBtn5Enabled())!;
+        niv6enabled = (await storage.getLecBtn6Enabled())!;
+        niv7enabled = (await storage.getLecBtn7Enabled())!;
+        niv8enabled = (await storage.getLecBtn8Enabled())!;
+        niv9enabled = (await storage.getLecBtn9Enabled())!;
+        niv10enabled = (await storage.getLecBtn10Enabled())!;
+        break;
+    }
   }
 
   @override
@@ -103,6 +190,8 @@ class _world_gameState extends State<world_game> {
     // TODO: implement initState
     super.initState();
     _getModuloFromSharedPrefs();
+
+    btnDisable = buttonDisable;
     button1 = buttonUnpressed;
     button2 = buttonUnpressed;
     button3 = buttonUnpressed;
@@ -122,6 +211,8 @@ class _world_gameState extends State<world_game> {
       loggedInUser = UserModel.fromMap(value.data());
       setState(() {});
     });
+    //print('IMPRIMIENDO BOOL BTN 2 DESDE INIT STATE WORLDGAME: $niv2enabled');
+    //getButtonEnabled();
     //----- INGLES
     getPuntajeIngles1_firestore();
     getPuntajeIngles2_firestore();
@@ -1367,6 +1458,7 @@ class _world_gameState extends State<world_game> {
 
   @override
   Widget build(BuildContext context) {
+    getButtonEnabled();
     _getAvatarFromSharedPrefs();
     final double totalWidth = MediaQuery.of(context).size.width;
     final double cellWidth = (totalWidth - 16) / 3;
@@ -1461,7 +1553,7 @@ class _world_gameState extends State<world_game> {
                             left: MediaQuery.of(context).size.width * 0.685,
                             top: 45,
                             child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 8, 1, 1),
+                              padding: const EdgeInsets.fromLTRB(0, 5, 1, 1),
                               child: Column(
                                 children: [
                                   const Text(
@@ -1488,7 +1580,7 @@ class _world_gameState extends State<world_game> {
                                           style: const TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'BubblegumSans',
-                                            fontSize: 13,
+                                            fontSize: 20,
                                           ),
                                         );
                                       } else {
@@ -1511,6 +1603,7 @@ class _world_gameState extends State<world_game> {
                 ),
               ),
 
+              // btn 10
               Positioned(
                 right: MediaQuery.of(context).size.width * 0.325,
                 top: MediaQuery.of(context).size.height * 0.135,
@@ -1519,8 +1612,9 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 100,
                       width: 100,
+                      //Establece la imagen del boton - blocked || habilitado
                       child: GestureDetector(
-                        child: button10,
+                        child: niv10enabled ? button10 : buttonDisable,
                       ),
                     ),
                     Positioned(
@@ -1529,26 +1623,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button10 = buttonPressed;
+                            if (niv10enabled == true) {
+                              button10 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button10 = buttonUnpressed;
+                            if (niv10enabled == true) {
+                              button10 = buttonUnpressed;
+                              showDialogLevel(10, _modulo);
+                            }
                           });
-                          showDialogLevel(10, _modulo);
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          child: Text(
-                            '10',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 25,
-                            ),
-                          ),
+                          child: niv10enabled
+                              ? const Text(
+                                  '10',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1566,9 +1668,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 62,
                       width: 62,
-                      child: GestureDetector(
-                        child: button9,
-                      ),
+                      child: niv9enabled ? button9 : buttonDisable,
                     ),
                     Positioned(
                       top: 12,
@@ -1576,26 +1676,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button9 = buttonPressed;
+                            if (niv9enabled == true) {
+                              button9 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button9 = buttonUnpressed;
+                            if (niv9enabled == true) {
+                              button9 = buttonUnpressed;
+                              showDialogLevel(9, _modulo);
+                            }
                           });
-                          showDialogLevel(9, _modulo);
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          child: Text(
-                            '9',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 20,
-                            ),
-                          ),
+                          child: niv9enabled
+                              ? const Text(
+                                  '9',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1613,9 +1721,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 70,
                       width: 70,
-                      child: GestureDetector(
-                        child: button8,
-                      ),
+                      child: niv8enabled ? button8 : buttonDisable,
                     ),
                     Positioned(
                       top: 15,
@@ -1623,26 +1729,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button8 = buttonPressed;
+                            if (niv8enabled == true) {
+                              button8 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button8 = buttonUnpressed;
+                            if (niv8enabled == true) {
+                              button8 = buttonUnpressed;
+                              showDialogLevel(8, _modulo);
+                            }
                           });
-                          showDialogLevel(8, _modulo);
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          child: Text(
-                            '8',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 20,
-                            ),
-                          ),
+                          child: niv8enabled
+                              ? const Text(
+                                  '8',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1660,9 +1774,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 70,
                       width: 70,
-                      child: GestureDetector(
-                        child: button7,
-                      ),
+                      child: niv7enabled ? button7 : buttonDisable,
                     ),
                     Positioned(
                       top: 16,
@@ -1670,22 +1782,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button7 = buttonPressed;
+                            if (niv7enabled == true) {
+                              button7 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button7 = buttonUnpressed;
+                            if (niv7enabled == true) {
+                              button7 = buttonUnpressed;
+                              showDialogLevel(7, _modulo);
+                            }
                           });
-                          showDialogLevel(7, _modulo);
                         },
-                        child: const Text(
-                          '7',
-                          style: TextStyle(
-                            color: colors_colpaner.claro,
-                            fontFamily: 'BubblegumSans',
-                            fontSize: 21,
-                          ),
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: niv7enabled
+                              ? const Text(
+                                  '7',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1703,9 +1827,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 75,
                       width: 75,
-                      child: GestureDetector(
-                        child: button6,
-                      ),
+                      child: niv6enabled ? button6 : buttonDisable,
                     ),
                     Positioned(
                       top: 17,
@@ -1713,26 +1835,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button6 = buttonPressed;
+                            if (niv6enabled == true) {
+                              button6 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button6 = buttonUnpressed;
+                            if (niv6enabled == true) {
+                              button6 = buttonUnpressed;
+                              showDialogLevel(6, _modulo);
+                            }
                           });
-                          showDialogLevel(6, _modulo);
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          child: Text(
-                            '6',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 21,
-                            ),
-                          ),
+                          child: niv6enabled
+                              ? const Text(
+                                  '6',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1749,9 +1879,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 75,
                       width: 75,
-                      child: GestureDetector(
-                        child: button5,
-                      ),
+                      child: niv5enabled ? button5 : buttonDisable,
                     ),
                     Positioned(
                       top: 16,
@@ -1759,26 +1887,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button5 = buttonPressed;
+                            if (niv5enabled == true) {
+                              button5 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button5 = buttonUnpressed;
+                            if (niv5enabled == true) {
+                              button5 = buttonUnpressed;
+                              showDialogLevel(5, _modulo);
+                            }
                           });
-                          showDialogLevel(5, _modulo);
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          child: Text(
-                            '5',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 22,
-                            ),
-                          ),
+                          child: niv5enabled
+                              ? const Text(
+                                  '5',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1796,9 +1932,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 75,
                       width: 75,
-                      child: GestureDetector(
-                        child: button4,
-                      ),
+                      child: niv4enabled ? button4 : buttonDisable,
                     ),
                     Positioned(
                       top: 16,
@@ -1806,26 +1940,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button4 = buttonPressed;
+                            if (niv4enabled == true) {
+                              button4 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button4 = buttonUnpressed;
+                            if (niv4enabled == true) {
+                              button4 = buttonUnpressed;
+                              showDialogLevel(4, _modulo);
+                            }
                           });
-                          showDialogLevel(4, _modulo);
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          child: Text(
-                            '4',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 22,
-                            ),
-                          ),
+                          child: niv4enabled
+                              ? const Text(
+                                  '4',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1843,9 +1985,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 80,
                       width: 100,
-                      child: GestureDetector(
-                        child: button3,
-                      ),
+                      child: niv3enabled ? button3 : buttonDisable,
                     ),
                     Positioned(
                       top: 17,
@@ -1853,26 +1993,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button3 = buttonPressed;
+                            if (niv3enabled == true) {
+                              button3 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button3 = buttonUnpressed;
+                            if (niv3enabled == true) {
+                              button3 = buttonUnpressed;
+                              showDialogLevel(3, _modulo);
+                            }
                           });
-                          showDialogLevel(3, _modulo);
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 100,
                           width: 100,
-                          child: Text(
-                            '3',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 25,
-                            ),
-                          ),
+                          child: niv3enabled
+                              ? const Text(
+                                  '3',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),
@@ -1890,9 +2038,7 @@ class _world_gameState extends State<world_game> {
                     SizedBox(
                       height: 90,
                       width: 90,
-                      child: GestureDetector(
-                        child: button2,
-                      ),
+                      child: niv2enabled ? button2 : buttonDisable,
                     ),
                     Positioned(
                       top: 19,
@@ -1900,26 +2046,34 @@ class _world_gameState extends State<world_game> {
                       child: GestureDetector(
                         onTapDown: (tap) {
                           setState(() {
-                            button2 = buttonPressed;
+                            if (niv2enabled == true) {
+                              button2 = buttonPressed;
+                            }
                           });
                         },
                         onTapUp: (tap) {
                           setState(() {
-                            button2 = buttonUnpressed;
+                            if (niv2enabled == true) {
+                              button2 = buttonUnpressed;
+                              showDialogLevel(2, _modulo);
+                            }
                           });
-                          showDialogLevel(2, _modulo);
                         },
-                        child: const SizedBox(
-                          height: 80,
+                        child: SizedBox(
+                          height: 100,
                           width: 100,
-                          child: Text(
-                            '2',
-                            style: TextStyle(
-                              color: colors_colpaner.claro,
-                              fontFamily: 'BubblegumSans',
-                              fontSize: 28,
-                            ),
-                          ),
+                          child: niv2enabled
+                              ? const Text(
+                                  '2',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 25,
+                                  ),
+                                )
+                              : const Text(
+                                  '',
+                                ),
                         ),
                       ),
                     ),

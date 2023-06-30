@@ -97,7 +97,7 @@ class SimulacroHandler {
             '("MAT2", "25. Para ambientar musicalmente una reunión, se cuenta con tres CD, cada uno de ellos tiene canciones de salsa (S) y merengue (M). ¿Cuál de los siguientes diagramas representa la situación de seleccionar al azar una canción del CD1, luego una del CD2 y finalmente una del CD3?", "", "", "", "", 1,0,0,0, "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiUypYXbnJdBU5Asqxt9NJB5sxb_rUTAJdUv0tO_9qQ9HsiR9gEEqD69INR4wYyd6TlXnUa45rKPObRRJrPztp7vmEj9Y9htiZeWdTMiF2QYyjhMuIDpoFx8gdOa0btdcFf6nAq2HSr1zuIYa_dO0ku18XXIk_zy5g-59RNRg0IN_xTeK1grcgkpc4/s866/3m7.PNG"),'
             //25
 
-            // LECTURA CRITICA: 35 PREGUNTAS entregadas + 15 PREGUNTAS REGENERADAS = 50 PREGUNTAS
+            // LECTURA CRÍTICA: 35 PREGUNTAS entregadas + 15 PREGUNTAS REGENERADAS = 50 PREGUNTAS
             //podrian ser 3 simulacros diferentes de 35 preguntas, ya que no se pueden desorganizar por el contexto que lleva el enuncia de, ej: "las preguntas 2 y 3"
             //https://www2.icfes.gov.co/documents/39286/1253831/MR+Lectura+Cri%CC%81tica+Saber+11.%C2%B0+2021.pdf/a2e47376-5a8a-17ca-a082-37d40b1178c2?version=1.0&t=1654133589190
 

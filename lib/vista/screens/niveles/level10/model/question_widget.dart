@@ -437,9 +437,10 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   Future<void> _guardarPuntaje(int score) async {
     final user = FirebaseAuth.instance.currentUser;
     final puntaje = score; // Puntaje obtenido
+    LocalStorage localStorage = LocalStorage();
 
 //obtiene el modulo del shp
-    String _modulo = await getModulo();
+    String _modulo = await localStorage.getModulo();
 
     if (_modulo == 'Razonamiento Cuantitativo') {
       final puntajesRefMat = FirebaseFirestore.instance

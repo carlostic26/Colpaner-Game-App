@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-import 'package:gamicolpaner/controller/modulo.dart';
+
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -351,7 +351,7 @@ class _level2State extends State<level2> {
     LocalStorage localStorage = LocalStorage();
 
     //obtiene el modulo del shp
-    String _modulo = await getModulo();
+    String modulo = await localStorage.getModulo();
 
     if (_modulo == 'Lectura Crítica') {
       //guarda puntaje en firestore
@@ -394,10 +394,10 @@ class _level2State extends State<level2> {
           .collection('nivel2')
           .doc(user!.uid);
 
-      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
+      //unlock next level
+      localStorage.setMatBtn3Unlock();
 
-      // Llama al método setMatBtn1Unlock() en LocalStorage
-      await localStorage.setMatBtn2Unlock();
+      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
     }
 
     if (_modulo == 'Inglés') {

@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-import 'package:gamicolpaner/controller/modulo.dart';
+
 import 'package:gamicolpaner/controller/services/customStyle.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
@@ -1416,8 +1417,10 @@ class _lectusoupState extends State<lectusoup> {
     final user = FirebaseAuth.instance.currentUser;
     final puntaje = score; // Puntaje obtenido
 
+    LocalStorage localStorage = LocalStorage();
+
     //obtiene el modulo del shp
-    String modulo = await getModulo();
+    String modulo = await localStorage.getModulo();
 
     if (_modulo == 'Lectura Crítica') {
       //guarda puntaje en firestore
