@@ -547,6 +547,9 @@ class _level7State extends State<level7> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntajes_MAT', score); */
 
+      //unlock next level
+      localStorage.setMatBtn8Unlock();
+
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('matematicas')
@@ -564,6 +567,9 @@ class _level7State extends State<level7> {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setInt('puntaje_ing_1', score);
 
+      //unlock next level
+      localStorage.setIngBtn8Unlock();
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
@@ -574,6 +580,9 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Lectura Crítica') {
+      //unlock next level
+      localStorage.setLecBtn8Unlock();
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('lectura')
@@ -584,6 +593,9 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
+      //unlock next level
+      localStorage.setNatBtn8Unlock();
+
       final puntajesRefSoc = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('naturales')
@@ -594,6 +606,9 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //unlock next level
+      localStorage.setCiuBtn8Unlock();
+
       final puntajesRefCiu = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ciudadanas')

@@ -926,9 +926,6 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     localStorage.setMatBtn2Unlock();
     bool? btn2 = await localStorage.getMatBtn2Enabled();
 
-    print(
-        'IMPRIMIENDO BOOL BTN 2 DESPUES DE ESTABLECERLO DESDE GAMEOVER: $btn2');
-
     final puntajesRefMat = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('matematicas')
@@ -963,7 +960,7 @@ Future<void> _guardarPuntajeNivel1(int score) async {
 
     //unlock next level
     localStorage.setIngBtn2Unlock();
-    bool? btn2 = await localStorage.getMatBtn2Enabled();
+    //bool? btn2 = await localStorage.getMatBtn2Enabled();
 
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
@@ -975,9 +972,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Ciencias Naturales') {
-/*     //establece el puntaje obtenido y lo guarda en shp
+    //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    await preferences.setInt('puntaje_nat_1', score);
 
     //unlock next level
     localStorage.setIngBtn2Unlock();
@@ -993,9 +990,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Competencias Ciudadanas') {
-/*     //establece el puntaje obtenido y lo guarda en shp
+    //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    await preferences.setInt('puntaje_ciu_1', score);
 
     //unlock next level
     localStorage.setCiuBtn2Unlock();

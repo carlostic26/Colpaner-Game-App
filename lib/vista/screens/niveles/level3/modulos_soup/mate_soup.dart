@@ -1,12 +1,10 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -1423,66 +1421,20 @@ class _matesoupState extends State<matesoup> {
 
     LocalStorage localStorage = LocalStorage();
 
+    //unlock next level
+    localStorage.setMatBtn4Unlock();
+
     //obtiene el modulo del shp
     String modulo = await localStorage.getModulo();
 
-    if (_modulo == 'Lectura Crítica') {
-      //guarda puntaje en firestore
-      final puntajesRefIng = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('lectura')
-          .collection('nivel3')
-          .doc(user!.uid);
+    //guarda puntaje en firestore
+    final puntajesRefMat = FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('matematicas')
+        .collection('nivel3')
+        .doc(user!.uid);
 
-      //unlock next level
-      localStorage.setMatBtn4Unlock();
-
-      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (_modulo == 'Competencias Ciudadanas') {
-      //guarda puntaje en firestore
-      final puntajesRefMat = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('competencias')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (_modulo == 'Comunicación Escrita') {
-      //guarda puntaje en firestore
-      final puntajesRefMat = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('comunicacion')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (modulo == 'Razonamiento Cuantitativo') {
-      //guarda puntaje en firestore
-      final puntajesRefMat = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('matematicas')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (modulo == 'Inglés') {
-      //guarda puntaje en firestore
-      final puntajesRefIng = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('ingles')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
-    }
+    await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
   }
 }
 

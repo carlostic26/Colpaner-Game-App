@@ -482,10 +482,10 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       await puntajesRefNat.set({'userId': user.uid, 'puntaje': puntaje});
     }
 
-    if (_modulo == 'Sociales') {
+    if (_modulo == 'Competencias Ciudadanas') {
       final puntajesRefSoc = FirebaseFirestore.instance
           .collection('puntajes')
-          .doc('sociales')
+          .doc('ciudadanas')
           .collection('nivel10')
           .doc(user!.uid);
 

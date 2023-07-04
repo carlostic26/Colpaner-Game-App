@@ -1391,13 +1391,16 @@ class _ciudasoupState extends State<ciudasoup> {
 
     LocalStorage localStorage = LocalStorage();
 
+    //unlock next level
+    localStorage.setCiuBtn4Unlock();
+
     //obtiene el modulo del shp
     String modulo = await localStorage.getModulo();
 
     //guarda puntaje en firestore
     final puntajesRefMat = FirebaseFirestore.instance
         .collection('puntajes')
-        .doc('competencias')
+        .doc('ciudadanas')
         .collection('nivel3')
         .doc(user!.uid);
 

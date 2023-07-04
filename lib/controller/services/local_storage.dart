@@ -402,7 +402,7 @@ class LocalStorage {
     await preferences.setBool('ciu_enabled10', true);
   }
 
-  //CIUDADANAS GET
+  //LECTURA GET
 
   Future<bool?> getLecBtn2Enabled() async {
     prefs = await SharedPreferences.getInstance();
@@ -449,7 +449,7 @@ class LocalStorage {
     return prefs.getBool('lec_enabled10') ?? false;
   }
 
-  //CIUDADANAS SET
+  //LECTURA SET
 
   Future<bool?> setLecBtn2Unlock() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -495,4 +495,8 @@ class LocalStorage {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setBool('ciu_enabled10', true);
   }
+
+  //NATURALES GET
+
+  //NATURALES SET
 }

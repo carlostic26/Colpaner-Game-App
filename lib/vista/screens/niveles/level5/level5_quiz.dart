@@ -932,14 +932,14 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntajes_MAT', score); */
 
+    //unlock next level
+    localStorage.setMatBtn6Unlock();
+
     final puntajesRefMat = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('matematicas')
         .collection('nivel5')
         .doc(user!.uid);
-
-    //unlock next level
-    localStorage.setMatBtn6Unlock();
 
     await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
   }
@@ -948,6 +948,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     //establece el puntaje obtenido y lo guarda en shp
     //SharedPreferences preferences = await SharedPreferences.getInstance();
     //await preferences.setInt('puntaje_ing_1', score);
+
+    //unlock next level
+    localStorage.setIngBtn6Unlock();
 
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
@@ -963,6 +966,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
 
+    //unlock next level
+    localStorage.setLecBtn6Unlock();
+
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('lectura')
@@ -977,6 +983,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
 
+    //unlock next level
+    localStorage.setNatBtn6Unlock();
+
     final puntajesRefSoc = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('naturales')
@@ -990,6 +999,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
 /*     //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
+
+    //unlock next level
+    localStorage.setCiuBtn6Unlock();
 
     final puntajesRefCiu = FirebaseFirestore.instance
         .collection('puntajes')

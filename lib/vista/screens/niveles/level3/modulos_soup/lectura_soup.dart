@@ -1418,64 +1418,17 @@ class _lectusoupState extends State<lectusoup> {
     final puntaje = score; // Puntaje obtenido
 
     LocalStorage localStorage = LocalStorage();
+    //unlock next level
+    localStorage.setLecBtn4Unlock();
 
-    //obtiene el modulo del shp
-    String modulo = await localStorage.getModulo();
+    //guarda puntaje en firestore
+    final puntajesRefIng = FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('lectura')
+        .collection('nivel3')
+        .doc(user!.uid);
 
-    if (_modulo == 'Lectura Crítica') {
-      //guarda puntaje en firestore
-      final puntajesRefIng = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('lectura')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (_modulo == 'Competencias Ciudadanas') {
-      //guarda puntaje en firestore
-      final puntajesRefMat = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('competencias')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (_modulo == 'Comunicación Escrita') {
-      //guarda puntaje en firestore
-      final puntajesRefMat = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('comunicacion')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (modulo == 'Razonamiento Cuantitativo') {
-      //guarda puntaje en firestore
-      final puntajesRefMat = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('matematicas')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
-    }
-
-    if (modulo == 'Inglés') {
-      //guarda puntaje en firestore
-      final puntajesRefIng = FirebaseFirestore.instance
-          .collection('puntajes')
-          .doc('ingles')
-          .collection('nivel3')
-          .doc(user!.uid);
-
-      await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
-    }
+    await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
   }
 }
 

@@ -8,6 +8,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 
 import 'package:gamicolpaner/controller/services/customStyle.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
@@ -1406,6 +1407,10 @@ class _inglessoupState extends State<inglessoup> {
   Future<void> _guardarPuntajeNivel3(int score) async {
     final user = FirebaseAuth.instance.currentUser;
     final puntaje = score; // Puntaje obtenido
+
+    LocalStorage localStorage = LocalStorage();
+    //unlock next level
+    localStorage.setIngBtn4Unlock();
 
     //guarda puntaje en firestore
     final puntajesRefIng = FirebaseFirestore.instance

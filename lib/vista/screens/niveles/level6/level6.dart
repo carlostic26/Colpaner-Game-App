@@ -1,18 +1,20 @@
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level2/scoreCards.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
-
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+/*LEVEL 6
+  True - False Game. User will see one afirmation and two options: true/false
+  The are 10 points & 10 tries
+*/
 
 class level6 extends StatefulWidget {
   const level6({super.key});
@@ -652,19 +654,22 @@ class _level6State extends State<level6> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntajes_MAT', score); */
 
+      //unlock next level
+      localStorage.setMatBtn7Unlock();
+
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('matematicas')
           .collection('nivel6')
           .doc(user!.uid);
 
-      //unlock next level
-      localStorage.setMatBtn7Unlock();
-
       await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
     }
 
     if (_modulo == 'Inglés') {
+      //unlock next level
+      localStorage.setIngBtn7Unlock();
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
@@ -675,6 +680,9 @@ class _level6State extends State<level6> {
     }
 
     if (_modulo == 'Lectura Crítica') {
+      //unlock next level
+      localStorage.setLecBtn7Unlock();
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('lectura')
@@ -685,6 +693,9 @@ class _level6State extends State<level6> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
+      //unlock next level
+      localStorage.setNatBtn7Unlock();
+
       final puntajesRefSoc = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('naturales')
@@ -695,6 +706,9 @@ class _level6State extends State<level6> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //unlock next level
+      localStorage.setCiuBtn7Unlock();
+
       final puntajesRefCiu = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ciudadanas')

@@ -385,37 +385,37 @@ Future<int> getPuntajesTotal_LEC() async {
 Future<int> getPuntajesTotal_CIU() async {
   final prefs = await SharedPreferences.getInstance();
 
-  String score_ciu1 = prefs.getString('puntaje_ciudadanas_1') ?? '';
+  String score_ciu1 = prefs.getString('puntaje_ciu_1') ?? '';
   niv1SOC = int.tryParse(score_ciu1) ?? 0;
 
-  String score_ciu2 = prefs.getString('puntaje_ciudadanas_2') ?? '';
+  String score_ciu2 = prefs.getString('puntaje_ciu_2') ?? '';
   niv2SOC = int.tryParse(score_ciu2) ?? 0;
 
-  String score_ciu3 = prefs.getString('puntaje_ciudadanas_3') ?? '';
+  String score_ciu3 = prefs.getString('puntaje_ciu_3') ?? '';
   niv3SOC = int.tryParse(score_ciu3) ?? 0;
 
-  String score_ciu4 = prefs.getString('puntaje_ciudadanas_4') ?? '';
+  String score_ciu4 = prefs.getString('puntaje_ciu_4') ?? '';
   niv4SOC = int.tryParse(score_ciu4) ?? 0;
 
-  String score_ciu5 = prefs.getString('puntaje_ciudadanas_5') ?? '';
+  String score_ciu5 = prefs.getString('puntaje_ciu_5') ?? '';
   niv5SOC = int.tryParse(score_ciu5) ?? 0;
 
-  String score_ciu6 = prefs.getString('puntaje_ciudadanas_6') ?? '';
+  String score_ciu6 = prefs.getString('puntaje_ciu_6') ?? '';
   niv6SOC = int.tryParse(score_ciu6) ?? 0;
 
-  String score_ciu7 = prefs.getString('puntaje_ciudadanas_7') ?? '';
+  String score_ciu7 = prefs.getString('puntaje_ciu_7') ?? '';
   niv7SOC = int.tryParse(score_ciu7) ?? 0;
 
-  String score_ciu8 = prefs.getString('puntaje_ciudadanas_8') ?? '';
+  String score_ciu8 = prefs.getString('puntaje_ciu_8') ?? '';
   niv8SOC = int.tryParse(score_ciu8) ?? 0;
 
-  String score_ciu9 = prefs.getString('puntaje_ciudadanas_9') ?? '';
+  String score_ciu9 = prefs.getString('puntaje_ciu_9') ?? '';
   niv9SOC = int.tryParse(score_ciu9) ?? 0;
 
-  String score_ciu10 = prefs.getString('puntaje_ciudadanas_10') ?? '';
+  String score_ciu10 = prefs.getString('puntaje_ciu_10') ?? '';
   niv10SOC = int.tryParse(score_ciu10) ?? 0;
 
-  scoreTotal_SOC = niv1SOC +
+  scoreTotal_CIU = niv1SOC +
       niv2SOC +
       niv3SOC +
       niv4SOC +
@@ -425,7 +425,7 @@ Future<int> getPuntajesTotal_CIU() async {
       niv8SOC +
       niv9SOC +
       niv10SOC;
-  return scoreTotal_SOC;
+  return scoreTotal_CIU;
 }
 
 Future<int> getPuntajesTotal_NAT() async {

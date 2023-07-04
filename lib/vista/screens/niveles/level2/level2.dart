@@ -354,6 +354,8 @@ class _level2State extends State<level2> {
     String modulo = await localStorage.getModulo();
 
     if (_modulo == 'Lectura Crítica') {
+      //unlock next level
+      localStorage.setLecBtn3Unlock();
       //guarda puntaje en firestore
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
@@ -365,21 +367,25 @@ class _level2State extends State<level2> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //unlock next level
+      localStorage.setCiuBtn3Unlock();
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
-          .doc('competencias')
+          .doc('ciudadanas')
           .collection('nivel2')
           .doc(user!.uid);
 
       await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
     }
 
-    if (_modulo == 'Comunicación Escrita') {
+    if (_modulo == 'Ciencias Naturales') {
+      //unlock next level
+      localStorage.setNatBtn3Unlock();
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
-          .doc('comunicacion')
+          .doc('naturales')
           .collection('nivel2')
           .doc(user!.uid);
 
@@ -387,6 +393,8 @@ class _level2State extends State<level2> {
     }
 
     if (_modulo == 'Razonamiento Cuantitativo') {
+      //unlock next level
+      localStorage.setMatBtn3Unlock();
       //guarda puntaje en firestore
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
@@ -401,6 +409,8 @@ class _level2State extends State<level2> {
     }
 
     if (_modulo == 'Inglés') {
+      //unlock next level
+      localStorage.setIngBtn3Unlock();
       //guarda puntaje en firestore
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')

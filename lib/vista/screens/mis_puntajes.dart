@@ -20,13 +20,13 @@ class _misPuntajesState extends State<misPuntajes> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
-  String _modulo = '';
+  String moduloShp = '';
 
   //recibe el modulo guardado anteriormente en sharedPreferences
   void _getModuloFromSharedPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _modulo = prefs.getString('modulo') ?? '';
+      moduloShp = prefs.getString('modulo') ?? '';
     });
   }
 
@@ -80,6 +80,7 @@ class _misPuntajesState extends State<misPuntajes> {
   int puntos_ciu = 0;
   int puntos_nat = 0;
   int puntos_test = 5;
+  int puntos_global = 0;
   final int puntosMaximos_test = 100;
 
   int mat1 = 0,
@@ -316,6 +317,9 @@ class _misPuntajesState extends State<misPuntajes> {
     obtenerPuntajes();
   }
 
+  late List<QueryDocumentSnapshot> mejoresPuntajes =
+      []; // Inicializar la variable con una lista vacía
+
   @override
   void initState() {
     // TODO: implement initState
@@ -336,6 +340,12 @@ class _misPuntajesState extends State<misPuntajes> {
       setState(() {});
     });
     obtenerPuntajes();
+
+    obtenerMejoresPuntajes().then((lista) {
+      setState(() {
+        mejoresPuntajes = lista;
+      });
+    });
   }
 
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
@@ -1531,6 +1541,38 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeNatNivel10;
   }
 
+  Future<void> guardarTotalGamicolpaner(puntajeGlobal) async {
+    User? user = FirebaseAuth.instance.currentUser;
+    UserModel loggedInUser = UserModel();
+
+    final puntajesRefTotal = FirebaseFirestore.instance
+        .collection('puntajes')
+        .doc('podio')
+        .collection('global')
+        .doc(user!.uid);
+
+    await puntajesRefTotal.set({
+      'userId': user.uid,
+      'fullName': user.email,
+      'puntajeGlobal': puntajeGlobal
+    });
+  }
+
+  Future<List<QueryDocumentSnapshot>> obtenerMejoresPuntajes() async {
+    final puntajesRef = FirebaseFirestore.instance.collection('puntajes');
+
+    final querySnapshot = await puntajesRef
+        .doc('podio')
+        .collection('global')
+        .orderBy('puntajeGlobal', descending: true)
+        .limit(6)
+        .get();
+
+    final mejoresPuntajes = querySnapshot.docs;
+
+    return mejoresPuntajes;
+  }
+
   @override
   Widget build(BuildContext context) {
     final double porcentaje_mat =
@@ -1550,6 +1592,18 @@ class _misPuntajesState extends State<misPuntajes> {
 
     final double porcentaje_test =
         puntos_test / puntosMaximos_test; // Calcular el porcentaje de progreso
+
+    puntos_global =
+        puntos_mat + puntos_ing + puntos_lec + puntos_ciu + puntos_nat;
+    print('IMPRIMIENDO, SE HA ENVIADO EL TOTAL COLECCION GLOBAL A FIREBASE');
+
+    //envio el total a firebase en una coleccion llamada global
+    guardarTotalGamicolpaner(puntos_global);
+
+    // Verificar si los mejores puntajes se han cargado
+    if (mejoresPuntajes == null) {
+      return CircularProgressIndicator(); // Muestra un indicador de carga mientras se obtienen los datos
+    }
 
     return Scaffold(
       backgroundColor: colors_colpaner.base,
@@ -4452,10 +4506,47 @@ class _misPuntajesState extends State<misPuntajes> {
                       ),
                       const SizedBox(height: 20),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
-                          child: Column(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  children: List.generate(
+                                      mejoresPuntajes.length, (index) {
+                                    final documento = mejoresPuntajes[index];
+                                    final datos = documento.data();
+                                    final datosMap =
+                                        datos as Map<String, dynamic>?;
+                                    final name =
+                                        datosMap?['fullName'] as String?;
+                                    final userId =
+                                        datosMap?['userId'] as String?;
+                                    final puntaje =
+                                        datosMap?['puntajeGlobal'] as int?;
+
+                                    return Container(
+                                      width: double.infinity,
+                                      height: 40,
+                                      color: colors[index % 2],
+                                      child: Text(
+                                        '$name: $puntaje',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.redAccent),
+                                      ),
+                                    );
+                                  }),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      /*
+                          Column(
                             children: [
                               for (int i = 0; i < 6; i++)
                                 Container(
@@ -4465,8 +4556,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                 ),
                             ],
                           ),
-                        ),
-                      ),
+                        */
                     ],
                   ),
                 ]),
@@ -4687,32 +4777,25 @@ class _misPuntajesState extends State<misPuntajes> {
 
   void obtenerPuntajes() {
     //recibe el puntaje total del modulo mat y lo establece en variable para estitmar procentaje de progreso
-    getPuntajesTotal_MAT().then((value) {
-      setState(() {
+
+    setState(() {
+      getPuntajesTotal_MAT().then((value) {
         puntos_mat = value ?? 0;
       });
-    });
 
-    getPuntajesTotal_ING().then((value) {
-      setState(() {
+      getPuntajesTotal_ING().then((value) {
         puntos_ing = value ?? 0;
       });
-    });
 
-    getPuntajesTotal_LEC().then((value) {
-      setState(() {
+      getPuntajesTotal_LEC().then((value) {
         puntos_lec = value ?? 0;
       });
-    });
 
-    getPuntajesTotal_CIU().then((value) {
-      setState(() {
+      getPuntajesTotal_CIU().then((value) {
         puntos_ciu = value ?? 0;
       });
-    });
 
-    getPuntajesTotal_NAT().then((value) {
-      setState(() {
+      getPuntajesTotal_NAT().then((value) {
         puntos_nat = value ?? 0;
       });
     });

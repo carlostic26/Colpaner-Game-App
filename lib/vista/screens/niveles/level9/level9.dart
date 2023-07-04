@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
@@ -861,6 +860,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntajes_MAT', score); */
 
+    //unlock next level
+    localStorage.setMatBtn10Unlock();
+
     final puntajesRefMat = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('matematicas')
@@ -878,6 +880,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     //SharedPreferences preferences = await SharedPreferences.getInstance();
     //await preferences.setInt('puntaje_ing_1', score);
 
+    //unlock next level
+    localStorage.setIngBtn10Unlock();
+
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('ingles')
@@ -891,6 +896,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
 /*     //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
+
+    //unlock next level
+    localStorage.setLecBtn10Unlock();
 
     final puntajesRefIng = FirebaseFirestore.instance
         .collection('puntajes')
@@ -906,6 +914,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
 
+    //unlock next level
+    localStorage.setNatBtn10Unlock();
+
     final puntajesRefSoc = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('naturales')
@@ -919,6 +930,9 @@ Future<void> _guardarPuntajeNivel1(int score) async {
 /*     //establece el puntaje obtenido y lo guarda en shp
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntaje_lec_1', score); */
+
+    //unlock next level
+    localStorage.setCiuBtn10Unlock();
 
     final puntajesRefCiu = FirebaseFirestore.instance
         .collection('puntajes')

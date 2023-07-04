@@ -1,11 +1,9 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
@@ -477,6 +475,9 @@ class _level8State extends State<level8> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setInt('puntajes_MAT', score); */
 
+      //unlock next level
+      localStorage.setMatBtn9Unlock();
+
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('matematicas')
@@ -494,6 +495,9 @@ class _level8State extends State<level8> {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setInt('puntaje_ing_8', score);
 
+      //unlock next level
+      localStorage.setIngBtn9Unlock();
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
@@ -504,6 +508,8 @@ class _level8State extends State<level8> {
     }
 
     if (_modulo == 'Lectura Crítica') {
+      //unlock next level
+      localStorage.setLecBtn9Unlock();
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('lectura')
@@ -514,6 +520,8 @@ class _level8State extends State<level8> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
+      //unlock next level
+      localStorage.setNatBtn9Unlock();
       final puntajesRefSoc = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('naturales')
@@ -524,6 +532,9 @@ class _level8State extends State<level8> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //unlock next level
+      localStorage.setMatBtn9Unlock();
+
       final puntajesRefCiu = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ciudadanas')

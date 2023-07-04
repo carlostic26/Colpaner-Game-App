@@ -36,14 +36,14 @@ class GameCards {
   ];
 
   final List<String> cards_list_ing = [
-    "Módulo Inglés: identificar errores y elegir opción correcta",
+    "Identificar errores y elegir opción correcta",
     "Habilidades lingüísticas en el examen de Inglés del ICFES.",
     "Interpretación de textos y diálogos en el módulo de Inglés.",
     "Vocabulario y gramática en el módulo de Inglés del ICFES Saber 11.",
     "Conocimiento de vocabulario en el examen de Inglés del ICFES.",
     "Uso de estrategias de comprensión y análisis en el módulo de Inglés.",
 //
-    "Módulo Inglés: identificar errores y elegir opción correcta",
+    "Identificar errores y elegir opción correcta",
     "Habilidades lingüísticas en el examen de Inglés del ICFES.",
     "Interpretación de textos y diálogos en el módulo de Inglés.",
     "Vocabulario y gramática en el módulo de Inglés del ICFES Saber 11.",

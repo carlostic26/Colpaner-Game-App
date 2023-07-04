@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -493,6 +492,9 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setInt('puntaje_lec_4', score);
 
+      //unlock next level
+      localStorage.setLecBtn5Unlock();
+
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('lectura')
@@ -506,6 +508,9 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       //establece el puntaje obtenido y lo guarda en shp
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setInt('puntaje_mat_4', score);
+
+      //unlock next level
+      localStorage.setMatBtn5Unlock();
 
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
@@ -523,6 +528,9 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setInt('puntaje_ing_4', score);
 
+      //unlock next level
+      localStorage.setIngBtn5Unlock();
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
@@ -536,6 +544,9 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       //establece el puntaje obtenido y lo guarda en shp
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setInt('puntaje_nat_4', score);
+
+      //unlock next level
+      localStorage.setNatBtn5Unlock();
 
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
@@ -551,6 +562,9 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setInt('puntaje_ciu_4', score);
 
+      //unlock next level
+      localStorage.setCiuBtn5Unlock();
+
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ciudadanas')
@@ -564,34 +578,6 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       // Código por defecto si el valor de 'modulo' no coincide con ningún caso
       break;
   }
-/* 
-  if (_modulo == 'Razonamiento Cuantitativo') {
-    //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntajes_MAT', score); 
-
-    final puntajesRefMat = FirebaseFirestore.instance
-        .collection('puntajes')
-        .doc('matematicas')
-        .collection('nivel4')
-        .doc(user!.uid);
-
-    await puntajesRefMat.set({'userId': user.uid, 'puntaje': puntaje});
-  }
-
-  if (_modulo == 'Inglés') {
-    //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_ing_4', score);
-
-    final puntajesRefIng = FirebaseFirestore.instance
-        .collection('puntajes')
-        .doc('ingles')
-        .collection('nivel4')
-        .doc(user!.uid);
-
-    await puntajesRefIng.set({'userId': user.uid, 'puntaje': puntaje});
-  } */
 }
 
 class ConceptoAfirmacion extends StatelessWidget {
