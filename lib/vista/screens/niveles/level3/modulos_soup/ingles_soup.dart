@@ -135,24 +135,12 @@ class _inglessoupState extends State<inglessoup> {
     });
   }
 
-  String _modulo = '';
-
-  void _getModuloFromSharedPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _modulo = prefs.getString('modulo') ?? '';
-
-      words = ['GRAMMAR', 'VOCABULARY', 'TENSES', 'READING', 'WRITING'];
-    });
-  }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     startTimer();
     _startCountdown();
-    _getModuloFromSharedPrefs();
   }
 
   @override
@@ -209,7 +197,7 @@ class _inglessoupState extends State<inglessoup> {
           Column(
             children: [
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 60, 0, 10),
+                padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -219,6 +207,21 @@ class _inglessoupState extends State<inglessoup> {
                       fontFamily: 'BubblegumSans',
                       fontWeight: FontWeight.bold,
                       color: colors_colpaner.claro,
+                    ),
+                  ),
+                ),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.fromLTRB(50, 0, 50, 10),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'Inglés',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: 'BubblegumSans',
+                      color: colors_colpaner.oscuro,
                     ),
                   ),
                 ),

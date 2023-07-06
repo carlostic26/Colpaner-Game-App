@@ -119,19 +119,17 @@ class _world_gameState extends State<world_game> {
 
     switch (_modulo) {
       case 'Razonamiento Cuantitativo':
-        setState(() async {
-          niv2enabled = (await storage.getMatBtn2Enabled())!;
-          niv3enabled = (await storage.getMatBtn3Enabled())!;
-          niv4enabled = (await storage.getMatBtn4Enabled())!;
-          niv5enabled = (await storage.getMatBtn5Enabled())!;
-          niv6enabled = (await storage.getMatBtn6Enabled())!;
-          niv7enabled = (await storage.getMatBtn7Enabled())!;
-          niv8enabled = (await storage.getMatBtn8Enabled())!;
-          niv9enabled = (await storage.getMatBtn9Enabled())!;
-          niv10enabled = (await storage.getMatBtn10Enabled())!;
+        niv2enabled = (await storage.getMatBtn2Enabled())!;
+        niv3enabled = (await storage.getMatBtn3Enabled())!;
+        niv4enabled = (await storage.getMatBtn4Enabled())!;
+        niv5enabled = (await storage.getMatBtn5Enabled())!;
+        niv6enabled = (await storage.getMatBtn6Enabled())!;
+        niv7enabled = (await storage.getMatBtn7Enabled())!;
+        niv8enabled = (await storage.getMatBtn8Enabled())!;
+        niv9enabled = (await storage.getMatBtn9Enabled())!;
+        niv10enabled = (await storage.getMatBtn10Enabled())!;
 
-          //print('IMPRIMIENDO BOOL BTN 2 DESDE METOD GETBUTTNENABLED: $niv2enabled');
-        });
+        //print('IMPRIMIENDO BOOL BTN 2 DESDE METOD GETBUTTNENABLED: $niv2enabled');
 
         break;
 
@@ -1502,13 +1500,15 @@ class _world_gameState extends State<world_game> {
                           Container(
                             padding: const EdgeInsets.all(1.0),
                             width: MediaQuery.of(context).size.width,
-                            height: 125,
+                            height: MediaQuery.of(context).size.height * 0.15,
                             decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage("assets/banner_user.png"),
                                   fit: BoxFit.fill),
                             ),
                           ),
+
+                          //text name and module
 
                           Positioned(
                             top: 50,

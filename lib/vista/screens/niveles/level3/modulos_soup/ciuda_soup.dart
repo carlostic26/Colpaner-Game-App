@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -191,7 +190,7 @@ class _ciudasoupState extends State<ciudasoup> {
           Column(
             children: [
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 60, 0, 10),
+                padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -201,6 +200,21 @@ class _ciudasoupState extends State<ciudasoup> {
                       fontFamily: 'BubblegumSans',
                       fontWeight: FontWeight.bold,
                       color: colors_colpaner.claro,
+                    ),
+                  ),
+                ),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.fromLTRB(50, 0, 50, 10),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'Competencias Ciudadanas',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: 'BubblegumSans',
+                      color: colors_colpaner.oscuro,
                     ),
                   ),
                 ),

@@ -119,7 +119,7 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                                 AsyncSnapshot<int> snapshot) {
                               if (snapshot.hasData) {
                                 return Text(
-                                  'Acumulado: ${snapshot.data} + ${widget.score}',
+                                  '', // 'Acumulado: ${snapshot.data} + ${widget.score}',
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'BubblegumSans',

@@ -143,7 +143,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        //const SizedBox(height: 20),
+        const SizedBox(height: 30),
         Stack(children: [
           //flecha atras
           Align(

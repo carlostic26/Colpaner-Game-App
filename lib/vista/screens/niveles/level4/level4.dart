@@ -507,7 +507,7 @@ Future<void> _guardarPuntajeNivel4(int score) async {
     case 'Razonamiento Cuantitativo':
       //establece el puntaje obtenido y lo guarda en shp
       SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_mat_4', score);
+      await preferences.setString('puntaje_mat_4', score.toString());
 
       //unlock next level
       localStorage.setMatBtn5Unlock();

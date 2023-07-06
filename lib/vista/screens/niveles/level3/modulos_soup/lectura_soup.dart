@@ -135,40 +135,13 @@ class _lectusoupState extends State<lectusoup> {
     });
   }
 
-  String _modulo = '';
-
-  void _getModuloFromSharedPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _modulo = prefs.getString('modulo') ?? '';
-
-      if (_modulo == 'Razonamiento Cuantitativo') {
-        words = [
-          'ECUACION',
-          'ALGEBRA',
-          'GEOMETRIA',
-          'ESTADISTICA',
-          'PORCENTAJES'
-        ];
-      } else if (_modulo == 'Inglés') {
-        words = ['GRAMMAR', 'VOCABULARY', 'TENSES', 'READING', 'WRITING'];
-      } else if (_modulo == 'Lectura Crítica') {
-        words = ['INFERENCIA', 'TESIS', 'ARGUMENTO', 'COHESION', 'CONCLUSION'];
-      } else if (_modulo == 'Ciencias Naturales') {
-        words = ['BIOLOGIA', 'QUIMICA', 'FISICA', 'ECOLOGIA', 'GENETICA'];
-      } else if (_modulo == 'Competencias Ciudadanas') {
-        words = ['DEMOCRACIA', 'DERECHOS', 'ETICA', 'CULTURA', 'CIUDADANIA'];
-      }
-    });
-  }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     startTimer();
     _startCountdown();
-    _getModuloFromSharedPrefs();
+    words = ['INFERENCIA', 'TESIS', 'ARGUMENTO', 'COHESION', 'CONCLUSION'];
   }
 
   @override
@@ -225,7 +198,7 @@ class _lectusoupState extends State<lectusoup> {
           Column(
             children: [
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 60, 0, 10),
+                padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -235,6 +208,21 @@ class _lectusoupState extends State<lectusoup> {
                       fontFamily: 'BubblegumSans',
                       fontWeight: FontWeight.bold,
                       color: colors_colpaner.claro,
+                    ),
+                  ),
+                ),
+              ),
+
+              const Padding(
+                padding: EdgeInsets.fromLTRB(50, 0, 50, 10),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Text(
+                    'Lectura Crítica',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: 'BubblegumSans',
+                      color: colors_colpaner.oscuro,
                     ),
                   ),
                 ),

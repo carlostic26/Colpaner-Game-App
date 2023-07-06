@@ -645,6 +645,9 @@ class _avatarsMaleState extends State<avatarsMale> {
                             imageUrl:
                                 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheDwBXo6l1vodxWL5DP5hFFfjaWvQDsmbyQdxT4kM_bhSPXLrj0hMXGkKDCD1AsQgj0JDMLJ8Sd28H91PvgrrC0SyfDPOw3XMLiQBWCwd7BjBOLr5xMutYbl5xMkQp9ZgsybGOGr_Y3I-MFQ06G4-64RTJwLUlhhhOMe7J5RPTnHo4OXuKZbYvY5M/w200-h166/a29.PNG',
                           ),
+                          const SizedBox(
+                            height: 30,
+                          )
                         ],
                       ),
                     ),
