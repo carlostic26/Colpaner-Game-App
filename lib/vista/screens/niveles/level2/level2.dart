@@ -105,7 +105,7 @@ class _level2State extends State<level2> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: screen_heigth * 0.1,
+                      height: screen_heigth * 0.075,
                     ),
                     const Center(
                       child: Text(
@@ -118,8 +118,19 @@ class _level2State extends State<level2> {
                         ),
                       ),
                     ),
+                    Center(
+                      child: Text(
+                        _modulo,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.oscuro,
+                        ),
+                      ),
+                    ),
                     SizedBox(
-                      height: screen_heigth * 0.015,
+                      height: screen_heigth * 0.040,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -132,7 +143,7 @@ class _level2State extends State<level2> {
                       height: screen_heigth * 0.75,
                       width: screen_width,
                       child: GridView.builder(
-                          itemCount: _gameCards.gameImg!.length,
+                          itemCount: _gameCards.gameTxt!.length,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
@@ -170,7 +181,7 @@ class _level2State extends State<level2> {
                                       _guardarPuntajeNivel2(score);
                                     }
 
-                                    _gameCards.gameImg![index] =
+                                    _gameCards.gameTxt![index] =
                                         cards_List[index];
                                     _gameCards.matchCheck
                                         .add({index: cards_List[index]});
@@ -195,11 +206,11 @@ class _level2State extends State<level2> {
                                     Future.delayed(
                                         const Duration(milliseconds: 1200), () {
                                       setState(() {
-                                        _gameCards.gameImg![_gameCards
+                                        _gameCards.gameTxt![_gameCards
                                             .matchCheck[0]
                                             .keys
                                             .first] = _gameCards.hiddenCardpath;
-                                        _gameCards.gameImg![_gameCards
+                                        _gameCards.gameTxt![_gameCards
                                             .matchCheck[1]
                                             .keys
                                             .first] = _gameCards.hiddenCardpath;
@@ -218,7 +229,7 @@ class _level2State extends State<level2> {
                                     child: ConditionalSwitch.single(
                                       context: context,
                                       valueBuilder: (BuildContext context) =>
-                                          _gameCards.gameImg![index],
+                                          _gameCards.gameTxt![index],
                                       caseBuilders: {
                                         // Mostrar imagen para la cara oculta
                                         _gameCards.hiddenCardpath:
@@ -229,9 +240,9 @@ class _level2State extends State<level2> {
                                       },
                                       fallbackBuilder: (BuildContext context) =>
                                           Text(
-                                        _gameCards.gameImg![index],
+                                        _gameCards.gameTxt![index],
                                         style: const TextStyle(
-                                          fontSize: 9.0,
+                                          fontSize: 14.0,
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.white,
                                         ),

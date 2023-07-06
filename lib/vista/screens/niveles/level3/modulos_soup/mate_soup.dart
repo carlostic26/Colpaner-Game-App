@@ -53,6 +53,7 @@ class _matesoupState extends State<matesoup> {
       } else {
         setState(() {
           _message = "¡Empecemos!";
+          startTimer();
         });
         Future.delayed(const Duration(milliseconds: 500), () {
           setState(() {
@@ -137,7 +138,6 @@ class _matesoupState extends State<matesoup> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    startTimer();
     _startCountdown();
     words = ['ECUACION', 'ALGEBRA', 'GEOMETRIA', 'ESTADISTICA', 'PORCENTAJES'];
   }

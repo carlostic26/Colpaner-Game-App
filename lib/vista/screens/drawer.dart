@@ -93,11 +93,6 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
     double drawer_height = MediaQuery.of(context).size.height;
     double drawer_width = MediaQuery.of(context).size.width;
 
-    //firebase
-    final user = FirebaseAuth.instance.currentUser;
-
-    String tecnicaElegida;
-
     getIsAvatar();
 
     return Drawer(

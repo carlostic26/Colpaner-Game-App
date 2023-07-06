@@ -55,6 +55,7 @@ class _inglessoupState extends State<inglessoup> {
       } else {
         setState(() {
           _message = "¡Empecemos!";
+          startTimer();
         });
         Future.delayed(const Duration(milliseconds: 500), () {
           setState(() {
@@ -139,8 +140,8 @@ class _inglessoupState extends State<inglessoup> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    startTimer();
     _startCountdown();
+    words = ['GRAMMAR', 'VOCABULARY', 'TENSES', 'READING', 'WRITING'];
   }
 
   @override

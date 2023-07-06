@@ -364,8 +364,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     userModel.uid = user.uid;
     userModel.fullName = fullNameEditingController.text;
     userModel.tecnica = selectedTecnica;
-    userModel.sumScoreRC = '0';
-    userModel.sumScoreDS = '0';
+    userModel.avatar =
+        'https://blogger.googleusercontent.com/img/a/AVvXsEh98ERadCkCx4UOpV9FQMIUA4BjbzzbYRp9y03UWUwd04EzrgsF-wfVMVZkvCxl9dgemvYWUQUfA89Ly0N9QtXqk2mFQhBCxzN01fa0PjuiV_w4a26RI-YNj94gI0C4j2cR91DwA81MyW5ki3vFYzhGF86mER2jq6m0q7g76R_37aSJDo75yfa-BKw';
 
     await firebaseFirestore
         .collection("users")

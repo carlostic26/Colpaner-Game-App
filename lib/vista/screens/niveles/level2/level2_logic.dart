@@ -1,22 +1,22 @@
 class GameCards {
   final String hiddenCardpath =
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIZ0BeUdFWmKEPuHG8oqYPvKvLKbqVNHuiatUdPUCTvlDPUqsGPOjlf-O0VLFKGn1ThkIRpjtJ1xlKFp0q9SMG0pMtdsERgeKUGmOZCxkdgxr_zbyPhJQofnGHIy3jsYoNjp66DeodhoFnRC66yvzxsI9QsE_9lj2SqinF8T9TEMG7N8SYZ08Sb5w/s320/icon.png';
-  List<String>? gameImg;
+  List<String>? gameTxt;
 
   final List<String> cards_list_lec = [
-    "Los estudiantes aplican estrategias: identificación de argumentos, evaluación de evidencia y detección de sesgos.",
-    "Lectura Crítica evalúa capacidad de análisis y razonamiento crítico con textos de diversa temática.",
-    "Estudiantes infieren e interpretan información precisa en Lectura Crítica del ICFES Saber 11.",
-    "Identificar idea principal y detalles es fundamental en Lectura Crítica para el éxito.",
-    "Lectura Crítica desarrolla habilidades avanzadas y pensamiento crítico para educación superior.",
-    "Estudiantes relacionan información y evalúan argumentos en Lectura Crítica del ICFES Saber 11.",
+    "Identificación de argumentos, evaluación de evidencia y detección de sesgos.",
+    "Evalúa la capacidad de análisis con textos de diversa temática.",
+    "Estudiantes infieren e interpretan información precisa en este módulo",
+    "Identificar idea principal y detalles es fundamental para el éxito.",
+    "Desarrolla habilidades avanzadas y pensamiento crítico.",
+    "Relacionar información y evaluar argumentos en este módulo.",
     //
-    "Los estudiantes aplican estrategias: identificación de argumentos, evaluación de evidencia y detección de sesgos.",
-    "Lectura Crítica evalúa capacidad de análisis y razonamiento crítico con textos de diversa temática.",
-    "Estudiantes infieren e interpretan información precisa en Lectura Crítica del ICFES Saber 11.",
-    "Identificar idea principal y detalles es fundamental en Lectura Crítica para el éxito.",
-    "Lectura Crítica desarrolla habilidades avanzadas y pensamiento crítico para educación superior.",
-    "Estudiantes relacionan información y evalúan argumentos en Lectura Crítica del ICFES Saber 11."
+    "Identificación de argumentos, evaluación de evidencia y detección de sesgos.",
+    "Evalúa la capacidad de análisis con textos de diversa temática.",
+    "Estudiantes infieren e interpretan información precisa en este módulo",
+    "Identificar idea principal y detalles es fundamental para el éxito.",
+    "Desarrolla habilidades avanzadas y pensamiento crítico.",
+    "Relacionar información y evaluar argumentos en este módulo."
   ];
 
   final List<String> cards_list_mat = [
@@ -25,14 +25,14 @@ class GameCards {
     "Interpretación de datos y gráficos en Razonamiento Cuantitativo.",
     "Aplicación de fórmulas y conceptos matemáticos en el examen.",
     "Resolución de ecuaciones y sistemas de ecuaciones en Matemáticas.",
-    "Uso de estrategias y razonamiento lógico en el módulo de Razonamiento Cuantitativo.",
+    "Uso de estrategias y razonamiento lógico en éste módulo.",
     //
     "El Razonamiento Cuantitativo es la resolución de problemas matemáticos.",
     "Habilidades numéricas y algebraicas en el módulo de Matemáticas.",
     "Interpretación de datos y gráficos en Razonamiento Cuantitativo.",
     "Aplicación de fórmulas y conceptos matemáticos en el examen.",
     "Resolución de ecuaciones y sistemas de ecuaciones en Matemáticas.",
-    "Uso de estrategias y razonamiento lógico en el módulo de Razonamiento Cuantitativo."
+    "Uso de estrategias y razonamiento lógico en éste módulo."
   ];
 
   final List<String> cards_list_ing = [
@@ -93,6 +93,6 @@ class GameCards {
     cards_list_lec.shuffle(); // reorganiza las premisas aleatoriamente
     cards_list_nat.shuffle(); // reorganiza las premisas aleatoriamente
     cards_list_comp.shuffle(); // reorganiza las premisas aleatoriamente
-    gameImg = List.generate(cardCount, (index) => hiddenCardpath);
+    gameTxt = List.generate(cardCount, (index) => hiddenCardpath);
   }
 }

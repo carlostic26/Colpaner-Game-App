@@ -65,14 +65,9 @@ class _misPuntajesState extends State<misPuntajes> {
   }
 
   final List<Color?> colors = [
-    const Color.fromARGB(180, 2, 59, 64),
-    const Color.fromARGB(180, 209, 252, 207)
-  ].toList();
-
-/*   final List<Color?> colors = [
     const Color.fromARGB(255, 2, 59, 64),
-    const Color.fromARGB(255, 209, 252, 207),
-  ].where((color) => color != null).toList(); */
+    const Color.fromARGB(255, 31, 126, 135),
+  ].toList();
 
   int puntos_mat = 0;
   int puntos_ing = 0;
@@ -1542,9 +1537,6 @@ class _misPuntajesState extends State<misPuntajes> {
   }
 
   Future<void> guardarTotalGamicolpaner(puntajeGlobal) async {
-    User? user = FirebaseAuth.instance.currentUser;
-    UserModel loggedInUser = UserModel();
-
     final puntajesRefTotal = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('podio')
@@ -1552,9 +1544,11 @@ class _misPuntajesState extends State<misPuntajes> {
         .doc(user!.uid);
 
     await puntajesRefTotal.set({
-      'userId': user.uid,
-      'fullName': user.email,
-      'puntajeGlobal': puntajeGlobal
+      'userId': loggedInUser.uid,
+      'fullName': loggedInUser.fullName.toString(),
+      'puntajeGlobal': puntajeGlobal,
+      'tecnica': loggedInUser.tecnica.toString(),
+      'avatar': loggedInUser.avatar.toString()
     });
   }
 
@@ -1565,7 +1559,7 @@ class _misPuntajesState extends State<misPuntajes> {
         .doc('podio')
         .collection('global')
         .orderBy('puntajeGlobal', descending: true)
-        .limit(6)
+        .limit(10)
         .get();
 
     final mejoresPuntajes = querySnapshot.docs;
@@ -1602,7 +1596,7 @@ class _misPuntajesState extends State<misPuntajes> {
 
     // Verificar si los mejores puntajes se han cargado
     if (mejoresPuntajes == null) {
-      return CircularProgressIndicator(); // Muestra un indicador de carga mientras se obtienen los datos
+      return const CircularProgressIndicator(); // Muestra un indicador de carga mientras se obtienen los datos
     }
 
     return Scaffold(
@@ -1979,6 +1973,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      SizedBox(width: 10),
                       //1
                       Card(
                         elevation: 4.0,
@@ -2481,6 +2476,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      SizedBox(width: 10),
                       //1
                       Card(
                         elevation: 4.0,
@@ -2982,6 +2978,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      SizedBox(width: 10),
                       //1
                       Card(
                         elevation: 4.0,
@@ -3462,7 +3459,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   color: colors_colpaner.oscuro,
                 ),
 
-                //COMUNICACION ESCRITA
+                //CIENCIAS NATURALES
                 const SizedBox(height: 10),
                 const Align(
                   alignment: Alignment.topLeft,
@@ -3483,6 +3480,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      SizedBox(width: 10),
                       //1
                       Card(
                         elevation: 4.0,
@@ -3984,6 +3982,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      SizedBox(width: 10),
                       //1
                       Card(
                         elevation: 4.0,
@@ -4506,7 +4505,7 @@ class _misPuntajesState extends State<misPuntajes> {
                       ),
                       const SizedBox(height: 20),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: Row(
@@ -4525,16 +4524,124 @@ class _misPuntajesState extends State<misPuntajes> {
                                         datosMap?['userId'] as String?;
                                     final puntaje =
                                         datosMap?['puntajeGlobal'] as int?;
+                                    final tecnica =
+                                        datosMap?['tecnica'] as String?;
+                                    var avatar = datosMap?['avatar'] as String?;
+
+                                    if (avatar == null) {
+                                      avatar = '';
+                                    }
 
                                     return Container(
-                                      width: double.infinity,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.95,
                                       height: 40,
                                       color: colors[index % 2],
-                                      child: Text(
-                                        '$name: $puntaje',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.redAccent),
+                                      child: Row(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      5, 1, 5, 1),
+                                              child: Row(
+                                                //aqui iria el avatar del usuario string a cached image netowrk
+                                                children: [
+                                                  CachedNetworkImage(
+                                                    color:
+                                                        colors_colpaner.oscuro,
+                                                    width: 35,
+                                                    height: 35,
+                                                    fadeInDuration:
+                                                        Duration.zero,
+                                                    imageUrl: avatar,
+                                                    imageBuilder: (context,
+                                                            imageProvider) =>
+                                                        Container(
+                                                      decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        image: DecorationImage(
+                                                          image: imageProvider,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    placeholder: (context,
+                                                            url) =>
+                                                        CircularProgressIndicator(),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            Icon(Icons.error),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 5, 0, 0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '$name',
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: colors_colpaner
+                                                          .claro),
+                                                ),
+                                                Text(
+                                                  '$tecnica',
+                                                  style: const TextStyle(
+                                                      fontSize: 10,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        20, 0, 20, 0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: [
+                                                    //medalla
+                                                    Text(
+                                                      (index == 0)
+                                                          ? '🥇'
+                                                          : (index == 1)
+                                                              ? '🥈'
+                                                              : (index == 2)
+                                                                  ? '🥉'
+                                                                  : '🎖️',
+                                                      style: const TextStyle(
+                                                          fontSize: 20),
+                                                    ),
+
+                                                    Text(
+                                                      '$puntaje',
+                                                      style: const TextStyle(
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.amber),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     );
                                   }),
@@ -4572,198 +4679,7 @@ class _misPuntajesState extends State<misPuntajes> {
     );
   }
 
-/*   //NAVIGATION DRAWER
-  Widget _getDrawer(BuildContext context) {
-    _getAvatarFromSharedPrefs();
-
-    double drawer_height = MediaQuery.of(context).size.height;
-    double drawer_width = MediaQuery.of(context).size.width;
-
-    //firebase
-    final user = FirebaseAuth.instance.currentUser;
-
-    String tecnicaElegida;
-
-    return Drawer(
-      width: drawer_width * 0.60,
-      elevation: 0,
-      child: Container(
-        color: colors_colpaner.base,
-        child: ListView(
-          children: <Widget>[
-            Container(
-              //height: 150.0,
-              alignment: Alignment.center,
-
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const SizedBox(height: 5.0),
-                  CachedNetworkImage(
-                    fadeInDuration: Duration.zero,
-                    imageUrl: _imageUrl,
-                    imageBuilder: (context, imageProvider) => Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(loggedInUser.fullName.toString(),
-                        style: const TextStyle(
-                            fontFamily: 'BubblegumSans',
-                            color: colors_colpaner.claro,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  Text('Técnica de ${loggedInUser.tecnica}',
-                      style: const TextStyle(
-                        fontFamily: 'BubblegumSans',
-                        color: colors_colpaner.claro,
-                      )),
-                  Text(loggedInUser.email.toString(),
-                      style: const TextStyle(
-                        fontFamily: 'BubblegumSans',
-                        fontSize: 10,
-                        color: colors_colpaner.claro,
-                      )),
-                  const SizedBox(height: 50.0),
-                ],
-              ),
-            ),
-            ListTile(
-                title: const Text("Entrenamiento",
-                    style: TextStyle(
-                        fontFamily: 'BubblegumSans',
-                        color: colors_colpaner.oscuro,
-                        fontWeight: FontWeight.bold)),
-                leading: const Icon(
-                  Icons.psychology,
-                  color: colors_colpaner.oscuro,
-                ),
-                onTap: () => {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const entrenamientoModulos())),
-                    }),
-            ListTile(
-                title: const Text("Mis Puntajes",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
-                      color: colors_colpaner.claro,
-                    )),
-                leading: const Icon(
-                  Icons.sports_score,
-                  color: colors_colpaner.claro,
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                }),
-            ListTile(
-              title: const Text("Ávatar",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.face,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () async {
-                if (isAvatar == true) {
-                  if (gender == 'male') {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const avatarsMale()));
-                  }
-
-                  if (gender == 'female') {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const avatarsFemale()));
-                  }
-                } else {
-                  DialogHelper.gender_dialog(context);
-                }
-              },
-            ),
-            ListTile(
-              title: const Text("Patrones ICFES",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.insights,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("Usabilidad",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.extension,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {},
-            ),
-            SizedBox(
-              height: drawer_height * 0.17,
-            ),
-            ListTile(
-              title: const Text("",
-                  style: TextStyle(
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.settings,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {},
-            ),
-            const Divider(
-              color: colors_colpaner.claro,
-            ),
-            ListTile(
-              title: const Text("Cerrar sesión",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.logout,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {
-                clearSharedPreferences();
-                logout(context);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
- */
-  // función para eliminar todos los registros de Shared Preferences
+// función para eliminar todos los registros de Shared Preferences
   Future<void> clearSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();

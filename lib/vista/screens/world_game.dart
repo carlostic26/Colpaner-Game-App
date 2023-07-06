@@ -1472,6 +1472,7 @@ class _world_gameState extends State<world_game> {
     final double totalWidth = MediaQuery.of(context).size.width;
     final double cellWidth = (totalWidth - 16) / 3;
     final double cellHeight = 40 / 3 * cellWidth;
+
     return Scaffold(
         appBar: null,
         body: Center(
@@ -1500,7 +1501,7 @@ class _world_gameState extends State<world_game> {
                           Container(
                             padding: const EdgeInsets.all(1.0),
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.15,
+                            height: MediaQuery.of(context).size.height * 0.13,
                             decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image: AssetImage("assets/banner_user.png"),
@@ -1537,12 +1538,14 @@ class _world_gameState extends State<world_game> {
                           ),
                           //image avatar
                           Positioned(
-                            top: 45,
+                            top: MediaQuery.of(context).size.width * 0.074,
                             left: MediaQuery.of(context).size.width * 0.425,
                             child: Container(
                                 padding: const EdgeInsets.all(1.0),
-                                width: 70,
-                                height: 60,
+                                width:
+                                    MediaQuery.of(context).size.width * 0.1900,
+                                height:
+                                    MediaQuery.of(context).size.width * 0.1700,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
                                   child: SizedBox(

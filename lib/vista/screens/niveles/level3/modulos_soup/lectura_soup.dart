@@ -1,12 +1,10 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -55,6 +53,7 @@ class _lectusoupState extends State<lectusoup> {
       } else {
         setState(() {
           _message = "¡Empecemos!";
+          startTimer();
         });
         Future.delayed(const Duration(milliseconds: 500), () {
           setState(() {
@@ -139,7 +138,6 @@ class _lectusoupState extends State<lectusoup> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    startTimer();
     _startCountdown();
     words = ['INFERENCIA', 'TESIS', 'ARGUMENTO', 'COHESION', 'CONCLUSION'];
   }

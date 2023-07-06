@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/puntajes_shp.dart';
 import 'package:gamicolpaner/model/user_model.dart';
@@ -107,6 +108,7 @@ class _avatarsMaleState extends State<avatarsMale> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     _getAvatarFromSharedPrefs();
+    //setAvatar(userId, avatarUrl)
   }
 
   @override
@@ -663,6 +665,15 @@ class _avatarsMaleState extends State<avatarsMale> {
                     child: Positioned(
                       child: GestureDetector(
                         onTap: () {
+                          //asigno avatar a firebase
+                          Fluttertoast.showToast(
+                            msg:
+                                "setAvatarFirebase(${loggedInUser.uid.toString()};", // message
+                            toastLength: Toast.LENGTH_LONG, // length
+                            gravity: ToastGravity.CENTER, // location
+                          );
+
+                          setAvatarFirebase(loggedInUser.uid, _imageUrl);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -694,6 +705,20 @@ class _avatarsMaleState extends State<avatarsMale> {
         ),
       ),
       drawer: DrawerColpaner(context: context, screen: 'avatar'),
+    );
+  }
+
+  setAvatarFirebase(String? userId, String avatarUrl) async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(userId)
+        .update({"avatar": avatarUrl});
+    Fluttertoast.showToast(
+      msg: "Avatar guardado en firebase", // message
+      toastLength: Toast.LENGTH_SHORT, // length
+      gravity: ToastGravity.CENTER, // location
     );
   }
 
@@ -757,188 +782,6 @@ class _avatarsMaleState extends State<avatarsMale> {
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  //NAVIGATION DRAWER
-  Widget _getDrawer(BuildContext context) {
-    _getAvatarFromSharedPrefs();
-
-    double drawer_height = MediaQuery.of(context).size.height;
-    double drawer_width = MediaQuery.of(context).size.width;
-
-    //firebase
-    final user = FirebaseAuth.instance.currentUser;
-
-    String tecnicaElegida;
-
-    return Drawer(
-      width: drawer_width * 0.60,
-      elevation: 0,
-      child: Container(
-        color: colors_colpaner.base,
-        child: ListView(
-          children: <Widget>[
-            Container(
-              //height: 150.0,
-              alignment: Alignment.center,
-
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const SizedBox(height: 5.0),
-                  CachedNetworkImage(
-                    fadeInDuration: Duration.zero,
-                    imageUrl: _imageUrl,
-                    imageBuilder: (context, imageProvider) => Container(
-                      width: 100.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(loggedInUser.fullName.toString(),
-                        style: const TextStyle(
-                            fontFamily: 'BubblegumSans',
-                            color: colors_colpaner.claro,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold)),
-                  ),
-                  Text('Técnica de ${loggedInUser.tecnica}',
-                      style: const TextStyle(
-                        fontFamily: 'BubblegumSans',
-                        color: colors_colpaner.claro,
-                      )),
-                  Text(loggedInUser.email.toString(),
-                      style: const TextStyle(
-                        fontFamily: 'BubblegumSans',
-                        fontSize: 10,
-                        color: colors_colpaner.claro,
-                      )),
-                  const SizedBox(height: 50.0),
-                ],
-              ),
-            ),
-            ListTile(
-                title: const Text("Entrenamiento",
-                    style: TextStyle(
-                        fontFamily: 'BubblegumSans',
-                        color: colors_colpaner.oscuro,
-                        fontWeight: FontWeight.bold)),
-                leading: const Icon(
-                  Icons.psychology,
-                  color: colors_colpaner.oscuro,
-                ),
-                onTap: () => {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const entrenamientoModulos())),
-                    }),
-            ListTile(
-                title: const Text("Mis Puntajes",
-                    style: TextStyle(
-                      fontFamily: 'BubblegumSans',
-                      color: colors_colpaner.oscuro,
-                    )),
-                leading: const Icon(
-                  Icons.sports_score,
-                  color: colors_colpaner.oscuro,
-                ),
-                onTap: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const misPuntajes()));
-                }),
-            ListTile(
-              title: const Text("Ávatar",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.claro,
-                  )),
-              leading: const Icon(
-                Icons.face,
-                color: colors_colpaner.claro,
-              ),
-              //at press, run the method
-              onTap: () async {
-                //si es primera vez que se ingresa, mstrar al usuario dialogo de genero a leegor
-
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text("Patrones ICFES",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.insights,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {},
-            ),
-            ListTile(
-              title: const Text("Usabilidad",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.extension,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {},
-            ),
-            SizedBox(
-              height: drawer_height * 0.17,
-            ),
-            ListTile(
-              title: const Text("",
-                  style: TextStyle(
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.settings,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {},
-            ),
-            const Divider(
-              color: colors_colpaner.claro,
-            ),
-            ListTile(
-              title: const Text("Cerrar sesión",
-                  style: TextStyle(
-                    fontFamily: 'BubblegumSans',
-                    color: colors_colpaner.oscuro,
-                  )),
-              leading: const Icon(
-                Icons.logout,
-                color: colors_colpaner.oscuro,
-              ),
-              //at press, run the method
-              onTap: () {
-                clearSharedPreferences();
-                logout(context);
-              },
-            ),
-          ],
         ),
       ),
     );

@@ -51,6 +51,7 @@ class _ciudasoupState extends State<ciudasoup> {
       } else {
         setState(() {
           _message = "¡Empecemos!";
+          startTimer();
         });
         Future.delayed(const Duration(milliseconds: 500), () {
           setState(() {
@@ -135,7 +136,6 @@ class _ciudasoupState extends State<ciudasoup> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    startTimer();
     _startCountdown();
     words = ['DEMOCRACIA', 'DERECHOS', 'ETICA', 'CULTURA', 'CIUDADANIA'];
   }

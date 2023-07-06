@@ -51,6 +51,7 @@ class _natusoupState extends State<natusoup> {
       } else {
         setState(() {
           _message = "¡Empecemos!";
+          startTimer();
         });
         Future.delayed(const Duration(milliseconds: 500), () {
           setState(() {
@@ -131,40 +132,12 @@ class _natusoupState extends State<natusoup> {
     });
   }
 
-  String _modulo = '';
-
-  void _getModuloFromSharedPrefs() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _modulo = prefs.getString('modulo') ?? '';
-
-      if (_modulo == 'Razonamiento Cuantitativo') {
-        words = [
-          'ECUACION',
-          'ALGEBRA',
-          'GEOMETRIA',
-          'ESTADISTICA',
-          'PORCENTAJES'
-        ];
-      } else if (_modulo == 'Inglés') {
-        words = ['GRAMMAR', 'VOCABULARY', 'TENSES', 'READING', 'WRITING'];
-      } else if (_modulo == 'Lectura Crítica') {
-        words = ['INFERENCIA', 'TESIS', 'ARGUMENTO', 'COHESION', 'CONCLUSION'];
-      } else if (_modulo == 'Ciencias Naturales') {
-        words = ['BIOLOGIA', 'QUIMICA', 'FISICA', 'ECOLOGIA', 'GENETICA'];
-      } else if (_modulo == 'Competencias Ciudadanas') {
-        words = ['DEMOCRACIA', 'DERECHOS', 'ETICA', 'CULTURA', 'CIUDADANIA'];
-      }
-    });
-  }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    startTimer();
     _startCountdown();
-    _getModuloFromSharedPrefs();
+    words = ['BIOLOGIA', 'QUIMICA', 'FISICA', 'ECOLOGIA', 'GENETICA'];
   }
 
   @override

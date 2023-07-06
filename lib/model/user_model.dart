@@ -3,16 +3,9 @@ class UserModel {
   String? email;
   String? fullName;
   String? tecnica;
-  String? sumScoreRC;
-  String? sumScoreDS;
+  String? avatar;
 
-  UserModel(
-      {this.uid,
-      this.email,
-      this.fullName,
-      this.tecnica,
-      this.sumScoreRC,
-      this.sumScoreDS});
+  UserModel({this.uid, this.email, this.fullName, this.tecnica, this.avatar});
 
   //receiving data from server
   factory UserModel.fromMap(map) {
@@ -21,8 +14,7 @@ class UserModel {
       email: map['email'],
       fullName: map['fullName'],
       tecnica: map['tecnica'],
-      sumScoreRC: map['sumScoreRC'],
-      sumScoreDS: map['sumScoreDS'],
+      avatar: map['avatar'],
     );
   }
 
@@ -33,8 +25,7 @@ class UserModel {
       'email': email,
       'fullName': fullName,
       'tecnica': tecnica,
-      'sumScoreRC': sumScoreRC,
-      'sumScoreDS': sumScoreDS,
+      'avatar': avatar,
     };
   }
 }
