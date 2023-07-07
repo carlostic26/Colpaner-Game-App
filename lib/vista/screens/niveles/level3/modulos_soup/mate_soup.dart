@@ -1409,6 +1409,9 @@ class _matesoupState extends State<matesoup> {
 
     LocalStorage localStorage = LocalStorage();
 
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreMat3(score);
+
     //unlock next level
     localStorage.setMatBtn4Unlock();
 

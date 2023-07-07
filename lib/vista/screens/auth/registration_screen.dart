@@ -358,15 +358,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();
 
+    LocalStorage localStorage = LocalStorage();
+
     LocalStorage.prefs.setBool("firstLog", firstLog);
+
+    String avatar =
+        'https://blogger.googleusercontent.com/img/a/AVvXsEh98ERadCkCx4UOpV9FQMIUA4BjbzzbYRp9y03UWUwd04EzrgsF-wfVMVZkvCxl9dgemvYWUQUfA89Ly0N9QtXqk2mFQhBCxzN01fa0PjuiV_w4a26RI-YNj94gI0C4j2cR91DwA81MyW5ki3vFYzhGF86mER2jq6m0q7g76R_37aSJDo75yfa-BKw';
 
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.fullName = fullNameEditingController.text;
     userModel.tecnica = selectedTecnica;
-    userModel.avatar =
-        'https://blogger.googleusercontent.com/img/a/AVvXsEh98ERadCkCx4UOpV9FQMIUA4BjbzzbYRp9y03UWUwd04EzrgsF-wfVMVZkvCxl9dgemvYWUQUfA89Ly0N9QtXqk2mFQhBCxzN01fa0PjuiV_w4a26RI-YNj94gI0C4j2cR91DwA81MyW5ki3vFYzhGF86mER2jq6m0q7g76R_37aSJDo75yfa-BKw';
+    userModel.avatar = avatar;
 
+//escribo info en shared preferences para ahorrar lecturas a firebase
+    localStorage.setDataUser(
+        fullNameEditingController.text, user.email, selectedTecnica, avatar);
+
+//escribir info en firebase
     await firebaseFirestore
         .collection("users")
         .doc(user.uid)

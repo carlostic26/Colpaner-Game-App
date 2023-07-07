@@ -17,14 +17,17 @@ class LocalStorage {
     return modulo;
   }
 
+  void setDataUser(name, email, tecnica, avatar) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('nameUser', name);
+    await prefs.setString('emailUser', email);
+    await prefs.setString('tecnicaUser', tecnica);
+    await prefs.setString('avatarUser', avatar);
+  }
+
   static Future<void> configurePrefs() async {
     //recibe el sharedPreferences como instancias necesarias para leer al momento de abrir la app
     prefs = await SharedPreferences.getInstance();
-  }
-
-  Future<int?> getPuntajesMat() async {
-    prefs = await SharedPreferences.getInstance();
-    return prefs.getInt('puntajes_MAT');
   }
 
   // MAT BTN GET
@@ -496,7 +499,93 @@ class LocalStorage {
     await preferences.setBool('ciu_enabled10', true);
   }
 
-  //NATURALES GET
+// PUNTAJES BOTONES PARA AHORRAR LECTURAS A SHARED PREFERENCES
 
-  //NATURALES SET
+  Future<void> setScoreMat1(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat1', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat2(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat2', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat3(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat3', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat4(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat4', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat5(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat5', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat6(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat6', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat7(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat7', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat8(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat8', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat9(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat9', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> setScoreMat10(score) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setInt('scoreMat10', score);
+    //acutaliza puntajes
+    getMatScores();
+  }
+
+  Future<void> getMatScores() async {
+    prefs = await SharedPreferences.getInstance();
+    int mat1 = prefs.getInt('scoreMat1') ?? 0;
+    int mat2 = prefs.getInt('scoreMat2') ?? 0;
+    int mat3 = prefs.getInt('scoreMat3') ?? 0;
+    int mat4 = prefs.getInt('scoreMat4') ?? 0;
+    int mat5 = prefs.getInt('scoreMat5') ?? 0;
+    int mat6 = prefs.getInt('scoreMat6') ?? 0;
+    int mat7 = prefs.getInt('scoreMat7') ?? 0;
+    int mat8 = prefs.getInt('scoreMat8') ?? 0;
+    int mat9 = prefs.getInt('scoreMat9') ?? 0;
+    int mat10 = prefs.getInt('scoreMat10') ?? 0;
+
+    int totalMat =
+        mat1 + mat2 + mat3 + mat4 + mat5 + mat6 + mat7 + mat8 + mat9 + mat10;
+    prefs.setInt('scoreTotalMat', totalMat);
+  }
 }

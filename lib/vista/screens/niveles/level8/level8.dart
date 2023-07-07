@@ -470,10 +470,8 @@ class _level8State extends State<level8> {
     String _modulo = await localStorage.getModulo();
 
     if (_modulo == 'Razonamiento Cuantitativo') {
-      //no lo tiene por que escribir en shp porque nunca se escribirá  puntajes a shp, solo se lee de firestore, mas no escribir
-      /*  //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntajes_MAT', score); */
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreMat8(score);
 
       //unlock next level
       localStorage.setMatBtn9Unlock();

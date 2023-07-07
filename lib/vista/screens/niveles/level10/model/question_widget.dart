@@ -443,6 +443,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     String _modulo = await localStorage.getModulo();
 
     if (_modulo == 'Razonamiento Cuantitativo') {
+          //save score in shared preferente to save resources at firebase
+    localStorage.setScoreMat10(score);
+
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('matematicas')

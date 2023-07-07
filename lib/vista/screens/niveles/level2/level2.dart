@@ -404,6 +404,8 @@ class _level2State extends State<level2> {
     }
 
     if (_modulo == 'Razonamiento Cuantitativo') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreMat2(score);
       //unlock next level
       localStorage.setMatBtn3Unlock();
       //guarda puntaje en firestore

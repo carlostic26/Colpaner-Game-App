@@ -505,6 +505,9 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       break;
 
     case 'Razonamiento Cuantitativo':
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreMat4(score);
+
       //establece el puntaje obtenido y lo guarda en shp
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setString('puntaje_mat_4', score.toString());

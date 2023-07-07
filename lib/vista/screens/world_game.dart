@@ -99,8 +99,9 @@ class _world_gameState extends State<world_game> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    getDataSharedPreferences();
     _getAvatarFromSharedPrefs();
-
+    getScoreMatShp();
     getButtonEnabled();
   }
 
@@ -187,6 +188,7 @@ class _world_gameState extends State<world_game> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    getDataSharedPreferences();
     _getModuloFromSharedPrefs();
 
     btnDisable = buttonDisable;
@@ -1465,6 +1467,43 @@ class _world_gameState extends State<world_game> {
     return puntajeNatNivel10;
   }
 
+  LocalStorage localStorage = LocalStorage();
+  late SharedPreferences prefs;
+
+  getDataSharedPreferences() async {
+//get name, module, tecnica
+    getUserInfo();
+
+//obtener puntaje mat
+    getScoreMatShp();
+  }
+
+  String nameUserShp = '';
+  String avatarUserShp = '';
+
+  getUserInfo() async {
+    setState(() async {
+      nameUserShp = prefs.getString('nameUser') ?? 'no user';
+      avatarUserShp = prefs.getString('avatarUser') ?? 'no avatar';
+
+      print('IMPRIMIENTO AVATAR USER EN INIT EN GETUSER INFO: $avatarUserShp');
+    });
+  }
+
+  int matScoresShp = 0;
+  getScoreMatShp() async {
+    //invoco la realizacion de la sumatoria de puntajes mat
+    localStorage.getMatScores();
+
+    //obtiene la anterior sumatoria realizada
+    setState(() async {
+      prefs = await SharedPreferences.getInstance();
+      matScoresShp = prefs.getInt('scoreTotalMat') ?? 0;
+    });
+
+    print('imprimiendo matScoresSHP: $matScoresShp');
+  }
+
   @override
   Widget build(BuildContext context) {
     getButtonEnabled();
@@ -1472,6 +1511,9 @@ class _world_gameState extends State<world_game> {
     final double totalWidth = MediaQuery.of(context).size.width;
     final double cellWidth = (totalWidth - 16) / 3;
     final double cellHeight = 40 / 3 * cellWidth;
+
+    getScoreMatShp();
+    getDataSharedPreferences();
 
     return Scaffold(
         appBar: null,
@@ -1508,9 +1550,7 @@ class _world_gameState extends State<world_game> {
                                   fit: BoxFit.fill),
                             ),
                           ),
-
                           //text name and module
-
                           Positioned(
                             top: 50,
                             left: MediaQuery.of(context).size.width * 0.1225,
@@ -1519,7 +1559,8 @@ class _world_gameState extends State<world_game> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  loggedInUser.fullName.toString(),
+                                  //loggedInUser.fullName.toString(),
+                                  nameUserShp,
                                   style: const TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'BubblegumSans',
@@ -1552,7 +1593,7 @@ class _world_gameState extends State<world_game> {
                                     width: cellWidth,
                                     height: cellHeight,
                                     child: CachedNetworkImage(
-                                      imageUrl: _imageUrl,
+                                      imageUrl: avatarUserShp, //_imageUrl,
                                       placeholder: (context, url) =>
                                           const Center(
                                         child: CircularProgressIndicator(),
@@ -1564,6 +1605,7 @@ class _world_gameState extends State<world_game> {
                                   ),
                                 )),
                           ),
+                          //puntaje total
                           Positioned(
                             left: MediaQuery.of(context).size.width * 0.685,
                             top: 45,
@@ -1578,7 +1620,14 @@ class _world_gameState extends State<world_game> {
                                         fontFamily: 'BubblegumSans',
                                         fontSize: 13),
                                   ),
-                                  FutureBuilder<int>(
+                                  Text(
+                                    "$matScoresShp",
+                                    style: const TextStyle(
+                                        color: Colors.black,
+                                        fontFamily: 'BubblegumSans',
+                                        fontSize: 20),
+                                  ),
+                                  /* FutureBuilder<int>(
                                     future: _modulo ==
                                             'Razonamiento Cuantitativo'
                                         ? getPuntajesTotal_MAT()
@@ -1612,7 +1661,7 @@ class _world_gameState extends State<world_game> {
                                                 CircularProgressIndicator()); // O cualquier otro indicador de carga
                                       }
                                     },
-                                  ),
+                                  ), */
                                 ],
                               ),
                             ),
@@ -2155,13 +2204,13 @@ class _world_gameState extends State<world_game> {
               //btn regresar
               Align(
                 alignment: Alignment.bottomLeft,
-                child: FractionallySizedBox(
-                  widthFactor: 0.2,
-                  heightFactor: 0.12,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.18,
+                  height: MediaQuery.of(context).size.height * 0.10,
                   child: ShakeWidgetX(
                     child: IconButton(
                       icon: Image.asset('assets/flecha_left.png'),
-                      iconSize: 50,
+                      iconSize: 30,
                       onPressed: () {
                         //_soundBack();
                         Navigator.push(
