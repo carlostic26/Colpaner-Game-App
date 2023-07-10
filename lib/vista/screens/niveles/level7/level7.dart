@@ -561,9 +561,8 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Inglés') {
-      //establece el puntaje obtenido y lo guarda en shp
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_ing_1', score);
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreIng7(score);
 
       //unlock next level
       localStorage.setIngBtn8Unlock();
@@ -578,6 +577,9 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Lectura Crítica') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreLec7(score);
+
       //unlock next level
       localStorage.setLecBtn8Unlock();
 
@@ -591,6 +593,9 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreNat7(score);
+
       //unlock next level
       localStorage.setNatBtn8Unlock();
 

@@ -4528,9 +4528,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                         datosMap?['tecnica'] as String?;
                                     var avatar = datosMap?['avatar'] as String?;
 
-                                    if (avatar == null) {
-                                      avatar = '';
-                                    }
+                                    avatar ??= '';
 
                                     return Container(
                                       width: MediaQuery.of(context).size.width *

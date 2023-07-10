@@ -1471,11 +1471,15 @@ class _world_gameState extends State<world_game> {
   late SharedPreferences prefs;
 
   getDataSharedPreferences() async {
-//get name, module, tecnica
+    //get name, module, tecnica
     getUserInfo();
 
-//obtener puntaje mat
+    //obtener puntaje mat
     getScoreMatShp();
+    getScoreIngShp();
+    getScoreNatShp();
+    getScoreCiuShp();
+    getScoreLecShp();
   }
 
   String nameUserShp = '';
@@ -1502,6 +1506,62 @@ class _world_gameState extends State<world_game> {
     });
 
     print('imprimiendo matScoresSHP: $matScoresShp');
+  }
+
+  int natScoresShp = 0;
+  getScoreNatShp() async {
+    //invoco la realizacion de la sumatoria de puntajes nat
+    localStorage.getNatScores();
+
+    //obtiene la anterior sumatoria realizada
+    setState(() async {
+      prefs = await SharedPreferences.getInstance();
+      natScoresShp = prefs.getInt('scoreTotalNat') ?? 0;
+    });
+
+    print('imprimiendo natScoresSHP: $natScoresShp');
+  }
+
+  int ingScoresShp = 0;
+  getScoreIngShp() async {
+    //invoco la realizacion de la sumatoria de puntajes mat
+    localStorage.getIngScores();
+
+    //obtiene la anterior sumatoria realizada
+    setState(() async {
+      prefs = await SharedPreferences.getInstance();
+      ingScoresShp = prefs.getInt('scoreTotalIng') ?? 0;
+    });
+
+    print('imprimiendo ingScoresSHP: $ingScoresShp');
+  }
+
+  int lecScoresShp = 0;
+  getScoreLecShp() async {
+    //invoco la realizacion de la sumatoria de puntajes mat
+    localStorage.getLecScores();
+
+    //obtiene la anterior sumatoria realizada
+    setState(() async {
+      prefs = await SharedPreferences.getInstance();
+      lecScoresShp = prefs.getInt('scoreTotalLec') ?? 0;
+    });
+
+    print('imprimiendo lecScoresSHP: $lecScoresShp');
+  }
+
+  int ciuScoresShp = 0;
+  getScoreCiuShp() async {
+    //invoco la realizacion de la sumatoria de puntajes mat
+    localStorage.getCiuScores();
+
+    //obtiene la anterior sumatoria realizada
+    setState(() async {
+      prefs = await SharedPreferences.getInstance();
+      ciuScoresShp = prefs.getInt('scoreTotalCiu') ?? 0;
+    });
+
+    print('imprimiendo lecScoresSHP: $ciuScoresShp');
   }
 
   @override
@@ -1621,7 +1681,19 @@ class _world_gameState extends State<world_game> {
                                         fontSize: 13),
                                   ),
                                   Text(
-                                    "$matScoresShp",
+                                    _modulo == 'Razonamiento Cuantitativo'
+                                        ? "$matScoresShp"
+                                        : _modulo == 'Inglés'
+                                            ? "$ingScoresShp"
+                                            : _modulo == 'Lectura Crítica'
+                                                ? "$lecScoresShp"
+                                                : _modulo ==
+                                                        'Ciencias Naturales'
+                                                    ? "$natScoresShp"
+                                                    : _modulo ==
+                                                            'Competencias Ciudadanas'
+                                                        ? "$ciuScoresShp"
+                                                        : "no module",
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'BubblegumSans',

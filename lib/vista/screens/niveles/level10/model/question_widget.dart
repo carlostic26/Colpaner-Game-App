@@ -443,8 +443,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     String _modulo = await localStorage.getModulo();
 
     if (_modulo == 'Razonamiento Cuantitativo') {
-          //save score in shared preferente to save resources at firebase
-    localStorage.setScoreMat10(score);
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreMat10(score);
 
       final puntajesRefMat = FirebaseFirestore.instance
           .collection('puntajes')
@@ -456,6 +456,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     }
 
     if (_modulo == 'Inglés') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreIng10(score);
+
       final puntajesRefIng = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ingles')
@@ -466,6 +469,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     }
 
     if (_modulo == 'Lectura Crítica') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreLec10(score);
+
       final puntajesRefLec = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('lectura')
@@ -475,7 +481,10 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       await puntajesRefLec.set({'userId': user.uid, 'puntaje': puntaje});
     }
 
-    if (_modulo == 'Naturales') {
+    if (_modulo == 'Ciencias Naturales') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreNat10(score);
+
       final puntajesRefNat = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('naturales')

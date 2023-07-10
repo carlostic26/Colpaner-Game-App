@@ -1404,6 +1404,9 @@ class _lectusoupState extends State<lectusoup> {
     final puntaje = score; // Puntaje obtenido
 
     LocalStorage localStorage = LocalStorage();
+
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreLec3(score);
     //unlock next level
     localStorage.setLecBtn4Unlock();
 

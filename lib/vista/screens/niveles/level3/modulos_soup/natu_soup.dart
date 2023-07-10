@@ -1387,6 +1387,9 @@ class _natusoupState extends State<natusoup> {
     final puntaje = score; // Puntaje obtenido
 
     LocalStorage localStorage = LocalStorage();
+
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreNat3(score);
     //unlock next level
     localStorage.setNatBtn4Unlock();
 

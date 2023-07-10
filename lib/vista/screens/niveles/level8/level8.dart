@@ -489,9 +489,8 @@ class _level8State extends State<level8> {
     }
 
     if (_modulo == 'Inglés') {
-      //establece el puntaje obtenido y lo guarda en shp
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_ing_8', score);
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreIng8(score);
 
       //unlock next level
       localStorage.setIngBtn9Unlock();
@@ -506,6 +505,9 @@ class _level8State extends State<level8> {
     }
 
     if (_modulo == 'Lectura Crítica') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreLec8(score);
+
       //unlock next level
       localStorage.setLecBtn9Unlock();
       final puntajesRefIng = FirebaseFirestore.instance
@@ -518,6 +520,9 @@ class _level8State extends State<level8> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreNat8(score);
+
       //unlock next level
       localStorage.setNatBtn9Unlock();
       final puntajesRefSoc = FirebaseFirestore.instance

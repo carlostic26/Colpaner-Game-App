@@ -329,7 +329,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             ),
           );
 
-          await _guardarPuntajeNivel1(
+          await _guardarPuntajeNivel5(
               _score); // Llamar a la función para guardar el puntaje
         }
 
@@ -918,7 +918,7 @@ final questionsSoc = [
       ]),
 ];
 
-Future<void> _guardarPuntajeNivel1(int score) async {
+Future<void> _guardarPuntajeNivel5(int score) async {
   final user = FirebaseAuth.instance.currentUser;
   final puntaje = score; // Puntaje obtenido
   LocalStorage localStorage = LocalStorage();
@@ -943,9 +943,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Inglés') {
-    //establece el puntaje obtenido y lo guarda en shp
-    //SharedPreferences preferences = await SharedPreferences.getInstance();
-    //await preferences.setInt('puntaje_ing_1', score);
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreIng5(score);
 
     //unlock next level
     localStorage.setIngBtn6Unlock();
@@ -960,9 +959,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Lectura Crítica') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreLec5(score);
 
     //unlock next level
     localStorage.setLecBtn6Unlock();
@@ -977,9 +975,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Ciencias Naturales') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreNat5(score);
 
     //unlock next level
     localStorage.setNatBtn6Unlock();

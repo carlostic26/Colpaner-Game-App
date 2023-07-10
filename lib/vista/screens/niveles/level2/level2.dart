@@ -365,6 +365,9 @@ class _level2State extends State<level2> {
     String modulo = await localStorage.getModulo();
 
     if (_modulo == 'Lectura Crítica') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreLec2(score);
+
       //unlock next level
       localStorage.setLecBtn3Unlock();
       //guarda puntaje en firestore
@@ -391,6 +394,9 @@ class _level2State extends State<level2> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreNat2(score);
+
       //unlock next level
       localStorage.setNatBtn3Unlock();
       //guarda puntaje en firestore
@@ -406,6 +412,7 @@ class _level2State extends State<level2> {
     if (_modulo == 'Razonamiento Cuantitativo') {
       //save score in shared preferente to save resources at firebase
       localStorage.setScoreMat2(score);
+
       //unlock next level
       localStorage.setMatBtn3Unlock();
       //guarda puntaje en firestore
@@ -422,6 +429,8 @@ class _level2State extends State<level2> {
     }
 
     if (_modulo == 'Inglés') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreIng2(score);
       //unlock next level
       localStorage.setIngBtn3Unlock();
       //guarda puntaje en firestore

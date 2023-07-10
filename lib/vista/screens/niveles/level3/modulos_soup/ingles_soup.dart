@@ -1413,6 +1413,9 @@ class _inglessoupState extends State<inglessoup> {
     final puntaje = score; // Puntaje obtenido
 
     LocalStorage localStorage = LocalStorage();
+
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreIng3(score);
     //unlock next level
     localStorage.setIngBtn4Unlock();
 

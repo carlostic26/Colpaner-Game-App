@@ -488,9 +488,8 @@ Future<void> _guardarPuntajeNivel4(int score) async {
 
   switch (_modulo) {
     case 'Lectura Crítica':
-      //establece el puntaje obtenido y lo guarda en shp
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_lec_4', score);
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreLec4(score);
 
       //unlock next level
       localStorage.setLecBtn5Unlock();
@@ -508,10 +507,6 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       //save score in shared preferente to save resources at firebase
       localStorage.setScoreMat4(score);
 
-      //establece el puntaje obtenido y lo guarda en shp
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setString('puntaje_mat_4', score.toString());
-
       //unlock next level
       localStorage.setMatBtn5Unlock();
 
@@ -528,8 +523,8 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       break;
 
     case 'Inglés':
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_ing_4', score);
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreIng4(score);
 
       //unlock next level
       localStorage.setIngBtn5Unlock();
@@ -544,9 +539,8 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       break;
 
     case 'Ciencias Naturales':
-      //establece el puntaje obtenido y lo guarda en shp
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_nat_4', score);
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreNat4(score);
 
       //unlock next level
       localStorage.setNatBtn5Unlock();

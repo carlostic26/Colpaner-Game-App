@@ -874,9 +874,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Inglés') {
-    //establece el puntaje obtenido y lo guarda en shp
-    //SharedPreferences preferences = await SharedPreferences.getInstance();
-    //await preferences.setInt('puntaje_ing_1', score);
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreIng9(score);
 
     //unlock next level
     localStorage.setIngBtn10Unlock();
@@ -891,9 +890,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Lectura Crítica') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreLec9(score);
 
     //unlock next level
     localStorage.setLecBtn10Unlock();
@@ -908,9 +906,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Ciencias Naturales') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreNat9(score);
 
     //unlock next level
     localStorage.setNatBtn10Unlock();

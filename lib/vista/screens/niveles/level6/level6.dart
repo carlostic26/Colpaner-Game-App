@@ -665,6 +665,9 @@ class _level6State extends State<level6> {
     }
 
     if (_modulo == 'Inglés') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreIng6(score);
+
       //unlock next level
       localStorage.setIngBtn7Unlock();
 
@@ -678,6 +681,9 @@ class _level6State extends State<level6> {
     }
 
     if (_modulo == 'Lectura Crítica') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreLec6(score);
+
       //unlock next level
       localStorage.setLecBtn7Unlock();
 
@@ -691,6 +697,9 @@ class _level6State extends State<level6> {
     }
 
     if (_modulo == 'Ciencias Naturales') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreNat6(score);
+
       //unlock next level
       localStorage.setNatBtn7Unlock();
 
