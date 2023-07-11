@@ -17,6 +17,19 @@ class LocalStorage {
     return modulo;
   }
 
+
+  //garantiza que si data user ya se escribió por 1era vez, no se vuelva a escribir
+  void setActualUser(name)async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('actualUser', name);
+  }
+
+  Future<String> getActualUser()async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String name = prefs.getString('actualUser') ?? '';
+    return name;
+  }
+
   void setDataUser(name, email, tecnica, avatar) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('nameUser', name);

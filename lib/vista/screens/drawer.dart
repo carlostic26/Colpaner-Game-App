@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
@@ -28,6 +30,25 @@ class DrawerColpaner extends StatefulWidget {
 class _DrawerColpanerState extends State<DrawerColpaner> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
+
+  LocalStorage localStorage = LocalStorage();
+
+  void sendDataUserShp(){
+
+    String name = loggedInUser.fullName.toString();
+    String tecnic = loggedInUser.tecnica.toString();
+    String avatar = loggedInUser.avatar.toString();
+    String email = loggedInUser.email.toString();
+
+    Fluttertoast.showToast(
+      msg: " sendDataUserShp: $name , $tecnic", // message
+      toastLength: Toast.LENGTH_LONG, // length
+      gravity: ToastGravity.CENTER, // location
+    );
+
+    //escribo info en shared preferences para ahorrar lecturas a firebase
+    localStorage.setDataUser(name, email, tecnic, avatar);
+  }
 
   String _imageAvatarUrl = '';
 
@@ -62,10 +83,16 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
     return gender;
   }
 
+  String name='';
+  String tecnic='';
+  String avatar='';
+  String email='';
+
   @override
   void initState() {
     getIsAvatar();
     getGender();
+    getUser();
     _getAvatarFromSharedPrefs();
 
     FirebaseFirestore.instance
@@ -79,6 +106,46 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
     });
 
     super.initState();
+  }
+
+  void getUser() async {
+    String actualUser = await localStorage.getActualUser();
+
+    //si contiene usuario, no vuelve a leer user de firebase
+    if (actualUser == '') {
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(user!.uid)
+          .get()
+          .then((value) {
+        loggedInUser = UserModel.fromMap(value.data());
+
+        setState(() {
+          name = loggedInUser.fullName.toString();
+          tecnic = loggedInUser.tecnica.toString();
+          avatar = loggedInUser.avatar.toString();
+          email = loggedInUser.email.toString();
+
+          localStorage.setDataUser(name, email, tecnic, avatar);
+          localStorage.setActualUser(name);
+        });
+
+        Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic');
+      });
+    } else {
+      Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
+
+      //traigo los valores de shp a las variables locales
+
+      setState(() async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        name = prefs.getString('nameUser') ?? '';
+        email = prefs.getString('emailUser') ?? '';
+        tecnic = prefs.getString('tecnicaUser') ?? '';
+        avatar = prefs.getString('avatarUser') ?? '';
+      });
+
+    }
   }
 
   @override
@@ -118,7 +185,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                           width: 90.0,
                           height: 90.0,
                           fadeInDuration: Duration.zero,
-                          imageUrl: _imageAvatarUrl,
+                          imageUrl: avatar,
                           imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
@@ -137,7 +204,8 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                         Container(
                           alignment: Alignment.center,
                           child: Text(
-                            loggedInUser.fullName.toString(),
+                            //loggedInUser.fullName.toString(),
+                            name,
                             style: const TextStyle(
                               fontFamily: 'BubblegumSans',
                               color: colors_colpaner.claro,
@@ -147,14 +215,17 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                           ),
                         ),
                         Text(
-                          'Técnica de ${loggedInUser.tecnica}',
+                          //'Técnica de ${loggedInUser.tecnica}',
+                          'Técnica de $tecnic',
+
                           style: const TextStyle(
                             fontFamily: 'BubblegumSans',
                             color: colors_colpaner.claro,
                           ),
                         ),
                         Text(
-                          loggedInUser.email.toString(),
+                          //loggedInUser.email.toString(),
+                          email,
                           style: const TextStyle(
                             fontFamily: 'BubblegumSans',
                             fontSize: 10,

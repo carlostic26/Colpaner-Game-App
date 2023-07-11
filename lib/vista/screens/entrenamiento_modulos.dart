@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
@@ -21,6 +22,7 @@ class entrenamientoModulos extends StatefulWidget {
 class _entrenamientoModulosState extends State<entrenamientoModulos> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
+  LocalStorage localStorage = LocalStorage();
 
   String _imageAvatarUrl = '';
 
@@ -55,23 +57,68 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     return gender;
   }
 
+  void sendUserDataShp() {
+
+
+    String name = loggedInUser.fullName.toString();
+    String tecnic = loggedInUser.tecnica.toString();
+    String avatar = loggedInUser.avatar.toString();
+    String email = loggedInUser.email.toString();
+
+    Fluttertoast.showToast(
+      msg: " sendDataUserShp: $name , $tecnic", // message
+      toastLength: Toast.LENGTH_LONG, // length
+      gravity: ToastGravity.CENTER, // location
+    );
+
+    //escribo info en shared preferences para ahorrar lecturas a firebase
+    localStorage.setDataUser(name, email, tecnic, avatar);
+
+  }
+
+  String name='';
+  String tecnic='';
+  String avatar='';
+  String email='';
+
   @override
   void initState() {
     getIsAvatar();
     getGender();
     _getAvatarFromSharedPrefs();
 
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(user!.uid)
-        .get()
-        .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
-
-      setState(() {});
-    });
+    getUser();
 
     super.initState();
+  }
+
+  void getUser() async {
+    String actualUser = await localStorage.getActualUser();
+
+    //si contiene usuario, no vuelve a leer user de firebase
+    if (actualUser == '') {
+      FirebaseFirestore.instance
+          .collection("users")
+          .doc(user!.uid)
+          .get()
+          .then((value) {
+        loggedInUser = UserModel.fromMap(value.data());
+
+        setState(() {
+          name = loggedInUser.fullName.toString();
+          tecnic = loggedInUser.tecnica.toString();
+          avatar = loggedInUser.avatar.toString();
+          email = loggedInUser.email.toString();
+
+          localStorage.setDataUser(name, email, tecnic, avatar);
+          localStorage.setActualUser(name);
+        });
+
+        Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic');
+      });
+    } else {
+      Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
+    }
   }
 
   String imageUrlMat =
@@ -89,7 +136,8 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
 
   @override
   Widget build(BuildContext context) {
-    LocalStorage localStorage = LocalStorage();
+
+
     return Scaffold(
       backgroundColor: colors_colpaner.base,
       appBar: AppBar(

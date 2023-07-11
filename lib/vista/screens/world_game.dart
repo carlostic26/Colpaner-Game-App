@@ -1473,13 +1473,17 @@ class _world_gameState extends State<world_game> {
   getDataSharedPreferences() async {
     //get name, module, tecnica
     getUserInfo();
+try{
+  //obtener puntaje mat
+  getScoreMatShp();
+  getScoreIngShp();
+  getScoreNatShp();
+  getScoreCiuShp();
+  getScoreLecShp();
+}catch(error){
+  print('ERROR EN GETDATASHAREDPREFERENCES: $error');
+    }
 
-    //obtener puntaje mat
-    getScoreMatShp();
-    getScoreIngShp();
-    getScoreNatShp();
-    getScoreCiuShp();
-    getScoreLecShp();
   }
 
   String nameUserShp = '';

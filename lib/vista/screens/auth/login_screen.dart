@@ -1,4 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
+import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/screens/auth/registration_screen.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -199,20 +202,22 @@ class _LoginScreenState extends State<LoginScreen> {
   //login function
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
-      //ShapredPreferences para mantener al usuario logeado
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      preferences.setString('email', email);
 
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-                Fluttertoast.showToast(msg: '¡Bienvenido!'),
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const entrenamientoModulos())),
-              })
+
+            Fluttertoast.showToast(msg: '¡Bienvenido!'),
+             Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => const entrenamientoModulos())),
+            })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
     }
   }
+
+
+
+
 }
