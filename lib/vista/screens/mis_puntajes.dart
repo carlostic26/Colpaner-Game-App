@@ -4694,23 +4694,23 @@ class _misPuntajesState extends State<misPuntajes> {
 
     setState(() {
       getPuntajesTotal_MAT().then((value) {
-        puntos_mat = value ?? 0;
+        puntos_mat = value;
       });
 
       getPuntajesTotal_ING().then((value) {
-        puntos_ing = value ?? 0;
+        puntos_ing = value;
       });
 
       getPuntajesTotal_LEC().then((value) {
-        puntos_lec = value ?? 0;
+        puntos_lec = value;
       });
 
       getPuntajesTotal_CIU().then((value) {
-        puntos_ciu = value ?? 0;
+        puntos_ciu = value;
       });
 
       getPuntajesTotal_NAT().then((value) {
-        puntos_nat = value ?? 0;
+        puntos_nat = value;
       });
     });
 

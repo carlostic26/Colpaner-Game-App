@@ -1,10 +1,9 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -109,7 +108,9 @@ class _level7State extends State<level7> {
       }
 
       Set<String> uniqueLetters = word.split('').toSet();
-      int countWordSinRepetidos = uniqueLetters.length;
+      setState(() {
+        countWordSinRepetidos = uniqueLetters.length;
+      });
 
       numIntentosMax = countWordSinRepetidos + 6;
     });
@@ -212,39 +213,58 @@ class _level7State extends State<level7> {
       backgroundColor: colors_colpaner.base,
       body: Stack(
         children: [
-          SizedBox(
-            //dimension de ancho y alto de pantalla
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: Stack(
-              alignment: Alignment.center,
-              children: <Widget>[
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                      Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "El Ahorcado",
-                              style: TextStyle(
-                                fontSize: 40.0,
-                                fontFamily: 'BubblegumSans',
-                                fontWeight: FontWeight.bold,
-                                color: colors_colpaner.claro,
-                              ),
+          Expanded(
+            child: SizedBox(
+              //dimension de ancho y alto de pantalla
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Center(
+                          child: Text(
+                            "El Ahorcado",
+                            style: TextStyle(
+                              fontSize: 40.0,
+                              fontFamily: 'BubblegumSans',
+                              fontWeight: FontWeight.bold,
+                              color: colors_colpaner.claro,
                             ),
-                            const SizedBox(width: 20),
+                          ),
+                        ),
+
+                        Text(
+                          modulo,
+                          style: const TextStyle(
+                            fontSize: 15.0,
+                            fontFamily: 'BubblegumSans',
+                            fontWeight: FontWeight.bold,
+                            color: colors_colpaner.oscuro,
+                          ),
+                        ),
+                        const Divider(
+                          color: colors_colpaner.oscuro,
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            /* scoreBoard1(
+                                "Intentos", "$numIntentos/$numIntentosMax"), */
+                            scoreBoard1("Puntos",
+                                "${Game7.succes}/$countWordSinRepetidos"),
                             Container(
                               margin: const EdgeInsets.all(5.0),
                               padding: const EdgeInsets.symmetric(
-                                  vertical: 5.0, horizontal: 15.0),
+                                  vertical: 10.0, horizontal: 30.0),
                               decoration: BoxDecoration(
                                 color: colors_colpaner.oscuro,
                                 borderRadius: BorderRadius.circular(6.0),
@@ -254,7 +274,7 @@ class _level7State extends State<level7> {
                                   const Icon(
                                     color: colors_colpaner.claro,
                                     Icons.timer,
-                                    size: 20,
+                                    size: 30,
                                   ),
                                   Text(
                                     '$_start',
@@ -268,165 +288,152 @@ class _level7State extends State<level7> {
                             ),
                           ],
                         ),
-                      ),
-
-                      Text(
-                        modulo,
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          fontFamily: 'BubblegumSans',
-                          fontWeight: FontWeight.bold,
-                          color: colors_colpaner.oscuro,
+                        const SizedBox(
+                          height: 30.0,
                         ),
-                      ),
-                      const Divider(
-                        color: colors_colpaner.oscuro,
-                      ),
-                      const SizedBox(
-                        height: 10.0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          scoreBoard1(
-                              "Intentos", "$numIntentos/$numIntentosMax"),
-                          scoreBoard1("Puntos", "${Game7.succes}")
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30.0,
-                      ),
-                      //texto de afirmación
-                      Positioned(
-                        top: 10,
-                        left: -10,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
-                          child: Text(
-                            afirmacion,
-                            style: const TextStyle(
-                                color: colors_colpaner.claro,
-                                fontSize: 18,
-                                fontFamily: 'BubblegumSans'),
+                        //texto de afirmación
+                        Positioned(
+                          top: 10,
+                          left: -10,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
+                            child: Text(
+                              afirmacion,
+                              style: const TextStyle(
+                                  color: colors_colpaner.claro,
+                                  fontSize: 18,
+                                  fontFamily: 'BubblegumSans'),
+                            ),
                           ),
                         ),
-                      ),
 
-                      Center(
-                        child: Stack(
-                          //corresponde a cada imagen de parte de cuerpo del personaje de ahorcado
-                          children: [
-                            figureImage(Game7.tries >= 0,
-                                "assets/games/level3/hang.png"),
-                            figureImage(Game7.tries >= 1,
-                                "assets/games/level3/head.png"),
-                            figureImage(Game7.tries >= 2,
-                                "assets/games/level3/body.png"),
-                            figureImage(
-                                Game7.tries >= 3, "assets/games/level3/ra.png"),
-                            figureImage(
-                                Game7.tries >= 4, "assets/games/level3/la.png"),
-                            figureImage(
-                                Game7.tries >= 5, "assets/games/level3/rl.png"),
-                            figureImage(
-                                Game7.tries >= 6, "assets/games/level3/ll.png"),
-                          ],
+                        Center(
+                          child: Stack(
+                            //corresponde a cada imagen de parte de cuerpo del personaje de ahorcado
+                            children: [
+                              figureImage(Game7.tries >= 0,
+                                  "assets/games/level3/hang.png"),
+                              figureImage(Game7.tries >= 1,
+                                  "assets/games/level3/head.png"),
+                              figureImage(Game7.tries >= 2,
+                                  "assets/games/level3/body.png"),
+                              figureImage(Game7.tries >= 3,
+                                  "assets/games/level3/ra.png"),
+                              figureImage(Game7.tries >= 4,
+                                  "assets/games/level3/la.png"),
+                              figureImage(Game7.tries >= 5,
+                                  "assets/games/level3/rl.png"),
+                              figureImage(Game7.tries >= 6,
+                                  "assets/games/level3/ll.png"),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: word
-                              .split('')
-                              .map((e) => letter(
-                                  e.toUpperCase(),
-                                  !Game7.selectedChar
-                                      .contains(e.toUpperCase())))
-                              .toList(),
+                        const SizedBox(
+                          height: 20.0,
                         ),
-                      ),
 
-                      const SizedBox(height: 10),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: word
+                                .split('')
+                                .map((e) => letter(
+                                    e.toUpperCase(),
+                                    !Game7.selectedChar
+                                        .contains(e.toUpperCase())))
+                                .toList(),
+                          ),
+                        ),
 
-                      //building the Game keyboard
-                      SizedBox(
-                        width: double.infinity,
-                        height: 250.0,
-                        child: GridView.count(
-                          crossAxisCount: 7,
-                          mainAxisSpacing: 8.0,
-                          crossAxisSpacing: 8.0,
-                          padding: const EdgeInsets.all(8.0),
-                          children: alphabets.map((e) {
-                            return RawMaterialButton(
-                                onPressed: Game7.selectedChar.contains(e)
-                                    ? null // Se valida si no se ha seleccionado el botón anterior
-                                    : () {
-                                        setState(() {
-                                          numIntentos++;
+                        const SizedBox(height: 10),
 
-                                          Game7.selectedChar.add(e);
-                                          print(Game7.selectedChar);
-                                          if (!word
-                                              .split('')
-                                              .contains(e.toUpperCase())) {
-                                            Game7.tries++;
-                                          }
+                        //building the Game keyboard
+                        SizedBox(
+                          width: double.infinity,
+                          height: 250.0,
+                          child: GridView.count(
+                            crossAxisCount: 7,
+                            mainAxisSpacing: 8.0,
+                            crossAxisSpacing: 8.0,
+                            padding: const EdgeInsets.all(8.0),
+                            children: alphabets.map((e) {
+                              return RawMaterialButton(
+                                  onPressed: Game7.selectedChar.contains(e)
+                                      ? null // Se valida si no se ha seleccionado el botón anterior
+                                      : () {
+                                          setState(() {
+                                            numIntentos++;
 
-                                          //si la palabra escrita está en las cajas entonces aumenta numero de exitos
-                                          if (word
-                                              .split('')
-                                              .contains(e.toUpperCase())) {
-                                            Game7.succes++;
-                                          }
+                                            Game7.selectedChar.add(e);
+                                            print(Game7.selectedChar);
+                                            if (!word
+                                                .split('')
+                                                .contains(e.toUpperCase())) {
+                                              setState(() {
+                                                Game7.tries++;
+                                                Game7.fails++;
 
-                                          //GAME OVER HIDROCARBUROS
+                                                Fluttertoast.showToast(
+                                                  msg:
+                                                      " FAILS: ${Game7.fails}", // message
+                                                  toastLength: Toast
+                                                      .LENGTH_LONG, // length
+                                                  gravity: ToastGravity
+                                                      .CENTER, // location
+                                                );
 
-                                          //si falla mas de lo debido
-                                          if (numIntentos == numIntentosMax) {
-                                            stopTimer();
-                                            print(
-                                                'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
-                                            //Opcional, enviar como parametro respuesta correcta y mostrar en ese dialogo
-                                            DialogHelper.showDialogGameOver(
-                                                context,
-                                                Game7.succes
-                                                    .toString()); //gana 0 puntos si perdió el nivel || SCORE
+                                                if (Game7.fails >= 6) {
+                                                  stopTimer();
+                                                  print(
+                                                      'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
 
-                                            //guarda puntaje de nivel en firestore
-                                            _guardarPuntajeNivel7(Game7.succes);
+                                                  //guarda puntaje de nivel en firestore
+                                                  _guardarPuntajeNivel7(
+                                                      Game7.succes);
 
-                                            setState(() {
-                                              numIntentos = 0;
-                                              gameover = true;
-                                              Game7.tries = 0;
-                                              Game7.succes = 0;
-                                              Game7.selectedChar.clear();
-                                            });
-                                          }
+                                                  //Opcional, enviar como parametro respuesta correcta y mostrar en ese dialogo
+                                                  DialogHelper.showDialogGameOver(
+                                                      context,
+                                                      Game7.succes
+                                                          .toString()); //gana 0 puntos si perdió el nivel || SCORE
 
-                                          // y si se logra el llenado de las letras minimas completas entonces
-                                          if (Game7.succes == word.length ||
-                                              Game7.succes ==
-                                                  countWordSinRepetidos) {
-                                            stopTimer();
-                                            print(
-                                                'PALABRA COMPLETADA CORRECTAMENTE');
-                                            //guarda puntaje de nivel en firestore
-                                            _guardarPuntajeNivel7(Game7.succes);
+                                                  setState(() {
+                                                    numIntentos = 0;
+                                                    gameover = true;
+                                                    Game7.tries = 0;
+                                                    Game7.fails = 0;
+                                                    Game7.succes = 0;
+                                                    Game7.selectedChar.clear();
+                                                  });
+                                                }
+                                                ;
+                                              });
+                                            }
 
-                                            Future.delayed(
-                                                const Duration(
-                                                    milliseconds: 500), () {
+                                            //si la palabra escrita está en las cajas entonces aumenta numero de exitos
+                                            if (word
+                                                .split('')
+                                                .contains(e.toUpperCase())) {
+                                              Game7.succes++;
+                                            }
+
+                                            //GAME OVER HIDROCARBUROS
+
+                                            //si falla mas de lo debido
+                                            if (numIntentos == numIntentosMax) {
+                                              stopTimer();
+                                              print(
+                                                  'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
+                                              //Opcional, enviar como parametro respuesta correcta y mostrar en ese dialogo
                                               DialogHelper.showDialogGameOver(
                                                   context,
-                                                  Game7.succes.toString());
+                                                  Game7.succes
+                                                      .toString()); //gana 0 puntos si perdió el nivel || SCORE
+
+                                              //guarda puntaje de nivel en firestore
+                                              _guardarPuntajeNivel7(
+                                                  Game7.succes);
 
                                               setState(() {
                                                 numIntentos = 0;
@@ -435,32 +442,60 @@ class _level7State extends State<level7> {
                                                 Game7.succes = 0;
                                                 Game7.selectedChar.clear();
                                               });
-                                            });
-                                          }
-                                        });
-                                      },
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4.0),
-                                ),
-                                fillColor: Game7.selectedChar.contains(e)
-                                    ? colors_colpaner.base
-                                    : colors_colpaner.oscuro,
-                                child: Text(
-                                  e,
-                                  style: const TextStyle(
-                                      //COLOR TEXT BOARD
-                                      color: Colors.white,
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'BubblegumSans'),
-                                )); //color red normal
-                          }).toList(),
-                        ),
-                      )
-                    ],
+                                            }
+
+                                            // y si se logra el llenado de las letras minimas completas entonces
+                                            if (Game7.succes == word.length ||
+                                                Game7.succes ==
+                                                    countWordSinRepetidos) {
+                                              stopTimer();
+                                              print(
+                                                  'PALABRA COMPLETADA CORRECTAMENTE');
+                                              //guarda puntaje de nivel en firestore
+                                              _guardarPuntajeNivel7(
+                                                  Game7.succes);
+
+                                              Future.delayed(
+                                                  const Duration(
+                                                      milliseconds: 500), () {
+                                                DialogHelper.showDialogGameOver(
+                                                    context,
+                                                    Game7.succes.toString());
+
+                                                setState(() {
+                                                  numIntentos = 0;
+                                                  gameover = true;
+                                                  Game7.tries = 0;
+                                                  Game7.succes = 0;
+                                                  Game7.selectedChar.clear();
+                                                });
+                                              });
+                                            }
+                                          });
+                                        },
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4.0),
+                                  ),
+                                  fillColor: Game7.selectedChar.contains(e)
+                                      ? colors_colpaner.base
+                                      : colors_colpaner.oscuro,
+                                  child: Text(
+                                    e,
+                                    style: const TextStyle(
+                                        //COLOR TEXT BOARD
+                                        color: Colors.white,
+                                        fontSize: 30.0,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'BubblegumSans'),
+                                  )); //color red normal
+                            }).toList(),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 

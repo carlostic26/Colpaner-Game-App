@@ -1473,17 +1473,16 @@ class _world_gameState extends State<world_game> {
   getDataSharedPreferences() async {
     //get name, module, tecnica
     getUserInfo();
-try{
-  //obtener puntaje mat
-  getScoreMatShp();
-  getScoreIngShp();
-  getScoreNatShp();
-  getScoreCiuShp();
-  getScoreLecShp();
-}catch(error){
-  print('ERROR EN GETDATASHAREDPREFERENCES: $error');
+    try {
+      //obtener puntaje mat
+      getScoreMatShp();
+      getScoreIngShp();
+      getScoreNatShp();
+      getScoreCiuShp();
+      getScoreLecShp();
+    } catch (error) {
+      print('ERROR EN GETDATASHAREDPREFERENCES: $error');
     }
-
   }
 
   String nameUserShp = '';
@@ -1582,753 +1581,747 @@ try{
     return Scaffold(
         appBar: null,
         body: Center(
-          child: Stack(
-            children: [
-              //img fondo candy
-              Center(
-                child: CachedNetworkImage(
-                  fadeInDuration: Duration.zero,
-                  imageUrl:
-                      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5Q4hvD_1Mg-3b4w0_w4rnkdo8iHWn1Pp2hLCbKLnnW4eUPY1LnmKF20V0zcIMNSJHSDUgqvVBNJqOodIeVRG87TewfsawutA9AdVEJpYxFVhBCoSpo6sVGKGe6uOLXG2KyuxYYR218nXHid185Agcdc-RkbrYrnw0FB3WWX7HBgs8kxesCJCf8k0/s16000/solo%20ruta%203.png',
-                  height: MediaQuery.of(context).size.height * 1.0,
-                  width: MediaQuery.of(context).size.width * 1.0,
-                  fit: BoxFit.fill,
+          child: Expanded(
+            child: Stack(
+              children: [
+                //img fondo candy
+                Center(
+                  child: CachedNetworkImage(
+                    fadeInDuration: Duration.zero,
+                    imageUrl:
+                        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5Q4hvD_1Mg-3b4w0_w4rnkdo8iHWn1Pp2hLCbKLnnW4eUPY1LnmKF20V0zcIMNSJHSDUgqvVBNJqOodIeVRG87TewfsawutA9AdVEJpYxFVhBCoSpo6sVGKGe6uOLXG2KyuxYYR218nXHid185Agcdc-RkbrYrnw0FB3WWX7HBgs8kxesCJCf8k0/s16000/solo%20ruta%203.png',
+                    height: MediaQuery.of(context).size.height * 1.0,
+                    width: MediaQuery.of(context).size.width * 1.0,
+                    fit: BoxFit.fill,
+                  ),
                 ),
-              ),
 
-              //banner
-              Align(
-                alignment: Alignment.topCenter,
-                child: Column(
-                  children: [
-                    ShakeWidgetY(
-                      child: Stack(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(1.0),
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.13,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage("assets/banner_user.png"),
-                                  fit: BoxFit.fill),
+                //banner
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Column(
+                    children: [
+                      ShakeWidgetY(
+                        child: Stack(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(1.0),
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.13,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/banner_user.png"),
+                                    fit: BoxFit.fill),
+                              ),
                             ),
-                          ),
-                          //text name and module
-                          Positioned(
-                            top: 50,
-                            left: MediaQuery.of(context).size.width * 0.1225,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  //loggedInUser.fullName.toString(),
-                                  nameUserShp,
-                                  style: const TextStyle(
-                                      color: Colors.black,
-                                      fontFamily: 'BubblegumSans',
-                                      fontSize: 14),
-                                ),
-                                Text(
-                                  _modulo,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: _modulo.length >= 19 ? 9 : 13,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          //image avatar
-                          Positioned(
-                            top: MediaQuery.of(context).size.width * 0.074,
-                            left: MediaQuery.of(context).size.width * 0.425,
-                            child: Container(
-                                padding: const EdgeInsets.all(1.0),
-                                width:
-                                    MediaQuery.of(context).size.width * 0.1900,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.1700,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: SizedBox(
-                                    width: cellWidth,
-                                    height: cellHeight,
-                                    child: CachedNetworkImage(
-                                      imageUrl: avatarUserShp, //_imageUrl,
-                                      placeholder: (context, url) =>
-                                          const Center(
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                )),
-                          ),
-                          //puntaje total
-                          Positioned(
-                            left: MediaQuery.of(context).size.width * 0.685,
-                            top: 45,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(0, 5, 1, 1),
+                            //text name and module
+                            Positioned(
+                              top: 50,
+                              left: MediaQuery.of(context).size.width * 0.1225,
                               child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Text(
-                                    "Puntaje total",
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontFamily: 'BubblegumSans',
-                                        fontSize: 13),
-                                  ),
                                   Text(
-                                    _modulo == 'Razonamiento Cuantitativo'
-                                        ? "$matScoresShp"
-                                        : _modulo == 'Inglés'
-                                            ? "$ingScoresShp"
-                                            : _modulo == 'Lectura Crítica'
-                                                ? "$lecScoresShp"
-                                                : _modulo ==
-                                                        'Ciencias Naturales'
-                                                    ? "$natScoresShp"
-                                                    : _modulo ==
-                                                            'Competencias Ciudadanas'
-                                                        ? "$ciuScoresShp"
-                                                        : "no module",
+                                    //loggedInUser.fullName.toString(),
+                                    nameUserShp,
                                     style: const TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'BubblegumSans',
-                                        fontSize: 20),
+                                        fontSize: 14),
                                   ),
-                                  /* FutureBuilder<int>(
-                                    future: _modulo ==
-                                            'Razonamiento Cuantitativo'
-                                        ? getPuntajesTotal_MAT()
-                                        : _modulo == 'Inglés'
-                                            ? getPuntajesTotal_ING()
-                                            : _modulo == 'Lectura Crítica'
-                                                ? getPuntajesTotal_LEC()
-                                                : _modulo ==
-                                                        'Ciencias Naturales'
-                                                    ? getPuntajesTotal_NAT()
-                                                    : _modulo ==
-                                                            'Competencias Ciudadanas'
-                                                        ? getPuntajesTotal_CIU()
-                                                        : getPuntajesTotal_MAT(),
-                                    builder: (BuildContext context,
-                                        AsyncSnapshot<int> snapshot) {
-                                      if (snapshot.hasData) {
-                                        return Text(
-                                          snapshot.data.toString(),
-                                          style: const TextStyle(
-                                            color: Colors.black,
-                                            fontFamily: 'BubblegumSans',
-                                            fontSize: 20,
-                                          ),
-                                        );
-                                      } else {
-                                        return const SizedBox(
-                                            height: 10,
-                                            width: 10,
-                                            child:
-                                                CircularProgressIndicator()); // O cualquier otro indicador de carga
-                                      }
-                                    },
-                                  ), */
+                                  Text(
+                                    _modulo,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: _modulo.length >= 19 ? 9 : 13,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-
-              // btn 10
-              Positioned(
-                right: MediaQuery.of(context).size.width * 0.325,
-                top: MediaQuery.of(context).size.height * 0.135,
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      width: 100,
-                      //Establece la imagen del boton - blocked || habilitado
-                      child: GestureDetector(
-                        child: niv10enabled ? button10 : buttonDisable,
-                      ),
-                    ),
-                    Positioned(
-                      top: 25,
-                      left: 40,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv10enabled == true) {
-                              button10 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv10enabled == true) {
-                              button10 = buttonUnpressed;
-                              showDialogLevel(10, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv10enabled
-                              ? const Text(
-                                  '10',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
+                            //image avatar
+                            Positioned(
+                              top: MediaQuery.of(context).size.width * 0.074,
+                              left: MediaQuery.of(context).size.width * 0.425,
+                              child: Container(
+                                  padding: const EdgeInsets.all(1.0),
+                                  width: MediaQuery.of(context).size.width *
+                                      0.1900,
+                                  height: MediaQuery.of(context).size.width *
+                                      0.1700,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15),
+                                    child: SizedBox(
+                                      width: cellWidth,
+                                      height: cellHeight,
+                                      child: CachedNetworkImage(
+                                        imageUrl: avatarUserShp, //_imageUrl,
+                                        placeholder: (context, url) =>
+                                            const Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                            //puntaje total
+                            Positioned(
+                              left: MediaQuery.of(context).size.width * 0.685,
+                              top: 45,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 5, 1, 1),
+                                child: Column(
+                                  children: [
+                                    const Text(
+                                      "Puntaje total",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: 'BubblegumSans',
+                                          fontSize: 13),
+                                    ),
+                                    Text(
+                                      _modulo == 'Razonamiento Cuantitativo'
+                                          ? "$matScoresShp"
+                                          : _modulo == 'Inglés'
+                                              ? "$ingScoresShp"
+                                              : _modulo == 'Lectura Crítica'
+                                                  ? "$lecScoresShp"
+                                                  : _modulo ==
+                                                          'Ciencias Naturales'
+                                                      ? "$natScoresShp"
+                                                      : _modulo ==
+                                                              'Competencias Ciudadanas'
+                                                          ? "$ciuScoresShp"
+                                                          : "no module",
+                                      style: const TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: 'BubblegumSans',
+                                          fontSize: 20),
+                                    ),
+                                    /* FutureBuilder<int>(
+                                      future: _modulo ==
+                                              'Razonamiento Cuantitativo'
+                                          ? getPuntajesTotal_MAT()
+                                          : _modulo == 'Inglés'
+                                              ? getPuntajesTotal_ING()
+                                              : _modulo == 'Lectura Crítica'
+                                                  ? getPuntajesTotal_LEC()
+                                                  : _modulo ==
+                                                          'Ciencias Naturales'
+                                                      ? getPuntajesTotal_NAT()
+                                                      : _modulo ==
+                                                              'Competencias Ciudadanas'
+                                                          ? getPuntajesTotal_CIU()
+                                                          : getPuntajesTotal_MAT(),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<int> snapshot) {
+                                        if (snapshot.hasData) {
+                                          return Text(
+                                            snapshot.data.toString(),
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontFamily: 'BubblegumSans',
+                                              fontSize: 20,
+                                            ),
+                                          );
+                                        } else {
+                                          return const SizedBox(
+                                              height: 10,
+                                              width: 10,
+                                              child:
+                                                  CircularProgressIndicator()); // O cualquier otro indicador de carga
+                                        }
+                                      },
+                                    ), */
+                                  ],
                                 ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
 
-              //btn 9
-              Positioned(
-                right: MediaQuery.of(context).size.width * 0.66,
-                top: MediaQuery.of(context).size.height * 0.258,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 62,
-                      width: 62,
-                      child: niv9enabled ? button9 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 12,
-                      left: 25,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv9enabled == true) {
-                              button9 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv9enabled == true) {
-                              button9 = buttonUnpressed;
-                              showDialogLevel(9, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv9enabled
-                              ? const Text(
-                                  '9',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
+                // btn 10
+                Positioned(
+                  right: MediaQuery.of(context).size.width * 0.325,
+                  top: MediaQuery.of(context).size.height * 0.135,
+                  child: Stack(
+                    children: [
+                      SizedBox(
+                        height: 100,
+                        width: 100,
+                        //Establece la imagen del boton - blocked || habilitado
+                        child: GestureDetector(
+                          child: niv10enabled ? button10 : buttonDisable,
                         ),
                       ),
-                    ),
-                  ]),
-                ),
-              ),
-
-              //btn 8
-              Positioned(
-                right: MediaQuery.of(context).size.width * 0.66,
-                top: MediaQuery.of(context).size.height * 0.355,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: niv8enabled ? button8 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 15,
-                      left: 28,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv8enabled == true) {
-                              button8 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv8enabled == true) {
-                              button8 = buttonUnpressed;
-                              showDialogLevel(8, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv8enabled
-                              ? const Text(
-                                  '8',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-
-              //btn 7
-              Positioned(
-                right: MediaQuery.of(context).size.width * 0.38,
-                top: MediaQuery.of(context).size.height * 0.358,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: niv7enabled ? button7 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 16,
-                      left: 30,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv7enabled == true) {
-                              button7 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv7enabled == true) {
-                              button7 = buttonUnpressed;
-                              showDialogLevel(7, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv7enabled
-                              ? const Text(
-                                  '7',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-
-//btn 6
-              Positioned(
-                right: MediaQuery.of(context).size.width * 0.0692,
-                bottom: MediaQuery.of(context).size.height * 0.48,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 75,
-                      width: 75,
-                      child: niv6enabled ? button6 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 17,
-                      left: 32,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv6enabled == true) {
-                              button6 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv6enabled == true) {
-                              button6 = buttonUnpressed;
-                              showDialogLevel(6, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv6enabled
-                              ? const Text(
-                                  '6',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-              //btn 5
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.4,
-                bottom: MediaQuery.of(context).size.height * 0.427,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 75,
-                      width: 75,
-                      child: niv5enabled ? button5 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 16,
-                      left: 32,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv5enabled == true) {
-                              button5 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv5enabled == true) {
-                              button5 = buttonUnpressed;
-                              showDialogLevel(5, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv5enabled
-                              ? const Text(
-                                  '5',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-
-              //btn 4
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.083,
-                bottom: MediaQuery.of(context).size.height * 0.41,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 75,
-                      width: 75,
-                      child: niv4enabled ? button4 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 16,
-                      left: 30,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv4enabled == true) {
-                              button4 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv4enabled == true) {
-                              button4 = buttonUnpressed;
-                              showDialogLevel(4, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv4enabled
-                              ? const Text(
-                                  '4',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-
-              //btn 3
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.12,
-                bottom: MediaQuery.of(context).size.height * 0.289,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 80,
-                      width: 100,
-                      child: niv3enabled ? button3 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 17,
-                      left: 43,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv3enabled == true) {
-                              button3 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv3enabled == true) {
-                              button3 = buttonUnpressed;
-                              showDialogLevel(3, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv3enabled
-                              ? const Text(
-                                  '3',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-
-              //btn 2
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.422,
-                bottom: MediaQuery.of(context).size.height * 0.195,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 90,
-                      width: 90,
-                      child: niv2enabled ? button2 : buttonDisable,
-                    ),
-                    Positioned(
-                      top: 19,
-                      left: 38,
-                      child: GestureDetector(
-                        onTapDown: (tap) {
-                          setState(() {
-                            if (niv2enabled == true) {
-                              button2 = buttonPressed;
-                            }
-                          });
-                        },
-                        onTapUp: (tap) {
-                          setState(() {
-                            if (niv2enabled == true) {
-                              button2 = buttonUnpressed;
-                              showDialogLevel(2, _modulo);
-                            }
-                          });
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: niv2enabled
-                              ? const Text(
-                                  '2',
-                                  style: TextStyle(
-                                    color: colors_colpaner.claro,
-                                    fontFamily: 'BubblegumSans',
-                                    fontSize: 25,
-                                  ),
-                                )
-                              : const Text(
-                                  '',
-                                ),
-                        ),
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
-
-              //btn inicial 1
-              Positioned(
-                left: MediaQuery.of(context).size.width * 0.375,
-                bottom: MediaQuery.of(context).size.height * 0.028,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Stack(children: [
-                    SizedBox(
-                      height: 125,
-                      width: 125,
-                      child: GestureDetector(
-                        child: button1,
-                      ),
-                    ),
-                    Positioned(
+                      Positioned(
                         top: 25,
-                        left: 55,
+                        left: 40,
                         child: GestureDetector(
                           onTapDown: (tap) {
                             setState(() {
-                              button1 = buttonPressed;
+                              if (niv10enabled == true) {
+                                button10 = buttonPressed;
+                              }
                             });
                           },
                           onTapUp: (tap) {
                             setState(() {
-                              button1 = buttonUnpressed;
+                              if (niv10enabled == true) {
+                                button10 = buttonUnpressed;
+                                showDialogLevel(10, _modulo);
+                              }
                             });
-                            showDialogLevel(1, _modulo);
                           },
-                          child: const SizedBox(
+                          child: SizedBox(
                             height: 100,
                             width: 100,
-                            child: Positioned(
-                              top: 25,
-                              left: 55,
-                              child: Text(
-                                '1',
-                                style: TextStyle(
-                                  color: colors_colpaner.claro,
-                                  fontFamily: 'BubblegumSans',
-                                  fontSize: 40,
+                            child: niv10enabled
+                                ? const Text(
+                                    '10',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                //btn 9
+                Positioned(
+                  right: MediaQuery.of(context).size.width * 0.66,
+                  top: MediaQuery.of(context).size.height * 0.258,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 62,
+                        width: 62,
+                        child: niv9enabled ? button9 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 12,
+                        left: 25,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv9enabled == true) {
+                                button9 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv9enabled == true) {
+                                button9 = buttonUnpressed;
+                                showDialogLevel(9, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv9enabled
+                                ? const Text(
+                                    '9',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                //btn 8
+                Positioned(
+                  right: MediaQuery.of(context).size.width * 0.66,
+                  top: MediaQuery.of(context).size.height * 0.355,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 70,
+                        width: 70,
+                        child: niv8enabled ? button8 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 15,
+                        left: 28,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv8enabled == true) {
+                                button8 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv8enabled == true) {
+                                button8 = buttonUnpressed;
+                                showDialogLevel(8, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv8enabled
+                                ? const Text(
+                                    '8',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                //btn 7
+                Positioned(
+                  right: MediaQuery.of(context).size.width * 0.38,
+                  top: MediaQuery.of(context).size.height * 0.358,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 70,
+                        width: 70,
+                        child: niv7enabled ? button7 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 16,
+                        left: 30,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv7enabled == true) {
+                                button7 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv7enabled == true) {
+                                button7 = buttonUnpressed;
+                                showDialogLevel(7, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv7enabled
+                                ? const Text(
+                                    '7',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                //btn 6
+                Positioned(
+                  right: MediaQuery.of(context).size.width * 0.0692,
+                  bottom: MediaQuery.of(context).size.height * 0.48,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 75,
+                        width: 75,
+                        child: niv6enabled ? button6 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 17,
+                        left: 32,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv6enabled == true) {
+                                button6 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv6enabled == true) {
+                                button6 = buttonUnpressed;
+                                showDialogLevel(6, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv6enabled
+                                ? const Text(
+                                    '6',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+                //btn 5
+                Positioned(
+                  left: MediaQuery.of(context).size.width * 0.4,
+                  bottom: MediaQuery.of(context).size.height * 0.427,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 75,
+                        width: 75,
+                        child: niv5enabled ? button5 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 16,
+                        left: 32,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv5enabled == true) {
+                                button5 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv5enabled == true) {
+                                button5 = buttonUnpressed;
+                                showDialogLevel(5, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv5enabled
+                                ? const Text(
+                                    '5',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                //btn 4
+                Positioned(
+                  left: MediaQuery.of(context).size.width * 0.083,
+                  bottom: MediaQuery.of(context).size.height * 0.41,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 75,
+                        width: 75,
+                        child: niv4enabled ? button4 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 16,
+                        left: 30,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv4enabled == true) {
+                                button4 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv4enabled == true) {
+                                button4 = buttonUnpressed;
+                                showDialogLevel(4, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv4enabled
+                                ? const Text(
+                                    '4',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                //btn 3
+                Positioned(
+                  left: MediaQuery.of(context).size.width * 0.12,
+                  bottom: MediaQuery.of(context).size.height * 0.289,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 80,
+                        width: 100,
+                        child: niv3enabled ? button3 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 17,
+                        left: 43,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv3enabled == true) {
+                                button3 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv3enabled == true) {
+                                button3 = buttonUnpressed;
+                                showDialogLevel(3, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv3enabled
+                                ? const Text(
+                                    '3',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                //btn 2
+                Positioned(
+                  left: MediaQuery.of(context).size.width * 0.422,
+                  bottom: MediaQuery.of(context).size.height * 0.195,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: 90,
+                        width: 90,
+                        child: niv2enabled ? button2 : buttonDisable,
+                      ),
+                      Positioned(
+                        top: 19,
+                        left: 38,
+                        child: GestureDetector(
+                          onTapDown: (tap) {
+                            setState(() {
+                              if (niv2enabled == true) {
+                                button2 = buttonPressed;
+                              }
+                            });
+                          },
+                          onTapUp: (tap) {
+                            setState(() {
+                              if (niv2enabled == true) {
+                                button2 = buttonUnpressed;
+                                showDialogLevel(2, _modulo);
+                              }
+                            });
+                          },
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: niv2enabled
+                                ? const Text(
+                                    '2',
+                                    style: TextStyle(
+                                      color: colors_colpaner.claro,
+                                      fontFamily: 'BubblegumSans',
+                                      fontSize: 25,
+                                    ),
+                                  )
+                                : const Text(
+                                    '',
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                ),
+
+                //btn inicial 1
+                Positioned(
+                  left: MediaQuery.of(context).size.width * 0.375,
+                  bottom: MediaQuery.of(context).size.height * 0.028,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Stack(children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.145,
+                        width: MediaQuery.of(context).size.width * 0.32,
+                        child: GestureDetector(
+                          child: button1,
+                        ),
+                      ),
+                      Positioned(
+                          top: MediaQuery.of(context).size.height * 0.030,
+                          left: MediaQuery.of(context).size.width * 0.14,
+                          child: GestureDetector(
+                            onTapDown: (tap) {
+                              setState(() {
+                                button1 = buttonPressed;
+                              });
+                            },
+                            onTapUp: (tap) {
+                              setState(() {
+                                button1 = buttonUnpressed;
+                              });
+                              showDialogLevel(1, _modulo);
+                            },
+                            child: const SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Positioned(
+                                top: 25,
+                                left: 55,
+                                child: Text(
+                                  '1',
+                                  style: TextStyle(
+                                    color: colors_colpaner.claro,
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 40,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        )),
-                  ]),
+                          )),
+                    ]),
+                  ),
                 ),
-              ),
 
-              //btn regresar
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.18,
-                  height: MediaQuery.of(context).size.height * 0.10,
-                  child: ShakeWidgetX(
-                    child: IconButton(
-                      icon: Image.asset('assets/flecha_left.png'),
-                      iconSize: 30,
-                      onPressed: () {
-                        //_soundBack();
-                        Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                                transitionDuration: const Duration(seconds: 1),
-                                transitionsBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secAnimation,
-                                    Widget child) {
-                                  animation = CurvedAnimation(
-                                      parent: animation,
-                                      curve: Curves.elasticInOut);
+                //btn regresar
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.18,
+                    height: MediaQuery.of(context).size.height * 0.10,
+                    child: ShakeWidgetX(
+                      child: IconButton(
+                        icon: Image.asset('assets/flecha_left.png'),
+                        iconSize: 30,
+                        onPressed: () {
+                          //_soundBack();
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  transitionDuration:
+                                      const Duration(seconds: 1),
+                                  transitionsBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation,
+                                      Widget child) {
+                                    animation = CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.elasticInOut);
 
-                                  return ScaleTransition(
-                                    alignment: Alignment.center,
-                                    scale: animation,
-                                    child: child,
-                                  );
-                                },
-                                pageBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secAnimattion) {
-                                  return const entrenamientoModulos();
-                                }));
-                      },
+                                    return ScaleTransition(
+                                      alignment: Alignment.center,
+                                      scale: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimattion) {
+                                    return const entrenamientoModulos();
+                                  }));
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
-  }
-
-  Future<String> obtenerNombre() async {
-    // Coloque aquí su código para obtener el nombre desde Firebase
-    // Por ejemplo, si su nombre de campo es "nombre" y está almacenado en Firestore:
-    // var snapshot = await FirebaseFirestore.instance.collection('usuarios').doc(id).get();
-    // var nombre = snapshot.data()['nombre'];
-    // return nombre;
-    return "Nombre desde Firebase";
   }
 
   bool btn1Pressed = false;

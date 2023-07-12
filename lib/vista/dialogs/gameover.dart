@@ -39,7 +39,7 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
 
   _buildChild(BuildContext context) => Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height * 0.35,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -118,9 +118,9 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                             builder: (BuildContext context,
                                 AsyncSnapshot<int> snapshot) {
                               if (snapshot.hasData) {
-                                return Text(
+                                return const Text(
                                   '', // 'Acumulado: ${snapshot.data} + ${widget.score}',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     color: Colors.white,
                                     fontFamily: 'BubblegumSans',
                                     fontSize: 12,
@@ -160,11 +160,14 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.pop(context);
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const misPuntajes()));
+/*                           Navigator.pop(context);
+                          Navigator.pop(context); */
+                          Navigator.popUntil(context, (route) => route.isFirst);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const misPuntajes()),
+                          );
                         },
                         child: const Text(
                           'Mis Puntajes',
@@ -178,10 +181,11 @@ class _ShowDialogGameOver extends State<ShowDialogGameOver> {
                       ElevatedButton(
                         onPressed: () {
                           Navigator.pop(context);
-                          Navigator.pop(context);
-                          Navigator.of(context).pushReplacement(
+                          Navigator.pushAndRemoveUntil(
+                            context,
                             MaterialPageRoute(
                                 builder: (context) => const world_game()),
+                            (route) => route.isFirst,
                           );
                         },
                         style: ElevatedButton.styleFrom(
