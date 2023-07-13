@@ -213,158 +213,151 @@ class _level7State extends State<level7> {
       backgroundColor: colors_colpaner.base,
       body: Stack(
         children: [
-          Expanded(
+          SingleChildScrollView(
             child: SizedBox(
-              //dimension de ancho y alto de pantalla
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Center(
-                          child: Text(
-                            "El Ahorcado",
-                            style: TextStyle(
-                              fontSize: 40.0,
-                              fontFamily: 'BubblegumSans',
-                              fontWeight: FontWeight.bold,
-                              color: colors_colpaner.claro,
-                            ),
-                          ),
+              height: MediaQuery.of(context).size.height * 0.99,
+              width: MediaQuery.of(context).size.width * 0.99,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.060),
+                  const Center(
+                    child: Text(
+                      "El Ahorcado",
+                      style: TextStyle(
+                        fontSize: 30.0, // Reducir el tamaño de la fuente
+                        fontFamily: 'BubblegumSans',
+                        fontWeight: FontWeight.bold,
+                        color: colors_colpaner.claro,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    modulo,
+                    style: const TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: 'BubblegumSans',
+                      fontWeight: FontWeight.bold,
+                      color: colors_colpaner.oscuro,
+                    ),
+                  ),
+                  const Divider(
+                    color: colors_colpaner.oscuro,
+                  ),
+                  const SizedBox(height: 10.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      scoreBoard1(
+                        "Puntos",
+                        "${Game7.succes}/$countWordSinRepetidos",
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 30.0),
+                        decoration: BoxDecoration(
+                          color: colors_colpaner.claro,
+                          borderRadius: BorderRadius.circular(6.0),
                         ),
-
-                        Text(
-                          modulo,
-                          style: const TextStyle(
-                            fontSize: 15.0,
-                            fontFamily: 'BubblegumSans',
-                            fontWeight: FontWeight.bold,
-                            color: colors_colpaner.oscuro,
-                          ),
-                        ),
-                        const Divider(
-                          color: colors_colpaner.oscuro,
-                        ),
-                        const SizedBox(
-                          height: 10.0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        child: Column(
                           children: [
-                            /* scoreBoard1(
-                                "Intentos", "$numIntentos/$numIntentosMax"), */
-                            scoreBoard1("Puntos",
-                                "${Game7.succes}/$countWordSinRepetidos"),
-                            Container(
-                              margin: const EdgeInsets.all(5.0),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 30.0),
-                              decoration: BoxDecoration(
+                            const Icon(
+                              color: colors_colpaner.oscuro,
+                              Icons.timer,
+                              size: 30,
+                            ),
+                            Text(
+                              '$_start',
+                              style: const TextStyle(
+                                fontFamily: 'BubblegumSans',
+                                fontSize: 15,
                                 color: colors_colpaner.oscuro,
-                                borderRadius: BorderRadius.circular(6.0),
-                              ),
-                              child: Column(
-                                children: [
-                                  const Icon(
-                                    color: colors_colpaner.claro,
-                                    Icons.timer,
-                                    size: 30,
-                                  ),
-                                  Text(
-                                    '$_start',
-                                    style: const TextStyle(
-                                        fontFamily: 'BubblegumSans',
-                                        fontSize: 15,
-                                        color: colors_colpaner.claro),
-                                  ),
-                                ],
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 30.0,
-                        ),
-                        //texto de afirmación
-                        Positioned(
-                          top: 10,
-                          left: -10,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
-                            child: Text(
-                              afirmacion,
-                              style: const TextStyle(
-                                  color: colors_colpaner.claro,
-                                  fontSize: 18,
-                                  fontFamily: 'BubblegumSans'),
-                            ),
-                          ),
-                        ),
-
-                        Center(
-                          child: Stack(
-                            //corresponde a cada imagen de parte de cuerpo del personaje de ahorcado
-                            children: [
-                              figureImage(Game7.tries >= 0,
-                                  "assets/games/level3/hang.png"),
-                              figureImage(Game7.tries >= 1,
-                                  "assets/games/level3/head.png"),
-                              figureImage(Game7.tries >= 2,
-                                  "assets/games/level3/body.png"),
-                              figureImage(Game7.tries >= 3,
-                                  "assets/games/level3/ra.png"),
-                              figureImage(Game7.tries >= 4,
-                                  "assets/games/level3/la.png"),
-                              figureImage(Game7.tries >= 5,
-                                  "assets/games/level3/rl.png"),
-                              figureImage(Game7.tries >= 6,
-                                  "assets/games/level3/ll.png"),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20.0,
-                        ),
-
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: word
-                                .split('')
-                                .map((e) => letter(
-                                    e.toUpperCase(),
-                                    !Game7.selectedChar
-                                        .contains(e.toUpperCase())))
-                                .toList(),
-                          ),
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        //building the Game keyboard
-                        SizedBox(
-                          width: double.infinity,
-                          height: 250.0,
-                          child: GridView.count(
-                            crossAxisCount: 7,
-                            mainAxisSpacing: 8.0,
-                            crossAxisSpacing: 8.0,
-                            padding: const EdgeInsets.all(8.0),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 30.0),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
+                    child: Text(
+                      afirmacion,
+                      style: const TextStyle(
+                        color: colors_colpaner.claro,
+                        fontSize: 18,
+                        fontFamily: 'BubblegumSans',
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height *
+                        0.20, // Reducir la altura del área de la figura del ahorcado
+                    child: Center(
+                      child: Stack(
+                        children: [
+                          figureImage(
+                              Game7.tries >= 0, "assets/games/level3/hang.png"),
+                          figureImage(
+                              Game7.tries >= 1, "assets/games/level3/head.png"),
+                          figureImage(
+                              Game7.tries >= 2, "assets/games/level3/body.png"),
+                          figureImage(
+                              Game7.tries >= 3, "assets/games/level3/ra.png"),
+                          figureImage(
+                              Game7.tries >= 4, "assets/games/level3/la.png"),
+                          figureImage(
+                              Game7.tries >= 5, "assets/games/level3/rl.png"),
+                          figureImage(
+                              Game7.tries >= 6, "assets/games/level3/ll.png"),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10.0),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: word
+                          .split('')
+                          .map((e) => letter(
+                                e.toUpperCase(),
+                                !Game7.selectedChar.contains(e.toUpperCase()),
+                              ))
+                          .toList(),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.04,
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return Wrap(
+                            // Cambiar a Wrap en lugar de GridView
+                            alignment: WrapAlignment.center,
+                            spacing: 3.0,
+                            runSpacing: 5.0,
                             children: alphabets.map((e) {
-                              return RawMaterialButton(
+                              return Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
+                                width: MediaQuery.of(context).size.width *
+                                    0.15, // Definir un ancho fijo para el contenedor
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 5.0, horizontal: 1.0),
+                                child: RawMaterialButton(
                                   onPressed: Game7.selectedChar.contains(e)
-                                      ? null // Se valida si no se ha seleccionado el botón anterior
+                                      ? null
                                       : () {
                                           setState(() {
                                             numIntentos++;
-
                                             Game7.selectedChar.add(e);
                                             print(Game7.selectedChar);
                                             if (!word
@@ -374,30 +367,24 @@ class _level7State extends State<level7> {
                                                 Game7.tries++;
                                                 Game7.fails++;
 
-                                                Fluttertoast.showToast(
-                                                  msg:
-                                                      " FAILS: ${Game7.fails}", // message
-                                                  toastLength: Toast
-                                                      .LENGTH_LONG, // length
-                                                  gravity: ToastGravity
-                                                      .CENTER, // location
-                                                );
+/*                                                 Fluttertoast.showToast(
+                                                  msg: " FAILS: ${Game7.fails}",
+                                                  toastLength:
+                                                      Toast.LENGTH_LONG,
+                                                  gravity: ToastGravity.CENTER,
+                                                ); */
 
                                                 if (Game7.fails >= 6) {
                                                   stopTimer();
                                                   print(
                                                       'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
-
-                                                  //guarda puntaje de nivel en firestore
                                                   _guardarPuntajeNivel7(
                                                       Game7.succes);
-
-                                                  //Opcional, enviar como parametro respuesta correcta y mostrar en ese dialogo
-                                                  DialogHelper.showDialogGameOver(
-                                                      context,
-                                                      Game7.succes
-                                                          .toString()); //gana 0 puntos si perdió el nivel || SCORE
-
+                                                  DialogHelper
+                                                      .showDialogGameOver(
+                                                          context,
+                                                          Game7.succes
+                                                              .toString());
                                                   setState(() {
                                                     numIntentos = 0;
                                                     gameover = true;
@@ -407,34 +394,22 @@ class _level7State extends State<level7> {
                                                     Game7.selectedChar.clear();
                                                   });
                                                 }
-                                                ;
                                               });
                                             }
-
-                                            //si la palabra escrita está en las cajas entonces aumenta numero de exitos
                                             if (word
                                                 .split('')
                                                 .contains(e.toUpperCase())) {
                                               Game7.succes++;
                                             }
-
-                                            //GAME OVER HIDROCARBUROS
-
-                                            //si falla mas de lo debido
                                             if (numIntentos == numIntentosMax) {
                                               stopTimer();
                                               print(
                                                   'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
-                                              //Opcional, enviar como parametro respuesta correcta y mostrar en ese dialogo
-                                              DialogHelper.showDialogGameOver(
-                                                  context,
-                                                  Game7.succes
-                                                      .toString()); //gana 0 puntos si perdió el nivel || SCORE
-
-                                              //guarda puntaje de nivel en firestore
                                               _guardarPuntajeNivel7(
                                                   Game7.succes);
-
+                                              DialogHelper.showDialogGameOver(
+                                                  context,
+                                                  Game7.succes.toString());
                                               setState(() {
                                                 numIntentos = 0;
                                                 gameover = true;
@@ -443,25 +418,20 @@ class _level7State extends State<level7> {
                                                 Game7.selectedChar.clear();
                                               });
                                             }
-
-                                            // y si se logra el llenado de las letras minimas completas entonces
                                             if (Game7.succes == word.length ||
                                                 Game7.succes ==
                                                     countWordSinRepetidos) {
                                               stopTimer();
                                               print(
                                                   'PALABRA COMPLETADA CORRECTAMENTE');
-                                              //guarda puntaje de nivel en firestore
                                               _guardarPuntajeNivel7(
                                                   Game7.succes);
-
                                               Future.delayed(
                                                   const Duration(
                                                       milliseconds: 500), () {
                                                 DialogHelper.showDialogGameOver(
                                                     context,
                                                     Game7.succes.toString());
-
                                                 setState(() {
                                                   numIntentos = 0;
                                                   gameover = true;
@@ -482,23 +452,24 @@ class _level7State extends State<level7> {
                                   child: Text(
                                     e,
                                     style: const TextStyle(
-                                        //COLOR TEXT BOARD
-                                        color: Colors.white,
-                                        fontSize: 30.0,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'BubblegumSans'),
-                                  )); //color red normal
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'BubblegumSans',
+                                    ),
+                                  ),
+                                ),
+                              );
                             }).toList(),
-                          ),
-                        )
-                      ],
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-
           //flecha atras
           Align(
             alignment: Alignment.topLeft,

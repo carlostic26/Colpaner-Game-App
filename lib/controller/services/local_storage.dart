@@ -3,6 +3,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalStorage {
   static late SharedPreferences prefs;
 
+  void setIsPin(bool isPin) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isPin', isPin);
+  }
+
+  Future<bool> getAccesPin() async {
+    bool isPin = false;
+    final prefs = await SharedPreferences.getInstance();
+
+    isPin = prefs.getBool('isPin') ?? false;
+
+    return isPin;
+  }
+
   //guarda el modulo ingresado en sharedPreferences
   void setModulo(modulo) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -17,14 +31,13 @@ class LocalStorage {
     return modulo;
   }
 
-
   //garantiza que si data user ya se escribió por 1era vez, no se vuelva a escribir
-  void setActualUser(name)async{
+  void setActualUser(name) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('actualUser', name);
   }
 
-  Future<String> getActualUser()async{
+  Future<String> getActualUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String name = prefs.getString('actualUser') ?? '';
     return name;

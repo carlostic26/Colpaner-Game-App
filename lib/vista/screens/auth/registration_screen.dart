@@ -359,7 +359,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     UserModel userModel = UserModel();
 
     LocalStorage localStorage = LocalStorage();
-
     LocalStorage.prefs.setBool("firstLog", firstLog);
 
     String avatar =

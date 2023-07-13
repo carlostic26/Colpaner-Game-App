@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
-import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
+import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/screens/genderChoorser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class pinScreen extends StatefulWidget {
@@ -16,6 +13,22 @@ class pinScreen extends StatefulWidget {
 }
 
 class _pinScreenState extends State<pinScreen> {
+  LocalStorage localStorage = LocalStorage();
+  bool isPin = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    //obtiene un buleano si el pin ha sido ingresado por el usuario o no, para garantizar el no acceso a infiltrados
+    getisPin();
+  }
+
+  void getisPin() async {
+    isPin = await localStorage.getAccesPin();
+  }
+
   String pin = '';
   @override
   Widget build(BuildContext context) {
@@ -126,6 +139,10 @@ class _pinScreenState extends State<pinScreen> {
 Future<void> savePin(bool pin) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setBool('pin', pin);
+
+  LocalStorage localStorage = LocalStorage();
+
+  localStorage.setIsPin(pin);
 }
 
 // Leer un valor de SharedPreferences

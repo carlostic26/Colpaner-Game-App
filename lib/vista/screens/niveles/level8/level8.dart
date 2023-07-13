@@ -341,6 +341,8 @@ class _level8State extends State<level8> {
                             preguntaAzar = temaPregunta[selected.value];
                           });
                           showItemDialog(preguntaAzar);
+
+                          //solo por intentar salir al tablero y explicar con sus palabras, ya tiene 5 puntos
                           _guardarPuntajeNivel8(5);
                         },
                       ),
@@ -421,7 +423,7 @@ class _level8State extends State<level8> {
                 ),
               ),
               content: const Text(
-                'Define el concepto con tus palabras, explica como podría servir en la vida real y recibe feedback de los demás.',
+                'Define el concepto con tus palabras. No tardes más de 10 segundos.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15),
               ),

@@ -152,6 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 15),
                     loginButton,
                     const SizedBox(height: 15),
+                    /*
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
@@ -161,12 +162,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: const Text(
                             "Olvidé mi clave",
-                            style: TextStyle(
+                            style: TextStyle( color: colors_colpaner.claro,
                                 fontWeight: FontWeight.w400, fontSize: 12),
                           ),
                         ),
                       ],
-                    ),
+                    ),*/
                     const SizedBox(
                       height: 40,
                     ),
@@ -184,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: const Text(
                             "Regístrate",
                             style: TextStyle(
-                                color: Colors.black,
+                                color: colors_colpaner.claro,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15),
                           ),
@@ -200,24 +201,28 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   //login function
-  void signIn(String email, String password) async {
+  void signIn(String emaill, String password) async {
+
     if (_formKey.currentState!.validate()) {
 
       await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
+          .signInWithEmailAndPassword(email: emaill, password: password)
           .then((uid) => {
 
             Fluttertoast.showToast(msg: '¡Bienvenido!'),
              Navigator.of(context).pushReplacement(MaterialPageRoute(
                   builder: (context) => const entrenamientoModulos())),
             })
+
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
       });
     }
+
+    //keep user loged in
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    var email = preferences.setString('email', emaill);
+
   }
-
-
-
 
 }

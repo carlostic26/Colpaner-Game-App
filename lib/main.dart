@@ -15,18 +15,31 @@ Future<void> main() async {
   SharedPreferences preferences = await SharedPreferences.getInstance();
   var email = preferences.getString('email');
 
+  print('EMAIL LOGED IN: $email');
+
   //sharedPreferences init
   await LocalStorage.configurePrefs();
 
   //init db sqlite
   await SimulacroHandler().initializeDB();
 
+  LocalStorage localStorage = LocalStorage();
+
+  late bool isPin = false;
+  print('ISPIN ANTES DE SHP: $isPin');
+
+  isPin = await localStorage.getAccesPin();
+  print('ISPIN DESPUES DE SHP: $isPin');
+
   runApp(MaterialApp(
     routes: {
       '/pinScreen': (context) => const pinScreen(),
     },
     debugShowCheckedModeBanner: false,
-    home: email == null ? MyApp() : const entrenamientoModulos(),
+    //si no existe un correo y si no se tiene el pin correcto, pasa a loginScreen
+    home: email == null && isPin == false
+        ? MyApp()
+        : const entrenamientoModulos(),
   ));
 }
 

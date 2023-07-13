@@ -1,7 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:gamicolpaner/vista/screens/niveles/level3/modulos_soup/ciuda_soup.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level3/modulos_soup/ingles_soup.dart';
 import 'package:gamicolpaner/vista/screens/niveles/level3/modulos_soup/lectura_soup.dart';

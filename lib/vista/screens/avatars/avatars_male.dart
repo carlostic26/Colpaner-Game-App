@@ -166,7 +166,7 @@ class _avatarsMaleState extends State<avatarsMale> {
                     Container(
                       padding: const EdgeInsets.all(1.0),
                       width: MediaQuery.of(context).size.width,
-                      height: 110,
+                      height: MediaQuery.of(context).size.height * 0.12,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                             image: AssetImage("assets/banner_user.png"),
@@ -184,12 +184,23 @@ class _avatarsMaleState extends State<avatarsMale> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  loggedInUser.fullName.toString(),
-                                  style: const TextStyle(
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(11, 0, 8, 0),
+                                  child: Text(
+                                    loggedInUser.fullName.toString(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'BubblegumSans',
-                                      fontSize: 14),
+                                      fontSize: loggedInUser.fullName
+                                                  .toString()
+                                                  .length >
+                                              27
+                                          ? 10
+                                          : 14,
+                                    ),
+                                  ),
                                 ),
                                 Text(
                                   loggedInUser.tecnica.toString(),
@@ -275,28 +286,6 @@ class _avatarsMaleState extends State<avatarsMale> {
                         ],
                       ),
                     ),
-
-                    /* //nombre y tecnica
-                    Positioned(
-                      left: totalWidth * 0.12,
-                      top: MediaQuery.of(context).size.height * 0.045,
-                      child: 
-                    ),
-                    //image avatar
-                    Positioned(
-                      top: MediaQuery.of(context).size.height * 0.032,
-                      left: MediaQuery.of(context).size.width * 0.40,
-                      child: 
-                    ),
-                    //puntaje total
-                    Positioned(
-                      right: totalWidth * 0.15,
-                      top: 35,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 8, 1, 1),
-                        child: 
-                      ),
-                    ), */
                   ],
                 ),
               ),

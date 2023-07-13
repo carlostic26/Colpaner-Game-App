@@ -479,10 +479,10 @@ final questionsMat = [
     text:
         "2. En una tienda, el precio de una camiseta es de 💲30. Si se aplica un descuento del 25%, ¿cuál será el precio final de la camiseta?",
     options: [
-      const Option(text: '💲18', isCorrect: false),
-      const Option(text: '💲22.50', isCorrect: true),
-      const Option(text: '💲25', isCorrect: false),
-      const Option(text: '💲35', isCorrect: false),
+      const Option(text: 'A. 💲18', isCorrect: false),
+      const Option(text: 'B. 💲22.50', isCorrect: true),
+      const Option(text: 'C. 💲25.55', isCorrect: false),
+      const Option(text: 'D. 💲35', isCorrect: false),
     ],
   ),
 
@@ -503,10 +503,10 @@ final questionsMat = [
     text:
         "4. Un artículo se vende con un margen de beneficio del 40% sobre el costo de producción. Si el costo de producción es de 💲80, ¿cuál es el precio de venta del artículo?",
     options: [
-      const Option(text: '💲112', isCorrect: true),
-      const Option(text: '💲100', isCorrect: false),
-      const Option(text: '💲120', isCorrect: false),
-      const Option(text: '💲160', isCorrect: false),
+      const Option(text: 'A. 💲112', isCorrect: true),
+      const Option(text: 'B, 💲100', isCorrect: false),
+      const Option(text: 'C. 💲120', isCorrect: false),
+      const Option(text: 'D. 💲160', isCorrect: false),
     ],
   ),
 

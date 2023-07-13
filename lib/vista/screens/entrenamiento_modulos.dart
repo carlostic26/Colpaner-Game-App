@@ -58,8 +58,6 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
   }
 
   void sendUserDataShp() {
-
-
     String name = loggedInUser.fullName.toString();
     String tecnic = loggedInUser.tecnica.toString();
     String avatar = loggedInUser.avatar.toString();
@@ -73,13 +71,12 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
 
     //escribo info en shared preferences para ahorrar lecturas a firebase
     localStorage.setDataUser(name, email, tecnic, avatar);
-
   }
 
-  String name='';
-  String tecnic='';
-  String avatar='';
-  String email='';
+  String name = '';
+  String tecnic = '';
+  String avatar = '';
+  String email = '';
 
   @override
   void initState() {
@@ -117,27 +114,22 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
         Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic');
       });
     } else {
-      Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
+      //Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
     }
   }
 
   String imageUrlMat =
-      'https://blogger.googleusercontent.com/img/a/AVvXsEi65drZlUOAOrTo1nrlpal6HmYjZk-Ju3SFpee8cYOYbWulOYMcuGxU2M-b0o9424zrXnKeqzc-XaiRXhrN9UBJCYBxFhiJxf_c5yHFlj_QVZgkRfCBGKbtkUn-Nsw9xytcwWDgg3KMtFElAINa4Z7UM8qQxNE4kiWutgOS9M2fS5MMAnFPeNjD9j4';
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgklsdnuPrrdBpPYXszCk0ylHlrudUYh9sfOQuClYW6Cuuio7cyUsf7FjGKLOUrhkhPH6JU6-q1rOy4_dBvw4agt3xhv7xbdBLW5bq2e31z7bChNIOplMECDNxQ7QgIF5UuktiAS21VVWJuNfj77gjkTDe0ADdoTCq1Rq_FQw6-epK6J6_jxGSH5PaLZg/s320/razonamiento.png';
   String imageUrlIng =
-      'https://blogger.googleusercontent.com/img/a/AVvXsEh7TLYTExTyHj1uyRWLPST62P-r_mQflNxPYVMHI5B-OH8uYkqKnUDHzLz2PwiBKG5gnyd1sBRmCESj5ped63rSK5bjq0umgls4pbAAWmP3EP3082I-Z1BcbVnQJlwGcXpb9wd3oM7eCPLS4jxabo8KQA_gfSFZSFu5pKYDmyE_j5X2kUjNOiK_z-I';
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_7XMXp58fZ2Kz3zuVLL9hplJF_Ee-TfTkrkFkRVVwxw4v-GNMJzzw3yr-O6exbC9F0eNx_1Py7ZFV0G7fU2bZk-AH3QtTZdemVhQwPzwQXp8Hcf_scyZXsLYCberqUG2knQbyuwuJ4PijSQ8Ws8vL9z-hzqpMs-KcS_nTij8x2Rkms2s12slahR7V_w/s320/ingles.png';
   String imageUrlLect =
-      'https://blogger.googleusercontent.com/img/a/AVvXsEi1jH2x2CgT7WluAub2-EMUziq0YYm25ysPr2Fn0FLxsR2DzdTFin_WqiVAIChrLY5MA_wz5b2YccEW1ZsSCW4QXgYPhwbtRc0grcccbb_xte5p66mbTBWxF7DVfJa1DfuHGRA57moL5cggc0leYWTry3Da9gryZAIa3v79-75bytgspiGSw6Bmu_I';
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiufePmroXAJRWSeaBnAqq3OBOgt02_VNnrHY5lN0bdZGB7OqybxS9rjuRbKvzRGDLO1q5zM8ev8FBBaLPv0F1Ge9G6guiZI5KGcSbOjQ3AV1xGU9CSH1tiumDXduRUv5fq54ooTz05bknDb2QdrvnuKFHway_WAOTfLGPUC53fDoNA8pqOsrUXwRyoLg/s320/lectura.png';
   String imageUrlNatu =
-      'https://blogger.googleusercontent.com/img/a/AVvXsEgVlZMEcIyATGAt8WvewqfTFuZ7iRxukM8Lx5PuL9MmLlKi05scoPqM0uh0sJGNhR125ka5Oz-FsLBSGNd4MfEfJEQ__lRyS09wtx8DsXw7X73tNDB54TMUpzyuc_1JxYWd5HteT7Z7hIlTR61qh8Yix0OTXcw5ltOTTHm9ef-DWLbI8e7ayQVPbQU';
-  String imageUrlSoc =
-      'https://blogger.googleusercontent.com/img/a/AVvXsEgEe5jwWBVwYp68_ZbLF-sce6LtWa-_2KzpNySHUeU2AesvPYDyEHxdstmma2ab13__HRbyO3PRGOhmSD--gPDsTqLcWbI_FXAk9m2-ng8PAYjBssEpKbrwIrdCf4-pPvUx6KvhBHFnyDjZMRyX5c6vqSwlFJGwp9nEmP03LGIzBV1WhtKGLwTOj78';
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjm9hJOpC4RE6ggvXXMfsRWezt4sANYQkU0AwRdgnfotgYRs9CPGrcsniRuWtDSAR6dP22q1kmWq20WrP_3Kl62G5fFtmCrrimySskR8aRTiB8KnBFu8Ezs1LqhWGvbXt9OnuhNzHjydOhClYhAjdZ67vGn6lqNkW5YPyFzy62uLGBUX86mr2hTd0iN-Q/s320/naturales.png';
   String imageUrlCiud =
-      'https://blogger.googleusercontent.com/img/a/AVvXsEhCxRWT-Ydf8ElBK3sgF-eDmyLBES-Couo9xN3Y-R_SpLw7V9Xn7mPMfs6EOpsP9RkVksx6pUF13LGYtvqel0q1USPCV_GpOTuj-WJd_MvZXaw5nq6f7szCus89UC9rbSMpdVoQI69DzOCKCzHSidKzAfExd9W6pThuuAQ3QDBnJSXSAfmyI6X_IUE';
-
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOqgWKHcgRX826WCSVdLVqiExF3ufiHRPoBmgRfCjzgQ1suKTAEp1t6kajiP18rfnMwgp1xwDF2zD24Go237mE34Nqs_nUofFtalxkJjsylXUKiDn7-XwIrmbxHAggMIprIfGU191s2vW6mu5B9oqFu0JioQBiP89yzKjQgGb4hhGwyATwWR_jvjr2NQ/s320/ciudadanas.png';
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: colors_colpaner.base,
       appBar: AppBar(

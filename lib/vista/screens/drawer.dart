@@ -33,8 +33,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
 
   LocalStorage localStorage = LocalStorage();
 
-  void sendDataUserShp(){
-
+  void sendDataUserShp() {
     String name = loggedInUser.fullName.toString();
     String tecnic = loggedInUser.tecnica.toString();
     String avatar = loggedInUser.avatar.toString();
@@ -83,10 +82,10 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
     return gender;
   }
 
-  String name='';
-  String tecnic='';
-  String avatar='';
-  String email='';
+  String name = '';
+  String tecnic = '';
+  String avatar = '';
+  String email = '';
 
   @override
   void initState() {
@@ -133,7 +132,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
         Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic');
       });
     } else {
-      Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
+      //Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
 
       //traigo los valores de shp a las variables locales
 
@@ -144,7 +143,6 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
         tecnic = prefs.getString('tecnicaUser') ?? '';
         avatar = prefs.getString('avatarUser') ?? '';
       });
-
     }
   }
 
@@ -203,14 +201,18 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                         const SizedBox(height: 10.0),
                         Container(
                           alignment: Alignment.center,
-                          child: Text(
-                            //loggedInUser.fullName.toString(),
-                            name,
-                            style: const TextStyle(
-                              fontFamily: 'BubblegumSans',
-                              color: colors_colpaner.claro,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+                            child: Text(
+                              //loggedInUser.fullName.toString(),
+                              name,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'BubblegumSans',
+                                color: colors_colpaner.claro,
+                                fontSize: name.length > 24 ? 20 : 25,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),

@@ -367,7 +367,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         minimumSize: const Size(100, 35),
       ),
       child: Text(
-        _questionNumber < questionsLength! ? 'Siguiente' : 'Revisar resultado',
+        _questionNumber < questionsLength! ? 'Siguiente' : 'Terminar',
         style: const TextStyle(
             color: colors_colpaner.oscuro,
             fontFamily: 'BubblegumSans',
@@ -378,9 +378,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
   Future<void> gameOver10(int score) async {
     //muetra pantalla de resultados que pide un pin de acceso que lo dará cada profesor
-    //DialogHelper.showDialogGameOver(context, score);
+    DialogHelper.showDialogGameOver(context, score);
 
-    showDialog(
+/*     showDialog(
       context: context,
       builder: (BuildContext context) {
         String pin = '';
@@ -432,6 +432,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         );
       },
     );
+   */
   }
 
   Future<void> _guardarPuntaje(int score) async {
