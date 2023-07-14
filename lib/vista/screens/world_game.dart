@@ -1631,7 +1631,7 @@ class _world_gameState extends State<world_game> {
                                     padding:
                                         const EdgeInsets.fromLTRB(11, 0, 8, 0),
                                     child: Text(
-                                      loggedInUser.fullName.toString(),
+                                      nameUserShp,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Colors.black,
@@ -2579,7 +2579,7 @@ class _world_gameState extends State<world_game> {
                                               )
                                             : level == 8
                                                 ? Text(
-                                                    'En este nivel tendrás que girar una ruleta que contiene algunos temas que evalua el icfes en el modulo de $modulo.\n\nDeberás pasar al tablero y responder con tus palabras par qué sirve en la vida real.',
+                                                    'En este nivel tendrás que girar una ruleta que contiene algunos temas que evalua el icfes en el modulo de $modulo.\n\nDeberás definir el concepto con tus palabras',
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                         fontSize: 15,

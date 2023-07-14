@@ -2,8 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
@@ -81,16 +80,24 @@ class _matesoupState extends State<matesoup> {
     //print(indexAnterior1());
 
     if (words.contains(currentWord)) {
-      ScaffoldMessenger.of(context).showSnackBar(
+/*       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("Palabra encontrada!"),
+          content: Text("¡Palabra encontrada!"),
         ),
       );
+ */
+      Fluttertoast.showToast(
+        msg: "¡Palabra encontrada!", // message
+        toastLength: Toast.LENGTH_SHORT, // length
+        gravity: ToastGravity.CENTER, // location
+      );
 
-      setState(() {
-        score++;
-        currentWord = '';
-        guardarindexAnteriorSHP(0);
+      Future.delayed(const Duration(milliseconds: 500), () {
+        setState(() {
+          score++;
+          currentWord = '';
+          guardarindexAnteriorSHP(0);
+        });
       });
 
       //print('indexAnterior desp de enc: $indexAnterior');
@@ -282,14 +289,60 @@ class _matesoupState extends State<matesoup> {
                   ),
                 ),
               ),
+
               ExpandedSoup(),
               //ExpandedSop1(),
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 0, 15),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        currentWord,
+                        style: const TextStyle(
+                          fontSize: 30.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.claro,
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(80, 0, 30, 0),
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 211, 29, 16),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    currentWord = '';
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.delete,
+                                  size: 20,
+                                  color: colors_colpaner.claro,
+                                ),
+                              ),
+                            ),
+                          ))
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
 
           if (_message != "")
             AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 300),
               opacity: 1,
               child: Container(
                 color: Colors.black.withOpacity(0.5),
@@ -313,7 +366,7 @@ class _matesoupState extends State<matesoup> {
   Widget ExpandedSoup() {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+        padding: const EdgeInsets.fromLTRB(30, 0, 30, 5),
         child: Center(
             child: GridView.count(
           crossAxisCount: 9,
@@ -1474,6 +1527,24 @@ class _CustomTextButtonState extends State<CustomTextButton> {
 
   @override
   Widget build(BuildContext context) {
+    List<Color> wordColors = [
+      Colors.red,
+      Colors.green,
+      Colors.blue,
+      Colors.yellow,
+      Colors.orange,
+    ];
+
+    int wordColorIndex = -1;
+
+    ButtonStyle _buttonStyle = const ButtonStyle();
+
+    void updateButtonStyle(ButtonStyle buttonStyle) {
+      setState(() {
+        _buttonStyle = buttonStyle;
+      });
+    }
+
     return TextButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
@@ -1494,6 +1565,24 @@ class _CustomTextButtonState extends State<CustomTextButton> {
           _isPressed = true;
           print('index actual: ${widget.indexActual}');
           print('index anterior: $indexAnterior');
+
+          // Verifica si ya se asignó un color a esta palabra
+          if (wordColorIndex < 0) {
+            // Si no se ha asignado, incrementa el índice del color y obtén el color correspondiente
+            wordColorIndex++;
+            Color wordColor = wordColors[wordColorIndex % wordColors.length];
+
+            // Actualiza el estilo del botón con el nuevo color
+            ButtonStyle updatedButtonStyle = ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(
+                _isPressed ? wordColor : colors_colpaner.oscuro,
+              ),
+              // Resto del estilo del botón...
+            );
+
+            // Actualiza el estilo del botón en el estado
+            updateButtonStyle(updatedButtonStyle);
+          }
         });
         if (widget.indexActual! == indexAnterior - 1 ||
             widget.indexActual! == indexAnterior + 1 ||
@@ -1525,18 +1614,20 @@ class _CustomTextButtonState extends State<CustomTextButton> {
             });
             widget.onPressed();
           } else {
-            //cuando viola la regla de adyacentes
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("¡Solo letras adyacentes!"),
-              ),
-            );
-            _isPressed = false;
-            setState(() {
-              currentWord = '';
-              widget.indexActual = indexAnterior;
-              guardarindexAnteriorSHP(widget.indexActual!);
-            });
+            if (indexAnterior != widget.indexActual) {
+              //cuando viola la regla de adyacentes
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("¡Solo letras adyacentes!"),
+                ),
+              );
+              _isPressed = false;
+              setState(() {
+                currentWord = '';
+                widget.indexActual = indexAnterior;
+                guardarindexAnteriorSHP(widget.indexActual!);
+              });
+            }
           }
         }
       },

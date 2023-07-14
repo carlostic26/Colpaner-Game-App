@@ -518,7 +518,7 @@ class _level7State extends State<level7> {
 
           if (_message != "")
             AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 300),
               opacity: 1,
               child: Container(
                 color: Colors.black.withOpacity(0.5),

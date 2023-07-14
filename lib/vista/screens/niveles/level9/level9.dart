@@ -83,7 +83,7 @@ class _level9QuizState extends State<level9Quiz> {
           ),
           if (_message != "")
             AnimatedOpacity(
-              duration: const Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 300),
               opacity: 1,
               child: Container(
                 color: Colors.black.withOpacity(0.5),
