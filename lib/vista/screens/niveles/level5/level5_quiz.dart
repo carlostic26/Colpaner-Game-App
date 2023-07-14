@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
@@ -492,9 +491,9 @@ final questionsMat = [
       options: [
         const Option(
             text: 'A. Multiplicar la longitud por la anchura.',
-            isCorrect: false),
+            isCorrect: true),
         const Option(
-            text: 'B. Dividir la longitud entre la anchura.', isCorrect: true),
+            text: 'B. Dividir la longitud entre la anchura.', isCorrect: false),
         const Option(
             text: 'C. Sumar la longitud y la anchura.', isCorrect: false),
         const Option(
@@ -991,9 +990,8 @@ Future<void> _guardarPuntajeNivel5(int score) async {
   }
 
   if (_modulo == 'Competencias Ciudadanas') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreCiu5(score);
 
     //unlock next level
     localStorage.setCiuBtn6Unlock();

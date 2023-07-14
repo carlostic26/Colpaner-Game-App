@@ -194,7 +194,7 @@ class _natusoupState extends State<natusoup> {
           Column(
             children: [
               const Padding(
-                padding: EdgeInsets.fromLTRB(0, 60, 0, 10),
+                padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -209,7 +209,7 @@ class _natusoupState extends State<natusoup> {
                 ),
               ),
               const SizedBox(
-                height: 10.0,
+                height: 5.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -245,6 +245,10 @@ class _natusoupState extends State<natusoup> {
                   scoreBoard1("Puntos", "$score/5"),
                 ],
               ),
+              const Divider(
+                thickness: 1,
+                color: Colors.grey,
+              ),
               const SizedBox(
                 height: 10.0,
               ),
@@ -265,6 +269,51 @@ class _natusoupState extends State<natusoup> {
               ),
               ExpandedSoup(),
               //ExpandedSop1(),
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 0, 15),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        currentWord,
+                        style: const TextStyle(
+                          fontSize: 30.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.claro,
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(80, 0, 30, 0),
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 211, 29, 16),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    currentWord = '';
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.delete,
+                                  size: 20,
+                                  color: colors_colpaner.claro,
+                                ),
+                              ),
+                            ),
+                          ))
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
 
@@ -1390,6 +1439,7 @@ class _natusoupState extends State<natusoup> {
 
     //save score in shared preferente to save resources at firebase
     localStorage.setScoreNat3(score);
+
     //unlock next level
     localStorage.setNatBtn4Unlock();
 
@@ -1503,18 +1553,20 @@ class _CustomTextButtonState extends State<CustomTextButton> {
             });
             widget.onPressed();
           } else {
-            //cuando viola la regla de adyacentes
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("¡Solo letras adyacentes!"),
-              ),
-            );
-            _isPressed = false;
-            setState(() {
-              currentWord = '';
-              widget.indexActual = indexAnterior;
-              guardarindexAnteriorSHP(widget.indexActual!);
-            });
+            //cuando viola las reglas de adyascentes menos el mismo boton en si mismo
+            if (indexAnterior != widget.indexActual) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("¡Solo letras adyacentes!"),
+                ),
+              );
+              _isPressed = false;
+              setState(() {
+                currentWord = '';
+                widget.indexActual = indexAnterior;
+                guardarindexAnteriorSHP(widget.indexActual!);
+              });
+            }
           }
         }
       },

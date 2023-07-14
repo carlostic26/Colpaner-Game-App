@@ -42,7 +42,7 @@ class simulacro extends StatefulWidget {
 
 class _simulacroState extends State<simulacro> {
   // Variables para el contador
-  int _secondsLeft = 300;
+  int _secondsLeft = 3000;
   Timer? _timer;
 
   String _message = "";

@@ -311,6 +311,30 @@ class _level4State extends State<level4> {
                 height: MediaQuery.of(context).size.height * 0.20,
                 child: Column(
                   children: [
+                    const SizedBox(height: 15),
+                    const Center(
+                      child: Text(
+                        "Drag and Drop",
+                        style: TextStyle(
+                          fontSize: 45.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.claro,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Text(
+                        modul,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.oscuro,
+                        ),
+                      ),
+                    ),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -320,20 +344,20 @@ class _level4State extends State<level4> {
                         scoreBoard1("Puntos", "${score.length}/5")
                       ],
                     ),
-                    const SizedBox(height: 5),
-                    //divider
                     const Divider(
                       thickness: 1,
                       color: Colors.grey,
                     ),
+
                   ],
                 ),
               ),
             ),
           ),
 
+
           Padding(
-            padding: const EdgeInsets.fromLTRB(1, 130, 1, 30),
+            padding: const EdgeInsets.fromLTRB(1, 250, 1, 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -555,9 +579,8 @@ Future<void> _guardarPuntajeNivel4(int score) async {
       break;
 
     case 'Competencias Ciudadanas':
-      //establece el puntaje obtenido y lo guarda en shp
-      SharedPreferences preferences = await SharedPreferences.getInstance();
-      await preferences.setInt('puntaje_ciu_4', score);
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreCiu4(score);
 
       //unlock next level
       localStorage.setCiuBtn5Unlock();

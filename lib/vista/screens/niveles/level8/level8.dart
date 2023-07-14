@@ -9,10 +9,7 @@ import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:giff_dialog/giff_dialog.dart';
 
 class level8 extends StatefulWidget {
   const level8({super.key});
@@ -537,8 +534,14 @@ class _level8State extends State<level8> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreCiu8(score);
+
       //unlock next level
       localStorage.setMatBtn9Unlock();
+
+      //unlock next level
+      localStorage.setCiuBtn9Unlock();
 
       final puntajesRefCiu = FirebaseFirestore.instance
           .collection('puntajes')

@@ -5,7 +5,7 @@ Widget scoreBoard1(String title, String info) {
   //retorna un expanded como forma responsiva de visualizar el widget segun la pantalla
   return Container(
     margin: const EdgeInsets.all(10.0),
-    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 25.0),
+    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
     decoration: BoxDecoration(
       color: colors_colpaner.claro,
       borderRadius: BorderRadius.circular(6.0),
@@ -16,7 +16,7 @@ Widget scoreBoard1(String title, String info) {
           title,
           style: const TextStyle(
             color: Colors.black,
-            fontSize: 15.0,
+            fontSize: 14.0,
             fontFamily: 'BubblegumSans',
             fontWeight: FontWeight.bold,
           ),
@@ -28,7 +28,7 @@ Widget scoreBoard1(String title, String info) {
           info,
           style: const TextStyle(
               fontFamily: 'BubblegumSans',
-              fontSize: 25.0,
+              fontSize: 22.0,
               fontWeight: FontWeight.bold),
         )
       ],

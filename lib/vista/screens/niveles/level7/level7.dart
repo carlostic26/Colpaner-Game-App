@@ -221,12 +221,12 @@ class _level7State extends State<level7> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.060),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.040),
                   const Center(
                     child: Text(
                       "El Ahorcado",
                       style: TextStyle(
-                        fontSize: 30.0, // Reducir el tamaño de la fuente
+                        fontSize: 40.0, // Reducir el tamaño de la fuente
                         fontFamily: 'BubblegumSans',
                         fontWeight: FontWeight.bold,
                         color: colors_colpaner.claro,
@@ -242,10 +242,6 @@ class _level7State extends State<level7> {
                       color: colors_colpaner.oscuro,
                     ),
                   ),
-                  const Divider(
-                    color: colors_colpaner.oscuro,
-                  ),
-                  const SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -254,9 +250,9 @@ class _level7State extends State<level7> {
                         "${Game7.succes}/$countWordSinRepetidos",
                       ),
                       Container(
-                        margin: const EdgeInsets.all(5.0),
+                        margin: const EdgeInsets.all(2.0),
                         padding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 30.0),
+                            vertical: 8.0, horizontal: 20.0),
                         decoration: BoxDecoration(
                           color: colors_colpaner.claro,
                           borderRadius: BorderRadius.circular(6.0),
@@ -281,7 +277,14 @@ class _level7State extends State<level7> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 30.0),
+
+                  const Divider(
+                    thickness: 1,
+                    color: Colors.grey,
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
                     child: Text(
@@ -615,6 +618,9 @@ class _level7State extends State<level7> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreCiu7(score);
+
       //unlock next level
       localStorage.setCiuBtn8Unlock();
 

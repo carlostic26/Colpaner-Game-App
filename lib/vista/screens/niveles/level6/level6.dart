@@ -318,28 +318,8 @@ class _level6State extends State<level6> {
                 color: colors_colpaner.oscuro,
               ),
             ),
-            const Divider(
-              color: colors_colpaner.oscuro,
-            ),
-/*             
-            Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-                child: Text(
-                  '${_currentAfirmacionIndex + 1}/${diezAfirmaciones.length}',
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    fontFamily: 'BubblegumSans',
-                    fontWeight: FontWeight.bold,
-                    color: colors_colpaner.oscuro,
-                  ),
-                ),
-              ),
-            ), */
-            const SizedBox(
-              height: 30.0,
-            ),
+
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -347,8 +327,12 @@ class _level6State extends State<level6> {
                 scoreBoard1("Puntos", "$score/10")
               ],
             ),
-            const SizedBox(
-              height: 30.0,
+            const Divider(
+              thickness: 1,
+              color: Colors.grey,
+            ),
+           SizedBox(
+              height: MediaQuery.of(context).size.height * 0.20,
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -713,6 +697,9 @@ class _level6State extends State<level6> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreCiu7(score);
+
       //unlock next level
       localStorage.setCiuBtn7Unlock();
 

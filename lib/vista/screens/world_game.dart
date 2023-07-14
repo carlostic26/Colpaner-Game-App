@@ -128,8 +128,7 @@ class _world_gameState extends State<world_game> {
         niv4enabled = (await storage.getMatBtn4Enabled())!;
         niv5enabled = (await storage.getMatBtn5Enabled())!;
         niv6enabled = (await storage.getMatBtn6Enabled())!;
-        niv7enabled =
-            true; //niv7enabled = (await storage.getMatBtn7Enabled())!;
+        niv7enabled = (await storage.getMatBtn7Enabled())!;
         niv8enabled = (await storage.getMatBtn8Enabled())!;
         niv9enabled = (await storage.getMatBtn9Enabled())!;
         niv10enabled = (await storage.getMatBtn10Enabled())!;
@@ -1555,6 +1554,8 @@ class _world_gameState extends State<world_game> {
       lecScoresShp = prefs.getInt('scoreTotalLec') ?? 0;
     });
 
+
+
     print('imprimiendo lecScoresSHP: $lecScoresShp');
   }
 
@@ -1569,6 +1570,8 @@ class _world_gameState extends State<world_game> {
       ciuScoresShp = prefs.getInt('scoreTotalCiu') ?? 0;
     });
 
+
+    // BUSCAR POR QUE NO SUMA PUNTAJE DE CIUDADANAS
     print('imprimiendo lecScoresSHP: $ciuScoresShp');
   }
 
@@ -1588,18 +1591,15 @@ class _world_gameState extends State<world_game> {
         body: Center(
           child: Stack(
             children: [
-              //img fondo candy
+
               Center(
-                child: CachedNetworkImage(
-                  fadeInDuration: Duration.zero,
-                  imageUrl:
-                      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg5Q4hvD_1Mg-3b4w0_w4rnkdo8iHWn1Pp2hLCbKLnnW4eUPY1LnmKF20V0zcIMNSJHSDUgqvVBNJqOodIeVRG87TewfsawutA9AdVEJpYxFVhBCoSpo6sVGKGe6uOLXG2KyuxYYR218nXHid185Agcdc-RkbrYrnw0FB3WWX7HBgs8kxesCJCf8k0/s16000/solo%20ruta%203.png',
+                child: Image.asset(
+                  'assets/ruta.png',
                   height: MediaQuery.of(context).size.height * 1.0,
                   width: MediaQuery.of(context).size.width * 1.0,
                   fit: BoxFit.fill,
                 ),
               ),
-
               //banner
               ShakeWidgetY(
                 child: Stack(
@@ -1634,7 +1634,8 @@ class _world_gameState extends State<world_game> {
                                       nameUserShp,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        color: colors_colpaner.oscuro,
                                         fontFamily: 'BubblegumSans',
                                         fontSize:
                                             nameUserShp.length > 27 ? 10 : 14,
@@ -1644,9 +1645,9 @@ class _world_gameState extends State<world_game> {
                                   Text(
                                     _modulo,
                                     style: const TextStyle(
-                                      color: Colors.black,
+                                      color: colors_colpaner.base,
                                       fontFamily: 'BubblegumSans',
-                                      fontSize: 13,
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ],
@@ -1688,9 +1689,10 @@ class _world_gameState extends State<world_game> {
                                     const Text(
                                       "Puntaje total",
                                       style: TextStyle(
-                                          color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                          color: colors_colpaner.oscuro,
                                           fontFamily: 'BubblegumSans',
-                                          fontSize: 13),
+                                          fontSize: 14),
                                     ),
                                     Text(
                                       _modulo == 'Razonamiento Cuantitativo'
@@ -1707,9 +1709,9 @@ class _world_gameState extends State<world_game> {
                                                           ? "$ciuScoresShp"
                                                           : "no module",
                                       style: const TextStyle(
-                                          color: Colors.black,
+                                          color: colors_colpaner.base,
                                           fontFamily: 'BubblegumSans',
-                                          fontSize: 20),
+                                          fontSize: 25),
                                     ),
                                   ],
                                 ),
@@ -2423,7 +2425,7 @@ class _world_gameState extends State<world_game> {
                 ),
                 title: level == 1
                     ? const Text(
-                        'Test de conocimientos',
+                        '¡Test de conocimientos!',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 20,
@@ -2441,7 +2443,7 @@ class _world_gameState extends State<world_game> {
                           )
                         : level == 3
                             ? const Text(
-                                'Sopa de letras',
+                                '¡Sopa de letras!',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 20,
@@ -2459,7 +2461,7 @@ class _world_gameState extends State<world_game> {
                                   )
                                 : level == 5
                                     ? const Text(
-                                        'Nivel 5',
+                                        '¡Test de conocimientos 2!',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 20,
@@ -2468,7 +2470,7 @@ class _world_gameState extends State<world_game> {
                                       )
                                     : level == 6
                                         ? const Text(
-                                            'Nivel 6',
+                                            '¡Verdadero o falso!',
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontSize: 20,
@@ -2477,7 +2479,7 @@ class _world_gameState extends State<world_game> {
                                           )
                                         : level == 7
                                             ? const Text(
-                                                'Nivel 7',
+                                                '¡El ahorcado!',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontSize: 20,
@@ -2487,7 +2489,7 @@ class _world_gameState extends State<world_game> {
                                               )
                                             : level == 8
                                                 ? const Text(
-                                                    'Nivel 8',
+                                                    '¡Roulette!',
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontSize: 20,
@@ -2498,7 +2500,7 @@ class _world_gameState extends State<world_game> {
                                                   )
                                                 : level == 9
                                                     ? const Text(
-                                                        'Nivel 9',
+                                                        '¡Último test!',
                                                         textAlign:
                                                             TextAlign.center,
                                                         style: TextStyle(
@@ -2511,7 +2513,7 @@ class _world_gameState extends State<world_game> {
                                                       )
                                                     : level == 10
                                                         ? const Text(
-                                                            'Simulacro',
+                                                            '¡Simulacro!',
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
@@ -2546,7 +2548,7 @@ class _world_gameState extends State<world_game> {
                               )
                             : level == 4
                                 ? const Text(
-                                    'En este nivel tendrás que leer conceptos (zona izquierda) y asociarlos con la respuesta correcta (zona derecha). Tienes un numero limite de intentos.',
+                                    'En este nivel verás un listado de palabras de la columna izquierda y deberás asociarlas a sus definiciones en la columna derecha por el lateral izquierdo de cada opción. Tienes un numero máximo de intentos.',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontSize: 15,

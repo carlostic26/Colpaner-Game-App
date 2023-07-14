@@ -206,7 +206,7 @@ class _ciudasoupState extends State<ciudasoup> {
               ),
 
               const Padding(
-                padding: EdgeInsets.fromLTRB(50, 0, 50, 10),
+                padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -220,7 +220,7 @@ class _ciudasoupState extends State<ciudasoup> {
                 ),
               ),
               const SizedBox(
-                height: 10.0,
+                height: 5.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -258,9 +258,14 @@ class _ciudasoupState extends State<ciudasoup> {
                   scoreBoard1("Puntos", "$score/5"),
                 ],
               ),
+              const Divider(
+                thickness: 1,
+                color: Colors.grey,
+              ),
               const SizedBox(
                 height: 10.0,
               ),
+
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
                 child: Align(
@@ -278,6 +283,51 @@ class _ciudasoupState extends State<ciudasoup> {
               ),
               ExpandedSoup(),
               //ExpandedSop1(),
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 0, 15),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        currentWord,
+                        style: const TextStyle(
+                          fontSize: 30.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.claro,
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(80, 0, 30, 0),
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 211, 29, 16),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Center(
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    currentWord = '';
+                                  });
+                                },
+                                icon: Icon(
+                                  Icons.delete,
+                                  size: 20,
+                                  color: colors_colpaner.claro,
+                                ),
+                              ),
+                            ),
+                          ))
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
           if (_message != "")
@@ -1405,6 +1455,9 @@ class _ciudasoupState extends State<ciudasoup> {
 
     LocalStorage localStorage = LocalStorage();
 
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreCiu3(score);
+
     //unlock next level
     localStorage.setCiuBtn4Unlock();
 
@@ -1518,18 +1571,20 @@ class _CustomTextButtonState extends State<CustomTextButton> {
             });
             widget.onPressed();
           } else {
-            //cuando viola la regla de adyacentes
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text("¡Solo letras adyacentes!"),
-              ),
-            );
-            _isPressed = false;
-            setState(() {
-              currentWord = '';
-              widget.indexActual = indexAnterior;
-              guardarindexAnteriorSHP(widget.indexActual!);
-            });
+            //cuando viola las reglas de adyascentes menos el mismo boton en si mismo
+            if (indexAnterior != widget.indexActual) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("¡Solo letras adyacentes!"),
+                ),
+              );
+              _isPressed = false;
+              setState(() {
+                currentWord = '';
+                widget.indexActual = indexAnterior;
+                guardarindexAnteriorSHP(widget.indexActual!);
+              });
+            }
           }
         }
       },

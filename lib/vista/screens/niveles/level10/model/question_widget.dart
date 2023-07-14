@@ -496,6 +496,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreCiu10(score);
+
       final puntajesRefSoc = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('ciudadanas')

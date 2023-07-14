@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/dbexam.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
@@ -28,8 +29,20 @@ Future<void> main() async {
   late bool isPin = false;
   print('ISPIN ANTES DE SHP: $isPin');
 
+  Fluttertoast.showToast(
+    msg: 'ISPIN ANTES DE SHP: $isPin', // message
+    toastLength: Toast.LENGTH_LONG, // length
+    gravity: ToastGravity.TOP, // location
+  );
+
   isPin = await localStorage.getAccesPin();
   print('ISPIN DESPUES DE SHP: $isPin');
+
+  Fluttertoast.showToast(
+    msg: 'ISPIN DESPUES DE SHP: $isPin', // message
+    toastLength: Toast.LENGTH_LONG, // length
+    gravity: ToastGravity.TOP, // location
+  );
 
   runApp(MaterialApp(
     routes: {
@@ -37,9 +50,15 @@ Future<void> main() async {
     },
     debugShowCheckedModeBanner: false,
     //si no existe un correo y si no se tiene el pin correcto, pasa a loginScreen
-    home: email == null && isPin == false
+/*     home: email == null
         ? MyApp()
         : const entrenamientoModulos(),
+ */
+    home: email == null
+        ? MyApp()
+        : (isPin == false)
+            ? const pinScreen()
+            : const entrenamientoModulos(),
   ));
 }
 

@@ -62,7 +62,9 @@ flutter:
    - assets/games/level3/
    - assets/logo_cards.png
    - assets/fonts/
-   - assets/
+   - assets/ruta.png
+   - assets/banner_user.png
+   - assets/flecha_left.png
 
 
   fonts:

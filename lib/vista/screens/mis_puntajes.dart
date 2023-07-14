@@ -78,6 +78,12 @@ class _misPuntajesState extends State<misPuntajes> {
   int puntos_global = 0;
   final int puntosMaximos_test = 100;
 
+  final int puntosMaximos_mat = 78;
+  final int puntosMaximos_nat = 81;
+  final int puntosMaximos_lec = 96;
+  final int puntosMaximos_ciu = 79;
+  final int puntosMaximos_ing = 97;
+
   int mat1 = 0,
       mat2 = 0,
       mat3 = 0,
@@ -1569,6 +1575,66 @@ class _misPuntajesState extends State<misPuntajes> {
 
   @override
   Widget build(BuildContext context) {
+
+    //variables puntos maximos por nivel
+
+    int maxMat1=5;
+    int maxMat2=6;
+    int maxMat3=5;
+    int maxMat4=5;
+    int maxMat5=5;
+    int maxMat6=10;
+    int maxMat7=7;
+    int maxMat8=5;
+    int maxMat9=5;
+    int maxMat10=25;
+
+    int maxNat1=5;
+    int maxNat2=6;
+    int maxNat3=5;
+    int maxNat4=5;
+    int maxNat5=5;
+    int maxNat6=10;
+    int maxNat7=10;
+    int maxNat8=5;
+    int maxNat9=5;
+    int maxNat10=25;
+
+    int maxLec1=5;
+    int maxLec2=6;
+    int maxLec3=5;
+    int maxLec4=5;
+    int maxLec5=5;
+    int maxLec6=10;
+    int maxLec7=9;
+    int maxLec8=5;
+    int maxLec9=5;
+    int maxLec10=41;
+
+    int maxIng1=5;
+    int maxIng2=6;
+    int maxIng3=5;
+    int maxIng4=5;
+    int maxIng5=5;
+    int maxIng6=10;
+    int maxIng7=6;
+    int maxIng8=5;
+    int maxIng9=5;
+    int maxIng10=45;
+
+    int maxCiu1=5;
+    int maxCiu2=6;
+    int maxCiu3=5;
+    int maxCiu4=5;
+    int maxCiu5=5;
+    int maxCiu6=10;
+    int maxCiu7=8;
+    int maxCiu8=5;
+    int maxCiu9=5;
+    int maxCiu10=25;
+
+
+
     final double porcentaje_mat =
         puntos_mat / puntosMaximos_test; // Calcular el porcentaje de progreso
 
@@ -1657,6 +1723,7 @@ class _misPuntajesState extends State<misPuntajes> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
+                      //Razonamiento\nCuantitativo
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
@@ -1715,6 +1782,7 @@ class _misPuntajesState extends State<misPuntajes> {
                         ),
                       ),
                       const SizedBox(width: 20),
+                      //'Lectura\nCrítica',
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
@@ -1772,6 +1840,7 @@ class _misPuntajesState extends State<misPuntajes> {
                         ),
                       ),
                       const SizedBox(width: 20),
+                      //'Competencias\nCiudadanas',
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
@@ -1829,6 +1898,7 @@ class _misPuntajesState extends State<misPuntajes> {
                         ),
                       ),
                       const SizedBox(width: 20),
+                      //'Ciencias\nNaturales',
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
                         child: Column(
@@ -1886,6 +1956,7 @@ class _misPuntajesState extends State<misPuntajes> {
                         ),
                       ),
                       const SizedBox(width: 20),
+                      //'\nInglés',
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 0, 10),
                         child: Column(
@@ -2005,8 +2076,8 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
+                                  Text(
+                                      '/'+maxMat1.toString(),
                                     style: TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2053,9 +2124,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat2.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2100,9 +2171,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat3.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2147,9 +2218,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat4.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2194,9 +2265,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat5.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2241,9 +2312,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat6.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2288,9 +2359,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat7.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2335,9 +2406,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat8.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2382,9 +2453,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                      '/'+maxMat9.toString(),
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2430,9 +2501,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/30',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxMat10',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2508,9 +2579,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec1',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2555,9 +2626,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec2',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2602,9 +2673,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec3',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2649,9 +2720,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec4',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2696,9 +2767,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec5',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2743,9 +2814,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/10',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec6',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2790,9 +2861,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec7',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2837,9 +2908,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec8',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2884,9 +2955,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec9',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -2932,9 +3003,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/30',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxLec10',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3010,9 +3081,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu1',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3057,9 +3128,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu2',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3104,9 +3175,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu3',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3151,9 +3222,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu4',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3198,9 +3269,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu5',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3245,9 +3316,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/10',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu6',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3292,9 +3363,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu7',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3339,9 +3410,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu8',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3386,9 +3457,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu9',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3434,9 +3505,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/30',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxCiu10',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3512,9 +3583,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat1',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3559,9 +3630,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat2',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3606,9 +3677,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat3',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3653,9 +3724,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat4',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3700,9 +3771,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat5',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3747,9 +3818,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/10',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat6',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3794,9 +3865,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat7',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3841,9 +3912,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat8',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3888,9 +3959,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat9',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -3936,9 +4007,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/30',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxNat10',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4014,9 +4085,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng1',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4061,9 +4132,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng2',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4108,9 +4179,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng3',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4155,9 +4226,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng4',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4202,9 +4273,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng5',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4249,9 +4320,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/10',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng6',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4296,9 +4367,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng7',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4343,9 +4414,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng8',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4390,9 +4461,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/5',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng9',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4438,9 +4509,9 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors_colpaner.base,
                                     ),
                                   ),
-                                  const Text(
-                                    '/30',
-                                    style: TextStyle(
+                                  Text(
+                                    '/$maxIng10',
+                                    style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
                                       fontWeight: FontWeight.bold,
@@ -4505,7 +4576,7 @@ class _misPuntajesState extends State<misPuntajes> {
                       ),
                       const SizedBox(height: 20),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
+                        padding: const EdgeInsets.fromLTRB(5, 0, 5, 20),
                         child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: Row(
@@ -4537,6 +4608,21 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors[index % 2],
                                       child: Row(
                                         children: [
+
+                                      Padding(
+                                      padding: const EdgeInsets.fromLTRB(5, 0, 1, 0),
+                                      child:
+                                      Text(
+                                        '${index+1}',
+                                        style: const TextStyle(
+                                            fontWeight:
+                                            FontWeight.bold,
+                                            color: colors_colpaner
+                                                .claro),
+                                      ),
+                                      ),
+
+
                                           Align(
                                             alignment: Alignment.center,
                                             child: Padding(
@@ -4650,18 +4736,6 @@ class _misPuntajesState extends State<misPuntajes> {
                         ),
                       ),
 
-                      /*
-                          Column(
-                            children: [
-                              for (int i = 0; i < 6; i++)
-                                Container(
-                                  height: 45, // Altura de cada celda
-                                  color: colors[
-                                      i % 2], // Alternar colores de la lista
-                                ),
-                            ],
-                          ),
-                        */
                     ],
                   ),
                 ]),

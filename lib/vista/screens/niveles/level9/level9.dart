@@ -922,9 +922,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Competencias Ciudadanas') {
-/*     //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_lec_1', score); */
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreCiu9(score);
 
     //unlock next level
     localStorage.setCiuBtn10Unlock();

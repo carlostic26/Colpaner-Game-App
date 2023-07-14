@@ -2,13 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
-
 import '../../../../controller/services/customStyle.dart';
 
 /*NIVEL TIPO QUIZ 
@@ -972,7 +970,7 @@ Future<void> _guardarPuntajeNivel1(int score) async {
     localStorage.setScoreNat1(score);
 
     //unlock next level
-    localStorage.setIngBtn2Unlock();
+    localStorage.setNatBtn2Unlock();
     bool? btn2 = await localStorage.getMatBtn2Enabled();
 
     final puntajesRefSoc = FirebaseFirestore.instance
@@ -985,9 +983,8 @@ Future<void> _guardarPuntajeNivel1(int score) async {
   }
 
   if (_modulo == 'Competencias Ciudadanas') {
-    //establece el puntaje obtenido y lo guarda en shp
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setInt('puntaje_ciu_1', score);
+    //save score in shared preferente to save resources at firebase
+    localStorage.setScoreCiu1(score);
 
     //unlock next level
     localStorage.setCiuBtn2Unlock();

@@ -219,7 +219,7 @@ class _matesoupState extends State<matesoup> {
               ),
 
               const Padding(
-                padding: EdgeInsets.fromLTRB(50, 0, 50, 10),
+                padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Text(
@@ -233,7 +233,7 @@ class _matesoupState extends State<matesoup> {
                 ),
               ),
               const SizedBox(
-                height: 10.0,
+                height: 5.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -271,6 +271,11 @@ class _matesoupState extends State<matesoup> {
                   scoreBoard1("Puntos", "$score/5"),
                 ],
               ),
+
+              const Divider(
+                thickness: 1,
+                color: Colors.grey,
+              ),
               const SizedBox(
                 height: 10.0,
               ),
@@ -290,7 +295,7 @@ class _matesoupState extends State<matesoup> {
                 ),
               ),
 
-              ExpandedSoup(),
+              ExpandedSoupMat(),
               //ExpandedSop1(),
 
               Padding(
@@ -363,7 +368,7 @@ class _matesoupState extends State<matesoup> {
     );
   }
 
-  Widget ExpandedSoup() {
+  Widget ExpandedSoupMat() {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 5),
@@ -1527,24 +1532,6 @@ class _CustomTextButtonState extends State<CustomTextButton> {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> wordColors = [
-      Colors.red,
-      Colors.green,
-      Colors.blue,
-      Colors.yellow,
-      Colors.orange,
-    ];
-
-    int wordColorIndex = -1;
-
-    ButtonStyle _buttonStyle = const ButtonStyle();
-
-    void updateButtonStyle(ButtonStyle buttonStyle) {
-      setState(() {
-        _buttonStyle = buttonStyle;
-      });
-    }
-
     return TextButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
@@ -1565,24 +1552,6 @@ class _CustomTextButtonState extends State<CustomTextButton> {
           _isPressed = true;
           print('index actual: ${widget.indexActual}');
           print('index anterior: $indexAnterior');
-
-          // Verifica si ya se asignó un color a esta palabra
-          if (wordColorIndex < 0) {
-            // Si no se ha asignado, incrementa el índice del color y obtén el color correspondiente
-            wordColorIndex++;
-            Color wordColor = wordColors[wordColorIndex % wordColors.length];
-
-            // Actualiza el estilo del botón con el nuevo color
-            ButtonStyle updatedButtonStyle = ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                _isPressed ? wordColor : colors_colpaner.oscuro,
-              ),
-              // Resto del estilo del botón...
-            );
-
-            // Actualiza el estilo del botón en el estado
-            updateButtonStyle(updatedButtonStyle);
-          }
         });
         if (widget.indexActual! == indexAnterior - 1 ||
             widget.indexActual! == indexAnterior + 1 ||
@@ -1614,8 +1583,8 @@ class _CustomTextButtonState extends State<CustomTextButton> {
             });
             widget.onPressed();
           } else {
+            //cuando viola las reglas de adyascentes menos el mismo boton en si mismo
             if (indexAnterior != widget.indexActual) {
-              //cuando viola la regla de adyacentes
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text("¡Solo letras adyacentes!"),

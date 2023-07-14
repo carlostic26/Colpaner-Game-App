@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
@@ -51,7 +50,7 @@ class _level2State extends State<level2> {
   int _timeLeft = 6;
 
   void _startCountdown() {
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       if (_timeLeft > 1) {
         setState(() {
           _timeLeft--;
@@ -129,8 +128,9 @@ class _level2State extends State<level2> {
                         ),
                       ),
                     ),
+
                     SizedBox(
-                      height: screen_heigth * 0.040,
+                      height: screen_heigth * 0.010,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -139,6 +139,12 @@ class _level2State extends State<level2> {
                         scoreBoard1("Puntos", "$score/6")
                       ],
                     ),
+                    const Divider(
+                      thickness: 1,
+                      color: Colors.grey,
+                    ),
+
+                    SizedBox(height: 30),
                     SizedBox(
                       height: screen_heigth * 0.75,
                       width: screen_width,
@@ -204,7 +210,7 @@ class _level2State extends State<level2> {
                                       }
                                     }
                                     Future.delayed(
-                                        const Duration(milliseconds: 1200), () {
+                                        const Duration(milliseconds: 700), () {
                                       setState(() {
                                         _gameCards.gameTxt![_gameCards
                                             .matchCheck[0]
@@ -381,6 +387,9 @@ class _level2State extends State<level2> {
     }
 
     if (_modulo == 'Competencias Ciudadanas') {
+      //save score in shared preferente to save resources at firebase
+      localStorage.setScoreCiu2(score);
+
       //unlock next level
       localStorage.setCiuBtn3Unlock();
       //guarda puntaje en firestore
@@ -431,6 +440,7 @@ class _level2State extends State<level2> {
     if (_modulo == 'Inglés') {
       //save score in shared preferente to save resources at firebase
       localStorage.setScoreIng2(score);
+
       //unlock next level
       localStorage.setIngBtn3Unlock();
       //guarda puntaje en firestore
