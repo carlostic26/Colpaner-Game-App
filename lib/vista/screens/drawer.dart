@@ -129,7 +129,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
           localStorage.setActualUser(name);
         });
 
-        Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic');
+        /* Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic'); */
       });
     } else {
       //Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');

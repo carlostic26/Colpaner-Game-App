@@ -1,12 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:gamicolpaner/vista/dialogs/dialog_helper.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_male.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'avatars/avatars_female.dart';
 
 class genderChooser extends StatefulWidget {

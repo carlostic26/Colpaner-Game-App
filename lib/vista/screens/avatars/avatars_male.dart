@@ -10,7 +10,6 @@ import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
-import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,7 +23,7 @@ class avatarsMale extends StatefulWidget {
 class _avatarsMaleState extends State<avatarsMale> {
   bool _pressed = false;
   int _selectedIndex = -1;
-  List<bool> _pressedList = [
+  final List<bool> _pressedList = [
     false,
     false,
     false,
@@ -309,12 +308,12 @@ class _avatarsMaleState extends State<avatarsMale> {
                     child: GestureDetector(
                       onTap: () {
                         //asigno avatar a firebase
-                        Fluttertoast.showToast(
+/*                         Fluttertoast.showToast(
                           msg:
                               "setAvatarFirebase(${loggedInUser.uid.toString()};", // message
                           toastLength: Toast.LENGTH_LONG, // length
                           gravity: ToastGravity.CENTER, // location
-                        );
+                        ); */
 
                         setAvatarFirebase(loggedInUser.uid, _imageUrl);
                         Navigator.pushReplacement(
@@ -362,11 +361,90 @@ class _avatarsMaleState extends State<avatarsMale> {
         .collection("users")
         .doc(userId)
         .update({"avatar": avatarUrl});
-    Fluttertoast.showToast(
+/*     Fluttertoast.showToast(
       msg: "Avatar guardado en firebase", // message
       toastLength: Toast.LENGTH_SHORT, // length
       gravity: ToastGravity.CENTER, // location
+    ); */
+  }
+
+  Widget _buildAvatarButton({
+    required int index,
+    required Color borderColorPressed,
+    required Color borderColorNormal,
+    required double cellWidth,
+    required double cellHeight,
+    required String imageUrl,
+  }) {
+    return InkResponse(
+      onTap: () async {
+        // Si se toca el mismo botón, desmarcarlo
+        if (index == _selectedIndex) {
+          _selectedIndex = -1;
+        } else {
+          _selectedIndex = index;
+        }
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('imageUrl', imageUrl);
+
+        print('Avatar $index pressed');
+        setState(() {
+          _getAvatarFromSharedPrefs();
+
+          if (primerAcceso == true) {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const avatarsMale()));
+
+            primerAcceso = false;
+            prefs.setBool('primerAcceso', primerAcceso);
+          }
+        });
+      },
+      highlightShape: BoxShape.rectangle,
+      borderRadius: BorderRadius.circular(10),
+      splashFactory: InkRipple.splashFactory,
+      highlightColor: Colors.green.withOpacity(0.6),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: _selectedIndex == index
+                ? borderColorPressed
+                : borderColorNormal,
+            width: 4,
+          ),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: SizedBox(
+            width: cellWidth,
+            height: cellHeight,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
+          ),
+        ),
+      ),
     );
+  }
+
+  // función para eliminar todos los registros de Shared Preferences
+  Future<void> clearSharedPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+
+  Future<void> logout(BuildContext context) async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      await FirebaseAuth.instance.signOut();
+    }
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   Widget _gridViewAvatars(
@@ -742,84 +820,5 @@ class _avatarsMaleState extends State<avatarsMale> {
         )
       ],
     );
-  }
-
-  Widget _buildAvatarButton({
-    required int index,
-    required Color borderColorPressed,
-    required Color borderColorNormal,
-    required double cellWidth,
-    required double cellHeight,
-    required String imageUrl,
-  }) {
-    return InkResponse(
-      onTap: () async {
-        // Si se toca el mismo botón, desmarcarlo
-        if (index == _selectedIndex) {
-          _selectedIndex = -1;
-        } else {
-          _selectedIndex = index;
-        }
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('imageUrl', imageUrl);
-
-        print('Avatar $index pressed');
-        setState(() {
-          _getAvatarFromSharedPrefs();
-
-          if (primerAcceso == true) {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const avatarsMale()));
-
-            primerAcceso = false;
-            prefs.setBool('primerAcceso', primerAcceso);
-          }
-        });
-      },
-      highlightShape: BoxShape.rectangle,
-      borderRadius: BorderRadius.circular(10),
-      splashFactory: InkRipple.splashFactory,
-      highlightColor: Colors.green.withOpacity(0.6),
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: _selectedIndex == index
-                ? borderColorPressed
-                : borderColorNormal,
-            width: 4,
-          ),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
-          child: SizedBox(
-            width: cellWidth,
-            height: cellHeight,
-            child: CachedNetworkImage(
-              imageUrl: imageUrl,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  // función para eliminar todos los registros de Shared Preferences
-  Future<void> clearSharedPreferences() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-  }
-
-  Future<void> logout(BuildContext context) async {
-    if (FirebaseAuth.instance.currentUser != null) {
-      await FirebaseAuth.instance.signOut();
-    }
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 }

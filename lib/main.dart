@@ -29,20 +29,20 @@ Future<void> main() async {
   late bool isPin = false;
   print('ISPIN ANTES DE SHP: $isPin');
 
-  Fluttertoast.showToast(
+/*   Fluttertoast.showToast(
     msg: 'ISPIN ANTES DE SHP: $isPin', // message
     toastLength: Toast.LENGTH_LONG, // length
     gravity: ToastGravity.TOP, // location
-  );
+  ); */
 
   isPin = await localStorage.getAccesPin();
   print('ISPIN DESPUES DE SHP: $isPin');
 
-  Fluttertoast.showToast(
+/*   Fluttertoast.showToast(
     msg: 'ISPIN DESPUES DE SHP: $isPin', // message
     toastLength: Toast.LENGTH_LONG, // length
     gravity: ToastGravity.TOP, // location
-  );
+  ); */
 
   runApp(MaterialApp(
     routes: {

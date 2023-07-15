@@ -9,7 +9,9 @@ import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class entrenamientoModulos extends StatefulWidget {
@@ -19,12 +21,53 @@ class entrenamientoModulos extends StatefulWidget {
   State<entrenamientoModulos> createState() => _entrenamientoModulosState();
 }
 
+// ignore: camel_case_types
 class _entrenamientoModulosState extends State<entrenamientoModulos> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
   LocalStorage localStorage = LocalStorage();
-
   String _imageAvatarUrl = '';
+  late bool permitirAcceso;
+
+  Future<void> verificarHorarioPermitido() async {
+    // en este momento está ajustado para ingreso de cualquier dia a cualquier hora
+    // para sacar a produccion es necesario cambiar hora a horaInicio: 8am horaFin: 10am
+    // y ajustar Datetime a     final esDiaHabil = (diaSemana >= DateTime.monday && diaSemana <= DateTime.friday);
+    final horaActual = DateTime.now();
+    final horaInicio =
+        DateTime(horaActual.year, horaActual.month, horaActual.day, 1);
+    var horaFin =
+        DateTime(horaActual.year, horaActual.month, horaActual.day, 24);
+
+    final horaActualColombia = horaActual.toLocal();
+
+    if (horaFin.isBefore(horaInicio)) {
+      horaFin = horaFin.add(Duration(days: 1));
+    }
+
+    final diaSemana = horaActualColombia.weekday;
+    //final diaSemana = 6;
+    final esDiaHabil =
+        (diaSemana >= DateTime.monday && diaSemana <= DateTime.sunday);
+
+    if (esDiaHabil &&
+        horaActualColombia.isAfter(horaInicio) &&
+        horaActualColombia.isBefore(horaFin)) {
+      setState(() {
+        permitirAcceso = true;
+      });
+    } else {
+      setState(() {
+        permitirAcceso = false;
+      });
+    }
+
+    print('horaActual: $horaActual');
+    print('horaInicio: $horaInicio');
+    print('horaFinal: $horaFin');
+    print('diaActual: $diaSemana');
+    print('diaHabil: $esDiaHabil');
+  }
 
   //recibe el avatar imageUrl guardado anteriormente en sharedPreferences
   void _getAvatarFromSharedPrefs() async {
@@ -83,7 +126,9 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     getIsAvatar();
     getGender();
     _getAvatarFromSharedPrefs();
+    verificarHorarioPermitido();
 
+    print('permitirAcceso: $permitirAcceso');
     getUser();
 
     super.initState();
@@ -111,7 +156,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
           localStorage.setActualUser(name);
         });
 
-        Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic');
+        /* Fluttertoast.showToast(msg: 'datos guardados: $name , $tecnic'); */
       });
     } else {
       //Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
@@ -130,342 +175,411 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOqgWKHcgRX826WCSVdLVqiExF3ufiHRPoBmgRfCjzgQ1suKTAEp1t6kajiP18rfnMwgp1xwDF2zD24Go237mE34Nqs_nUofFtalxkJjsylXUKiDn7-XwIrmbxHAggMIprIfGU191s2vW6mu5B9oqFu0JioQBiP89yzKjQgGb4hhGwyATwWR_jvjr2NQ/s320/ciudadanas.png';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colors_colpaner.base,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          "Entrenamiento",
-          style: TextStyle(
-            color: colors_colpaner.claro,
-            fontSize: 16.0,
-            fontFamily: 'BubblegumSans',
+    if (permitirAcceso) {
+      return Scaffold(
+        backgroundColor: colors_colpaner.base,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: const Text(
+            "Entrenamiento",
+            style: TextStyle(
+              color: colors_colpaner.claro,
+              fontSize: 16.0,
+              fontFamily: 'BubblegumSans',
+            ),
           ),
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: colors_colpaner.claro),
         ),
-        centerTitle: true,
-        iconTheme: const IconThemeData(color: colors_colpaner.claro),
-      ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          ),
-          //Lectura crítica - Inglés
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        //establece en memoria el módulo controlado por el usuario
-                        localStorage.setModulo('Razonamiento Cuantitativo');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const world_game()),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.oscuro,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colors_colpaner.oscuro,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(25.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrlMat,
-                                    fit: BoxFit.cover,
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+            //Lectura crítica - Inglés
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          //establece en memoria el módulo controlado por el usuario
+                          localStorage.setModulo('Razonamiento Cuantitativo');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const world_game()),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: colors_colpaner.oscuro,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: colors_colpaner.oscuro,
+                                    borderRadius: BorderRadius.circular(20.0),
                                   ),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: const [
-                                Expanded(
-                                  child: Text(
-                                    "Razonamiento Cuantitativo",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'BubblegumSans',
-                                      fontSize: 12,
-                                      color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: imageUrlMat,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              ),
+                              Row(
+                                children: const [
+                                  Expanded(
+                                    child: Text(
+                                      "Razonamiento Cuantitativo",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'BubblegumSans',
+                                        fontSize: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        //establece en memoria el módulo controlado por el usuario
-                        localStorage.setModulo('Lectura Crítica');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const world_game()),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.oscuro,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colors_colpaner.oscuro,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrlLect,
-                                    fit: BoxFit.cover,
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          //establece en memoria el módulo controlado por el usuario
+                          localStorage.setModulo('Lectura Crítica');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const world_game()),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: colors_colpaner.oscuro,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: colors_colpaner.oscuro,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: imageUrlLect,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const Text(
-                              "Lectura Crítica",
-                              style: TextStyle(
-                                  fontFamily: 'BubblegumSans',
-                                  fontSize: 15,
-                                  color: Colors.white),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              const Text(
+                                "Lectura Crítica",
+                                style: TextStyle(
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 15,
+                                    color: Colors.white),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          //Inglés - Naturales
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        localStorage.setModulo('Inglés');
+            //Inglés - Naturales
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          localStorage.setModulo('Inglés');
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const world_game()),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.oscuro,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colors_colpaner.oscuro,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(25.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrlIng,
-                                    fit: BoxFit.cover,
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const world_game()),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: colors_colpaner.oscuro,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: colors_colpaner.oscuro,
+                                    borderRadius: BorderRadius.circular(20.0),
                                   ),
-                                ),
-                              ),
-                            ),
-                            const Text(
-                              "Inglés",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'BubblegumSans',
-                                  color: Colors.white),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        localStorage.setModulo('Ciencias Naturales');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const world_game()),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.oscuro,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colors_colpaner.oscuro,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrlNatu,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: const [
-                                Expanded(
-                                  child: Text(
-                                    "Ciencias Naturales",
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: 'BubblegumSans',
-                                      fontSize: 14,
-                                      color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: imageUrlIng,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                          ],
+                              ),
+                              const Text(
+                                "Inglés",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'BubblegumSans',
+                                    color: Colors.white),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          //competencias ciudadanas
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-              child: Row(
-                children: <Widget>[
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        localStorage.setModulo('Competencias Ciudadanas');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const world_game()),
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.oscuro,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: colors_colpaner.oscuro,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(25.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl: imageUrlCiud,
-                                    fit: BoxFit.cover,
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          localStorage.setModulo('Ciencias Naturales');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const world_game()),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: colors_colpaner.oscuro,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: colors_colpaner.oscuro,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: imageUrlNatu,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            const Text(
-                              "Competencias Ciudadanas",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'BubblegumSans',
-                                  color: Colors.white),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              Row(
+                                children: const [
+                                  Expanded(
+                                    child: Text(
+                                      "Ciencias Naturales",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'BubblegumSans',
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                  ],
+                ),
+              ),
+            ),
+            //competencias ciudadanas
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                child: Row(
+                  children: <Widget>[
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                      child: InkWell(
+                        onTap: () {
+                          localStorage.setModulo('Competencias Ciudadanas');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const world_game()),
+                          );
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: colors_colpaner.oscuro,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: colors_colpaner.oscuro,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl: imageUrlCiud,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                "Competencias Ciudadanas",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: 'BubblegumSans',
+                                    color: Colors.white),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.10,
+            )
+          ],
+        ),
+        drawer: DrawerColpaner(
+          context: context,
+          screen: 'entrenamiento',
+        ),
+      );
+    } else {
+      return Scaffold(
+        backgroundColor: colors_colpaner.base,
+        body: Stack(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/gif_fondo.gif'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color:
+                    Colors.black.withOpacity(0.85), // Ajusta la opacidad aquí
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CachedNetworkImage(
+                    imageUrl:
+                        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiObUamKYL3kEUaqztoQq3GS5BN4reaPkHEmewms-2W6D5rNCvgZayv-dwYPPpcdTTe3U6uxpPb0si2PH28gAjqaBVP75jwuolg_XXaHWuR_-1xg-vkaCK0U9Ep5MLpKJXNPDPx8A2p5peo7H64pf8nZFg2lnD9WwEFeFtB5u_K5qXCuqrXav6dPEnKBA/s320/logo%20colpaner%20game%20app%20png.png',
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                    // Ajusta el ancho y alto de la imagen según tus necesidades
+                    width: 200,
+                    height: 200,
                   ),
-                  const SizedBox(
-                    width: 20,
+                  const SizedBox(height: 20),
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'ADVERTENCIA',
+                      style: TextStyle(
+                        color: Colors.amber,
+                        fontSize: 30.0,
+                        fontFamily: 'BubblegumSans',
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'No puedes acceder a la app de entrenamiento ICFES Saber 11 de Colpaner Game App en días y horarios no autorizados.',
+                      style: TextStyle(
+                        color: colors_colpaner.claro,
+                        fontSize: 16.0,
+                        fontFamily: 'BubblegumSans',
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.10,
-          )
-        ],
-      ),
-      drawer: DrawerColpaner(
-        context: context,
-        screen: 'entrenamiento',
-      ),
-    );
+          ],
+        ),
+      );
+    }
   }
 
 // función para eliminar todos los registros de Shared Preferences
