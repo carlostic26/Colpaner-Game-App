@@ -297,8 +297,8 @@ class _level6State extends State<level6> {
       body: Stack(alignment: Alignment.center, children: [
         Column(
           children: [
-            const SizedBox(
-              height: 50.0,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.07,
             ),
             const Text(
               "¿Verdadero o Falso?",

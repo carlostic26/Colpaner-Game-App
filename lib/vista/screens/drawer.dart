@@ -12,7 +12,7 @@ import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_female.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_male.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
-import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
+import 'package:gamicolpaner/vista/screens/scores/mis_puntajes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 
@@ -64,9 +64,9 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
 
   Future<bool> getIsAvatar() async {
     final prefs = await SharedPreferences.getInstance();
-    isAvatar = prefs.getBool('isAvatar') ?? false;
+
     setState(() {
-      this.isAvatar = isAvatar;
+      isAvatar = prefs.getBool('isAvatar') ?? false;
     });
     return isAvatar;
   }
@@ -135,9 +135,9 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
       //Fluttertoast.showToast(msg: 'no entró a guardar datos: $actualUser');
 
       //traigo los valores de shp a las variables locales
+      SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      setState(() async {
-        SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
         name = prefs.getString('nameUser') ?? '';
         email = prefs.getString('emailUser') ?? '';
         tecnic = prefs.getString('tecnicaUser') ?? '';

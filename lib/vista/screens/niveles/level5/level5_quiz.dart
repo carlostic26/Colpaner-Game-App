@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
-import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
+import 'package:gamicolpaner/vista/screens/scores/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -151,34 +151,34 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
               child: ShakeWidgetX(
                 child: IconButton(
-                  icon: Image.asset('assets/flecha_left.png'),
-                  iconSize: 3,
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                            transitionDuration: const Duration(seconds: 1),
-                            transitionsBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimation,
-                                Widget child) {
-                              animation = CurvedAnimation(
-                                  parent: animation, curve: Curves.elasticOut);
+                    icon: Image.asset('assets/flecha_left.png'),
+                    iconSize: 3,
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              transitionDuration: const Duration(seconds: 1),
+                              transitionsBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimation,
+                                  Widget child) {
+                                animation = CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.elasticOut);
 
-                              return ScaleTransition(
-                                alignment: Alignment.center,
-                                scale: animation,
-                                child: child,
-                              );
-                            },
-                            pageBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimattion) {
-                              return const world_game();
-                            }));
-                  },
-                ),
+                                return ScaleTransition(
+                                  alignment: Alignment.center,
+                                  scale: animation,
+                                  child: child,
+                                );
+                              },
+                              pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimattion) {
+                                return const world_game();
+                              }));
+                    }),
               ),
             ),
           ),
@@ -576,8 +576,8 @@ final questionsIng = [
       const Option(
           text: 'A. Expresar emociones o sentimientos.', isCorrect: false),
       const Option(
-          text: 'B. Identificar una persona, lugar o cosa.', isCorrect: false),
-      const Option(text: 'C.  Indicar la cantidad de algo.', isCorrect: true),
+          text: 'B. Identificar una persona, lugar o cosa.', isCorrect: true),
+      const Option(text: 'C.  Indicar la cantidad de algo.', isCorrect: false),
       const Option(text: 'D. Describir una acción.', isCorrect: false)
     ],
   ),

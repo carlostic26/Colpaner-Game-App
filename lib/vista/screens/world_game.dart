@@ -1554,8 +1554,6 @@ class _world_gameState extends State<world_game> {
       lecScoresShp = prefs.getInt('scoreTotalLec') ?? 0;
     });
 
-
-
     print('imprimiendo lecScoresSHP: $lecScoresShp');
   }
 
@@ -1569,7 +1567,6 @@ class _world_gameState extends State<world_game> {
       prefs = await SharedPreferences.getInstance();
       ciuScoresShp = prefs.getInt('scoreTotalCiu') ?? 0;
     });
-
 
     // BUSCAR POR QUE NO SUMA PUNTAJE DE CIUDADANAS
     print('imprimiendo lecScoresSHP: $ciuScoresShp');
@@ -1591,7 +1588,6 @@ class _world_gameState extends State<world_game> {
         body: Center(
           child: Stack(
             children: [
-
               Center(
                 child: Image.asset(
                   'assets/ruta.png',
@@ -1689,7 +1685,7 @@ class _world_gameState extends State<world_game> {
                                     const Text(
                                       "Puntaje total",
                                       style: TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.bold,
                                           color: colors_colpaner.oscuro,
                                           fontFamily: 'BubblegumSans',
                                           fontSize: 14),
@@ -2581,7 +2577,7 @@ class _world_gameState extends State<world_game> {
                                               )
                                             : level == 8
                                                 ? Text(
-                                                    'En este nivel tendrás que girar una ruleta que contiene algunos temas que evalua el icfes en el modulo de $modulo.\n\nDeberás definir el concepto con tus palabras',
+                                                    'En este nivel tendrás que girar una ruleta que contiene algunos temas que evalua el icfes en el modulo de $modulo.\n\nDeberás salir al tablero y definir el concepto con tus palabras',
                                                     textAlign: TextAlign.center,
                                                     style: const TextStyle(
                                                         fontSize: 15,
@@ -2600,7 +2596,7 @@ class _world_gameState extends State<world_game> {
                                                       )
                                                     : level == 10
                                                         ? Text(
-                                                            'Este es el último nivel de Colpaner App.\nRealizarás el simulacro del modulo de $modulo pero esta vez no podrás ver las respuestas correctas o incorrectas de forma inmediata. \n\nTienes x minutos para terminar.',
+                                                            'Este es el último nivel de Colpaner App.\nRealizarás el simulacro del modulo de $modulo pero esta vez no podrás ver las respuestas correctas o incorrectas de forma inmediata. \n\nTienes 50 minutos para terminar.',
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: const TextStyle(

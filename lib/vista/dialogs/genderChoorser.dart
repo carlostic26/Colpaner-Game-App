@@ -3,7 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_male.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'avatars/avatars_female.dart';
+import '../screens/avatars/avatars_female.dart';
 
 class genderChooser extends StatefulWidget {
   const genderChooser({super.key});

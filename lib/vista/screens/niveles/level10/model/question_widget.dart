@@ -67,30 +67,42 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   icon: Image.asset('assets/flecha_left.png'),
                   iconSize: 3,
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                            transitionDuration: const Duration(seconds: 1),
-                            transitionsBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimation,
-                                Widget child) {
-                              animation = CurvedAnimation(
-                                  parent: animation, curve: Curves.elasticOut);
+                    //Fluttertoast.showToast(msg: '$_questionNumber');
+                    int? length = _questions?.length;
 
-                              return ScaleTransition(
-                                alignment: Alignment.center,
-                                scale: animation,
-                                child: child,
-                              );
-                            },
-                            pageBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimattion) {
-                              return const world_game();
-                            }));
+                    if (_questionNumber < length!) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                              Text("Debes terminar el nivel antes de volver"),
+                        ),
+                      );
+                    } else {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              transitionDuration: const Duration(seconds: 1),
+                              transitionsBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimation,
+                                  Widget child) {
+                                animation = CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.elasticOut);
+
+                                return ScaleTransition(
+                                  alignment: Alignment.center,
+                                  scale: animation,
+                                  child: child,
+                                );
+                              },
+                              pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimattion) {
+                                return const world_game();
+                              }));
+                    }
                   },
                 ),
               ),
@@ -289,7 +301,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                       style: const TextStyle(
                         color: colors_colpaner.claro,
                         fontFamily: 'BubblegumSans',
-                        fontSize: 18.0,
+                        fontSize: 15.0,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -360,6 +372,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
           await _guardarPuntaje(
               _score); // Llamar a la función para guardar el puntaje
+
         }
       },
       style: ElevatedButton.styleFrom(

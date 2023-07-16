@@ -27,11 +27,11 @@ class OptionsWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => onClickedOption(option),
       child: Container(
-        height: (option.text.length >= 0 && option.text.length <= 39) //1 linea
-            ? 40
-            : (option.text.length >= 40 && option.text.length <= 80) //2 lineas
-                ? 60
-                : option.text.length >= 81 &&
+        height: (option.text.length >= 0 && option.text.length <= 52) //1 linea
+            ? MediaQuery.of(context).size.height * 0.045
+            : (option.text.length >= 53 && option.text.length <= 100) //2 lineas
+                ? MediaQuery.of(context).size.height * 0.062
+                : option.text.length >= 101 &&
                         option.text.length <= 150 //3 lineas
                     ? 95
                     : option.text.length >= 151 &&
@@ -60,7 +60,8 @@ class OptionsWidget extends StatelessWidget {
               Text(
                 "${String.fromCharCode(65 + optionIndex)}.", // A, B, C, D
                 style: const TextStyle(
-                    color: Colors.white, fontFamily: 'ZCOOL', fontSize: 15.0),
+                  fontWeight: FontWeight.bold,
+                    color: Colors.white, fontFamily: 'ZCOOL', fontSize: 12.0),
               ),
               const SizedBox(
                 width: 5,
@@ -68,9 +69,9 @@ class OptionsWidget extends StatelessWidget {
               Flexible(
                 fit: FlexFit.loose,
                 child: Text(
-                  option.text, // "${option.text.length}${option.text}",
+                  "${option.text.length}${option.text}",  // option.text,
                   style: const TextStyle(
-                      color: Colors.white, fontFamily: 'ZCOOL', fontSize: 15.0),
+                      color: Colors.white, fontFamily: 'ZCOOL', fontSize: 12.0),
                 ),
               ),
               //getIconForOption(option, question)

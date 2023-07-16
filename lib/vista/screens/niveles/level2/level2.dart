@@ -4,6 +4,7 @@ import 'package:flutter_conditional_rendering/conditional_switch.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
@@ -272,30 +273,39 @@ class _level2State extends State<level2> {
                       icon: Image.asset('assets/flecha_left.png'),
                       iconSize: 3,
                       onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                                transitionDuration: const Duration(seconds: 1),
-                                transitionsBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secAnimation,
-                                    Widget child) {
-                                  animation = CurvedAnimation(
-                                      parent: animation,
-                                      curve: Curves.elasticOut);
+                        //Fluttertoast.showToast(msg: '$numberOfQuestions');
+                        if (tries < 12) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                              Text("Debes terminar el nivel antes de volver"),
+                            ),
+                          );
+                        } else {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  transitionDuration: const Duration(seconds: 1),
+                                  transitionsBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation,
+                                      Widget child) {
+                                    animation = CurvedAnimation(
+                                        parent: animation, curve: Curves.elasticOut);
 
-                                  return ScaleTransition(
-                                    alignment: Alignment.center,
-                                    scale: animation,
-                                    child: child,
-                                  );
-                                },
-                                pageBuilder: (BuildContext context,
-                                    Animation<double> animation,
-                                    Animation<double> secAnimattion) {
-                                  return const world_game();
-                                }));
+                                    return ScaleTransition(
+                                      alignment: Alignment.center,
+                                      scale: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimattion) {
+                                    return const world_game();
+                                  }));
+                        }
                       },
                     ),
                   ),

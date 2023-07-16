@@ -15,7 +15,6 @@ Future<void> main() async {
   //keep user loged in
   SharedPreferences preferences = await SharedPreferences.getInstance();
   var email = preferences.getString('email');
-
   print('EMAIL LOGED IN: $email');
 
   //sharedPreferences init
@@ -73,13 +72,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-
-/*   runApp(MaterialApp(
-    routes: {
-      '/pinScreen': (context) => const pinScreen(),
-    },
-    debugShowCheckedModeBanner: false,
-    home: email == null ? MyApp() : const entrenamientoModulos(),
-  )); */

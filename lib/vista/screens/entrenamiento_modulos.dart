@@ -6,6 +6,8 @@ import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/user_model.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/drawer.dart';
+import 'package:gamicolpaner/vista/screens/helpers/helpers.dart';
+import 'package:gamicolpaner/vista/screens/helpers/helpers.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:flutter/material.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
@@ -121,13 +123,15 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
   String avatar = '';
   String email = '';
 
+  bool isConnected = false;
+  HelperClass helpers = HelperClass();
   @override
   void initState() {
     getIsAvatar();
     getGender();
     _getAvatarFromSharedPrefs();
     verificarHorarioPermitido();
-
+    checkInternet();
     print('permitirAcceso: $permitirAcceso');
     getUser();
 
@@ -173,9 +177,21 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjm9hJOpC4RE6ggvXXMfsRWezt4sANYQkU0AwRdgnfotgYRs9CPGrcsniRuWtDSAR6dP22q1kmWq20WrP_3Kl62G5fFtmCrrimySskR8aRTiB8KnBFu8Ezs1LqhWGvbXt9OnuhNzHjydOhClYhAjdZ67vGn6lqNkW5YPyFzy62uLGBUX86mr2hTd0iN-Q/s320/naturales.png';
   String imageUrlCiud =
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgOqgWKHcgRX826WCSVdLVqiExF3ufiHRPoBmgRfCjzgQ1suKTAEp1t6kajiP18rfnMwgp1xwDF2zD24Go237mE34Nqs_nUofFtalxkJjsylXUKiDn7-XwIrmbxHAggMIprIfGU191s2vW6mu5B9oqFu0JioQBiP89yzKjQgGb4hhGwyATwWR_jvjr2NQ/s320/ciudadanas.png';
+
+  Future<void> checkInternet() async {
+    isConnected = await helpers.checkInternetConnection();
+
+    setState(() {
+      isConnected;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (permitirAcceso) {
+    // Si no hay conexión a Internet
+    if (!isConnected) {
+      return helpers.conectionScaffold(context);
+    } else if (permitirAcceso) {
       return Scaffold(
         backgroundColor: colors_colpaner.base,
         appBar: AppBar(
@@ -513,72 +529,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
         ),
       );
     } else {
-      return Scaffold(
-        backgroundColor: colors_colpaner.base,
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/gif_fondo.gif'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color:
-                    Colors.black.withOpacity(0.85), // Ajusta la opacidad aquí
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CachedNetworkImage(
-                    imageUrl:
-                        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiObUamKYL3kEUaqztoQq3GS5BN4reaPkHEmewms-2W6D5rNCvgZayv-dwYPPpcdTTe3U6uxpPb0si2PH28gAjqaBVP75jwuolg_XXaHWuR_-1xg-vkaCK0U9Ep5MLpKJXNPDPx8A2p5peo7H64pf8nZFg2lnD9WwEFeFtB5u_K5qXCuqrXav6dPEnKBA/s320/logo%20colpaner%20game%20app%20png.png',
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                    // Ajusta el ancho y alto de la imagen según tus necesidades
-                    width: 200,
-                    height: 200,
-                  ),
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'ADVERTENCIA',
-                      style: TextStyle(
-                        color: Colors.amber,
-                        fontSize: 30.0,
-                        fontFamily: 'BubblegumSans',
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'No puedes acceder a la app de entrenamiento ICFES Saber 11 de Colpaner Game App en días y horarios no autorizados.',
-                      style: TextStyle(
-                        color: colors_colpaner.claro,
-                        fontSize: 16.0,
-                        fontFamily: 'BubblegumSans',
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      );
+      return helpers.horarioScaffold(context);
     }
   }
 

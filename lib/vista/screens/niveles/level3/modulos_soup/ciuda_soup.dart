@@ -151,37 +151,44 @@ class _ciudasoupState extends State<ciudasoup> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
               child: ShakeWidgetX(
+                //flecha atras
                 child: IconButton(
                   icon: Image.asset('assets/flecha_left.png'),
                   iconSize: 3,
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushReplacement(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: const Duration(seconds: 1),
-                        transitionsBuilder: (BuildContext context,
-                            Animation<double> animation,
-                            Animation<double> secAnimation,
-                            Widget child) {
-                          animation = CurvedAnimation(
-                            parent: animation,
-                            curve: Curves.elasticOut,
-                          );
+                    //Fluttertoast.showToast(msg: '$numberOfQuestions');
+                    if (_start != 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                          Text("Debes terminar el nivel antes de volver"),
+                        ),
+                      );
+                    } else {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              transitionDuration: const Duration(seconds: 1),
+                              transitionsBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimation,
+                                  Widget child) {
+                                animation = CurvedAnimation(
+                                    parent: animation, curve: Curves.elasticOut);
 
-                          return ScaleTransition(
-                            alignment: Alignment.center,
-                            scale: animation,
-                            child: child,
-                          );
-                        },
-                        pageBuilder: (BuildContext context,
-                            Animation<double> animation,
-                            Animation<double> secAnimattion) {
-                          return const world_game();
-                        },
-                      ),
-                    );
+                                return ScaleTransition(
+                                  alignment: Alignment.center,
+                                  scale: animation,
+                                  child: child,
+                                );
+                              },
+                              pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimattion) {
+                                return const world_game();
+                              }));
+                    }
                   },
                 ),
               ),

@@ -7,7 +7,7 @@ import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gamicolpaner/controller/puntajes_shp.dart';
-import 'auth/login_screen.dart';
+import '../auth/login_screen.dart';
 
 class misPuntajes extends StatefulWidget {
   const misPuntajes({super.key});
@@ -1542,7 +1542,7 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeNatNivel10;
   }
 
-  Future<void> guardarTotalGamicolpaner(puntajeGlobal) async {
+   Future<void> guardarTotalGamicolpaner(puntajeGlobal) async {
     final puntajesRefTotal = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('podio')
@@ -1575,65 +1575,62 @@ class _misPuntajesState extends State<misPuntajes> {
 
   @override
   Widget build(BuildContext context) {
-
     //variables puntos maximos por nivel
 
-    int maxMat1=5;
-    int maxMat2=6;
-    int maxMat3=5;
-    int maxMat4=5;
-    int maxMat5=5;
-    int maxMat6=10;
-    int maxMat7=7;
-    int maxMat8=5;
-    int maxMat9=5;
-    int maxMat10=25;
+    int maxMat1 = 5;
+    int maxMat2 = 6;
+    int maxMat3 = 5;
+    int maxMat4 = 5;
+    int maxMat5 = 5;
+    int maxMat6 = 10;
+    int maxMat7 = 7;
+    int maxMat8 = 5;
+    int maxMat9 = 5;
+    int maxMat10 = 25;
 
-    int maxNat1=5;
-    int maxNat2=6;
-    int maxNat3=5;
-    int maxNat4=5;
-    int maxNat5=5;
-    int maxNat6=10;
-    int maxNat7=10;
-    int maxNat8=5;
-    int maxNat9=5;
-    int maxNat10=25;
+    int maxNat1 = 5;
+    int maxNat2 = 6;
+    int maxNat3 = 5;
+    int maxNat4 = 5;
+    int maxNat5 = 5;
+    int maxNat6 = 10;
+    int maxNat7 = 10;
+    int maxNat8 = 5;
+    int maxNat9 = 5;
+    int maxNat10 = 25;
 
-    int maxLec1=5;
-    int maxLec2=6;
-    int maxLec3=5;
-    int maxLec4=5;
-    int maxLec5=5;
-    int maxLec6=10;
-    int maxLec7=9;
-    int maxLec8=5;
-    int maxLec9=5;
-    int maxLec10=41;
+    int maxLec1 = 5;
+    int maxLec2 = 6;
+    int maxLec3 = 5;
+    int maxLec4 = 5;
+    int maxLec5 = 5;
+    int maxLec6 = 10;
+    int maxLec7 = 9;
+    int maxLec8 = 5;
+    int maxLec9 = 5;
+    int maxLec10 = 41;
 
-    int maxIng1=5;
-    int maxIng2=6;
-    int maxIng3=5;
-    int maxIng4=5;
-    int maxIng5=5;
-    int maxIng6=10;
-    int maxIng7=6;
-    int maxIng8=5;
-    int maxIng9=5;
-    int maxIng10=45;
+    int maxIng1 = 5;
+    int maxIng2 = 6;
+    int maxIng3 = 5;
+    int maxIng4 = 5;
+    int maxIng5 = 5;
+    int maxIng6 = 10;
+    int maxIng7 = 6;
+    int maxIng8 = 5;
+    int maxIng9 = 5;
+    int maxIng10 = 45;
 
-    int maxCiu1=5;
-    int maxCiu2=6;
-    int maxCiu3=5;
-    int maxCiu4=5;
-    int maxCiu5=5;
-    int maxCiu6=10;
-    int maxCiu7=8;
-    int maxCiu8=5;
-    int maxCiu9=5;
-    int maxCiu10=25;
-
-
+    int maxCiu1 = 5;
+    int maxCiu2 = 6;
+    int maxCiu3 = 5;
+    int maxCiu4 = 5;
+    int maxCiu5 = 5;
+    int maxCiu6 = 10;
+    int maxCiu7 = 8;
+    int maxCiu8 = 5;
+    int maxCiu9 = 5;
+    int maxCiu10 = 25;
 
     final double porcentaje_mat =
         puntos_mat / puntosMaximos_test; // Calcular el porcentaje de progreso
@@ -1656,6 +1653,7 @@ class _misPuntajesState extends State<misPuntajes> {
     puntos_global =
         puntos_mat + puntos_ing + puntos_lec + puntos_ciu + puntos_nat;
     print('IMPRIMIENDO, SE HA ENVIADO EL TOTAL COLECCION GLOBAL A FIREBASE');
+
 
     //envio el total a firebase en una coleccion llamada global
     guardarTotalGamicolpaner(puntos_global);
@@ -2077,7 +2075,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat1.toString(),
+                                    '/' + maxMat1.toString(),
                                     style: TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2125,7 +2123,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat2.toString(),
+                                    '/' + maxMat2.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2172,7 +2170,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat3.toString(),
+                                    '/' + maxMat3.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2219,7 +2217,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat4.toString(),
+                                    '/' + maxMat4.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2266,7 +2264,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat5.toString(),
+                                    '/' + maxMat5.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2313,7 +2311,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat6.toString(),
+                                    '/' + maxMat6.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2360,7 +2358,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat7.toString(),
+                                    '/' + maxMat7.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2407,7 +2405,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat8.toString(),
+                                    '/' + maxMat8.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -2454,7 +2452,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                     ),
                                   ),
                                   Text(
-                                      '/'+maxMat9.toString(),
+                                    '/' + maxMat9.toString(),
                                     style: const TextStyle(
                                       fontSize: 15.0,
                                       fontFamily: 'BubblegumSans',
@@ -4608,21 +4606,16 @@ class _misPuntajesState extends State<misPuntajes> {
                                       color: colors[index % 2],
                                       child: Row(
                                         children: [
-
-                                      Padding(
-                                      padding: const EdgeInsets.fromLTRB(5, 0, 1, 0),
-                                      child:
-                                      Text(
-                                        '${index+1}',
-                                        style: const TextStyle(
-                                            fontWeight:
-                                            FontWeight.bold,
-                                            color: colors_colpaner
-                                                .claro),
-                                      ),
-                                      ),
-
-
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                5, 0, 1, 0),
+                                            child: Text(
+                                              '${index + 1}',
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: colors_colpaner.claro),
+                                            ),
+                                          ),
                                           Align(
                                             alignment: Alignment.center,
                                             child: Padding(
@@ -4672,6 +4665,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                                 Text(
                                                   '$name',
                                                   style: const TextStyle(
+                                                      fontSize: 13,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: colors_colpaner
@@ -4694,7 +4688,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.fromLTRB(
-                                                        20, 0, 20, 0),
+                                                        10, 0, 20, 0),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.end,
@@ -4715,7 +4709,7 @@ class _misPuntajesState extends State<misPuntajes> {
                                                     Text(
                                                       '$puntaje',
                                                       style: const TextStyle(
-                                                          fontSize: 18,
+                                                          fontSize: 16,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           color: Colors.amber),
@@ -4735,7 +4729,6 @@ class _misPuntajesState extends State<misPuntajes> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ]),

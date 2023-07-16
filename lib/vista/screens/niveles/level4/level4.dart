@@ -274,29 +274,39 @@ class _level4State extends State<level4> {
                   icon: Image.asset('assets/flecha_left.png'),
                   iconSize: 3,
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                            transitionDuration: const Duration(seconds: 1),
-                            transitionsBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimation,
-                                Widget child) {
-                              animation = CurvedAnimation(
-                                  parent: animation, curve: Curves.elasticOut);
+                    //Fluttertoast.showToast(msg: '$numberOfQuestions
+                    if (intentos < sixChoices.length + 2) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                          Text("Debes terminar el nivel antes de volver"),
+                        ),
+                      );
+                    } else {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              transitionDuration: const Duration(seconds: 1),
+                              transitionsBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimation,
+                                  Widget child) {
+                                animation = CurvedAnimation(
+                                    parent: animation, curve: Curves.elasticOut);
 
-                              return ScaleTransition(
-                                alignment: Alignment.center,
-                                scale: animation,
-                                child: child,
-                              );
-                            },
-                            pageBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimattion) {
-                              return const world_game();
-                            }));
+                                return ScaleTransition(
+                                  alignment: Alignment.center,
+                                  scale: animation,
+                                  child: child,
+                                );
+                              },
+                              pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimattion) {
+                                return const world_game();
+                              }));
+                    }
                   },
                 ),
               ),
@@ -306,10 +316,8 @@ class _level4State extends State<level4> {
           Align(
             alignment: Alignment.topCenter,
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.20,
-                child: Column(
+              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+              child: Column(
                   children: [
                     const SizedBox(height: 15),
                     const Center(
@@ -351,13 +359,13 @@ class _level4State extends State<level4> {
 
                   ],
                 ),
-              ),
+
             ),
           ),
 
 
           Padding(
-            padding: const EdgeInsets.fromLTRB(1, 250, 1, 30),
+            padding: const EdgeInsets.fromLTRB(1, 220, 1, 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

@@ -1,8 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
+import 'package:gamicolpaner/vista/screens/scores/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -538,13 +539,13 @@ final questionsMat = [
       options: [
         const Option(
             text: 'A. Sí, pero solo se permite el uso de calculadoras básicas.',
-            isCorrect: true),
+            isCorrect: false),
         const Option(
             text: 'B. Sí, se permite el uso de cualquier tipo de calculadora.',
             isCorrect: false),
         const Option(
             text: 'C. No, el uso de calculadoras está prohibido.',
-            isCorrect: false),
+            isCorrect: true),
         const Option(
             text: 'D. Depende del tipo de preguntas que se presenten.',
             isCorrect: false)

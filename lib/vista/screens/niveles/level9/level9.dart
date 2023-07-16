@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
-import 'package:gamicolpaner/vista/screens/mis_puntajes.dart';
+import 'package:gamicolpaner/vista/screens/scores/mis_puntajes.dart';
 import 'package:gamicolpaner/vista/screens/world_game.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -62,11 +62,9 @@ class _level9QuizState extends State<level9Quiz> {
       }
     });
   }
-
   @override
   void initState() {
     super.initState();
-
     _startCountdown();
   }
 
@@ -136,6 +134,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     super.initState();
     _getModuloFromSharedPrefs();
     _controller = PageController(initialPage: 0);
+
   }
 
   @override
@@ -154,29 +153,28 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   icon: Image.asset('assets/flecha_left.png'),
                   iconSize: 3,
                   onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                            transitionDuration: const Duration(seconds: 1),
-                            transitionsBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimation,
-                                Widget child) {
-                              animation = CurvedAnimation(
-                                  parent: animation, curve: Curves.elasticOut);
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              transitionDuration: const Duration(seconds: 1),
+                              transitionsBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimation,
+                                  Widget child) {
+                                animation = CurvedAnimation(
+                                    parent: animation, curve: Curves.elasticOut);
 
-                              return ScaleTransition(
-                                alignment: Alignment.center,
-                                scale: animation,
-                                child: child,
-                              );
-                            },
-                            pageBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimattion) {
-                              return const world_game();
-                            }));
+                                return ScaleTransition(
+                                  alignment: Alignment.center,
+                                  scale: animation,
+                                  child: child,
+                                );
+                              },
+                              pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimattion) {
+                                return const world_game();
+                              }));
                   },
                 ),
               ),
@@ -268,6 +266,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   }
 
   Padding buildQuestion(Question question) {
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -296,6 +295,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   question.isLocked = true;
                   question.selectedOption = option;
                 });
+
                 _isLocked = question.isLocked;
                 if (question.selectedOption!.isCorrect) {
                   _score++;
@@ -307,6 +307,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       ),
     );
   }
+
 
   ElevatedButton buildElevatedButton() {
     return ElevatedButton(
@@ -321,15 +322,16 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             _isLocked = false;
           });
         } else {
+
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => ResultPage(score: _score),
             ),
           );
-
           await _guardarPuntajeNivel1(
-              _score); // Llamar a la función para guardar el puntaje
+              _score);
+
         }
 
         // Se carga la información de puntaje a la base de datos logrando actualizar todo el campo del registro de puntaje correspondiente al nivel

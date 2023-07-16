@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
-import 'package:gamicolpaner/vista/screens/genderChoorser.dart';
+import 'package:gamicolpaner/vista/dialogs/genderChoorser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

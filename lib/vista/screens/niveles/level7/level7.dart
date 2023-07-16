@@ -483,36 +483,46 @@ class _level7State extends State<level7> {
                   icon: Image.asset('assets/flecha_left.png'),
                   iconSize: 3,
                   onPressed: () {
-                    setState(() {
-                      numIntentos = 0;
-                      gameover = true;
-                      Game7.tries = 0;
-                      Game7.succes = 0;
-                      Game7.selectedChar.clear();
-                    });
+                    //Fluttertoast.showToast(msg: '$_questionNumber');
+                    if (_start != 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content:
+                          Text("Debes terminar el nivel antes de volver"),
+                        ),
+                      );
+                    } else {
+                      setState(() {
+                        numIntentos = 0;
+                        gameover = true;
+                        Game7.tries = 0;
+                        Game7.succes = 0;
+                        Game7.selectedChar.clear();
+                      });
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              transitionDuration: const Duration(seconds: 1),
+                              transitionsBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimation,
+                                  Widget child) {
+                                animation = CurvedAnimation(
+                                    parent: animation, curve: Curves.elasticOut);
 
-                    Navigator.of(context).pushReplacement(
-                      PageRouteBuilder(
-                          transitionDuration: const Duration(seconds: 1),
-                          transitionsBuilder: (BuildContext context,
-                              Animation<double> animation,
-                              Animation<double> secAnimation,
-                              Widget child) {
-                            animation = CurvedAnimation(
-                                parent: animation, curve: Curves.elasticOut);
-
-                            return ScaleTransition(
-                              alignment: Alignment.center,
-                              scale: animation,
-                              child: child,
-                            );
-                          },
-                          pageBuilder: (BuildContext context,
-                              Animation<double> animation,
-                              Animation<double> secAnimattion) {
-                            return const world_game();
-                          }),
-                    );
+                                return ScaleTransition(
+                                  alignment: Alignment.center,
+                                  scale: animation,
+                                  child: child,
+                                );
+                              },
+                              pageBuilder: (BuildContext context,
+                                  Animation<double> animation,
+                                  Animation<double> secAnimattion) {
+                                return const world_game();
+                              }));
+                    }
                   },
                 ),
               ),
