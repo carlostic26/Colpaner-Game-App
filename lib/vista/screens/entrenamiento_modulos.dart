@@ -37,9 +37,9 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     // y ajustar Datetime a     final esDiaHabil = (diaSemana >= DateTime.monday && diaSemana <= DateTime.friday);
     final horaActual = DateTime.now();
     final horaInicio =
-        DateTime(horaActual.year, horaActual.month, horaActual.day, 1);
+        DateTime(horaActual.year, horaActual.month, horaActual.day, 7);
     var horaFin =
-        DateTime(horaActual.year, horaActual.month, horaActual.day, 24);
+        DateTime(horaActual.year, horaActual.month, horaActual.day, 10);
 
     final horaActualColombia = horaActual.toLocal();
 
@@ -50,7 +50,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     final diaSemana = horaActualColombia.weekday;
     //final diaSemana = 6;
     final esDiaHabil =
-        (diaSemana >= DateTime.monday && diaSemana <= DateTime.sunday);
+        (diaSemana >= DateTime.monday && diaSemana <= DateTime.friday);
 
     if (esDiaHabil &&
         horaActualColombia.isAfter(horaInicio) &&

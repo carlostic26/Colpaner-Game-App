@@ -259,187 +259,197 @@ class _level4State extends State<level4> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colors_colpaner.base,
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          //flecha atras
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-              child: ShakeWidgetX(
-                child: IconButton(
-                  icon: Image.asset('assets/flecha_left.png'),
-                  iconSize: 3,
-                  onPressed: () {
-                    //Fluttertoast.showToast(msg: '$numberOfQuestions
-                    if (intentos < sixChoices.length + 2) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content:
-                          Text("Debes terminar el nivel antes de volver"),
-                        ),
-                      );
-                    } else {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                              transitionDuration: const Duration(seconds: 1),
-                              transitionsBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimation,
-                                  Widget child) {
-                                animation = CurvedAnimation(
-                                    parent: animation, curve: Curves.elasticOut);
-
-                                return ScaleTransition(
-                                  alignment: Alignment.center,
-                                  scale: animation,
-                                  child: child,
-                                );
-                              },
-                              pageBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimattion) {
-                                return const world_game();
-                              }));
-                    }
-                  },
-                ),
+    return WillPopScope(
+        onWillPop: () async {
+          if (intentos < sixChoices.length + 2) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Debes terminar el nivel antes de volver"),
               ),
-            ),
-          ),
-
-          Align(
-            alignment: Alignment.topCenter,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-              child: Column(
-                  children: [
-                    const SizedBox(height: 15),
-                    const Center(
-                      child: Text(
-                        "Drag and Drop",
-                        style: TextStyle(
-                          fontSize: 45.0,
-                          fontFamily: 'BubblegumSans',
-                          fontWeight: FontWeight.bold,
-                          color: colors_colpaner.claro,
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        modul,
-                        style: const TextStyle(
-                          fontSize: 15.0,
-                          fontFamily: 'BubblegumSans',
-                          fontWeight: FontWeight.bold,
-                          color: colors_colpaner.oscuro,
-                        ),
-                      ),
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        scoreBoard1(
-                            "Intentos", "$intentos/${sixChoices.length + 2}"),
-                        scoreBoard1("Puntos", "${score.length}/5")
-                      ],
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: Colors.grey,
-                    ),
-
-                  ],
-                ),
-
-            ),
-          ),
-
-
-          Padding(
-            padding: const EdgeInsets.fromLTRB(1, 220, 1, 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: sixChoices.keys.map((conceptoAfirmacion) {
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                        child: Draggable<String>(
-                          data: conceptoAfirmacion,
-                          feedback: ConceptoAfirmacion(
-                            conceptoAfirmacion: conceptoAfirmacion,
-                          ),
-                          childWhenDragging: const ConceptoAfirmacion(
-                              conceptoAfirmacion: '🧐'),
-                          child: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20)),
-                            child: Container(
-                              height: 70,
-                              //CONCEPT INSIDE CARD LEFT
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.fromLTRB(8, 2, 8, 2),
-                              color: colors_colpaner.oscuro,
-                              child: ConceptoAfirmacion(
-                                  //if concept is correct at draw, then show check emoti in left cards
-                                  conceptoAfirmacion:
-                                      score[conceptoAfirmacion] == true
-                                          ? '✅'
-                                          : conceptoAfirmacion),
+            );
+          }
+          return false;
+        },
+        child: Scaffold(
+          backgroundColor: colors_colpaner.base,
+          body: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              //flecha atras
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: ShakeWidgetX(
+                    child: IconButton(
+                      icon: Image.asset('assets/flecha_left.png'),
+                      iconSize: 3,
+                      onPressed: () {
+                        //Fluttertoast.showToast(msg: '$numberOfQuestions
+                        if (intentos < sixChoices.length + 2) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  "Debes terminar el nivel antes de volver"),
                             ),
-                          ),
-                        ),
-                      );
-                    }).toList()),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: (sixChoices.keys.toList()..shuffle())
-                      .map((conceptoAfirmacion) {
-                    return Column(
-                      children: [
-                        _buildDragTarget(conceptoAfirmacion),
-                        SizedBox(height: 40), // Espacio entre los elementos
-                      ],
-                    );
-                  }).toList(),
-                ),
-              ],
-            ),
-          ),
+                          );
+                        } else {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  transitionDuration:
+                                      const Duration(seconds: 1),
+                                  transitionsBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation,
+                                      Widget child) {
+                                    animation = CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.elasticOut);
 
-          if (_message != "")
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 300),
-              opacity: 1,
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
-                child: Center(
-                    child: Container(
-                  color: Colors.black.withOpacity(0.5),
-                  child: Center(
-                    child: Text(
-                      _message,
-                      style: customTextStyle,
+                                    return ScaleTransition(
+                                      alignment: Alignment.center,
+                                      scale: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimattion) {
+                                    return const world_game();
+                                  }));
+                        }
+                      },
                     ),
                   ),
-                )),
+                ),
               ),
-            ),
-        ],
-      ),
-    );
+
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 15),
+                      const Center(
+                        child: Text(
+                          "Drag and Drop",
+                          style: TextStyle(
+                            fontSize: 45.0,
+                            fontFamily: 'BubblegumSans',
+                            fontWeight: FontWeight.bold,
+                            color: colors_colpaner.claro,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          modul,
+                          style: const TextStyle(
+                            fontSize: 15.0,
+                            fontFamily: 'BubblegumSans',
+                            fontWeight: FontWeight.bold,
+                            color: colors_colpaner.oscuro,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          scoreBoard1(
+                              "Intentos", "$intentos/${sixChoices.length + 2}"),
+                          scoreBoard1("Puntos", "${score.length}/5")
+                        ],
+                      ),
+                      const Divider(
+                        thickness: 1,
+                        color: Colors.grey,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.fromLTRB(1, 220, 1, 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: sixChoices.keys.map((conceptoAfirmacion) {
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                            child: Draggable<String>(
+                              data: conceptoAfirmacion,
+                              feedback: ConceptoAfirmacion(
+                                conceptoAfirmacion: conceptoAfirmacion,
+                              ),
+                              childWhenDragging: const ConceptoAfirmacion(
+                                  conceptoAfirmacion: '🧐'),
+                              child: ClipRRect(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(20)),
+                                child: Container(
+                                  height: 70,
+                                  //CONCEPT INSIDE CARD LEFT
+                                  alignment: Alignment.centerLeft,
+                                  padding:
+                                      const EdgeInsets.fromLTRB(8, 2, 8, 2),
+                                  color: colors_colpaner.oscuro,
+                                  child: ConceptoAfirmacion(
+                                      //if concept is correct at draw, then show check emoti in left cards
+                                      conceptoAfirmacion:
+                                          score[conceptoAfirmacion] == true
+                                              ? '✅'
+                                              : conceptoAfirmacion),
+                                ),
+                              ),
+                            ),
+                          );
+                        }).toList()),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: (sixChoices.keys.toList()..shuffle())
+                          .map((conceptoAfirmacion) {
+                        return Column(
+                          children: [
+                            _buildDragTarget(conceptoAfirmacion),
+                            SizedBox(height: 40), // Espacio entre los elementos
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
+
+              if (_message != "")
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 300),
+                  opacity: 1,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                        child: Container(
+                      color: Colors.black.withOpacity(0.5),
+                      child: Center(
+                        child: Text(
+                          _message,
+                          style: customTextStyle,
+                        ),
+                      ),
+                    )),
+                  ),
+                ),
+            ],
+          ),
+        ));
   }
 
   Widget _buildDragTarget(conceptoAfirmacion) {

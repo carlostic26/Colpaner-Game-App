@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
@@ -21,12 +22,31 @@ class ciudasoup extends StatefulWidget {
 String currentWord = '';
 List<String> words = [];
 
+class AppLifecycleObserver extends WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      Fluttertoast.showToast(
+        msg: 'Por reglas del juego está prohibido salir de la app.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+      );
+    } else if (state == AppLifecycleState.resumed) {
+      Fluttertoast.showToast(
+        msg: 'Se descontarán puntos en el próximo juego.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+      );
+    }
+  }
+}
+
 class _ciudasoupState extends State<ciudasoup> {
   String _message = "";
   int _timeLeft = 6;
 
   void _startCountdown() {
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(milliseconds: 600), () {
       if (_timeLeft > 1) {
         setState(() {
           _timeLeft--;
@@ -132,232 +152,254 @@ class _ciudasoupState extends State<ciudasoup> {
     });
   }
 
+  final AppLifecycleObserver _lifecycleObserver = AppLifecycleObserver();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _startCountdown();
     words = ['DEMOCRACIA', 'DERECHOS', 'ETICA', 'CULTURA', 'CIUDADANIA'];
+    WidgetsBinding.instance?.addObserver(_lifecycleObserver);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(_lifecycleObserver);
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colors_colpaner.base,
-      body: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-              child: ShakeWidgetX(
-                //flecha atras
-                child: IconButton(
-                  icon: Image.asset('assets/flecha_left.png'),
-                  iconSize: 3,
-                  onPressed: () {
-                    //Fluttertoast.showToast(msg: '$numberOfQuestions');
-                    if (_start != 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content:
-                          Text("Debes terminar el nivel antes de volver"),
-                        ),
-                      );
-                    } else {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                              transitionDuration: const Duration(seconds: 1),
-                              transitionsBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimation,
-                                  Widget child) {
-                                animation = CurvedAnimation(
-                                    parent: animation, curve: Curves.elasticOut);
-
-                                return ScaleTransition(
-                                  alignment: Alignment.center,
-                                  scale: animation,
-                                  child: child,
-                                );
-                              },
-                              pageBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimattion) {
-                                return const world_game();
-                              }));
-                    }
-                  },
-                ),
+    return WillPopScope(
+        onWillPop: () async {
+          if (_start != 0) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Debes terminar el nivel antes de volver"),
               ),
-            ),
-          ),
-          Column(
+            );
+          }
+          return false;
+        },
+        child: Scaffold(
+          backgroundColor: colors_colpaner.base,
+          body: Stack(
             children: [
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    'Sopa de letras',
-                    style: TextStyle(
-                      fontSize: 48.0,
-                      fontFamily: 'BubblegumSans',
-                      fontWeight: FontWeight.bold,
-                      color: colors_colpaner.claro,
-                    ),
-                  ),
-                ),
-              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: ShakeWidgetX(
+                    //flecha atras
+                    child: IconButton(
+                      icon: Image.asset('assets/flecha_left.png'),
+                      iconSize: 3,
+                      onPressed: () {
+                        //Fluttertoast.showToast(msg: '$numberOfQuestions');
+                        if (_start != 0) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  "Debes terminar el nivel antes de volver"),
+                            ),
+                          );
+                        } else {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  transitionDuration:
+                                      const Duration(seconds: 1),
+                                  transitionsBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation,
+                                      Widget child) {
+                                    animation = CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.elasticOut);
 
-              const Padding(
-                padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    'Competencias Ciudadanas',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'BubblegumSans',
-                      color: colors_colpaner.oscuro,
+                                    return ScaleTransition(
+                                      alignment: Alignment.center,
+                                      scale: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimattion) {
+                                    return const world_game();
+                                  }));
+                        }
+                      },
                     ),
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 5.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  Container(
-                    margin: const EdgeInsets.all(10.0),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 5.0, horizontal: 25.0),
-                    decoration: BoxDecoration(
-                      color: colors_colpaner.claro,
-                      borderRadius: BorderRadius.circular(6.0),
-                    ),
-                    child: Column(
-                      children: [
-                        Column(children: [
-                          const Icon(
-                            color: colors_colpaner.oscuro,
-                            Icons.timer,
-                            size: 30,
-                          ),
-                          Text(
-                            '$_start',
-                            style: const TextStyle(
-                                fontFamily: 'BubblegumSans',
-                                fontSize: 20,
-                                color: colors_colpaner.oscuro),
-                          ),
-                        ]),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 50,
-                  ),
-                  scoreBoard1("Puntos", "$score/5"),
-                ],
-              ),
-              const Divider(
-                thickness: 1,
-                color: Colors.grey,
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                    words.toString(),
-                    style: const TextStyle(
-                      fontSize: 12.0,
-                      fontFamily: 'BubblegumSans',
-                      fontWeight: FontWeight.bold,
-                      color: colors_colpaner.claro,
-                    ),
-                  ),
-                ),
-              ),
-              ExpandedSoup(),
-              //ExpandedSop1(),
-
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 15),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        currentWord,
-                        style: const TextStyle(
-                          fontSize: 30.0,
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        'Sopa de letras',
+                        style: TextStyle(
+                          fontSize: 48.0,
                           fontFamily: 'BubblegumSans',
                           fontWeight: FontWeight.bold,
                           color: colors_colpaner.claro,
                         ),
                       ),
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(80, 0, 30, 0),
-                          child: Container(
-                            height: 30,
-                            width: 30,
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 211, 29, 16),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    currentWord = '';
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.delete,
-                                  size: 20,
-                                  color: colors_colpaner.claro,
-                                ),
-                              ),
-                            ),
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-          if (_message != "")
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 300),
-              opacity: 1,
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
-                child: Center(
-                    child: Container(
-                  color: Colors.black.withOpacity(0.5),
-                  child: Center(
-                    child: Text(
-                      _message,
-                      style: customTextStyle,
                     ),
                   ),
-                )),
+
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        'Competencias Ciudadanas',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontFamily: 'BubblegumSans',
+                          color: colors_colpaner.oscuro,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5.0, horizontal: 25.0),
+                        decoration: BoxDecoration(
+                          color: colors_colpaner.claro,
+                          borderRadius: BorderRadius.circular(6.0),
+                        ),
+                        child: Column(
+                          children: [
+                            Column(children: [
+                              const Icon(
+                                color: colors_colpaner.oscuro,
+                                Icons.timer,
+                                size: 30,
+                              ),
+                              Text(
+                                '$_start',
+                                style: const TextStyle(
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 20,
+                                    color: colors_colpaner.oscuro),
+                              ),
+                            ]),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      scoreBoard1("Puntos", "$score/5"),
+                    ],
+                  ),
+                  const Divider(
+                    thickness: 1,
+                    color: Colors.grey,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        words.toString(),
+                        style: const TextStyle(
+                          fontSize: 12.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.claro,
+                        ),
+                      ),
+                    ),
+                  ),
+                  ExpandedSoup(),
+                  //ExpandedSop1(),
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 15),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            currentWord,
+                            style: const TextStyle(
+                              fontSize: 30.0,
+                              fontFamily: 'BubblegumSans',
+                              fontWeight: FontWeight.bold,
+                              color: colors_colpaner.claro,
+                            ),
+                          ),
+                          Padding(
+                              padding: const EdgeInsets.fromLTRB(80, 0, 30, 0),
+                              child: Container(
+                                height: 30,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 211, 29, 16),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Center(
+                                  child: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        currentWord = '';
+                                      });
+                                    },
+                                    icon: Icon(
+                                      Icons.delete,
+                                      size: 20,
+                                      color: colors_colpaner.claro,
+                                    ),
+                                  ),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-        ],
-      ),
-    );
+              if (_message != "")
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 300),
+                  opacity: 1,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                        child: Container(
+                      color: Colors.black.withOpacity(0.5),
+                      child: Center(
+                        child: Text(
+                          _message,
+                          style: customTextStyle,
+                        ),
+                      ),
+                    )),
+                  ),
+                ),
+            ],
+          ),
+        ));
   }
 
   Widget ExpandedSoup() {

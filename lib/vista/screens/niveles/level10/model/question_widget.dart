@@ -53,145 +53,159 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        //const SizedBox(height: 20),
-        Stack(children: [
-          //flecha atras
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-              child: ShakeWidgetX(
-                child: IconButton(
-                  icon: Image.asset('assets/flecha_left.png'),
-                  iconSize: 3,
-                  onPressed: () {
-                    //Fluttertoast.showToast(msg: '$_questionNumber');
-                    int? length = _questions?.length;
+    return WillPopScope(
+        onWillPop: () async {
+          //Fluttertoast.showToast(msg: '$_questionNumber');
+          int? length = _questions?.length;
+          if (_questionNumber < length!) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Debes terminar el nivel antes de volver"),
+              ),
+            );
+          }
+          return false;
+        },
+        child: Column(
+          children: [
+            //const SizedBox(height: 20),
+            Stack(children: [
+              //flecha atras
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: ShakeWidgetX(
+                    child: IconButton(
+                      icon: Image.asset('assets/flecha_left.png'),
+                      iconSize: 3,
+                      onPressed: () {
+                        //Fluttertoast.showToast(msg: '$_questionNumber');
+                        int? length = _questions?.length;
 
-                    if (_questionNumber < length!) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content:
-                              Text("Debes terminar el nivel antes de volver"),
-                        ),
-                      );
-                    } else {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                              transitionDuration: const Duration(seconds: 1),
-                              transitionsBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimation,
-                                  Widget child) {
-                                animation = CurvedAnimation(
-                                    parent: animation,
-                                    curve: Curves.elasticOut);
+                        if (_questionNumber < length!) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  "Debes terminar el nivel antes de volver"),
+                            ),
+                          );
+                        } else {
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  transitionDuration:
+                                      const Duration(seconds: 1),
+                                  transitionsBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation,
+                                      Widget child) {
+                                    animation = CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.elasticOut);
 
-                                return ScaleTransition(
-                                  alignment: Alignment.center,
-                                  scale: animation,
-                                  child: child,
-                                );
-                              },
-                              pageBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimattion) {
-                                return const world_game();
-                              }));
-                    }
-                  },
+                                    return ScaleTransition(
+                                      alignment: Alignment.center,
+                                      scale: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimattion) {
+                                    return const world_game();
+                                  }));
+                        }
+                      },
+                    ),
+                  ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(30, 25, 0, 0),
+                child: Row(
+                  //mainAxisAlignment: MainAxisAlignment.end,
+                  //Banner gamicolpaner
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width * 0.80,
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIZ0BeUdFWmKEPuHG8oqYPvKvLKbqVNHuiatUdPUCTvlDPUqsGPOjlf-O0VLFKGn1ThkIRpjtJ1xlKFp0q9SMG0pMtdsERgeKUGmOZCxkdgxr_zbyPhJQofnGHIy3jsYoNjp66DeodhoFnRC66yvzxsI9QsE_9lj2SqinF8T9TEMG7N8SYZ08Sb5w/s320/icon.png"),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+            //const SizedBox(height: 10),
+            const Divider(
+              thickness: 1,
+              color: Colors.grey,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 25, 0, 0),
-            child: Row(
-              //mainAxisAlignment: MainAxisAlignment.end,
-              //Banner gamicolpaner
+
+            Row(
               children: [
-                Container(
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width * 0.80,
-                  height: MediaQuery.of(context).size.height * 0.07,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIZ0BeUdFWmKEPuHG8oqYPvKvLKbqVNHuiatUdPUCTvlDPUqsGPOjlf-O0VLFKGn1ThkIRpjtJ1xlKFp0q9SMG0pMtdsERgeKUGmOZCxkdgxr_zbyPhJQofnGHIy3jsYoNjp66DeodhoFnRC66yvzxsI9QsE_9lj2SqinF8T9TEMG7N8SYZ08Sb5w/s320/icon.png"),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Container(
+                    alignment: Alignment.bottomRight,
+                    child: Text(
+                      _modulo,
+                      style: const TextStyle(
+                          color: colors_colpaner.oscuro,
+                          fontFamily: 'BubblegumSans',
+                          fontSize: 15.0),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      child: Text(
+                        //TEXTO QUE CONTIENE EL PONDERADO  DE PREGUNTAS
+                        'Pregunta $_questionNumber/${_questions?.length}',
+                        style: const TextStyle(
+                            color: colors_colpaner.oscuro,
+                            fontFamily: 'BubblegumSans',
+                            fontSize: 15.0),
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-          ),
-        ]),
-        //const SizedBox(height: 10),
-        const Divider(
-          thickness: 1,
-          color: Colors.grey,
-        ),
 
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-              child: Container(
-                alignment: Alignment.bottomRight,
-                child: Text(
-                  _modulo,
-                  style: const TextStyle(
-                      color: colors_colpaner.oscuro,
-                      fontFamily: 'BubblegumSans',
-                      fontSize: 15.0),
-                ),
-              ),
-            ),
+            //Se imprime el pageView que contiene pregunta y opciones
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                child: Container(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    //TEXTO QUE CONTIENE EL PONDERADO  DE PREGUNTAS
-                    'Pregunta $_questionNumber/${_questions?.length}',
-                    style: const TextStyle(
-                        color: colors_colpaner.oscuro,
-                        fontFamily: 'BubblegumSans',
-                        fontSize: 15.0),
-                  ),
-                ),
-              ),
+              child: _questions != null
+                  ? PageView.builder(
+                      itemCount: _questions!.length,
+                      controller: _controller,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final _questionBuild = _questions![index];
+                        return buildQuestion(_questionBuild);
+                      })
+                  : const SizedBox.shrink(),
+            ),
+            _isLocked
+                ? buildElevatedButton(_questions?.length)
+                : const SizedBox.shrink(),
+            const SizedBox(height: 10),
+            const Divider(
+              thickness: 1,
+              color: Colors.grey,
             ),
           ],
-        ),
-
-        //Se imprime el pageView que contiene pregunta y opciones
-        Expanded(
-          child: _questions != null
-              ? PageView.builder(
-                  itemCount: _questions!.length,
-                  controller: _controller,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    final _questionBuild = _questions![index];
-                    return buildQuestion(_questionBuild);
-                  })
-              : const SizedBox.shrink(),
-        ),
-        _isLocked
-            ? buildElevatedButton(_questions?.length)
-            : const SizedBox.shrink(),
-        const SizedBox(height: 10),
-        const Divider(
-          thickness: 1,
-          color: Colors.grey,
-        ),
-      ],
-    );
+        ));
   }
 
   Padding buildQuestion(question_model questionBuild) {
@@ -372,7 +386,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
           await _guardarPuntaje(
               _score); // Llamar a la función para guardar el puntaje
-
         }
       },
       style: ElevatedButton.styleFrom(

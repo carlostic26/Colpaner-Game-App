@@ -60,8 +60,10 @@ class OptionsWidget extends StatelessWidget {
               Text(
                 "${String.fromCharCode(65 + optionIndex)}.", // A, B, C, D
                 style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                    color: Colors.white, fontFamily: 'ZCOOL', fontSize: 12.0),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'ZCOOL',
+                    fontSize: 12.0),
               ),
               const SizedBox(
                 width: 5,
@@ -69,7 +71,7 @@ class OptionsWidget extends StatelessWidget {
               Flexible(
                 fit: FlexFit.loose,
                 child: Text(
-                  "${option.text.length}${option.text}",  // option.text,
+                  option.text, // "${option.text.length}${option.text}",
                   style: const TextStyle(
                       color: Colors.white, fontFamily: 'ZCOOL', fontSize: 12.0),
                 ),

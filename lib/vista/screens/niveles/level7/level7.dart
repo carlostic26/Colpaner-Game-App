@@ -209,166 +209,177 @@ class _level7State extends State<level7> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: colors_colpaner.base,
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height * 0.99,
-              width: MediaQuery.of(context).size.width * 0.99,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.040),
-                  const Center(
-                    child: Text(
-                      "El Ahorcado",
-                      style: TextStyle(
-                        fontSize: 40.0, // Reducir el tamaño de la fuente
-                        fontFamily: 'BubblegumSans',
-                        fontWeight: FontWeight.bold,
-                        color: colors_colpaner.claro,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    modulo,
-                    style: const TextStyle(
-                      fontSize: 15.0,
-                      fontFamily: 'BubblegumSans',
-                      fontWeight: FontWeight.bold,
-                      color: colors_colpaner.oscuro,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return WillPopScope(
+        onWillPop: () async {
+          if (_start != 0) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Debes terminar el nivel antes de volver"),
+              ),
+            );
+          }
+          return false;
+        },
+        child: Scaffold(
+          backgroundColor: colors_colpaner.base,
+          body: Stack(
+            children: [
+              SingleChildScrollView(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.99,
+                  width: MediaQuery.of(context).size.width * 0.99,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      scoreBoard1(
-                        "Puntos",
-                        "${Game7.succes}/$countWordSinRepetidos",
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(2.0),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 20.0),
-                        decoration: BoxDecoration(
-                          color: colors_colpaner.claro,
-                          borderRadius: BorderRadius.circular(6.0),
-                        ),
-                        child: Column(
-                          children: [
-                            const Icon(
-                              color: colors_colpaner.oscuro,
-                              Icons.timer,
-                              size: 30,
-                            ),
-                            Text(
-                              '$_start',
-                              style: const TextStyle(
-                                fontFamily: 'BubblegumSans',
-                                fontSize: 15,
-                                color: colors_colpaner.oscuro,
-                              ),
-                            ),
-                          ],
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.040),
+                      const Center(
+                        child: Text(
+                          "El Ahorcado",
+                          style: TextStyle(
+                            fontSize: 40.0, // Reducir el tamaño de la fuente
+                            fontFamily: 'BubblegumSans',
+                            fontWeight: FontWeight.bold,
+                            color: colors_colpaner.claro,
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-
-                  const Divider(
-                    thickness: 1,
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
-                    child: Text(
-                      afirmacion,
-                      style: const TextStyle(
-                        color: colors_colpaner.claro,
-                        fontSize: 18,
-                        fontFamily: 'BubblegumSans',
+                      Text(
+                        modulo,
+                        style: const TextStyle(
+                          fontSize: 15.0,
+                          fontFamily: 'BubblegumSans',
+                          fontWeight: FontWeight.bold,
+                          color: colors_colpaner.oscuro,
+                        ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height *
-                        0.20, // Reducir la altura del área de la figura del ahorcado
-                    child: Center(
-                      child: Stack(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          figureImage(
-                              Game7.tries >= 0, "assets/games/level3/hang.png"),
-                          figureImage(
-                              Game7.tries >= 1, "assets/games/level3/head.png"),
-                          figureImage(
-                              Game7.tries >= 2, "assets/games/level3/body.png"),
-                          figureImage(
-                              Game7.tries >= 3, "assets/games/level3/ra.png"),
-                          figureImage(
-                              Game7.tries >= 4, "assets/games/level3/la.png"),
-                          figureImage(
-                              Game7.tries >= 5, "assets/games/level3/rl.png"),
-                          figureImage(
-                              Game7.tries >= 6, "assets/games/level3/ll.png"),
+                          scoreBoard1(
+                            "Puntos",
+                            "${Game7.succes}/$countWordSinRepetidos",
+                          ),
+                          Container(
+                            margin: const EdgeInsets.all(2.0),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 20.0),
+                            decoration: BoxDecoration(
+                              color: colors_colpaner.claro,
+                              borderRadius: BorderRadius.circular(6.0),
+                            ),
+                            child: Column(
+                              children: [
+                                const Icon(
+                                  color: colors_colpaner.oscuro,
+                                  Icons.timer,
+                                  size: 30,
+                                ),
+                                Text(
+                                  '$_start',
+                                  style: const TextStyle(
+                                    fontFamily: 'BubblegumSans',
+                                    fontSize: 15,
+                                    color: colors_colpaner.oscuro,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: word
-                          .split('')
-                          .map((e) => letter(
-                                e.toUpperCase(),
-                                !Game7.selectedChar.contains(e.toUpperCase()),
-                              ))
-                          .toList(),
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.04,
-                  ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: LayoutBuilder(
-                        builder: (context, constraints) {
-                          return Wrap(
-                            // Cambiar a Wrap en lugar de GridView
-                            alignment: WrapAlignment.center,
-                            spacing: 3.0,
-                            runSpacing: 5.0,
-                            children: alphabets.map((e) {
-                              return Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                                width: MediaQuery.of(context).size.width *
-                                    0.15, // Definir un ancho fijo para el contenedor
-                                margin: const EdgeInsets.symmetric(
-                                    vertical: 5.0, horizontal: 1.0),
-                                child: RawMaterialButton(
-                                  onPressed: Game7.selectedChar.contains(e)
-                                      ? null
-                                      : () {
-                                          setState(() {
-                                            numIntentos++;
-                                            Game7.selectedChar.add(e);
-                                            print(Game7.selectedChar);
-                                            if (!word
-                                                .split('')
-                                                .contains(e.toUpperCase())) {
+                      const Divider(
+                        thickness: 1,
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 2),
+                        child: Text(
+                          afirmacion,
+                          style: const TextStyle(
+                            color: colors_colpaner.claro,
+                            fontSize: 18,
+                            fontFamily: 'BubblegumSans',
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height *
+                            0.20, // Reducir la altura del área de la figura del ahorcado
+                        child: Center(
+                          child: Stack(
+                            children: [
+                              figureImage(Game7.tries >= 0,
+                                  "assets/games/level3/hang.png"),
+                              figureImage(Game7.tries >= 1,
+                                  "assets/games/level3/head.png"),
+                              figureImage(Game7.tries >= 2,
+                                  "assets/games/level3/body.png"),
+                              figureImage(Game7.tries >= 3,
+                                  "assets/games/level3/ra.png"),
+                              figureImage(Game7.tries >= 4,
+                                  "assets/games/level3/la.png"),
+                              figureImage(Game7.tries >= 5,
+                                  "assets/games/level3/rl.png"),
+                              figureImage(Game7.tries >= 6,
+                                  "assets/games/level3/ll.png"),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10.0),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: word
+                              .split('')
+                              .map((e) => letter(
+                                    e.toUpperCase(),
+                                    !Game7.selectedChar
+                                        .contains(e.toUpperCase()),
+                                  ))
+                              .toList(),
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: LayoutBuilder(
+                            builder: (context, constraints) {
+                              return Wrap(
+                                // Cambiar a Wrap en lugar de GridView
+                                alignment: WrapAlignment.center,
+                                spacing: 3.0,
+                                runSpacing: 5.0,
+                                children: alphabets.map((e) {
+                                  return Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.05,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.15, // Definir un ancho fijo para el contenedor
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 5.0, horizontal: 1.0),
+                                    child: RawMaterialButton(
+                                      onPressed: Game7.selectedChar.contains(e)
+                                          ? null
+                                          : () {
                                               setState(() {
-                                                Game7.tries++;
-                                                Game7.fails++;
+                                                numIntentos++;
+                                                Game7.selectedChar.add(e);
+                                                print(Game7.selectedChar);
+                                                if (!word.split('').contains(
+                                                    e.toUpperCase())) {
+                                                  setState(() {
+                                                    Game7.tries++;
+                                                    Game7.fails++;
 
 /*                                                 Fluttertoast.showToast(
                                                   msg: " FAILS: ${Game7.fails}",
@@ -377,7 +388,35 @@ class _level7State extends State<level7> {
                                                   gravity: ToastGravity.CENTER,
                                                 ); */
 
-                                                if (Game7.fails >= 6) {
+                                                    if (Game7.fails >= 6) {
+                                                      stopTimer();
+                                                      print(
+                                                          'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
+                                                      _guardarPuntajeNivel7(
+                                                          Game7.succes);
+                                                      DialogHelper
+                                                          .showDialogGameOver(
+                                                              context,
+                                                              Game7.succes
+                                                                  .toString());
+                                                      setState(() {
+                                                        numIntentos = 0;
+                                                        gameover = true;
+                                                        Game7.tries = 0;
+                                                        Game7.fails = 0;
+                                                        Game7.succes = 0;
+                                                        Game7.selectedChar
+                                                            .clear();
+                                                      });
+                                                    }
+                                                  });
+                                                }
+                                                if (word.split('').contains(
+                                                    e.toUpperCase())) {
+                                                  Game7.succes++;
+                                                }
+                                                if (numIntentos ==
+                                                    numIntentosMax) {
                                                   stopTimer();
                                                   print(
                                                       'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
@@ -392,164 +431,147 @@ class _level7State extends State<level7> {
                                                     numIntentos = 0;
                                                     gameover = true;
                                                     Game7.tries = 0;
-                                                    Game7.fails = 0;
                                                     Game7.succes = 0;
                                                     Game7.selectedChar.clear();
                                                   });
                                                 }
+                                                if (Game7.succes ==
+                                                        word.length ||
+                                                    Game7.succes ==
+                                                        countWordSinRepetidos) {
+                                                  stopTimer();
+                                                  print(
+                                                      'PALABRA COMPLETADA CORRECTAMENTE');
+                                                  _guardarPuntajeNivel7(
+                                                      Game7.succes);
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 500),
+                                                      () {
+                                                    DialogHelper
+                                                        .showDialogGameOver(
+                                                            context,
+                                                            Game7.succes
+                                                                .toString());
+                                                    setState(() {
+                                                      numIntentos = 0;
+                                                      gameover = true;
+                                                      Game7.tries = 0;
+                                                      Game7.succes = 0;
+                                                      Game7.selectedChar
+                                                          .clear();
+                                                    });
+                                                  });
+                                                }
                                               });
-                                            }
-                                            if (word
-                                                .split('')
-                                                .contains(e.toUpperCase())) {
-                                              Game7.succes++;
-                                            }
-                                            if (numIntentos == numIntentosMax) {
-                                              stopTimer();
-                                              print(
-                                                  'SE ALCANZÓ EL NUMERO MAXIMO DE INTENTOS');
-                                              _guardarPuntajeNivel7(
-                                                  Game7.succes);
-                                              DialogHelper.showDialogGameOver(
-                                                  context,
-                                                  Game7.succes.toString());
-                                              setState(() {
-                                                numIntentos = 0;
-                                                gameover = true;
-                                                Game7.tries = 0;
-                                                Game7.succes = 0;
-                                                Game7.selectedChar.clear();
-                                              });
-                                            }
-                                            if (Game7.succes == word.length ||
-                                                Game7.succes ==
-                                                    countWordSinRepetidos) {
-                                              stopTimer();
-                                              print(
-                                                  'PALABRA COMPLETADA CORRECTAMENTE');
-                                              _guardarPuntajeNivel7(
-                                                  Game7.succes);
-                                              Future.delayed(
-                                                  const Duration(
-                                                      milliseconds: 500), () {
-                                                DialogHelper.showDialogGameOver(
-                                                    context,
-                                                    Game7.succes.toString());
-                                                setState(() {
-                                                  numIntentos = 0;
-                                                  gameover = true;
-                                                  Game7.tries = 0;
-                                                  Game7.succes = 0;
-                                                  Game7.selectedChar.clear();
-                                                });
-                                              });
-                                            }
-                                          });
-                                        },
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4.0),
-                                  ),
-                                  fillColor: Game7.selectedChar.contains(e)
-                                      ? colors_colpaner.base
-                                      : colors_colpaner.oscuro,
-                                  child: Text(
-                                    e,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'BubblegumSans',
+                                            },
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(4.0),
+                                      ),
+                                      fillColor: Game7.selectedChar.contains(e)
+                                          ? colors_colpaner.base
+                                          : colors_colpaner.oscuro,
+                                      child: Text(
+                                        e,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'BubblegumSans',
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                }).toList(),
                               );
-                            }).toList(),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          //flecha atras
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-              child: ShakeWidgetX(
-                child: IconButton(
-                  icon: Image.asset('assets/flecha_left.png'),
-                  iconSize: 3,
-                  onPressed: () {
-                    //Fluttertoast.showToast(msg: '$_questionNumber');
-                    if (_start != 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content:
-                          Text("Debes terminar el nivel antes de volver"),
+                            },
+                          ),
                         ),
-                      );
-                    } else {
-                      setState(() {
-                        numIntentos = 0;
-                        gameover = true;
-                        Game7.tries = 0;
-                        Game7.succes = 0;
-                        Game7.selectedChar.clear();
-                      });
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                              transitionDuration: const Duration(seconds: 1),
-                              transitionsBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimation,
-                                  Widget child) {
-                                animation = CurvedAnimation(
-                                    parent: animation, curve: Curves.elasticOut);
-
-                                return ScaleTransition(
-                                  alignment: Alignment.center,
-                                  scale: animation,
-                                  child: child,
-                                );
-                              },
-                              pageBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimattion) {
-                                return const world_game();
-                              }));
-                    }
-                  },
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ),
+              //flecha atras
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                  child: ShakeWidgetX(
+                    child: IconButton(
+                      icon: Image.asset('assets/flecha_left.png'),
+                      iconSize: 3,
+                      onPressed: () {
+                        //Fluttertoast.showToast(msg: '$_questionNumber');
+                        if (_start != 0) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                  "Debes terminar el nivel antes de volver"),
+                            ),
+                          );
+                        } else {
+                          setState(() {
+                            numIntentos = 0;
+                            gameover = true;
+                            Game7.tries = 0;
+                            Game7.succes = 0;
+                            Game7.selectedChar.clear();
+                          });
+                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                  transitionDuration:
+                                      const Duration(seconds: 1),
+                                  transitionsBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation,
+                                      Widget child) {
+                                    animation = CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.elasticOut);
 
-          if (_message != "")
-            AnimatedOpacity(
-              duration: const Duration(milliseconds: 300),
-              opacity: 1,
-              child: Container(
-                color: Colors.black.withOpacity(0.5),
-                child: Center(
-                    child: Container(
-                  color: Colors.black.withOpacity(0.5),
-                  child: Center(
-                    child: Text(
-                      _message,
-                      style: customTextStyle,
+                                    return ScaleTransition(
+                                      alignment: Alignment.center,
+                                      scale: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimattion) {
+                                    return const world_game();
+                                  }));
+                        }
+                      },
                     ),
                   ),
-                )),
+                ),
               ),
-            ),
-        ],
-      ),
-    );
+
+              if (_message != "")
+                AnimatedOpacity(
+                  duration: const Duration(milliseconds: 300),
+                  opacity: 1,
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                        child: Container(
+                      color: Colors.black.withOpacity(0.5),
+                      child: Center(
+                        child: Text(
+                          _message,
+                          style: customTextStyle,
+                        ),
+                      ),
+                    )),
+                  ),
+                ),
+            ],
+          ),
+        ));
   }
 
   Future<void> _guardarPuntajeNivel7(int score) async {

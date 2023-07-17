@@ -12,6 +12,7 @@ import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_female.dart';
 import 'package:gamicolpaner/vista/screens/avatars/avatars_male.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
+import 'package:gamicolpaner/vista/screens/helpers/usabilidad.dart';
 import 'package:gamicolpaner/vista/screens/scores/mis_puntajes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
@@ -222,7 +223,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
 
                           style: const TextStyle(
                             fontFamily: 'BubblegumSans',
-                            color: colors_colpaner.claro,
+                            color: colors_colpaner.oscuro,
                           ),
                         ),
                         Text(
@@ -231,7 +232,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                           style: const TextStyle(
                             fontFamily: 'BubblegumSans',
                             fontSize: 10,
-                            color: colors_colpaner.claro,
+                            color: colors_colpaner.oscuro,
                           ),
                         ),
                         const SizedBox(height: 50.0),
@@ -287,7 +288,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                       );
                     },
                   ),
-                  ListTile(
+/*                   ListTile(
                     title: Text(
                       "Mis Resultados",
                       style: TextStyle(
@@ -310,7 +311,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                         ),
                       );
                     },
-                  ),
+                  ), */
                   ListTile(
                     title: Text(
                       "Ávatar",
@@ -347,7 +348,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                       }
                     },
                   ),
-                  ListTile(
+/*                   ListTile(
                     title: Text(
                       "Patrones ICFES",
                       style: TextStyle(
@@ -364,7 +365,7 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                           : colors_colpaner.oscuro,
                     ),
                     onTap: () {},
-                  ),
+                  ), */
                   ListTile(
                     title: Text(
                       "Usabilidad",
@@ -381,7 +382,10 @@ class _DrawerColpanerState extends State<DrawerColpaner> {
                           ? colors_colpaner.claro
                           : colors_colpaner.oscuro,
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const UsabilidadScreen()));
+                    },
                   ),
                 ],
               ),

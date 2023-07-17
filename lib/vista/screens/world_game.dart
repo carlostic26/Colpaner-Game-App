@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/user_model.dart';
@@ -19,6 +20,25 @@ import 'package:gamicolpaner/vista/screens/niveles/level9/level9.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:giff_dialog/giff_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+class AppLifecycleObserver extends WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      Fluttertoast.showToast(
+        msg: 'Por reglas del juego está prohibido salir de la app.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+      );
+    } else if (state == AppLifecycleState.resumed) {
+      Fluttertoast.showToast(
+        msg: 'Se descontarán puntos en el próximo juego.',
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+      );
+    }
+  }
+}
 
 class world_game extends StatefulWidget {
   const world_game({Key? key}) : super(key: key);
@@ -187,6 +207,8 @@ class _world_gameState extends State<world_game> {
     }
   }
 
+  final AppLifecycleObserver _lifecycleObserver = AppLifecycleObserver();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -277,6 +299,8 @@ class _world_gameState extends State<world_game> {
     getPuntajeCiudadanas8_firestore();
     getPuntajeCiudadanas9_firestore();
     getPuntajeCiudadanas10_firestore();
+
+    WidgetsBinding.instance?.addObserver(_lifecycleObserver);
   }
 
   //funcion que busca el nivel 1, si existe, lo envia a shp para ser sumado a puntaje total
@@ -1573,6 +1597,12 @@ class _world_gameState extends State<world_game> {
   }
 
   @override
+  void dispose() {
+    WidgetsBinding.instance?.removeObserver(_lifecycleObserver);
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     getButtonEnabled();
     _getAvatarFromSharedPrefs();
@@ -2355,32 +2385,25 @@ class _world_gameState extends State<world_game> {
   }
 
   void showDialogLevel(int level, String? modulo) {
-    String imageLvl1 =
-        'https://blogger.googleusercontent.com/img/a/AVvXsEjTy5Oytt0iwUvfxK4rm2nGlFjPENSj1kk-2bwqYAM1rzPtncL68VR9eUYTK9vbyByREPPtdGUAUupeM8f_CD5KsmgZbJe8k3WAw4--qhFxpcpFgGqsq1u2saxiui1FfP704AjtaBlGlSOsrpi31Upev6OA5612vSGY23eh7wAS24TGlS8hUHxHa6s=s16000';
+    String imageLvlQuiz =
+        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjW_iwrfw3EKnB29JtHri9qNkbv-ph11a1EpCaRC2HdwyAshvut2D8a4IVRb9hy1UY8QorP7qmkdWYp7ga2mWc-qoydyJ6m35LSkdVVM2vMEZ7aGg2vhZE8MoVKMaqoYHp2cGhMsmy130MdvGc6G0tPSX_RsuFvLN_52IKYZH31Mv_vqn5fJDWana5kog/s320/1%20(1).gif';
     String imageLvl2 =
-        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh2Z-aZWSpJfAT6p1ki7lhQrWW-qO5hRj6T4p0DDxrvx9WxNH5pH2a0CSRmYa4POVjKp4J5khGE17BmDhaNUsGo0QMpRPoL3HoDgc0WIqFxCsktAr9_s1D8oIVvlUoNs9_5tiNR3XcJvOqEWRBmEAbQK-BuypAjMRLUYIXj23MUK02i0uUNVMXprjs/s1600/MajesticIdioticArachnid-max-1mb.gif';
+        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjc34Y-YBMIb3YPW-_HZjK2YXmPQ2wu4xvyr2ygc173CQk1v2r3HX2P_qAT1PBN8wYbNrZt60cKoRnZcf_jbbWsAxW0K5n_1IKgrPINhbnOEBQQHhL2gxjEwTi0ycQ3265tGplVt9KgLDj5fbwFvXOskuIMGUmLBbVHRZd4jYmkt5suHD2NfkyvyJNigw/s320/2.gif';
     String imageLvl3 =
-        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEibTjDUT6fzseikZx3rWGw4HYlabuuCN5zwgw0XYH_I8Nhbvfkyf0Xhy6bAsmrXwDssgFcS9QhjyPq92E3ykPCJlUmPCFAhR8IWb__hSlXnT_LeNSXSBpbp6wXz1WJInRSzbmMCbLc4BajiPFqs3qUHMxmetHZNaCg6n9ABZSNFR_u38F4FOo8QBwQ/s320/Word%20Search%20Puzzles%20Gameplay.gif';
-
+        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiAFJJnypyH0pT9Frwt7-QAF-2uiLzHBbspSv_Uka7ddPTCsyzSdYv0rySCS3VWR3QIeFC-WKc5Q-3kNnoYKzgnkhWlxw5LjJB-Suijmysfczfw1zjzcDIe3ypBpp2522nZ3mbUk9DO7-Zy8WnhHYHYEgXskGUlXvN_-rbNOD4UBFXt8vKe4hIGVahQbA/s320/3.gif';
     String imageLvl4 =
-        'https://developer.android.com/static/images/guide/topics/ui/drag-and-drop-between-apps.gif?hl=es-419';
-    String imageLvl5 =
-        'https://blogger.googleusercontent.com/img/a/AVvXsEjTy5Oytt0iwUvfxK4rm2nGlFjPENSj1kk-2bwqYAM1rzPtncL68VR9eUYTK9vbyByREPPtdGUAUupeM8f_CD5KsmgZbJe8k3WAw4--qhFxpcpFgGqsq1u2saxiui1FfP704AjtaBlGlSOsrpi31Upev6OA5612vSGY23eh7wAS24TGlS8hUHxHa6s=s16000';
-
+        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDuacwuVb_yBap8BwtO9KZ2HZt0rxkRGnNYK3sZ-21OQ3pjhb7n2wUg5407eE596GkDvDizMiKQXb_h5FjnYSx3SaTSz-9HkwcSyNvKG3EfulLX2RGqOYaOUBFfQyNY-Phjs_VPws4knwuYdlpvWMwztFNGo9nO1C1Z23vs_tSvOtz1Oj-MN7Kw7I_yA/s320/4.gif';
     String imageLvl6 =
-        'https://blogger.googleusercontent.com/img/a/AVvXsEguCWt1PDbfMXq7mO2uNFeqQyovN4Vmym-_PVGl5POPu14e81QHqByoxtMvbUo7OQyLeB-1JudLptZEB9PvDeuHH6NbzhbWDYdPyablavwf_SoyLd8r1WmZ4Bv_FlWpVetpiaNk0UOMVp1SGsHvVrxg6OcGUpJqYHUS_tHa8NCa_uOxW2jViKqUX1c';
+        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgWZd75fzriRYkwcV2o5KC5gwzysNjyx-qmCgLT6BYJS-NOTs4VjaaADJFzG24CvxzRBUevMFiUNM4B_QRS3E7sMSswFUnXDb7pogU9bKOWSF5WSzONs3AYs96MFGt6UN4psDsG0-ml-KvIESiMvocR-5T9gcOxZdBJM051cA6Udi7mAEPtRyMQX5dYPA/s320/5.gif';
     String imageLvl7 =
-        'http://pa1.narvii.com/6625/e90f6237ad16279bb59f3b3dea459eae44b831b5_00.gif';
-
+        'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqF-bPS7s4gHSE1KTsenYdzCQF4wD1rZVL65C_30k_C0MPJmNDmNz1yQbgVo8WyD7JAV1B7fdF3C412N9ExXHIuJ7fxevd3P-zdMpBAJreZqJl62UTRkFDWjQuHOgLYvh9rOOXF1dJ1qXEgnU6msySWaG53ljUmynJ1v5GxY3ozos-IRDVjcwAMtABeg/s320/6.gif';
     String imageLvl8 =
         'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjI79k1GOYleWN59tGVXduBRPzRn9V9WcKNGMO1BvogbpAyrUteln0NOQDgTkNjYB6QIMVxfIrhxXcw5IDU3zFmUJN1OBUbrpB6-w4YDCQjUdYt5rK_4Lu3A1AlXJpEKtcJXCgjiKypufU9gaE1MVtDdgL738lQ9lpFQNf2b_-HJnv1MynFYm6Cbds/s320/giphy.gif';
-    String imageLvl9 =
-        'https://blogger.googleusercontent.com/img/a/AVvXsEjTy5Oytt0iwUvfxK4rm2nGlFjPENSj1kk-2bwqYAM1rzPtncL68VR9eUYTK9vbyByREPPtdGUAUupeM8f_CD5KsmgZbJe8k3WAw4--qhFxpcpFgGqsq1u2saxiui1FfP704AjtaBlGlSOsrpi31Upev6OA5612vSGY23eh7wAS24TGlS8hUHxHa6s=s16000';
     String imageLvl10 =
         'https://blogger.googleusercontent.com/img/a/AVvXsEj_3Z1kqIpcWZZpGfyXAb9t0fEB0CLZ3jWyVyOZn_jgvYnocpT3Ayj8YKWio-LnlYr0MODwboL1397Cnjs8XVHFHnpAK7nALOPyP-GmWbBVhxg8nc3DHopcHtYluoPBV0no2U7EoZofmi8tH2K8Q3XG6-Fp39XnoZhKX0L-2zMqtNnbW0TpuZzwcmg';
 
     showGeneralDialog(
-      barrierColor: Colors.black.withOpacity(0.5),
+      barrierColor: Colors.black.withOpacity(0.8),
       transitionBuilder: (context, a1, a2, widget) {
         return Transform.scale(
           scale: a1.value,
@@ -2389,7 +2412,7 @@ class _world_gameState extends State<world_game> {
             child: NetworkGiffDialog(
                 image: CachedNetworkImage(
                   imageUrl: level == 1
-                      ? imageLvl1
+                      ? imageLvlQuiz
                       : level == 2
                           ? imageLvl2
                           : level == 3
@@ -2397,7 +2420,7 @@ class _world_gameState extends State<world_game> {
                               : level == 4
                                   ? imageLvl4
                                   : level == 5
-                                      ? imageLvl5
+                                      ? imageLvlQuiz
                                       : level == 6
                                           ? imageLvl6
                                           : level == 7
@@ -2405,11 +2428,11 @@ class _world_gameState extends State<world_game> {
                                               : level == 8
                                                   ? imageLvl8
                                                   : level == 9
-                                                      ? imageLvl9
+                                                      ? imageLvlQuiz
                                                       : level == 10
                                                           ? imageLvl10
                                                           : imageLvl10,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   placeholder: (context, url) => const SizedBox(
                     width: 10,
                     height: 10,
@@ -2600,7 +2623,7 @@ class _world_gameState extends State<world_game> {
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: const TextStyle(
-                                                                fontSize: 10,
+                                                                fontSize: 13,
                                                                 fontFamily:
                                                                     'BubblegumSans'),
                                                           )

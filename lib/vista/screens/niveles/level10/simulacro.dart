@@ -9,7 +9,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gamicolpaner/controller/anim/shakeWidget.dart';
-
 import 'package:gamicolpaner/controller/services/customStyle.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/dbexam.dart';
@@ -53,7 +52,7 @@ class _simulacroState extends State<simulacro> {
   Future<List<question_model>>? _questions;
 
   void _startCountdown() {
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(milliseconds: 600), () {
       if (_timeLeft > 1) {
         setState(() {
           _timeLeft--;

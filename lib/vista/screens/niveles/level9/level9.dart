@@ -62,6 +62,7 @@ class _level9QuizState extends State<level9Quiz> {
       }
     });
   }
+
   @override
   void initState() {
     super.initState();
@@ -134,7 +135,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     super.initState();
     _getModuloFromSharedPrefs();
     _controller = PageController(initialPage: 0);
-
   }
 
   @override
@@ -153,28 +153,28 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   icon: Image.asset('assets/flecha_left.png'),
                   iconSize: 3,
                   onPressed: () {
-                      Navigator.push(
-                          context,
-                          PageRouteBuilder(
-                              transitionDuration: const Duration(seconds: 1),
-                              transitionsBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimation,
-                                  Widget child) {
-                                animation = CurvedAnimation(
-                                    parent: animation, curve: Curves.elasticOut);
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            transitionDuration: const Duration(seconds: 1),
+                            transitionsBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secAnimation,
+                                Widget child) {
+                              animation = CurvedAnimation(
+                                  parent: animation, curve: Curves.elasticOut);
 
-                                return ScaleTransition(
-                                  alignment: Alignment.center,
-                                  scale: animation,
-                                  child: child,
-                                );
-                              },
-                              pageBuilder: (BuildContext context,
-                                  Animation<double> animation,
-                                  Animation<double> secAnimattion) {
-                                return const world_game();
-                              }));
+                              return ScaleTransition(
+                                alignment: Alignment.center,
+                                scale: animation,
+                                child: child,
+                              );
+                            },
+                            pageBuilder: (BuildContext context,
+                                Animation<double> animation,
+                                Animation<double> secAnimattion) {
+                              return const world_game();
+                            }));
                   },
                 ),
               ),
@@ -266,7 +266,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   }
 
   Padding buildQuestion(Question question) {
-
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -308,7 +307,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     );
   }
 
-
   ElevatedButton buildElevatedButton() {
     return ElevatedButton(
       onPressed: () async {
@@ -322,16 +320,13 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             _isLocked = false;
           });
         } else {
-
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => ResultPage(score: _score),
             ),
           );
-          await _guardarPuntajeNivel1(
-              _score);
-
+          await _guardarPuntajeNivel1(_score);
         }
 
         // Se carga la información de puntaje a la base de datos logrando actualizar todo el campo del registro de puntaje correspondiente al nivel

@@ -291,331 +291,344 @@ class _level6State extends State<level6> {
     } else {
       _falsoButtonColor = Colors.red;
     }
-    return Scaffold(
-      backgroundColor: colors_colpaner.base,
-      appBar: null,
-      body: Stack(alignment: Alignment.center, children: [
-        Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.07,
-            ),
-            const Text(
-              "¿Verdadero o Falso?",
-              style: TextStyle(
-                fontSize: 40.0,
-                fontFamily: 'BubblegumSans',
-                fontWeight: FontWeight.bold,
-                color: colors_colpaner.claro,
+    return WillPopScope(
+        onWillPop: () async {
+          if (tries <= 10) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text("Debes terminar el nivel antes de volver"),
               ),
-            ),
-            Text(
-              "$_modulo",
-              style: const TextStyle(
-                fontSize: 15.0,
-                fontFamily: 'BubblegumSans',
-                fontWeight: FontWeight.bold,
-                color: colors_colpaner.oscuro,
-              ),
-            ),
-
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+            );
+          }
+          return false;
+        },
+        child: Scaffold(
+          backgroundColor: colors_colpaner.base,
+          appBar: null,
+          body: Stack(alignment: Alignment.center, children: [
+            Column(
               children: [
-                scoreBoard1("Intentos", "${tries.toInt()}/10"),
-                scoreBoard1("Puntos", "$score/10")
-              ],
-            ),
-            const Divider(
-              thickness: 1,
-              color: Colors.grey,
-            ),
-           SizedBox(
-              height: MediaQuery.of(context).size.height * 0.20,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-                decoration: BoxDecoration(
-                  color: colors_colpaner.claro,
-                  borderRadius: BorderRadius.circular(6.0),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.07,
                 ),
-                child: Column(
+                const Text(
+                  "¿Verdadero o Falso?",
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    fontFamily: 'BubblegumSans',
+                    fontWeight: FontWeight.bold,
+                    color: colors_colpaner.claro,
+                  ),
+                ),
+                Text(
+                  "$_modulo",
+                  style: const TextStyle(
+                    fontSize: 15.0,
+                    fontFamily: 'BubblegumSans',
+                    fontWeight: FontWeight.bold,
+                    color: colors_colpaner.oscuro,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    seleccion != null
-                        ? seleccion ==
-                                diezAfirmaciones.values
-                                    .toList()[_currentAfirmacionIndex]
-                            ? const Icon(
-                                Icons.check,
-                                color: Colors.green,
-                                size: 50,
-                              )
-                            : const Icon(
-                                Icons.close,
-                                color: Colors.red,
-                                size: 50,
-                              )
-                        : const SizedBox(),
-                    Text(
-                      diezAfirmaciones.keys.elementAt(_currentAfirmacionIndex),
-                      style: const TextStyle(
-                        fontSize: 20.0,
-                        fontFamily: 'BubblegumSans',
-                        //fontWeight: FontWeight.bold,
-                        color: colors_colpaner.oscuro,
-                      ),
+                    scoreBoard1("Intentos", "${tries.toInt()}/10"),
+                    scoreBoard1("Puntos", "$score/10")
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                  color: Colors.grey,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 5.0, horizontal: 20.0),
+                    decoration: BoxDecoration(
+                      color: colors_colpaner.claro,
+                      borderRadius: BorderRadius.circular(6.0),
+                    ),
+                    child: Column(
+                      children: [
+                        seleccion != null
+                            ? seleccion ==
+                                    diezAfirmaciones.values
+                                        .toList()[_currentAfirmacionIndex]
+                                ? const Icon(
+                                    Icons.check,
+                                    color: Colors.green,
+                                    size: 50,
+                                  )
+                                : const Icon(
+                                    Icons.close,
+                                    color: Colors.red,
+                                    size: 50,
+                                  )
+                            : const SizedBox(),
+                        Text(
+                          diezAfirmaciones.keys
+                              .elementAt(_currentAfirmacionIndex),
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontFamily: 'BubblegumSans',
+                            //fontWeight: FontWeight.bold,
+                            color: colors_colpaner.oscuro,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 60.0,
+                ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: (trueButton == false &&
+                                      falseButton == true)
+                                  ? null
+                                  : () {
+                                      if (seleccion != null) {
+                                        bool respuesta = diezAfirmaciones.values
+                                            .toList()[_currentAfirmacionIndex];
+                                        //_showResult(seleccion == respuesta);
+                                      }
+
+                                      setState(() {
+                                        tries++;
+                                        seleccion = true;
+                                        trueButton = true;
+                                        falseButton = false;
+
+                                        if (diezAfirmaciones.values.elementAt(
+                                            _currentAfirmacionIndex)) {
+                                          setState(() {
+                                            score++;
+                                          });
+                                          //_showCorrectAnswerDialog();
+                                        } else {
+                                          //_incrementTries();
+                                          //_showIncorrectAnswerDialog();
+                                        }
+
+                                        if (tries >= 10) {
+                                          _allAfirmacionesShown = true;
+                                          gameOver6(score);
+                                          // Guardar puntaje de nivel en firestore
+
+                                          _guardarPuntajeNivel6(
+                                              score); // Llamar a la función para guardar el puntaje
+                                        }
+                                      });
+                                    },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green,
+                              ),
+                              child: Text(
+                                "Verdadero",
+                                style: TextStyle(
+                                  fontSize: 30.0,
+                                  fontFamily: 'BubblegumSans',
+                                  fontWeight: FontWeight.bold,
+                                  color: (trueButton == false &&
+                                          falseButton == true)
+                                      ? Colors.grey
+                                      : colors_colpaner.claro,
+                                ),
+                              ),
+                            )),
+                        SizedBox(
+                            height: 50,
+                            child: ElevatedButton(
+                                onPressed: (trueButton == true &&
+                                        falseButton == false)
+                                    ? null
+                                    : () {
+                                        if (seleccion != null) {
+                                          bool respuesta =
+                                              diezAfirmaciones.values.toList()[
+                                                  _currentAfirmacionIndex];
+                                          //_showResult(seleccion == respuesta);
+                                        }
+                                        setState(() {
+                                          tries++;
+                                          seleccion = false;
+                                          falseButton = true;
+                                          trueButton = false;
+
+                                          if (!diezAfirmaciones.values
+                                              .elementAt(
+                                                  _currentAfirmacionIndex)) {
+                                            setState(() {
+                                              score++;
+                                            });
+
+                                            //_showCorrectAnswerDialog();
+                                          } else {
+                                            //_incrementTries();
+                                            //_showIncorrectAnswerDialog();
+                                          }
+
+                                          if (tries >= 10) {
+                                            _allAfirmacionesShown = true;
+                                            gameOver6(score);
+                                            // Guardar puntaje de nivel en firestore
+
+                                            _guardarPuntajeNivel6(
+                                                score); // Llamar a la función para guardar el puntaje
+                                          }
+                                        });
+                                      },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.red,
+                                ),
+                                child: const Text(
+                                  "Falso",
+                                  style: TextStyle(
+                                      fontSize: 30.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.claro),
+                                ))),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
                     ),
                   ],
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 60.0,
-            ),
-            Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                        height: 50,
-                        child: ElevatedButton(
-                          onPressed: (trueButton == false &&
-                                  falseButton == true)
-                              ? null
-                              : () {
-                                  if (seleccion != null) {
-                                    bool respuesta = diezAfirmaciones.values
-                                        .toList()[_currentAfirmacionIndex];
-                                    //_showResult(seleccion == respuesta);
-                                  }
-
-                                  setState(() {
-                                    tries++;
-                                    seleccion = true;
-                                    trueButton = true;
-                                    falseButton = false;
-
-                                    if (diezAfirmaciones.values
-                                        .elementAt(_currentAfirmacionIndex)) {
-                                      setState(() {
-                                        score++;
-                                      });
-                                      //_showCorrectAnswerDialog();
-                                    } else {
-                                      //_incrementTries();
-                                      //_showIncorrectAnswerDialog();
-                                    }
-
-                                    if (tries >= 10) {
-                                      _allAfirmacionesShown = true;
-                                      gameOver6(score);
-                                      // Guardar puntaje de nivel en firestore
-
-                                      _guardarPuntajeNivel6(
-                                          score); // Llamar a la función para guardar el puntaje
-                                    }
-                                  });
-                                },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                          ),
-                          child: Text(
-                            "Verdadero",
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              fontFamily: 'BubblegumSans',
-                              fontWeight: FontWeight.bold,
-                              color:
-                                  (trueButton == false && falseButton == true)
-                                      ? Colors.grey
-                                      : colors_colpaner.claro,
-                            ),
-                          ),
-                        )),
-                    SizedBox(
-                        height: 50,
-                        child: ElevatedButton(
-                            onPressed: (trueButton == true &&
-                                    falseButton == false)
-                                ? null
-                                : () {
+                const SizedBox(height: 16),
+                seleccion != null
+                    ? seleccion ==
+                                diezAfirmaciones.values
+                                    .toList()[_currentAfirmacionIndex] ||
+                            seleccion !=
+                                diezAfirmaciones.values
+                                    .toList()[_currentAfirmacionIndex]
+                        ? Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.all(20.0),
+                              child: Align(
+                                alignment: Alignment.bottomRight,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: colors_colpaner.oscuro,
+                                  ),
+                                  onPressed: () {
                                     if (seleccion != null) {
                                       bool respuesta = diezAfirmaciones.values
                                           .toList()[_currentAfirmacionIndex];
                                       //_showResult(seleccion == respuesta);
                                     }
+
                                     setState(() {
-                                      tries++;
-                                      seleccion = false;
-                                      falseButton = true;
+                                      falseButton = false;
                                       trueButton = false;
-
-                                      if (!diezAfirmaciones.values
-                                          .elementAt(_currentAfirmacionIndex)) {
-                                        setState(() {
-                                          score++;
-                                        });
-
-                                        //_showCorrectAnswerDialog();
+                                      seleccion = null;
+                                      if (_currentAfirmacionIndex <
+                                          diezAfirmaciones.length - 1) {
+                                        _currentAfirmacionIndex++;
                                       } else {
-                                        //_incrementTries();
-                                        //_showIncorrectAnswerDialog();
-                                      }
-
-                                      if (tries >= 10) {
-                                        _allAfirmacionesShown = true;
-                                        gameOver6(score);
-                                        // Guardar puntaje de nivel en firestore
-
-                                        _guardarPuntajeNivel6(
-                                            score); // Llamar a la función para guardar el puntaje
+                                        _currentAfirmacionIndex = 0;
                                       }
                                     });
                                   },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
-                            ),
-                            child: const Text(
-                              "Falso",
-                              style: TextStyle(
-                                  fontSize: 30.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.claro),
-                            ))),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            seleccion != null
-                ? seleccion ==
-                            diezAfirmaciones.values
-                                .toList()[_currentAfirmacionIndex] ||
-                        seleccion !=
-                            diezAfirmaciones.values
-                                .toList()[_currentAfirmacionIndex]
-                    ? Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: Align(
-                            alignment: Alignment.bottomRight,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: colors_colpaner.oscuro,
-                              ),
-                              onPressed: () {
-                                if (seleccion != null) {
-                                  bool respuesta = diezAfirmaciones.values
-                                      .toList()[_currentAfirmacionIndex];
-                                  //_showResult(seleccion == respuesta);
-                                }
-
-                                setState(() {
-                                  falseButton = false;
-                                  trueButton = false;
-                                  seleccion = null;
-                                  if (_currentAfirmacionIndex <
-                                      diezAfirmaciones.length - 1) {
-                                    _currentAfirmacionIndex++;
-                                  } else {
-                                    _currentAfirmacionIndex = 0;
-                                  }
-                                });
-                              },
-                              child: const Text(
-                                "Siguiente",
-                                style: TextStyle(
-                                  fontSize: 15.0,
-                                  fontFamily: 'BubblegumSans',
-                                  fontWeight: FontWeight.bold,
-                                  color: colors_colpaner.claro,
+                                  child: const Text(
+                                    "Siguiente",
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      fontFamily: 'BubblegumSans',
+                                      fontWeight: FontWeight.bold,
+                                      color: colors_colpaner.claro,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      )
-                    : const SizedBox()
-                : const SizedBox(),
-          ],
-        ),
-
-        //flecha atras
-        Align(
-          alignment: Alignment.topLeft,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
-            child: ShakeWidgetX(
-              child: IconButton(
-                icon: Image.asset('assets/flecha_left.png'),
-                iconSize: 3,
-                onPressed: () {
-                  if (tries <= 10) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content:
-                            Text("Debes terminar el nivel antes de volver"),
-                      ),
-                    );
-                  } else {
-                    Navigator.pop(context);
-                    Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                            transitionDuration: const Duration(seconds: 1),
-                            transitionsBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimation,
-                                Widget child) {
-                              animation = CurvedAnimation(
-                                  parent: animation, curve: Curves.elasticOut);
-
-                              return ScaleTransition(
-                                alignment: Alignment.center,
-                                scale: animation,
-                                child: child,
-                              );
-                            },
-                            pageBuilder: (BuildContext context,
-                                Animation<double> animation,
-                                Animation<double> secAnimattion) {
-                              return const world_game();
-                            }));
-                  }
-                },
-              ),
+                          )
+                        : const SizedBox()
+                    : const SizedBox(),
+              ],
             ),
-          ),
-        ),
-        if (_message != "")
-          AnimatedOpacity(
-            duration: const Duration(milliseconds: 500),
-            opacity: 1,
-            child: Container(
-              color: Colors.black.withOpacity(0.5),
-              child: Center(
-                  child: Container(
-                color: Colors.black.withOpacity(0.5),
-                child: Center(
-                  child: Text(
-                    _message,
-                    style: customTextStyle,
+
+            //flecha atras
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                child: ShakeWidgetX(
+                  child: IconButton(
+                    icon: Image.asset('assets/flecha_left.png'),
+                    iconSize: 3,
+                    onPressed: () {
+                      if (tries <= 10) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content:
+                                Text("Debes terminar el nivel antes de volver"),
+                          ),
+                        );
+                      } else {
+                        Navigator.pop(context);
+                        Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                                transitionDuration: const Duration(seconds: 1),
+                                transitionsBuilder: (BuildContext context,
+                                    Animation<double> animation,
+                                    Animation<double> secAnimation,
+                                    Widget child) {
+                                  animation = CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.elasticOut);
+
+                                  return ScaleTransition(
+                                    alignment: Alignment.center,
+                                    scale: animation,
+                                    child: child,
+                                  );
+                                },
+                                pageBuilder: (BuildContext context,
+                                    Animation<double> animation,
+                                    Animation<double> secAnimattion) {
+                                  return const world_game();
+                                }));
+                      }
+                    },
                   ),
                 ),
-              )),
+              ),
             ),
-          ),
-      ]),
-    );
+            if (_message != "")
+              AnimatedOpacity(
+                duration: const Duration(milliseconds: 500),
+                opacity: 1,
+                child: Container(
+                  color: Colors.black.withOpacity(0.5),
+                  child: Center(
+                      child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                      child: Text(
+                        _message,
+                        style: customTextStyle,
+                      ),
+                    ),
+                  )),
+                ),
+              ),
+          ]),
+        ));
   }
 
   Future<void> gameOver6(int score) async {
