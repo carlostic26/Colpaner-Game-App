@@ -3,6 +3,7 @@ import 'package:gamicolpaner/controller/services/local_storage.dart';
 import 'package:gamicolpaner/model/dbexam.dart';
 import 'package:gamicolpaner/vista/screens/auth/login_screen.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
+import 'package:gamicolpaner/vista/screens/maestro/maestro_screen.dart';
 import 'package:gamicolpaner/vista/screens/pin_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -55,6 +56,8 @@ Future<void> main() async {
  */
     home: email == null
         ? MyApp()
+        : email == 'maestro@colpaner.app'
+        ? Maestro_Screen()
         : (isPin == false)
             ? const pinScreen()
             : const entrenamientoModulos(),

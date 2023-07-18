@@ -7,6 +7,7 @@ import 'package:gamicolpaner/vista/screens/drawer.dart';
 import 'package:gamicolpaner/vista/visual/colors_colpaner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gamicolpaner/controller/puntajes_shp.dart';
+import '../../../controller/services/local_storage.dart';
 import '../auth/login_screen.dart';
 
 class misPuntajes extends StatefulWidget {
@@ -76,8 +77,8 @@ class _misPuntajesState extends State<misPuntajes> {
   int puntos_nat = 0;
   int puntos_test = 5;
   int puntos_global = 0;
-  final int puntosMaximos_test = 100;
 
+  final int puntosMaximos_test = 100;
   final int puntosMaximos_mat = 78;
   final int puntosMaximos_nat = 81;
   final int puntosMaximos_lec = 96;
@@ -1542,7 +1543,7 @@ class _misPuntajesState extends State<misPuntajes> {
     return puntajeNatNivel10;
   }
 
-   Future<void> guardarTotalGamicolpaner(puntajeGlobal) async {
+  Future<void> guardarTotalGamicolpaner(puntajeGlobal) async {
     final puntajesRefTotal = FirebaseFirestore.instance
         .collection('puntajes')
         .doc('podio')
@@ -1558,6 +1559,92 @@ class _misPuntajesState extends State<misPuntajes> {
     });
   }
 
+  Future<void> guardarTotalModulos(puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu) async {
+
+    if(puntos_mat!=0){
+      final puntajesRefTotal = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('podio')
+          .collection('Razonamiento Cuantitativo')
+          .doc(user!.uid);
+
+      await puntajesRefTotal.set({
+        'userId': loggedInUser.uid,
+        'fullName': loggedInUser.fullName.toString(),
+        'puntajeModulo': puntos_mat,
+        'tecnica': loggedInUser.tecnica.toString(),
+        'avatar': loggedInUser.avatar.toString()
+      });
+    }
+
+    if(puntos_lec!=0){
+      final puntajesRefTotal = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('podio')
+          .collection('Lectura Crítica')
+          .doc(user!.uid);
+
+      await puntajesRefTotal.set({
+        'userId': loggedInUser.uid,
+        'fullName': loggedInUser.fullName.toString(),
+        'puntajeModulo': puntos_lec,
+        'tecnica': loggedInUser.tecnica.toString(),
+        'avatar': loggedInUser.avatar.toString()
+      });
+    }
+
+    if(puntos_ing!=0){
+      final puntajesRefTotal = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('podio')
+          .collection('Inglés')
+          .doc(user!.uid);
+
+      await puntajesRefTotal.set({
+        'userId': loggedInUser.uid,
+        'fullName': loggedInUser.fullName.toString(),
+        'puntajeModulo': puntos_ing,
+        'tecnica': loggedInUser.tecnica.toString(),
+        'avatar': loggedInUser.avatar.toString()
+      });
+    }
+
+    if(puntos_nat!=0){
+      final puntajesRefTotal = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('podio')
+          .collection('Ciencias Naturales')
+          .doc(user!.uid);
+
+      await puntajesRefTotal.set({
+        'userId': loggedInUser.uid,
+        'fullName': loggedInUser.fullName.toString(),
+        'puntajeModulo': puntos_nat,
+        'tecnica': loggedInUser.tecnica.toString(),
+        'avatar': loggedInUser.avatar.toString()
+      });
+    }
+
+    if(puntos_ciu!=0){
+      final puntajesRefTotal = FirebaseFirestore.instance
+          .collection('puntajes')
+          .doc('podio')
+          .collection('Competencias Ciudadanas')
+          .doc(user!.uid);
+
+      await puntajesRefTotal.set({
+        'userId': loggedInUser.uid,
+        'fullName': loggedInUser.fullName.toString(),
+        'puntajeModulo': puntos_ciu,
+        'tecnica': loggedInUser.tecnica.toString(),
+        'avatar': loggedInUser.avatar.toString()
+      });
+    }
+
+
+
+  }
+
   Future<List<QueryDocumentSnapshot>> obtenerMejoresPuntajes() async {
     final puntajesRef = FirebaseFirestore.instance.collection('puntajes');
 
@@ -1565,7 +1652,7 @@ class _misPuntajesState extends State<misPuntajes> {
         .doc('podio')
         .collection('global')
         .orderBy('puntajeGlobal', descending: true)
-        .limit(10)
+        .limit(50)
         .get();
 
     final mejoresPuntajes = querySnapshot.docs;
@@ -1631,32 +1718,39 @@ class _misPuntajesState extends State<misPuntajes> {
     int maxCiu8 = 5;
     int maxCiu9 = 5;
     int maxCiu10 = 25;
-
+//AQUI CON LOS PORCENTAJES NO DEBE SER ASI, SINO SABER NI EL USUARIO HIZO 10 NIVELES PUES YA MARCA 100%
     final double porcentaje_mat =
-        puntos_mat / puntosMaximos_test; // Calcular el porcentaje de progreso
+        puntos_mat / puntosMaximos_mat; // Calcular el porcentaje de progreso
 
     final double porcentaje_ing =
-        puntos_ing / puntosMaximos_test; // Calcular el porcentaje de progreso
+        puntos_ing / puntosMaximos_ing; // Calcular el porcentaje de progreso
 
     final double porcentaje_lec =
-        puntos_lec / puntosMaximos_test; // Calcular el porcentaje de progreso
+        puntos_lec / puntosMaximos_lec; // Calcular el porcentaje de progreso
 
     final double porcentaje_ciu =
-        puntos_ciu / puntosMaximos_test; // Calcular el porcentaje de progreso
+        puntos_ciu / puntosMaximos_ciu; // Calcular el porcentaje de progreso
 
     final double porcentaje_nat =
-        puntos_nat / puntosMaximos_test; // Calcular el porcentaje de progreso
+        puntos_nat / puntosMaximos_nat; // Calcular el porcentaje de progreso
 
     final double porcentaje_test =
         puntos_test / puntosMaximos_test; // Calcular el porcentaje de progreso
 
     puntos_global =
         puntos_mat + puntos_ing + puntos_lec + puntos_ciu + puntos_nat;
-    print('IMPRIMIENDO, SE HA ENVIADO EL TOTAL COLECCION GLOBAL A FIREBASE');
 
 
-    //envio el total a firebase en una coleccion llamada global
-    guardarTotalGamicolpaner(puntos_global);
+    if(puntos_global!=0){
+      print('IMPRIMIENDO, SE HA ENVIADO EL TOTAL COLECCION GLOBAL A FIREBASE');
+      print('$puntos_global');
+
+      //envio el total a firebase en una coleccion llamada global
+      guardarTotalGamicolpaner(puntos_global);
+
+      //envio los puntajes totales por modulo a coleccion llamada como el modulo de cada uno
+      guardarTotalModulos(puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu);
+    }
 
     // Verificar si los mejores puntajes se han cargado
     if (mejoresPuntajes == null) {
@@ -4744,20 +4838,11 @@ class _misPuntajesState extends State<misPuntajes> {
     );
   }
 
-// función para eliminar todos los registros de Shared Preferences
-  Future<void> clearSharedPreferences() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-  }
-
-  Future<void> logout(BuildContext context) async {
-    await FirebaseAuth.instance.signOut();
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LoginScreen()));
-  }
 
   void obtenerPuntajes() {
     //recibe el puntaje total del modulo mat y lo establece en variable para estitmar procentaje de progreso
+
+    LocalStorage localStorage = LocalStorage();
 
     setState(() {
       getPuntajesTotal_MAT().then((value) {
@@ -4780,6 +4865,9 @@ class _misPuntajesState extends State<misPuntajes> {
         puntos_nat = value;
       });
     });
+
+    localStorage.guardarPuntosModuloSHP(puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu);
+
 
     //obtiene de shp cada nivel de puntaje y los actualiza
     getPuntaje_MAT();
@@ -4848,4 +4936,18 @@ class _misPuntajesState extends State<misPuntajes> {
     getPuntajeNaturales9_firestore();
     getPuntajeNaturales10_firestore();
   }
+
+
+// función para eliminar todos los registros de Shared Preferences
+  Future<void> clearSharedPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+  }
+
+  Future<void> logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginScreen()));
+  }
+
 }

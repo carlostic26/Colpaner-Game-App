@@ -49,8 +49,11 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
 
     final diaSemana = horaActualColombia.weekday;
     //final diaSemana = 6;
-    final esDiaHabil =
-        (diaSemana >= DateTime.monday && diaSemana <= DateTime.friday);
+    final esDiaHabil = //de lunes a miercoles, y solo viernes
+        (diaSemana >= DateTime.monday &&
+            diaSemana <=
+                DateTime
+                    .friday); //(diaSemana >= DateTime.monday && diaSemana <= DateTime.wednesday || diaSemana == DateTime.friday);
 
     if (esDiaHabil &&
         horaActualColombia.isAfter(horaInicio) &&
@@ -60,7 +63,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
       });
     } else {
       setState(() {
-        permitirAcceso = false;
+        permitirAcceso = true;
       });
     }
 
@@ -226,11 +229,9 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                         onTap: () {
                           //establece en memoria el módulo controlado por el usuario
                           localStorage.setModulo('Razonamiento Cuantitativo');
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const world_game()),
-                          );
+
+                          dialogoAccesModulo(
+                              context, 'Razonamiento Cuantitativo');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -285,13 +286,18 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          //establece en memoria el módulo controlado por el usuario
+/*                           //establece en memoria el módulo controlado por el usuario
                           localStorage.setModulo('Lectura Crítica');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const world_game()),
                           );
+ */
+                          //establece en memoria el módulo controlado por el usuario
+                          localStorage.setModulo('Lectura Crítica');
+
+                          dialogoAccesModulo(context, 'Lectura Crítica');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -345,13 +351,18 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          localStorage.setModulo('Inglés');
+/*                           localStorage.setModulo('Inglés');
 
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const world_game()),
-                          );
+                          ); */
+
+                          //establece en memoria el módulo controlado por el usuario
+                          localStorage.setModulo('Inglés');
+
+                          dialogoAccesModulo(context, 'Inglés');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -397,12 +408,16 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                     Expanded(
                       child: InkWell(
                         onTap: () {
-                          localStorage.setModulo('Ciencias Naturales');
+/*                           localStorage.setModulo('Ciencias Naturales');
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const world_game()),
                           );
+
+                                      */ //establece en memoria el módulo controlado por el usuario
+                          localStorage.setModulo('Ciencias Naturales');
+                          dialogoAccesModulo(context, 'Ciencias Naturales');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -467,11 +482,14 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                       child: InkWell(
                         onTap: () {
                           localStorage.setModulo('Competencias Ciudadanas');
-                          Navigator.push(
+/*                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const world_game()),
                           );
+ */
+                          dialogoAccesModulo(
+                              context, 'Competencias Ciudadanas');
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -545,5 +563,90 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     }
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginScreen()));
+  }
+
+  void dialogoAccesModulo(BuildContext context, String modulo) {
+    String pin = '';
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          elevation: 1,
+          backgroundColor: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Card(
+                  elevation: 8.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Código de acceso\n",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                        const SizedBox(height: 5.0),
+                        TextField(
+                          decoration: const InputDecoration(
+                            hintText: "Digita el pin de acceso",
+                          ),
+                          onChanged: (String value) {
+                            setState(() {
+                              pin = value;
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 20.0),
+                        TextButton(
+                          child: const Text("Ingresar"),
+                          onPressed: () {
+                            if ((pin == 'lc20tr23' &&
+                                    modulo == 'Lectura Crítica') ||
+                                (pin == 'm20t23s' &&
+                                    modulo == 'Razonamiento Cuantitativo') ||
+                                (pin == '2n0g2ls3' && modulo == 'Inglés') ||
+                                (pin == 'n2t0r2l3s' &&
+                                    modulo == 'Ciencias Naturales') ||
+                                (pin == 'c2d2dn3s' &&
+                                    modulo == 'Competencias Ciudadanas')) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const world_game(),
+                                ),
+                              );
+                            } else {
+                              Fluttertoast.showToast(
+                                msg: "Pin incorrecto",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                              );
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

@@ -3,6 +3,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalStorage {
   static late SharedPreferences prefs;
 
+  Future<void> guardarPuntosModuloSHP(total_mat, total_lec, total_ing, total_nat, total_ciu) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if(total_mat!=0){
+      await prefs.setString('total_mat', total_mat);
+    }
+
+    if(total_lec!=0){
+      await prefs.setString('total_lec', total_lec);
+    }
+
+    if(total_ing!=0){
+      await prefs.setString('total_ing', total_ing);
+    }
+
+    if(total_nat!=0){
+      await prefs.setString('total_nat', total_nat);
+    }
+
+    if(total_ciu!=0){
+      await prefs.setString('total_ciu', total_ciu);
+    }
+
+  }
+
   void setIsPin(bool isPin) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isPin', isPin);
