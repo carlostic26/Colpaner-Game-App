@@ -421,357 +421,7 @@ class _MaestroScreenState extends State<MaestroScreen> {
                 ),
 
                 SizedBox(height: 30),
-                //razonamiento
-                const Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                    child: Text(
-                      "Razonamiento Cuantitativo",
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontFamily: 'BubblegumSans',
-                        fontWeight: FontWeight.bold,
-                        color: colors_colpaner.claro,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 20),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: List.generate(
-                                mejoresPuntajesMat.length, (index) {
-                              final documento = mejoresPuntajesMat[index];
-                              final datos = documento.data();
-                              final datosMap =
-                              datos as Map<String, dynamic>?;
-                              final name =
-                              datosMap?['fullName'] as String?;
-                              final userId =
-                              datosMap?['userId'] as String?;
-                              final puntaje =
-                              datosMap?['puntajeModulo'] as int?;
-                              final tecnica =
-                              datosMap?['tecnica'] as String?;
-                              var avatar = datosMap?['avatar'] as String?;
 
-                              avatar ??= '';
-
-                              return Container(
-                                width: MediaQuery.of(context).size.width *
-                                    0.95,
-                                height: 40,
-                                color: colors[index % 2],
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          5, 0, 1, 0),
-                                      child: Text(
-                                        '${index + 1}',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: colors_colpaner.claro),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.fromLTRB(
-                                            5, 1, 5, 1),
-                                        child: Row(
-                                          //aqui iria el avatar del usuario string a cached image netowrk
-                                          children: [
-                                            CachedNetworkImage(
-                                              color:
-                                              colors_colpaner.oscuro,
-                                              width: 35,
-                                              height: 35,
-                                              fadeInDuration:
-                                              Duration.zero,
-                                              imageUrl: avatar,
-                                              imageBuilder: (context,
-                                                  imageProvider) =>
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                              placeholder: (context,
-                                                  url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                  Icon(Icons.error),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 5, 0, 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '$name',
-                                            style: const TextStyle(
-                                                fontSize: 13,
-                                                fontWeight:
-                                                FontWeight.bold,
-                                                color: colors_colpaner
-                                                    .claro),
-                                          ),
-                                          Text(
-                                            '$tecnica',
-                                            style: const TextStyle(
-                                                fontSize: 10,
-                                                fontWeight:
-                                                FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Padding(
-                                          padding:
-                                          const EdgeInsets.fromLTRB(
-                                              10, 0, 20, 0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                            children: [
-                                              //medalla
-                                              Text(
-                                                (index == 0)
-                                                    ? '🥇'
-                                                    : (index == 1)
-                                                    ? '🥈'
-                                                    : (index == 2)
-                                                    ? '🥉'
-                                                    : '🎖️',
-                                                style: const TextStyle(
-                                                    fontSize: 20),
-                                              ),
-
-                                              Text(
-                                                '$puntaje',
-                                                style: const TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    color: Colors.amber),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 30),
-
-                //lectura
-                const Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
-                    child: Text(
-                      "Lectura Crítica",
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontFamily: 'BubblegumSans',
-                        fontWeight: FontWeight.bold,
-                        color: colors_colpaner.claro,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 20),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: List.generate(
-                                mejoresPuntajesLec.length, (index) {
-                              final documento = mejoresPuntajesLec[index];
-                              final datos = documento.data();
-                              final datosMap =
-                              datos as Map<String, dynamic>?;
-                              final name =
-                              datosMap?['fullName'] as String?;
-                              final userId =
-                              datosMap?['userId'] as String?;
-                              final puntaje =
-                              datosMap?['puntajeModulo'] as int?;
-                              final tecnica =
-                              datosMap?['tecnica'] as String?;
-                              var avatar = datosMap?['avatar'] as String?;
-
-                              avatar ??= '';
-
-                              return Container(
-                                width: MediaQuery.of(context).size.width *
-                                    0.95,
-                                height: 40,
-                                color: colors[index % 2],
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          5, 0, 1, 0),
-                                      child: Text(
-                                        '${index + 1}',
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: colors_colpaner.claro),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: Padding(
-                                        padding:
-                                        const EdgeInsets.fromLTRB(
-                                            5, 1, 5, 1),
-                                        child: Row(
-                                          //aqui iria el avatar del usuario string a cached image netowrk
-                                          children: [
-                                            CachedNetworkImage(
-                                              color:
-                                              colors_colpaner.oscuro,
-                                              width: 35,
-                                              height: 35,
-                                              fadeInDuration:
-                                              Duration.zero,
-                                              imageUrl: avatar,
-                                              imageBuilder: (context,
-                                                  imageProvider) =>
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      shape: BoxShape.circle,
-                                                      image: DecorationImage(
-                                                        image: imageProvider,
-                                                        fit: BoxFit.cover,
-                                                      ),
-                                                    ),
-                                                  ),
-                                              placeholder: (context,
-                                                  url) =>
-                                                  CircularProgressIndicator(),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                  Icon(Icons.error),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          0, 5, 0, 0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '$name',
-                                            style: const TextStyle(
-                                                fontSize: 13,
-                                                fontWeight:
-                                                FontWeight.bold,
-                                                color: colors_colpaner
-                                                    .claro),
-                                          ),
-                                          Text(
-                                            '$tecnica',
-                                            style: const TextStyle(
-                                                fontSize: 10,
-                                                fontWeight:
-                                                FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Padding(
-                                          padding:
-                                          const EdgeInsets.fromLTRB(
-                                              10, 0, 20, 0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                            children: [
-                                              //medalla
-                                              Text(
-                                                (index == 0)
-                                                    ? '🥇'
-                                                    : (index == 1)
-                                                    ? '🥈'
-                                                    : (index == 2)
-                                                    ? '🥉'
-                                                    : '🎖️',
-                                                style: const TextStyle(
-                                                    fontSize: 20),
-                                              ),
-
-                                              Text(
-                                                '$puntaje',
-                                                style: const TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    color: Colors.amber),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            }),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 30),
 
                 //ingles
                 const Align(
@@ -1298,6 +948,358 @@ class _MaestroScreenState extends State<MaestroScreen> {
                     ),
                   ),
                 ),
+
+                //razonamiento
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                    child: Text(
+                      "Razonamiento Cuantitativo",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'BubblegumSans',
+                        fontWeight: FontWeight.bold,
+                        color: colors_colpaner.claro,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 20),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: List.generate(
+                                mejoresPuntajesMat.length, (index) {
+                              final documento = mejoresPuntajesMat[index];
+                              final datos = documento.data();
+                              final datosMap =
+                              datos as Map<String, dynamic>?;
+                              final name =
+                              datosMap?['fullName'] as String?;
+                              final userId =
+                              datosMap?['userId'] as String?;
+                              final puntaje =
+                              datosMap?['puntajeModulo'] as int?;
+                              final tecnica =
+                              datosMap?['tecnica'] as String?;
+                              var avatar = datosMap?['avatar'] as String?;
+
+                              avatar ??= '';
+
+                              return Container(
+                                width: MediaQuery.of(context).size.width *
+                                    0.95,
+                                height: 40,
+                                color: colors[index % 2],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          5, 0, 1, 0),
+                                      child: Text(
+                                        '${index + 1}',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: colors_colpaner.claro),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Padding(
+                                        padding:
+                                        const EdgeInsets.fromLTRB(
+                                            5, 1, 5, 1),
+                                        child: Row(
+                                          //aqui iria el avatar del usuario string a cached image netowrk
+                                          children: [
+                                            CachedNetworkImage(
+                                              color:
+                                              colors_colpaner.oscuro,
+                                              width: 35,
+                                              height: 35,
+                                              fadeInDuration:
+                                              Duration.zero,
+                                              imageUrl: avatar,
+                                              imageBuilder: (context,
+                                                  imageProvider) =>
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                              placeholder: (context,
+                                                  url) =>
+                                                  CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                  Icon(Icons.error),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 5, 0, 0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '$name',
+                                            style: const TextStyle(
+                                                fontSize: 13,
+                                                fontWeight:
+                                                FontWeight.bold,
+                                                color: colors_colpaner
+                                                    .claro),
+                                          ),
+                                          Text(
+                                            '$tecnica',
+                                            style: const TextStyle(
+                                                fontSize: 10,
+                                                fontWeight:
+                                                FontWeight.bold,
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.fromLTRB(
+                                              10, 0, 20, 0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                            children: [
+                                              //medalla
+                                              Text(
+                                                (index == 0)
+                                                    ? '🥇'
+                                                    : (index == 1)
+                                                    ? '🥈'
+                                                    : (index == 2)
+                                                    ? '🥉'
+                                                    : '🎖️',
+                                                style: const TextStyle(
+                                                    fontSize: 20),
+                                              ),
+
+                                              Text(
+                                                '$puntaje',
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    color: Colors.amber),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 30),
+
+                //lectura
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                    child: Text(
+                      "Lectura Crítica",
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        fontFamily: 'BubblegumSans',
+                        fontWeight: FontWeight.bold,
+                        color: colors_colpaner.claro,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(5, 0, 5, 20),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            children: List.generate(
+                                mejoresPuntajesLec.length, (index) {
+                              final documento = mejoresPuntajesLec[index];
+                              final datos = documento.data();
+                              final datosMap =
+                              datos as Map<String, dynamic>?;
+                              final name =
+                              datosMap?['fullName'] as String?;
+                              final userId =
+                              datosMap?['userId'] as String?;
+                              final puntaje =
+                              datosMap?['puntajeModulo'] as int?;
+                              final tecnica =
+                              datosMap?['tecnica'] as String?;
+                              var avatar = datosMap?['avatar'] as String?;
+
+                              avatar ??= '';
+
+                              return Container(
+                                width: MediaQuery.of(context).size.width *
+                                    0.95,
+                                height: 40,
+                                color: colors[index % 2],
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          5, 0, 1, 0),
+                                      child: Text(
+                                        '${index + 1}',
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: colors_colpaner.claro),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Padding(
+                                        padding:
+                                        const EdgeInsets.fromLTRB(
+                                            5, 1, 5, 1),
+                                        child: Row(
+                                          //aqui iria el avatar del usuario string a cached image netowrk
+                                          children: [
+                                            CachedNetworkImage(
+                                              color:
+                                              colors_colpaner.oscuro,
+                                              width: 35,
+                                              height: 35,
+                                              fadeInDuration:
+                                              Duration.zero,
+                                              imageUrl: avatar,
+                                              imageBuilder: (context,
+                                                  imageProvider) =>
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                        image: imageProvider,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                              placeholder: (context,
+                                                  url) =>
+                                                  CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                  Icon(Icons.error),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          0, 5, 0, 0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '$name',
+                                            style: const TextStyle(
+                                                fontSize: 13,
+                                                fontWeight:
+                                                FontWeight.bold,
+                                                color: colors_colpaner
+                                                    .claro),
+                                          ),
+                                          Text(
+                                            '$tecnica',
+                                            style: const TextStyle(
+                                                fontSize: 10,
+                                                fontWeight:
+                                                FontWeight.bold,
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.fromLTRB(
+                                              10, 0, 20, 0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                            children: [
+                                              //medalla
+                                              Text(
+                                                (index == 0)
+                                                    ? '🥇'
+                                                    : (index == 1)
+                                                    ? '🥈'
+                                                    : (index == 2)
+                                                    ? '🥉'
+                                                    : '🎖️',
+                                                style: const TextStyle(
+                                                    fontSize: 20),
+                                              ),
+
+                                              Text(
+                                                '$puntaje',
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    color: Colors.amber),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 30),
 
               ],
             ),),

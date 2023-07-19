@@ -39,6 +39,7 @@ dependencies:
   image_size_getter: ^2.1.2
   intl: ^0.18.1
   connectivity: ^3.0.6
+  percent_indicator: ^4.2.0
   
 dev_dependencies:
   flutter_test:

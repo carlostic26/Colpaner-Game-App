@@ -329,9 +329,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
                           height: imgHeigh?.toDouble(),
-                          child: Image.network(
-                            questionBuild.imagen,
+                          child: CachedNetworkImage(
+                            imageUrl: questionBuild.imagen,
                             fit: BoxFit.contain,
+                            placeholder: (context, url) => Container(  width: 20,
+                                height: 20, child: CircularProgressIndicator()), // Barra de progreso circular
+                            errorWidget: (context, url, error) => Icon(Icons.error), // Widget a mostrar en caso de error
                           ),
                         ),
                       )

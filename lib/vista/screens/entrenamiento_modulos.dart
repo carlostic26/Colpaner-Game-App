@@ -39,7 +39,11 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     final horaInicio =
         DateTime(horaActual.year, horaActual.month, horaActual.day, 7);
     var horaFin =
-        DateTime(horaActual.year, horaActual.month, horaActual.day, 10);
+        DateTime(horaActual.year, horaActual.month, horaActual.day, 24);
+
+    print('hora actual: $horaActual');
+    print('hora inicio: $horaInicio');
+    print('hora fin: $horaFin');
 
     final horaActualColombia = horaActual.toLocal();
 
@@ -50,8 +54,8 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
     final diaSemana = horaActualColombia.weekday;
     //final diaSemana = 6;
     final esDiaHabil = //de lunes a miercoles, y solo viernes
-        (diaSemana >= DateTime.monday &&
-            diaSemana <=
+        (diaSemana >= DateTime.monday && diaSemana <= DateTime.wednesday ||
+            diaSemana ==
                 DateTime
                     .friday); //(diaSemana >= DateTime.monday && diaSemana <= DateTime.wednesday || diaSemana == DateTime.friday);
 
@@ -63,7 +67,7 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
       });
     } else {
       setState(() {
-        permitirAcceso = true;
+        permitirAcceso = false;
       });
     }
 

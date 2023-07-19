@@ -166,7 +166,7 @@ class _world_gameState extends State<world_game> {
         niv7enabled = (await storage.getIngBtn7Enabled())!;
         niv8enabled = (await storage.getIngBtn8Enabled())!;
         niv9enabled = (await storage.getIngBtn9Enabled())!;
-        niv10enabled = (await storage.getIngBtn10Enabled())!;
+        niv10enabled = true; //(await storage.getIngBtn10Enabled())!
         break;
 
       case 'Ciencias Naturales':
@@ -190,7 +190,7 @@ class _world_gameState extends State<world_game> {
         niv7enabled = (await storage.getCiuBtn7Enabled())!;
         niv8enabled = (await storage.getCiuBtn8Enabled())!;
         niv9enabled = (await storage.getCiuBtn9Enabled())!;
-        niv10enabled = (await storage.getCiuBtn10Enabled())!;
+        niv10enabled = true; //(await storage.getCiuBtn10Enabled())!
         break;
 
       case 'Lectura Crítica':
