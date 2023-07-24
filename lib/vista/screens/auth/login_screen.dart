@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gamicolpaner/controller/services/local_storage.dart';
-import 'package:gamicolpaner/model/user_model.dart';
-import 'package:gamicolpaner/vista/screens/maestro/maestros_screen.dart';
 import 'package:gamicolpaner/vista/screens/auth/registration_screen.dart';
 import 'package:gamicolpaner/vista/screens/entrenamiento_modulos.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -214,47 +212,39 @@ class _LoginScreenState extends State<LoginScreen> {
 
   //login function
   void signIn(String emaill, String password) async {
-
-    if(emaill=='maestro@colpaner.app'){
+    if (emaill == 'maestro@colpaner.app') {
       if (_formKey.currentState!.validate()) {
         //shared preferences pin=true
         savePin(true);
 
-      await _auth
-          .signInWithEmailAndPassword(email: emaill, password: password)
-          .then((uid) => {
-      Fluttertoast.showToast(msg: '¡Bienvenido Maestro!'),
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => const Maestro_Screen())),
-
-      })
-        .catchError((e) {
-    Fluttertoast.showToast(msg: e!.message);
-    });}
-    }else{
-      if (_formKey.currentState!.validate()) {
-
         await _auth
             .signInWithEmailAndPassword(email: emaill, password: password)
             .then((uid) => {
-
-          Fluttertoast.showToast(msg: '¡Bienvenido!'),
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const entrenamientoModulos())),
-        })
-
+                  Fluttertoast.showToast(msg: '¡Bienvenido Maestro!'),
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const Maestro_Screen())),
+                })
+            .catchError((e) {
+          Fluttertoast.showToast(msg: e!.message);
+        });
+      }
+    } else {
+      if (_formKey.currentState!.validate()) {
+        await _auth
+            .signInWithEmailAndPassword(email: emaill, password: password)
+            .then((uid) => {
+                  Fluttertoast.showToast(msg: '¡Bienvenido!'),
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const entrenamientoModulos())),
+                })
             .catchError((e) {
           Fluttertoast.showToast(msg: e!.message);
         });
       }
     }
 
-
-
     //keep user loged in
     SharedPreferences preferences = await SharedPreferences.getInstance();
     var email = preferences.setString('email', emaill);
-
   }
-
 }

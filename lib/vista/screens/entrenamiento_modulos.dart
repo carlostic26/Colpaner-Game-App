@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,16 +32,29 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
   LocalStorage localStorage = LocalStorage();
   String _imageAvatarUrl = '';
   late bool permitirAcceso;
+  bool _habilitarSesion = false;
 
   Future<void> verificarHorarioPermitido() async {
+    final docSnapshot = await FirebaseFirestore.instance
+        .collection('sesion')
+        .doc('habilitar')
+        .get();
+
+    if (docSnapshot.exists) {
+      final data = docSnapshot.data() as Map<String, dynamic>;
+      if (data.containsKey('sesion_habilitar')) {
+        _habilitarSesion = data['sesion_habilitar'] as bool;
+      }
+    }
+
     // en este momento está ajustado para ingreso de cualquier dia a cualquier hora
     // para sacar a produccion es necesario cambiar hora a horaInicio: 8am horaFin: 10am
     // y ajustar Datetime a     final esDiaHabil = (diaSemana >= DateTime.monday && diaSemana <= DateTime.friday);
     final horaActual = DateTime.now();
     final horaInicio =
-        DateTime(horaActual.year, horaActual.month, horaActual.day, 7);
+        DateTime(horaActual.year, horaActual.month, horaActual.day, 6);
     var horaFin =
-        DateTime(horaActual.year, horaActual.month, horaActual.day, 24);
+        DateTime(horaActual.year, horaActual.month, horaActual.day, 12);
 
     print('hora actual: $horaActual');
     print('hora inicio: $horaInicio');
@@ -59,16 +74,22 @@ class _entrenamientoModulosState extends State<entrenamientoModulos> {
                 DateTime
                     .friday); //(diaSemana >= DateTime.monday && diaSemana <= DateTime.wednesday || diaSemana == DateTime.friday);
 
-    if (esDiaHabil &&
-        horaActualColombia.isAfter(horaInicio) &&
-        horaActualColombia.isBefore(horaFin)) {
+    if (_habilitarSesion) {
       setState(() {
         permitirAcceso = true;
       });
     } else {
-      setState(() {
-        permitirAcceso = false;
-      });
+      if (esDiaHabil &&
+          horaActualColombia.isAfter(horaInicio) &&
+          horaActualColombia.isBefore(horaFin)) {
+        setState(() {
+          permitirAcceso = true;
+        });
+      } else {
+        setState(() {
+          permitirAcceso = false;
+        });
+      }
     }
 
     print('horaActual: $horaActual');

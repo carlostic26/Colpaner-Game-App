@@ -1559,9 +1559,9 @@ class _misPuntajesState extends State<misPuntajes> {
     });
   }
 
-  Future<void> guardarTotalModulos(puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu) async {
-
-    if(puntos_mat!=0){
+  Future<void> guardarTotalModulos(
+      puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu) async {
+    if (puntos_mat != 0) {
       final puntajesRefTotal = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('podio')
@@ -1577,7 +1577,7 @@ class _misPuntajesState extends State<misPuntajes> {
       });
     }
 
-    if(puntos_lec!=0){
+    if (puntos_lec != 0) {
       final puntajesRefTotal = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('podio')
@@ -1593,7 +1593,7 @@ class _misPuntajesState extends State<misPuntajes> {
       });
     }
 
-    if(puntos_ing!=0){
+    if (puntos_ing != 0) {
       final puntajesRefTotal = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('podio')
@@ -1609,7 +1609,7 @@ class _misPuntajesState extends State<misPuntajes> {
       });
     }
 
-    if(puntos_nat!=0){
+    if (puntos_nat != 0) {
       final puntajesRefTotal = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('podio')
@@ -1625,7 +1625,7 @@ class _misPuntajesState extends State<misPuntajes> {
       });
     }
 
-    if(puntos_ciu!=0){
+    if (puntos_ciu != 0) {
       final puntajesRefTotal = FirebaseFirestore.instance
           .collection('puntajes')
           .doc('podio')
@@ -1640,9 +1640,6 @@ class _misPuntajesState extends State<misPuntajes> {
         'avatar': loggedInUser.avatar.toString()
       });
     }
-
-
-
   }
 
   Future<List<QueryDocumentSnapshot>> obtenerMejoresPuntajes() async {
@@ -1740,8 +1737,7 @@ class _misPuntajesState extends State<misPuntajes> {
     puntos_global =
         puntos_mat + puntos_ing + puntos_lec + puntos_ciu + puntos_nat;
 
-
-    if(puntos_global!=0){
+    if (puntos_global != 0) {
       print('IMPRIMIENDO, SE HA ENVIADO EL TOTAL COLECCION GLOBAL A FIREBASE');
       print('$puntos_global');
 
@@ -1749,7 +1745,8 @@ class _misPuntajesState extends State<misPuntajes> {
       guardarTotalGamicolpaner(puntos_global);
 
       //envio los puntajes totales por modulo a coleccion llamada como el modulo de cada uno
-      guardarTotalModulos(puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu);
+      guardarTotalModulos(
+          puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu);
     }
 
     // Verificar si los mejores puntajes se han cargado
@@ -4838,7 +4835,6 @@ class _misPuntajesState extends State<misPuntajes> {
     );
   }
 
-
   void obtenerPuntajes() {
     //recibe el puntaje total del modulo mat y lo establece en variable para estitmar procentaje de progreso
 
@@ -4866,8 +4862,8 @@ class _misPuntajesState extends State<misPuntajes> {
       });
     });
 
-    localStorage.guardarPuntosModuloSHP(puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu);
-
+    localStorage.guardarPuntosModuloSHP(
+        puntos_mat, puntos_lec, puntos_ing, puntos_nat, puntos_ciu);
 
     //obtiene de shp cada nivel de puntaje y los actualiza
     getPuntaje_MAT();
@@ -4937,7 +4933,6 @@ class _misPuntajesState extends State<misPuntajes> {
     getPuntajeNaturales10_firestore();
   }
 
-
 // función para eliminar todos los registros de Shared Preferences
   Future<void> clearSharedPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -4949,5 +4944,4 @@ class _misPuntajesState extends State<misPuntajes> {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
-
 }
